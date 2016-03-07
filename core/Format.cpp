@@ -19,7 +19,7 @@ int Format::format_id()
 	return m_format_id;
 }
 /*!
-Конструирует объект класса Format из параметров
+ГЉГ®Г­Г±ГІГ°ГіГЁГ°ГіГҐГІ Г®ГЎГєГҐГЄГІ ГЄГ«Г Г±Г±Г  Format ГЁГ§ ГЇГ Г°Г Г¬ГҐГІГ°Г®Гў
 */
 Format::Format(QString format_name)
 {
@@ -28,8 +28,8 @@ Format::Format(QString format_name)
 }
 
 /*!
-Конструирует объект класса Format из данных в базе
-\param int formatId- id формата в базе
+ГЉГ®Г­Г±ГІГ°ГіГЁГ°ГіГҐГІ Г®ГЎГєГҐГЄГІ ГЄГ«Г Г±Г±Г  Format ГЁГ§ Г¤Г Г­Г­Г»Гµ Гў ГЎГ Г§ГҐ
+\param int formatId- id ГґГ®Г°Г¬Г ГІГ  Гў ГЎГ Г§ГҐ
 */
 Format::Format(int id)
 {
@@ -39,7 +39,7 @@ Format::Format(int id)
 	const QString filter = QString("format_id == %1");
 	model.setFilter(filter);
 	model.select();
-	QString format_name = model.record(0).value("format_name").toString;
+	QString format_name = model.record(0).value("format_name").toString();
 	Database::close();
 
 	m_format_id = id;
@@ -51,8 +51,8 @@ Format::~Format()
 }
 
 /*!
-Записывает информацию о формате в базу данных.
-\return true - если запись в БД успешно добавлена
+Г‡Г ГЇГЁГ±Г»ГўГ ГҐГІ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® ГґГ®Г°Г¬Г ГІГҐ Гў ГЎГ Г§Гі Г¤Г Г­Г­Г»Гµ.
+\return true - ГҐГ±Г«ГЁ Г§Г ГЇГЁГ±Гј Гў ГЃГ„ ГіГ±ГЇГҐГёГ­Г® Г¤Г®ГЎГ ГўГ«ГҐГ­Г 
 */
 bool Format::insertIntoDatabase()
 {
@@ -67,13 +67,13 @@ bool Format::insertIntoDatabase()
 		Database::close();
 		return false;
 	}
-	Database::close;
+	Database::close();
 	return true;
 }
 
 /*!
-Создает таблицу "formats" в базе данных.
-\return true - если таблица успешно создана
+Г‘Г®Г§Г¤Г ГҐГІ ГІГ ГЎГ«ГЁГ¶Гі "formats" Гў ГЎГ Г§ГҐ Г¤Г Г­Г­Г»Гµ.
+\return true - ГҐГ±Г«ГЁ ГІГ ГЎГ«ГЁГ¶Г  ГіГ±ГЇГҐГёГ­Г® Г±Г®Г§Г¤Г Г­Г 
 */
 bool Format::createTable()
 {
@@ -95,8 +95,8 @@ bool Format::createTable()
 }
 
 /*!
-Заполняет таблицу "formats" в БД начальными значениями.
-\return true - если таблица успешно заполнена
+Г‡Г ГЇГ®Г«Г­ГїГҐГІ ГІГ ГЎГ«ГЁГ¶Гі "formats" Гў ГЃГ„ Г­Г Г·Г Г«ГјГ­Г»Г¬ГЁ Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ.
+\return true - ГҐГ±Г«ГЁ ГІГ ГЎГ«ГЁГ¶Г  ГіГ±ГЇГҐГёГ­Г® Г§Г ГЇГ®Г«Г­ГҐГ­Г 
 */
 bool Format::completeTable()
 {
