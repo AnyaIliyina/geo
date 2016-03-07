@@ -21,14 +21,14 @@
 
 class Format {
 private:
-	int m_formatId;
-	QString m_formatName;
+	int m_format_id;
+	QString m_format_name;
 	
 public:
-	QString formatName();
-	int formatId();
-	Format(int formatId, QString formatName);
-	Format(int formatId);
+	QString format_name();
+	int format_id();
+	Format( QString format_name);
+	Format(int id);
 	~Format();
 	bool insertIntoDatabase();
 	static bool createTable();
