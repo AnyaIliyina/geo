@@ -78,7 +78,7 @@ bool Site::insertIntoDatabase()
 	query.addBindValue(m_status_id);
 	query.addBindValue(m_comment);
 	if (!query.exec()) {
-		qDebug() << "URL::insertIntoDatabase():  error inserting into Table URLs";
+		qDebug() << "Site::insertIntoDatabase():  error inserting into Table sites";
 		qDebug() << query.lastError().text();
 		Database::close();
 		return false;
@@ -89,7 +89,7 @@ bool Site::insertIntoDatabase()
 
 
 /*!
-Создает таблицу "Sites" в базе данных.
+Создает таблицу "sites" в базе данных.
 \return true - если таблица успешно создана
 */
 bool Site::createTable()
@@ -105,7 +105,7 @@ bool Site::createTable()
 		 )"
 		)) 
 	{
-		qDebug() << "error creating Sites Table in database.";
+		qDebug() << "error creating sites Table in database.";
 		qDebug() << query.lastError().text();
 		Database::close();
 		return false;
@@ -117,7 +117,7 @@ bool Site::createTable()
 
 
 /*!
-Заполняет таблицу "Sites" в БД начальными значениями.
+Заполняет таблицу "sites" в БД начальными значениями.
 \return true - если таблица успешно заполнена
 */
 bool Site::completeTable()
