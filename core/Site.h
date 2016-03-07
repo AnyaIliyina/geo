@@ -21,15 +21,17 @@
 
 class Site {
 private:
-	QUrl m_url;
-	bool m_checked;
-	QDateTime m_modificationDate;
+	int m_site_id;
+	QString m_url;
+	int m_status_id;
+	QString m_site_name;
 	QString m_comment;
 public:
 	QString url();
-	Site(QUrl url, bool checked = false, QString comment="");
-	Site(int site_id);
+	Site(QString url, QString site_name, int status = 0,  QString comment="");
+	Site(int id);
 	~Site();
+	int site_id();
 	bool insertIntoDatabase();
 	static bool createTable();
 	static bool completeTable();
