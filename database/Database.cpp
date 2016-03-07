@@ -1,4 +1,5 @@
 ﻿#include "Database.h"
+#include "Format.h"
 #include <QFileInfo>
 /*!
 \file
@@ -52,10 +53,12 @@ void Database::close()
 
 
 /*
-Создает в базе Database::db таблицы "Sites"
+Создает в базе Database::db таблицы "Sites", "Formats"
 */
 void Database::configure()
 {
 	Site::createTable();
 	Site::completeTable();
+	Format::createTable();
+	Format::completeTable();
 }
