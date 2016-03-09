@@ -34,5 +34,5 @@ public:
 	bool insertIntoDatabase();
 	static bool createTable();
 	static bool completeTable();
-
+	QString coded(QByteArray encodedStr);
 };
