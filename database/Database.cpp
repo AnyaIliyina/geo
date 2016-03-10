@@ -1,6 +1,7 @@
 ﻿#include "Database.h"
 #include "Format.h"
 #include "State.h"
+#include "Scale.h"
 #include <QFileInfo>
 /*!
 \file
@@ -58,10 +59,12 @@ void Database::close()
 */
 void Database::configure()
 {
-	Site::createTable();
-	Site::completeTable();
+	//Site::createTable();
+	//Site::completeTable();
 	Format::createTable();
 	Format::completeTable();
 	State::createTable();
 	State::completeTable();
+	Scale::createTable();
+	Scale::completeTable();
 }

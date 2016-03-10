@@ -11,7 +11,7 @@
 int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
-	// Database::configure();
+	//Database::configure();
 	Site *s = new Site(1);
 	qDebug() << s->url();
 	QMainWindow* w = new QMainWindow();
