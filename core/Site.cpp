@@ -29,7 +29,7 @@ Site::Site(QString url, QString site_name, int status , QString comment )
 
 /*!
 Конструирует объект класса Site из данных в базе
-\param int site_id - id сайта в базе
+\param int id - id сайта в базе
 */
 Site::Site(int id)
 {

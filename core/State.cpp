@@ -15,12 +15,19 @@ QString State::state_name()
 	return m_state_name;
 }
 
+/*!
+Конструирует объект класса State из параметров
+*/
 State::State(QString state_name)
 {
 	m_state_name = state_name;
 	m_state_id = 0;
 }
 
+/*!
+Конструирует объект класса State из данных в базе
+\param int id - id сайта в базе
+*/
 State::State(int id)
 {
 	Database::open();
@@ -45,6 +52,10 @@ int State::state_id()
 	return m_state_id;
 }
 
+/*!
+Записывает информацию о статусе в базу данных.
+\return true - если запись в БД успешно добавлена
+*/
 bool State::insertIntoDatabase()
 {
 	Database::open();
@@ -62,6 +73,10 @@ bool State::insertIntoDatabase()
 	return true;
 }
 
+/*!
+Создает таблицу "states" в базе данных.
+\return true - если таблица успешно создана
+*/
 bool State::createTable()
 {
 	Database::open();
@@ -89,6 +104,10 @@ QString State::coded(QByteArray encodedStr) // метод для получения строки в коди
 	return string;
 }
 
+/*!
+Заполняет таблицу "states" в БД начальными значениями.
+\return true - если таблица успешно заполнена
+*/
 bool State::completeTable()
 {
 	State *s = new State("Актуально");
