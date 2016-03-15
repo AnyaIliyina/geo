@@ -1,4 +1,4 @@
-#include "Scale.h"
+п»ї#include "Scale.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -16,7 +16,7 @@ QString Scale::description()
 }
 
 /*!
-Конструирует объект класса Scale из параметров
+РљРѕРЅСЃС‚СЂСѓРёСЂСѓРµС‚ РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Scale РёР· РїР°СЂР°РјРµС‚СЂРѕРІ
 */
 Scale::Scale(QString description)
 {
@@ -25,8 +25,8 @@ Scale::Scale(QString description)
 }
 
 /*!
-Конструирует объект класса Scale из данных в базе
-\param int id - id сайта в базе
+РљРѕРЅСЃС‚СЂСѓРёСЂСѓРµС‚ РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Scale РёР· РґР°РЅРЅС‹С… РІ Р±Р°Р·Рµ
+\param int id - id СЃР°Р№С‚Р° РІ Р±Р°Р·Рµ
 */
 Scale::Scale(int id)
 {
@@ -53,8 +53,8 @@ int Scale::scale_id()
 }
 
 /*!
-Записывает информацию о масштабе в базу данных.
-\return true - если запись в БД успешно добавлена
+Р—Р°РїРёСЃС‹РІР°РµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РјР°СЃС€С‚Р°Р±Рµ РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С….
+\return true - РµСЃР»Рё Р·Р°РїРёСЃСЊ РІ Р‘Р” СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°
 */
 bool Scale::insertIntoDatabase()
 {
@@ -74,8 +74,8 @@ bool Scale::insertIntoDatabase()
 }
 
 /*!
-Создает таблицу "scales" в базе данных.
-\return true - если таблица успешно создана
+РЎРѕР·РґР°РµС‚ С‚Р°Р±Р»РёС†Сѓ "scales" РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С….
+\return true - РµСЃР»Рё С‚Р°Р±Р»РёС†Р° СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅР°
 */
 bool Scale::createTable()
 {
@@ -96,8 +96,8 @@ bool Scale::createTable()
 	return true;
 }
 
-QString Scale::coded(QByteArray encodedStr) // метод для получения строки в кодировке Unicode 
-{ // из QByteArray с кодировкой Windows-1251 
+QString Scale::coded(QByteArray encodedStr) // РјРµС‚РѕРґ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃС‚СЂРѕРєРё РІ РєРѕРґРёСЂРѕРІРєРµ Unicode 
+{ // РёР· QByteArray СЃ РєРѕРґРёСЂРѕРІРєРѕР№ Windows-1251 
 	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
 	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
 	QString const string = codec->toUnicode(encodedStr);
@@ -106,8 +106,8 @@ QString Scale::coded(QByteArray encodedStr) // метод для получения строки в коди
 
 
 /*!
-Заполняет таблицу "scales" в БД начальными значениями.
-\return true - если таблица успешно заполнена
+Р—Р°РїРѕР»РЅСЏРµС‚ С‚Р°Р±Р»РёС†Сѓ "scales" РІ Р‘Р” РЅР°С‡Р°Р»СЊРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё.
+\return true - РµСЃР»Рё С‚Р°Р±Р»РёС†Р° СѓСЃРїРµС€РЅРѕ Р·Р°РїРѕР»РЅРµРЅР°
 */
 bool Scale::completeTable()
 {

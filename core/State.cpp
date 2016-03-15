@@ -33,7 +33,7 @@ State::State(int id)
 	Database::open();
 	QSqlTableModel model;
 	model.setTable("states");
-	const QString filter = QString("state_id == %1");
+	const QString filter = QString("state_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString state_name = model.record(0).value("state_name").toString();
@@ -110,7 +110,7 @@ QString State::coded(QByteArray encodedStr) // метод для получения строки в коди
 */
 bool State::completeTable()
 {
-	State *s = new State("Актуально");
+	State *s = new State(coded("Актуально"));
 
 	Database::open();
 	bool succeeded = s->insertIntoDatabase();
