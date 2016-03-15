@@ -1,4 +1,4 @@
-#include "User.h"
+﻿#include "User.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -9,6 +9,9 @@ QString User::login()
 	return m_login;
 }
 
+/*!
+Конструирует объект класса User из параметров
+*/
 User::User(int type_id, QString login, QString password)
 {
 	m_user_id = 0;
@@ -17,6 +20,10 @@ User::User(int type_id, QString login, QString password)
 	m_password = password;
 }
 
+/*!
+Конструирует объект класса User из данных в базе
+\param int id - id пользователя в базе
+*/
 User::User(int id)
 {
 	Database::open();
@@ -46,6 +53,10 @@ int User::user_id()
 	return m_user_id;
 }
 
+/*!
+Записывает информацию о пользователе в базу данных.
+\return true - если запись в БД успешно добавлена
+*/
 bool User::insertIntoDatabase()
 {
 	Database::open();
@@ -65,6 +76,10 @@ bool User::insertIntoDatabase()
 	return true;
 }
 
+/*!
+Создает таблицу "users" в базе данных.
+\return true - если таблица успешно создана
+*/
 bool User::createTable()
 {
 	Database::open();
@@ -86,6 +101,10 @@ bool User::createTable()
 	return true;
 }
 
+/*!
+Заполняет таблицу "users" в БД начальными значениями.
+\return true - если таблица успешно заполнена
+*/
 bool User::completeTable()
 {
 	User *user = new User(1, "search_module", "111");

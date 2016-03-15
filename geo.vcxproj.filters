@@ -28,13 +28,22 @@
     <ClCompile Include="core\Scale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\Session.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\Site.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\Status.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\User.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Usertype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -51,13 +60,22 @@
     <ClInclude Include="core\Scale.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\Session.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\Site.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\Status.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\User.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Usertype.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
