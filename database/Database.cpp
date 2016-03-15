@@ -3,6 +3,9 @@
 #include "State.h"
 #include "Scale.h"
 #include "User.h"
+#include "Status.h"
+#include "Session.h"
+#include "Usertype.h"
 #include <QFileInfo>
 /*!
 \file
@@ -56,7 +59,7 @@ void Database::close()
 
 
 /*
-Создает в базе Database::db таблицы "Sites", "Formats", "State", "Scale", "User"
+Создает в базе Database::db таблицы "Sites", "Formats", "State", "Scale", "User", "Status", "Session", "Usertype"
 */
 void Database::configure()
 {
@@ -70,4 +73,8 @@ void Database::configure()
 	Scale::completeTable();
 	User::createTable();
 	User::completeTable();
+	Status::createTable();
+	Status::completeTable();
+	Usertype::createTable();
+	Usertype::completeTable();
 }

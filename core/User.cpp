@@ -88,7 +88,8 @@ bool User::createTable()
 		user_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
 		type_id     integer    UNIQUE NOT NULL,\
 		login NVARCHAR(16) UNIQUE NOT NULL,\
-		password NVARCHAR(16)\
+		password NVARCHAR(16),\
+		FOREIGN KEY(type_id) REFERENCES usertypes(type_id)\
 		 )"
 		))
 	{

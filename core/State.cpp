@@ -26,7 +26,7 @@ State::State(QString state_name)
 
 /*!
 Конструирует объект класса State из данных в базе
-\param int id - id сайта в базе
+\param int id - id статуса в базе
 */
 State::State(int id)
 {
