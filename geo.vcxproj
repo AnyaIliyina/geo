@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="database\Database.cpp" />
     <ClCompile Include="core\Format.cpp" />
+    <ClCompile Include="core\Geodata_record.cpp" />
     <ClCompile Include="core\Scale.cpp" />
     <ClCompile Include="core\Session.cpp" />
     <ClCompile Include="core\Site.cpp" />
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="database\Database.h" />
     <ClInclude Include="core\Format.h" />
+    <ClInclude Include="core\Geodata_record.h" />
     <ClInclude Include="core\Scale.h" />
     <ClInclude Include="core\Session.h" />
     <ClInclude Include="core\Site.h" />

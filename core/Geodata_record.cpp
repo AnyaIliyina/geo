@@ -1,1 +1,151 @@
+#include "Geodata_record.h"
+#include <QSqlError>
+#include <QSqlTableModel>
+#include <QSqlRecord>
+#include "Database.h"
+#include <QTextCodec>
+
+QString Geodata_record::place_name()
+{
+	return m_place_name;
+}
+
+/*!
+Конструирует объект класса Geodata_record из параметров
+*/
+Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, int state_id, QString place_name, QString comment)
+{
+	m_record_id = 0;
+	m_site_id = site_id;
+	m_session_id = session_id;
+	m_format_id = format_id;
+	m_scale_id = scale_id;
+	m_state_id = state_id;
+	m_place_name = place_name;
+	m_comment = comment;
+}
+
+/*!
+Конструирует объект класса Geodata_record из данных в базе
+\param int id - id сайта в базе
+*/
+Geodata_record::Geodata_record(int id)
+{
+	Database::open();
+	QSqlTableModel model;
+	model.setTable("geodata_records");
+	const QString filter = QString("record_id == %1").arg(id);
+	model.setFilter(filter);
+	model.select();
+	QString place_name = model.record(0).value("place_name").toString();
+	int site_id = model.record(0).value("site_id").toInt();
+	int session_id = model.record(0).value("session_id").toInt();
+	int format_id = model.record(0).value("format_id").toInt();
+	int scale_id = model.record(0).value("scale_id").toInt();
+	int state_id = model.record(0).value("state_id").toInt();
+	QString comment = model.record(0).value("comment").toString();
+	Database::close();
+
+	m_record_id = id;
+	m_site_id = site_id;
+	m_session_id = session_id;
+	m_format_id = format_id;
+	m_scale_id = scale_id;
+	m_state_id = state_id;
+	m_place_name = place_name;
+	m_comment = comment;
+}
+
+Geodata_record::~Geodata_record()
+{
+}
+
+int Geodata_record::record_id()
+{
+	return m_record_id;
+}
+
+/*!
+Записывает геопространственную информацию в базу данных.
+\return true - если запись в БД успешно добавлена
+*/
+bool Geodata_record::insertIntoDatabase()
+{
+	Database::open();
+	QSqlQuery query;
+	query.prepare("INSERT INTO geodata_records ( site_id, , session_id, format_id, scale_id, state_id, place_name, comment)\
+		VALUES (?, ?, ?, ?, ?, ?, ?)");
+	query.addBindValue(m_site_id);
+	query.addBindValue(m_session_id);
+	query.addBindValue(m_format_id);
+	query.addBindValue(m_scale_id);
+	query.addBindValue(m_state_id);
+	query.addBindValue(m_place_name);
+	query.addBindValue(m_comment);
+	if (!query.exec()) {
+		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
+		qDebug() << query.lastError().text();
+		Database::close();
+		return false;
+	}
+	Database::close();
+	return true;
+}
+
+/*!
+Создает таблицу "geodata_records" в базе данных.
+\return true - если таблица успешно создана
+*/
+bool Geodata_record::createTable()
+{
+	Database::open();
+	QSqlQuery query;
+	if (!query.exec("CREATE TABLE IF NOT EXISTS  geodata_records (\
+		record_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
+		site_id INTEGER,		\
+		session_id INTEGER,		\
+		format_id INTEGER,		\
+		scale_id INTEGER,		\
+		state_id INTEGER,		\
+		place_name     TEXT   NOT NULL,\
+		comment TEXT,   \
+		FOREIGN KEY(site_id) REFERENCES sites(site_id),\
+		FOREIGN KEY(session_id) REFERENCES sessions(session_id),\
+		FOREIGN KEY(format_id) REFERENCES formats(format_id),\
+		FOREIGN KEY(scale_id) REFERENCES scales(scale_id),\
+		FOREIGN KEY(state_id) REFERENCES states(state_id),\
+		 )"
+		))
+	{
+		qDebug() << "error creating sites Table in database.";
+		qDebug() << query.lastError().text();
+		Database::close();
+		return false;
+	}
+	Database::close();
+	return true;
+
+}
+
+/*!
+Заполняет таблицу "geodata_records" в БД начальными значениями.
+\return true - если таблица успешно заполнена
+*/
+bool Geodata_record::completeTable()
+{
+	Geodata_record *gdr = new Geodata_record(1,1,1,1,1, "Ekaterinburg","ohoho");
+	Database::open();
+	bool succeeded = gdr->insertIntoDatabase();
+	Database::close();
+	return succeeded;
+}
+
+QString Geodata_record::coded(QByteArray encodedStr)
+{
+	// из QByteArray с кодировкой Windows-1251 
+	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
+	QString const string = codec->toUnicode(encodedStr);
+	return string;
+}
 

@@ -25,6 +25,9 @@
     <ClCompile Include="core\Format.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\Geodata_record.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\Scale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,6 +58,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\Format.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\Geodata_record.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\Scale.h">

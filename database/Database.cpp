@@ -6,6 +6,7 @@
 #include "Status.h"
 #include "Session.h"
 #include "Usertype.h"
+#include "Geodata_record.h"
 #include <QFileInfo>
 /*!
 \file
@@ -77,4 +78,8 @@ void Database::configure()
 	Status::completeTable();
 	Usertype::createTable();
 	Usertype::completeTable();
+	Geodata_record::createTable();
+	Geodata_record::completeTable();
+	Session::createTable();
+	Session::completeTable();
 }
