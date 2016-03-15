@@ -4,6 +4,7 @@
 #include <qDebug>
 #include "Database.h"
 #include "State.h"
+#include "User.h"
 
 
 /*!
@@ -18,9 +19,9 @@ int main(int argc, char* argv[])
 	//qDebug() << s->url();
 	//QMainWindow* w = new QMainWindow();
 	QTextEdit *txt = new QTextEdit();
-	State *state = new State(1);
-	qDebug() << state->state_name();
-	txt->setText(state->state_name());
+	User *user = new User(1);
+	qDebug() << user->login();
+	txt->setText(user->login());
 	txt->show();
 	
 	return app.exec();

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7E8CB770-24BD-305D-8C2A-6EBDA5515E8A}</ProjectGuid>
+    <ProjectGuid>{CA904108-F2B2-36AF-A125-7E40B16E0C09}</ProjectGuid>
     <RootNamespace>geo</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
   </PropertyGroup>
@@ -56,12 +56,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;core;database;C:\qt\qt\qtbase\include;C:\qt\qt\qtbase\include\QtWidgets;C:\qt\qt\qtbase\include\QtGui;C:\qt\qt\qtbase\include\QtANGLE;C:\qt\qt\qtbase\include\QtSql;C:\qt\qt\qtbase\include\QtCore;debug;C:\qt\qt\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.;core;database;..\..\..\..\Qt\5.5.1\qtbase\include;..\..\..\..\Qt\5.5.1\qtbase\include\QtWidgets;..\..\..\..\Qt\5.5.1\qtbase\include\QtGui;..\..\..\..\Qt\5.5.1\qtbase\include\QtANGLE;..\..\..\..\Qt\5.5.1\qtbase\include\QtSql;..\..\..\..\Qt\5.5.1\qtbase\include\QtCore;debug;..\..\..\..\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>debug\</ObjectFileName>
       <Optimization>Disabled</Optimization>
@@ -74,8 +73,8 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\qt\qt\qtbase\lib\Qt5Widgetsd.lib;C:\qt\qt\qtbase\lib\Qt5Guid.lib;C:\qt\qt\qtbase\lib\Qt5Sqld.lib;C:\qt\qt\qtbase\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\qt\qt\qtbase\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Qt\5.5.1\qtbase\lib\Qt5Widgetsd.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Guid.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Sqld.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Cored.lib;libEGLd.lib;libGLESv2d.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\5.5.1\qtbase\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -96,12 +95,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;core;database;C:\qt\qt\qtbase\include;C:\qt\qt\qtbase\include\QtWidgets;C:\qt\qt\qtbase\include\QtGui;C:\qt\qt\qtbase\include\QtANGLE;C:\qt\qt\qtbase\include\QtSql;C:\qt\qt\qtbase\include\QtCore;release;C:\qt\qt\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:strictStrings -Zc:throwingNew -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.;core;database;..\..\..\..\Qt\5.5.1\qtbase\include;..\..\..\..\Qt\5.5.1\qtbase\include\QtWidgets;..\..\..\..\Qt\5.5.1\qtbase\include\QtGui;..\..\..\..\Qt\5.5.1\qtbase\include\QtANGLE;..\..\..\..\Qt\5.5.1\qtbase\include\QtSql;..\..\..\..\Qt\5.5.1\qtbase\include\QtCore;release;..\..\..\..\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
-      <DisableSpecificWarnings>4577;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ObjectFileName>release\</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
@@ -115,8 +113,8 @@
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>C:\qt\qt\qtbase\lib\Qt5Widgets.lib;C:\qt\qt\qtbase\lib\Qt5Gui.lib;C:\qt\qt\qtbase\lib\Qt5Sql.lib;C:\qt\qt\qtbase\lib\Qt5Core.lib;libEGL.lib;libGLESv2.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\qt\qt\qtbase\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\Qt\5.5.1\qtbase\lib\Qt5Widgets.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Gui.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Sql.lib;C:\Qt\5.5.1\qtbase\lib\Qt5Core.lib;libEGL.lib;libGLESv2.lib;gdi32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Qt\5.5.1\qtbase\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot; %(AdditionalOptions)</AdditionalOptions>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -142,6 +140,7 @@
     <ClCompile Include="core\Scale.cpp" />
     <ClCompile Include="core\Site.cpp" />
     <ClCompile Include="core\State.cpp" />
+    <ClCompile Include="core\User.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +149,7 @@
     <ClInclude Include="core\Scale.h" />
     <ClInclude Include="core\Site.h" />
     <ClInclude Include="core\State.h" />
+    <ClInclude Include="core\User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -2,6 +2,7 @@
 #include "Format.h"
 #include "State.h"
 #include "Scale.h"
+#include "User.h"
 #include <QFileInfo>
 /*!
 \file
@@ -55,7 +56,7 @@ void Database::close()
 
 
 /*
-Создает в базе Database::db таблицы "Sites", "Formats"
+Создает в базе Database::db таблицы "Sites", "Formats", "State", "Scale", "User"
 */
 void Database::configure()
 {
@@ -67,4 +68,6 @@ void Database::configure()
 	State::completeTable();
 	Scale::createTable();
 	Scale::completeTable();
+	User::createTable();
+	User::completeTable();
 }
