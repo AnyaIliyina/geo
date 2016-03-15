@@ -24,12 +24,11 @@ class Session {
 private:
 	int m_session_id;
 	int m_user_id;
-	QString m_session_start;
-	QString m_session_finish;
+	QDateTime m_date;
 
 public:
 	
-	Session(int user_id, QString session_start, QString session_finish);
+	Session(int user_id, QDateTime date);
 	Session(int id);
 	~Session();
 	int session_id();

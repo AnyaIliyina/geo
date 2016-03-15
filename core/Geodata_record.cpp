@@ -73,7 +73,7 @@ bool Geodata_record::insertIntoDatabase()
 {
 	Database::open();
 	QSqlQuery query;
-	query.prepare("INSERT INTO geodata_records ( site_id, , session_id, format_id, scale_id, state_id, place_name, comment)\
+	query.prepare("INSERT INTO geodata_records ( site_id, session_id, format_id, scale_id, state_id, place_name, comment)\
 		VALUES (?, ?, ?, ?, ?, ?, ?)");
 	query.addBindValue(m_site_id);
 	query.addBindValue(m_session_id);
@@ -113,11 +113,11 @@ bool Geodata_record::createTable()
 		FOREIGN KEY(session_id) REFERENCES sessions(session_id),\
 		FOREIGN KEY(format_id) REFERENCES formats(format_id),\
 		FOREIGN KEY(scale_id) REFERENCES scales(scale_id),\
-		FOREIGN KEY(state_id) REFERENCES states(state_id),\
+		FOREIGN KEY(state_id) REFERENCES states(state_id)\
 		 )"
 		))
 	{
-		qDebug() << "error creating sites Table in database.";
+		qDebug() << "error creating geodata_records Table in database.";
 		qDebug() << query.lastError().text();
 		Database::close();
 		return false;

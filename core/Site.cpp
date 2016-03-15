@@ -96,6 +96,7 @@ bool Site::createTable()
 {
 	Database::open();
 	QSqlQuery query;
+	query.exec("PRAGMA foreign_keys = ON");
 	if ((!query.exec("CREATE TABLE IF NOT EXISTS  sites (\
 		site_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
 		url     TEXT    UNIQUE NOT NULL,\
@@ -103,9 +104,8 @@ bool Site::createTable()
 		status_id INTEGER,		\
 		comment TEXT,   \
 		FOREIGN KEY(status_id) REFERENCES statuses(status_id)\
-		 )"
-		)) ||
-		(!query.exec("PRAGMA foreign_keys = ON")))
+		)"
+		)) )
 	{
 		qDebug() << "error creating sites Table in database.";
 		qDebug() << query.lastError().text();
