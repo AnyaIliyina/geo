@@ -131,3 +131,25 @@ bool Site::completeTable()
 	Database::close();
 	return succeeded;
 }
+
+QList<Site> Site::sitesByStatus(int statusId)
+{
+	QList<Site> siteList;
+	Database::open();
+	QSqlTableModel model;
+	model.setTable("sites");
+	const QString filter = QString("status_id == %1").arg(statusId);
+	model.setFilter(filter);
+	//for (int i = 0; i < model.rowCount(); i++)
+	for (int i = 0; i < 2; i++)
+	{
+		qDebug() << "FOR loop";
+		Site *s = new Site(model.record(i).value("url").toString(),
+			model.record(i).value("site_name").toString(), statusId,
+			model.record(i).value("comment").toString());
+		siteList.append(*s);
+		delete s;
+	}
+	Database::close();
+	return siteList;
+}
