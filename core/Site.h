@@ -35,5 +35,6 @@ public:
 	bool insertIntoDatabase();
 	static bool createTable();
 	static bool completeTable();
+	static QList<Site> sitesByStatus(int statusId);
 
 };

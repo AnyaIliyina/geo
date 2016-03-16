@@ -64,8 +64,8 @@ void Database::close()
 */
 void Database::configure()
 {
-	//Site::createTable();
-	//Site::completeTable();
+	Site::createTable();
+	Site::completeTable();
 	Format::createTable();
 	Format::completeTable();
 	State::createTable();

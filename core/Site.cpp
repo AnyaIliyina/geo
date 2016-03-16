@@ -132,6 +132,11 @@ bool Site::completeTable()
 	return succeeded;
 }
 
+/*!
+\brief Выбирает сайты из таблицы sites
+\param int statusId - id статуса
+\return QList<Site> siteList - список сайтов со статусом statusId
+*/
 QList<Site> Site::sitesByStatus(int statusId)
 {
 	QList<Site> siteList;
@@ -140,10 +145,9 @@ QList<Site> Site::sitesByStatus(int statusId)
 	model.setTable("sites");
 	const QString filter = QString("status_id == %1").arg(statusId);
 	model.setFilter(filter);
-	//for (int i = 0; i < model.rowCount(); i++)
-	for (int i = 0; i < 2; i++)
+	model.select();
+	for (int i = 0; i < model.rowCount(); i++)
 	{
-		qDebug() << "FOR loop";
 		Site *s = new Site(model.record(i).value("url").toString(),
 			model.record(i).value("site_name").toString(), statusId,
 			model.record(i).value("comment").toString());
