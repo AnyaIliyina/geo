@@ -6,6 +6,7 @@
 #include "State.h"
 #include "User.h"
 #include <QList>
+#include "SiteView.h"
 
 /*!
 \file
@@ -17,11 +18,13 @@ int main(int argc, char* argv[])
 	Database::configure();
 	//qDebug() << s->url();
 	//QMainWindow* w = new QMainWindow();
-	QTextEdit *txt = new QTextEdit();
-	QList <Site> myList = Site::sitesByStatus(0);
-	qDebug() << myList.isEmpty();
+	//QTextEdit *txt = new QTextEdit();
+	//QList <Site> myList = Site::sitesByStatus(0);
+	//qDebug() << myList.isEmpty();
 	//txt->setText(user->login());
-	txt->show();
+	//txt->show();
 	
+	SiteView Table;
+	Table.show();
 	return app.exec();
 };

@@ -56,7 +56,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;core;database;C:\Qt\5.5.1\qtbase\include;C:\Qt\5.5.1\qtbase\include\QtWidgets;C:\Qt\5.5.1\qtbase\include\QtGui;C:\Qt\5.5.1\qtbase\include\QtANGLE;C:\Qt\5.5.1\qtbase\include\QtSql;C:\Qt\5.5.1\qtbase\include\QtCore;debug;C:\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;core;database;view;C:\Qt\5.5.1\qtbase\include;C:\Qt\5.5.1\qtbase\include\QtWidgets;C:\Qt\5.5.1\qtbase\include\QtGui;C:\Qt\5.5.1\qtbase\include\QtANGLE;C:\Qt\5.5.1\qtbase\include\QtSql;C:\Qt\5.5.1\qtbase\include\QtCore;debug;.;C:\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -95,7 +95,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;core;database;C:\Qt\5.5.1\qtbase\include;C:\Qt\5.5.1\qtbase\include\QtWidgets;C:\Qt\5.5.1\qtbase\include\QtGui;C:\Qt\5.5.1\qtbase\include\QtANGLE;C:\Qt\5.5.1\qtbase\include\QtSql;C:\Qt\5.5.1\qtbase\include\QtCore;release;C:\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;core;database;view;C:\Qt\5.5.1\qtbase\include;C:\Qt\5.5.1\qtbase\include\QtWidgets;C:\Qt\5.5.1\qtbase\include\QtGui;C:\Qt\5.5.1\qtbase\include\QtANGLE;C:\Qt\5.5.1\qtbase\include\QtSql;C:\Qt\5.5.1\qtbase\include\QtCore;release;.;C:\Qt\5.5.1\qtbase\mkspecs\win32-msvc2015;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:strictStrings -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -141,6 +141,7 @@
     <ClCompile Include="core\Scale.cpp" />
     <ClCompile Include="core\Session.cpp" />
     <ClCompile Include="core\Site.cpp" />
+    <ClCompile Include="view\SiteView.cpp" />
     <ClCompile Include="core\State.cpp" />
     <ClCompile Include="core\Status.cpp" />
     <ClCompile Include="core\User.cpp" />
@@ -154,10 +155,42 @@
     <ClInclude Include="core\Scale.h" />
     <ClInclude Include="core\Session.h" />
     <ClInclude Include="core\Site.h" />
+    <CustomBuild Include="view\SiteView.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">view\SiteView.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\SiteView.h -o debug\moc_SiteView.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC view/SiteView.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_SiteView.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">view\SiteView.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\SiteView.h -o release\moc_SiteView.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC view/SiteView.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_SiteView.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <ClInclude Include="core\State.h" />
     <ClInclude Include="core\Status.h" />
     <ClInclude Include="core\User.h" />
     <ClInclude Include="core\Usertype.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="debug\moc_SiteView.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SiteView.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClInclude Include="ui_SiteView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="view\SiteView.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">view\SiteView.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;(set QT_PLUGIN_PATH=C:\Qt\5.5.1\qtbase\plugins) &amp; (set PATH=C:\Qt\5.5.1\qtbase\lib;%PATH:)=^)%) &amp; C:\Qt\5.5.1\qtbase\bin\uic.exe view\SiteView.ui -o ui_SiteView.h&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">UIC view/SiteView.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">ui_SiteView.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">view\SiteView.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;(set QT_PLUGIN_PATH=C:\Qt\5.5.1\qtbase\plugins) &amp; (set PATH=C:\Qt\5.5.1\qtbase\lib;%PATH:)=^)%) &amp; C:\Qt\5.5.1\qtbase\bin\uic.exe view\SiteView.ui -o ui_SiteView.h&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">UIC view/SiteView.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">ui_SiteView.h;%(Outputs)</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
