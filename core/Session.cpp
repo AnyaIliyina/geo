@@ -1,4 +1,4 @@
-#include "Session.h"
+п»ї#include "Session.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -40,8 +40,8 @@ int Session::session_id()
 }
 
 /*!
-Записывает информацию о сессии в базу данных.
-\return true - если запись в БД успешно добавлена
+Р—Р°РїРёСЃС‹РІР°РµС‚ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРµСЃСЃРёРё РІ Р±Р°Р·Сѓ РґР°РЅРЅС‹С….
+\return true - РµСЃР»Рё Р·Р°РїРёСЃСЊ РІ Р‘Р” СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°
 */
 bool Session::insertIntoDatabase()
 {
@@ -63,8 +63,8 @@ bool Session::insertIntoDatabase()
 }
 
 /*!
-Создает таблицу "sessions" в базе данных.
-\return true - если таблица успешно создана
+РЎРѕР·РґР°РµС‚ С‚Р°Р±Р»РёС†Сѓ "sessions" РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С….
+\return true - РµСЃР»Рё С‚Р°Р±Р»РёС†Р° СѓСЃРїРµС€РЅРѕ СЃРѕР·РґР°РЅР°
 */
 bool Session::createTable()
 {
