@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <QString>
 #include <QDebug>
@@ -13,7 +13,7 @@
 *  \details
 *  \author    
 *  \version
-*  \date     15 ìàðò 2016
+*  \date     15 Ð¼Ð°Ñ€Ñ‚ 2016
 *  \pre
 *  \bug
 *  \warning

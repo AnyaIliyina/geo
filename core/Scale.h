@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #pragma once
 
 #include <QString>
@@ -13,7 +13,7 @@
 *  \details
 *  \author
 *  \version
-*  \date		10 марта 2016
+*  \date		10 РјР°СЂС‚Р° 2016
 *  \pre
 *  \bug
 *  \warning
