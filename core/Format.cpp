@@ -19,7 +19,7 @@ int Format::format_id()
 	return m_format_id;
 }
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Format èç ïàðàìåòðîâ
+Конструирует объект из параметров
 */
 Format::Format(QString format_name)
 {
@@ -28,8 +28,8 @@ Format::Format(QString format_name)
 }
 
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Format èç äàííûõ â áàçå
-\param int formatId- id ôîðìàòà â áàçå
+Конструирует объект, используя информацию в базе
+\param int formatId- id формата
 */
 Format::Format(int id)
 {
@@ -51,8 +51,8 @@ Format::~Format()
 }
 
 /*!
-Çàïèñûâàåò èíôîðìàöèþ î ôîðìàòå â áàçó äàííûõ.
-\return true - åñëè çàïèñü â ÁÄ óñïåøíî äîáàâëåíà
+Записывает информацию о формате в таблицу БД "formats"
+\return true - если информация записана
 */
 bool Format::insertIntoDatabase()
 {
@@ -72,8 +72,8 @@ bool Format::insertIntoDatabase()
 }
 
 /*!
-Ñîçäàåò òàáëèöó "formats" â áàçå äàííûõ.
-\return true - åñëè òàáëèöà óñïåøíî ñîçäàíà
+Создает таблицу "formats" в базе.
+\return true - если таблица успешно создана
 */
 bool Format::createTable()
 {
@@ -95,8 +95,8 @@ bool Format::createTable()
 }
 
 /*!
-Çàïîëíÿåò òàáëèöó "formats" â ÁÄ íà÷àëüíûìè çíà÷åíèÿìè.
-\return true - åñëè òàáëèöà óñïåøíî çàïîëíåíà
+Заполняет таблицу "formats" начальными значениями
+\return true - если записи успешно созданы
 */
 bool Format::completeTable()
 {
