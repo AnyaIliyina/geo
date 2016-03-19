@@ -1,4 +1,4 @@
-#include "Geodata_record.h"
+ï»¿#include "Geodata_record.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -11,7 +11,7 @@ QString Geodata_record::place_name()
 }
 
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Geodata_record èç ïàðàìåòðîâ
+ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐ¸Ñ€ÑƒÐµÑ‚ Ð¾Ð±ÑŠÐµÐºÑ‚ ÐºÐ»Ð°ÑÑÐ° Geodata_record Ð¸Ð· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 */
 Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, int state_id, QString place_name, QString comment)
 {
@@ -26,8 +26,8 @@ Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int s
 }
 
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Geodata_record èç äàííûõ â áàçå
-\param int id - id ñàéòà â áàçå
+ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐ¸Ñ€ÑƒÐµÑ‚ Ð¾Ð±ÑŠÐµÐºÑ‚ ÐºÐ»Ð°ÑÑÐ° Geodata_record Ð¸Ð· Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð² Ð±Ð°Ð·Ðµ
+\param int id - id ÑÐ°Ð¹Ñ‚Ð° Ð² Ð±Ð°Ð·Ðµ
 */
 Geodata_record::Geodata_record(int id)
 {
@@ -66,8 +66,8 @@ int Geodata_record::record_id()
 }
 
 /*!
-Çàïèñûâàåò ãåîïðîñòðàíñòâåííóþ èíôîðìàöèþ â áàçó äàííûõ.
-\return true - åñëè çàïèñü â ÁÄ óñïåøíî äîáàâëåíà
+Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ Ð³ÐµÐ¾Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²ÐµÐ½Ð½ÑƒÑŽ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð² Ð±Ð°Ð·Ñƒ Ð´Ð°Ð½Ð½Ñ‹Ñ….
+\return true - ÐµÑÐ»Ð¸ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð‘Ð” ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð°
 */
 bool Geodata_record::insertIntoDatabase()
 {
@@ -93,8 +93,8 @@ bool Geodata_record::insertIntoDatabase()
 }
 
 /*!
-Ñîçäàåò òàáëèöó "geodata_records" â áàçå äàííûõ.
-\return true - åñëè òàáëèöà óñïåøíî ñîçäàíà
+Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ "geodata_records" Ð² Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ….
+\return true - ÐµÑÐ»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ð·Ð´Ð°Ð½Ð°
 */
 bool Geodata_record::createTable()
 {
@@ -128,8 +128,8 @@ bool Geodata_record::createTable()
 }
 
 /*!
-Çàïîëíÿåò òàáëèöó "geodata_records" â ÁÄ íà÷àëüíûìè çíà÷åíèÿìè.
-\return true - åñëè òàáëèöà óñïåøíî çàïîëíåíà
+Ð—Ð°Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ "geodata_records" Ð² Ð‘Ð” Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ñ‹Ð¼Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑÐ¼Ð¸.
+\return true - ÐµÑÐ»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð°
 */
 bool Geodata_record::completeTable()
 {
@@ -142,7 +142,7 @@ bool Geodata_record::completeTable()
 
 QString Geodata_record::coded(QByteArray encodedStr)
 {
-	// èç QByteArray ñ êîäèðîâêîé Windows-1251 
+	// Ð¸Ð· QByteArray Ñ ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐ¾Ð¹ Windows-1251 
 	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
 	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
 	QString const string = codec->toUnicode(encodedStr);

@@ -1,4 +1,4 @@
-#include "Usertype.h"
+ï»¿#include "Usertype.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -16,7 +16,7 @@ QString Usertype::type_name()
 }
 
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Usertype èç ïàðàìåòðîâ
+ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐ¸Ñ€ÑƒÐµÑ‚ Ð¾Ð±ÑŠÐµÐºÑ‚ ÐºÐ»Ð°ÑÑÐ° Usertype Ð¸Ð· Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
 */
 Usertype::Usertype(QString type_name)
 {
@@ -25,8 +25,8 @@ Usertype::Usertype(QString type_name)
 }
 
 /*!
-Êîíñòðóèðóåò îáúåêò êëàññà Usertype èç äàííûõ â áàçå
-\param int id - id ñòàòóñà â áàçå
+ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐ¸Ñ€ÑƒÐµÑ‚ Ð¾Ð±ÑŠÐµÐºÑ‚ ÐºÐ»Ð°ÑÑÐ° Usertype Ð¸Ð· Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð² Ð±Ð°Ð·Ðµ
+\param int id - id ÑÑ‚Ð°Ñ‚ÑƒÑÐ° Ð² Ð±Ð°Ð·Ðµ
 */
 Usertype::Usertype(int id)
 {
@@ -52,8 +52,8 @@ int Usertype::type_id()
 	return m_type_id;
 }
 /*!
-Çàïèñûâàåò èíôîðìàöèþ î òèïå ïîëüçîâàòåëÿ â áàçó äàííûõ.
-\return true - åñëè çàïèñü â ÁÄ óñïåøíî äîáàâëåíà
+Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÑ‚ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¾ Ñ‚Ð¸Ð¿Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ñ Ð² Ð±Ð°Ð·Ñƒ Ð´Ð°Ð½Ð½Ñ‹Ñ….
+\return true - ÐµÑÐ»Ð¸ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð‘Ð” ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð°
 */
 bool Usertype::insertIntoDatabase()
 {
@@ -73,8 +73,8 @@ bool Usertype::insertIntoDatabase()
 }
 
 /*!
-Ñîçäàåò òàáëèöó "usertypes" â áàçå äàííûõ.
-\return true - åñëè òàáëèöà óñïåøíî ñîçäàíà
+Ð¡Ð¾Ð·Ð´Ð°ÐµÑ‚ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ "usertypes" Ð² Ð±Ð°Ð·Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ….
+\return true - ÐµÑÐ»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ð·Ð´Ð°Ð½Ð°
 */
 bool Usertype::createTable()
 {
@@ -96,12 +96,12 @@ bool Usertype::createTable()
 }
 
 /*!
-Çàïîëíÿåò òàáëèöó "usertypes" â ÁÄ íà÷àëüíûìè çíà÷åíèÿìè.
-\return true - åñëè òàáëèöà óñïåøíî çàïîëíåíà
+Ð—Ð°Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ "usertypes" Ð² Ð‘Ð” Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ñ‹Ð¼Ð¸ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑÐ¼Ð¸.
+\return true - ÐµÑÐ»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ð° ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð°
 */
 bool Usertype::completeTable()
 {
-	Usertype *user = new Usertype(coded("Ìîäóëü ïîèñêà"));
+	Usertype *user = new Usertype(coded("ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð¿Ð¾Ð¸ÑÐºÐ°"));
 
 	Database::open();
 	bool succeeded = user->insertIntoDatabase();
@@ -111,7 +111,7 @@ bool Usertype::completeTable()
 
 QString Usertype::coded(QByteArray encodedStr)
 {
-	// èç QByteArray ñ êîäèðîâêîé Windows-1251 
+	// Ð¸Ð· QByteArray Ñ ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐ¾Ð¹ Windows-1251 
 	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
 	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
 	QString const string = codec->toUnicode(encodedStr);
