@@ -1,5 +1,10 @@
-#include "SiteView.h"
+﻿#include "SiteView.h"
 #include "ui_SiteView.h"
+#include "State.h"
+/*!
+\file
+\brief Временный класс для вывода содержимого таблицы Sites
+*/
 
 SiteView::SiteView(QDockWidget *parent) :
 	QDockWidget(parent),
@@ -8,9 +13,9 @@ SiteView::SiteView(QDockWidget *parent) :
 	ui->setupUi(this);
 	this->setupModel( QStringList() <<trUtf8("id")
 		<< trUtf8("URL")
-		<< trUtf8("�������� �����")
-		<< trUtf8("������")
-		<< trUtf8("�����������"));
+		<< State::coded("Название сайта")
+		<< State::coded("Статус")
+		<< State::coded("Комментарии"));
 	this->createUi();
 }
 
