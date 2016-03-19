@@ -1,4 +1,4 @@
-#include "ui_SiteView.h"
+﻿#include "ui_SiteView.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
