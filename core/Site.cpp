@@ -148,9 +148,7 @@ QList<Site> Site::sitesByStatus(int statusId)
 	model.select();
 	for (int i = 0; i < model.rowCount(); i++)
 	{
-		Site *s = new Site(model.record(i).value("url").toString(),
-			model.record(i).value("site_name").toString(), statusId,
-			model.record(i).value("comment").toString());
+		Site *s = new Site(model.record(i).value("site_id").toInt());
 		siteList.append(*s);
 		delete s;
 	}
