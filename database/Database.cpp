@@ -12,26 +12,24 @@
 \file
 */
 
-QSqlDatabase Database::db = Database::createDatabase();
+QSqlDatabase Database::db;
 
 
 /*!
-Создает файл database/geoDB, если его еще не существует
-\return QSqlDatabase dbase 
+Создает базу данных, если её не существует (файл database/geoDB).
+\return QSqlDatabase dbase - БД со всеми необходимыми таблицами
 */
-QSqlDatabase Database::createDatabase()
+void Database::connectToDatabase()
 {
-	QSqlDatabase dbase = QSqlDatabase::addDatabase("QSQLITE");
+	db = QSqlDatabase::addDatabase("QSQLITE");
 	QString pathToDB = QDir::currentPath() + QString("/database/geoDB");
-	dbase.setDatabaseName(pathToDB);
+	db.setDatabaseName(pathToDB);
 	QFileInfo dbFile(pathToDB);
+	
 	if (!dbFile.exists())
 	{
-	//	Site::createTable();
-	//	Site::completeTable();
+		configure();
 	}
-		
-	return dbase;
 }
 
 
@@ -60,26 +58,27 @@ void Database::close()
 
 
 /*
-Создает в базе Database::db таблицы "Sites", "Formats", "State", "Scale", "User", "Status", "Session", "Usertype"
+Создает в базе Database::db таблицы "Sites", "Formats", 
+"State", "Scale", "User", "Status", "Session", "Usertype"
 */
 void Database::configure()
 {
-	Site::createTable();
-	Site::completeTable();
-	Format::createTable();
-	Format::completeTable();
-	State::createTable();
-	State::completeTable();
-	Scale::createTable();
-	Scale::completeTable();
-	User::createTable();
-	User::completeTable();
-	Status::createTable();
-	Status::completeTable();
-	Usertype::createTable();
-	Usertype::completeTable();
-	Geodata_record::createTable();
-	Geodata_record::completeTable();
-	Session::createTable();
-	Session::completeTable();
+		Site::createTable();
+		Site::completeTable();
+		Format::createTable();
+		Format::completeTable();
+		State::createTable();
+		State::completeTable();
+		Scale::createTable();
+		Scale::completeTable();
+		User::createTable();
+		User::completeTable();
+		Status::createTable();
+		Status::completeTable();
+		Usertype::createTable();
+		Usertype::completeTable();
+		Geodata_record::createTable();
+		Geodata_record::completeTable();
+		Session::createTable();
+		Session::completeTable();
 }

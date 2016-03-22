@@ -22,9 +22,9 @@
 class Database {
 private:
 	static QSqlDatabase db;
-	static QSqlDatabase createDatabase();
+	static void configure();
 public:
 	static bool open();
 	static void close();
-	static void configure();
+	static void connectToDatabase();
 };
