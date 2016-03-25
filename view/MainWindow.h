@@ -1,4 +1,4 @@
-﻿#pragma once 
+#pragma once 
 #include <QMainWindow>
 #include <QWidget>
 #include <QString>
@@ -18,6 +18,8 @@ class MainWindow : public QMainWindow {
 public:
 	explicit MainWindow(QMainWindow *parent = 0);
 	~MainWindow();
+private:
+	void configure();
 private slots:
 	void showMW();
 	void showMessage(const QString &message);
