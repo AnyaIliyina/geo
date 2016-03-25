@@ -1,5 +1,6 @@
-﻿#include "MainWindow.h"
+#include "MainWindow.h"
 #include "SiteView.h"
+#include "SM_Session.h"
 #include <QTextEdit>
 #include <QDebug>
 #include <QStatusBar>
@@ -7,19 +8,34 @@
 \file
 */
 
+MainWindow::MainWindow(QMainWindow *parent)
+{
+	// Показать диалог с запросом пароля до появления основного окна:
+	LoginDialog *ld = new LoginDialog();
+	QObject::connect(ld, SIGNAL(logedIn()),
+		this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
+	ld->show();
+
+	// "Собрать" окно из виджетов:				
+	configure();
+
+	// Начать работу модуля поиска
+	SM_Session *session = new SM_Session();
+	QObject::connect(session, SIGNAL(newStatusbarText(const QString &)),
+		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
+	session->start();
+}
+
+
 MainWindow::~MainWindow()
 {
 }
 
-MainWindow::MainWindow(QMainWindow *parent)
+/*!
+"Собирает" основное окно из виджетов
+*/
+void MainWindow::configure()
 {
-	// Показать диалог с запросом пароля (до появления основного окна):
-	LoginDialog *ld = new LoginDialog();
-	QObject::connect(ld, SIGNAL(logedIn()), this, SLOT(showMW()));	// по сигналу logedIn() 
-																//  отображать основное окно 
-	ld->show();
-	
-	// "Собрать" окно из виджетов:				
 	QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);				// ? ? ? ? ? удалять ли *txt, *sv, *status, и когда ?
@@ -27,8 +43,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
-	status->showMessage("What's next?");
 }
+
 
 /*!
 Выводит основное окно
