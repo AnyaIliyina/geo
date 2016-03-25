@@ -18,14 +18,14 @@
  *  \date      март 2016
  */
 
-class SM_Session /*: public QObject {
-	Q_OBJECT*/
-{
+class SM_Session : public QObject {
+Q_OBJECT
 public:
 	SM_Session();
 	~SM_Session();
-//private:
-//	void newMessage(const QString &text);
-//signals:
-//	void newStatusbarText(const QString &text);
+	void start();
+private:
+	void newMessage(const QString &text);
+signals:
+	void newStatusbarText(const QString &text);
 };
