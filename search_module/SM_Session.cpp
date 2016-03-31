@@ -1,4 +1,4 @@
-#include "SM_Session.h"
+﻿#include "SM_Session.h"
 #include "Database.h"
 #include "QStatusBar"
 #include "State.h"
