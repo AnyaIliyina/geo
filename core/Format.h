@@ -25,9 +25,9 @@ private:
 	QString m_format_name;
 	
 public:
-	QString format_name();
-	int format_id();
-	Format( QString format_name);
+	const QString& format_name() const;
+	int format_id() const;
+	Format(const QString& format_name);
 	Format(int id);
 	~Format();
 	bool insertIntoDatabase();

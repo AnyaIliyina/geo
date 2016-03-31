@@ -9,19 +9,31 @@
 \brief  
 */
 
-QString Format::format_name()
+/*!
+Возвращает название формата
+\return QString& format_name - название формата
+*/
+const QString& Format::format_name() const
 {
 	return m_format_name;
 }
 
-int Format::format_id()
+
+/*!
+Возвращает id формата
+\return int format_id - id формата
+*/
+int Format::format_id() const 
 {
 	return m_format_id;
 }
+
+
 /*!
-Конструирует объект из параметров
+Создает формат с заданным названием
+\const QString &format_name - название создаваемого формата
 */
-Format::Format(QString format_name)
+Format::Format(const QString &format_name)
 {
 	m_format_name = format_name;
 	m_format_id = 0;
@@ -36,7 +48,7 @@ Format::Format(int id)
 	Database::open();
 	QSqlTableModel model;
 	model.setTable("formats");
-	const QString filter = QString("format_id == %1");
+	const QString filter = QString("format_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString format_name = model.record(0).value("format_name").toString();
@@ -49,6 +61,7 @@ Format::Format(int id)
 Format::~Format()
 {
 }
+
 
 /*!
 Записывает информацию о формате в таблицу БД "formats"
