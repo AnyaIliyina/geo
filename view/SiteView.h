@@ -18,6 +18,11 @@ namespace Ui {
 	class SiteView;
 }
 
+/*!
+*  \brief Выводит содержимое таблицы Sites (временно)
+*  \author Козырева О.
+*  \date   март 2016
+*/
 class  SiteView:public QDockWidget {
 	Q_OBJECT
 public:

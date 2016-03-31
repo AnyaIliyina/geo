@@ -31,7 +31,7 @@ int Format::format_id() const
 
 /*!
 Создает формат с заданным названием
-\const QString &format_name - название создаваемого формата
+\param const QString &format_name - название создаваемого формата
 */
 Format::Format(const QString &format_name)
 {

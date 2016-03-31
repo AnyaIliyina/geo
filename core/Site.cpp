@@ -9,16 +9,23 @@
 \brief 
 */
 
-
-QString  Site::url()
+/*!
+Возвращает адрес сайта
+\return QString& url - адрес сайта
+*/
+const QString&  Site::url() const
 {
 	return m_url;
 }
 
 /*!
 Конструирует объект класса Site из параметров
+\param const QString& url - адрес(url) сайта;
+\param const QString& site_name - название сайта;
+\param int status;
+\param const QString& comment;
 */
-Site::Site(QString url, QString site_name, int status , QString comment )
+Site::Site(const QString& url, const QString& site_name, int status, const QString& comment)
 {
 	m_site_id = 0;
 	m_url = url;
@@ -29,7 +36,7 @@ Site::Site(QString url, QString site_name, int status , QString comment )
 
 /*!
 Конструирует объект класса Site из данных в базе
-\param int id - id сайта в базе
+\param int id - id сайта
 */
 Site::Site(int id)
 {
@@ -57,7 +64,12 @@ Site::~Site()
 {
 }
 
-int Site::site_id()
+
+/*!
+Возвращает id сайта
+\return int site_id - id сайта;
+*/
+int Site::site_id() const
 {
 	return m_site_id;
 }
@@ -132,8 +144,9 @@ bool Site::completeTable()
 	return succeeded;
 }
 
+
 /*!
-\brief Выбирает сайты из таблицы sites
+\brief Возвращает список сайтов с определенным status_id
 \param int statusId - id статуса
 \return QList<Site> siteList - список сайтов со статусом statusId
 */

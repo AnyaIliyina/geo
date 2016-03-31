@@ -8,16 +8,16 @@
 #include <QDateTime>
 
 /*!
-*  \brief     
-*  \details
-*  \author    
-*  \version
-*  \date      
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
+\file
 */
+
+/*!
+*  \brief    Представляет сущность Формат
+(таблица formats)
+*  \author   Козырева О.
+*  \date     15 март 2016
+*/
+
 
 class Format {
 private:

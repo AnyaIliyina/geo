@@ -7,16 +7,15 @@
 #include <QUrl>
 #include <QDateTime>
 
+/*!
+\file
+*/
+
 /*! 
- *  \brief     Класс "Сайт"
- *  \details  
+ *  \brief     Представляет сущность Сайт
+			(таблица sites)
  *  \author    Ильина А.
- *  \version   
  *  \date      март 2016
- *  \pre      
- *  \bug      
- *  \warning   
- *  \copyright 
  */
 
 class Site {
@@ -27,11 +26,11 @@ private:
 	QString m_site_name;
 	QString m_comment;
 public:
-	QString url();
-	Site(QString url, QString site_name, int status = 0,  QString comment="");
+	const QString& url() const;
+	Site(const QString& url, const QString& site_name, int status = 0, const QString& comment="");
 	Site(int id);
 	~Site();
-	int site_id();
+	int site_id() const;
 	bool insertIntoDatabase();
 	static bool createTable();
 	static bool completeTable();

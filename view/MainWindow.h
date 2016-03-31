@@ -8,9 +8,8 @@
 */
 
 /*!
-\brief Класс MainWindow
-\details Описывает конфигурацию основного окна приложения 
-\author 
+\brief Описывает конфигурацию основного окна приложения
+\author Ильина А.
 \date март 2016г.
 */
 class MainWindow : public QMainWindow {

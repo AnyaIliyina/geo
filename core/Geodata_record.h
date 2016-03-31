@@ -6,11 +6,14 @@
 #include <QSqlQuery>
 #include <QUrl>
 #include <QDateTime>
+/*!
+\file
+*/
 
 
 /*!
 *  \brief    Представляет сущность Георесурс
-			(таблица Geodata_record в базе)
+			(таблица Geodata_records)
 *  \author   Козырева О.
 *  \date     15 март 2016
 */

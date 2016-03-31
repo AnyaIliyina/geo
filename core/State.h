@@ -9,15 +9,10 @@
 #include <QDateTime>
 
 /*!
-*  \brief
-*  \details
-*  \author
-*  \version
-*  \date		9 марта 2016
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
+*  \brief Представляет сущность Состояние
+			(таблица states)
+*  \author Козырева О.
+*  \date	9 марта 2016
 */
 
 class State {

@@ -9,15 +9,10 @@
 #include <QDateTime>
 
 /*!
-*  \brief
-*  \details
-*  \author
-*  \version
+*  \brief Представляет сущность Пользователь
+			(таблица users)
+*  \author Козырева О.
 *  \date		15 марта 2016
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
 */
 
 class User {

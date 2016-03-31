@@ -12,8 +12,8 @@
 */
 
 /*! 
- *  \brief     Класс SM_Session (Search Module session)
- *  \details  Служит для поиска информации о ГПИ в интернете.
+ *  \brief     Создает сессию для модуля поиска, запускает его работу.
+ *  \details   Search Module session
  *  \author    Ильина А.
  *  \date      март 2016
  */

@@ -9,15 +9,14 @@
 #include <QDateTime>
 
 /*!
-*  \brief
-*  \details
-*  \author
-*  \version
-*  \date		15 марта 2016
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
+\file
+*/
+
+/*!
+*  \brief Представляет сущность Сессия
+			(таблица sessions)
+*  \author Козырева О.
+*  \date	15 марта 2016
 */
 
 class Session {

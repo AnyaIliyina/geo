@@ -9,15 +9,10 @@
 #include <QDateTime>
 
 /*!
-*  \brief
-*  \details
-*  \author
-*  \version
-*  \date		10 марта 2016
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
+*  \brief Представляет сущность Масштаб
+		(таблица scales)
+*  \author Козырева О.
+*  \date 10 марта 2016
 */
 
 class Scale {

@@ -6,9 +6,8 @@
 */
 
 /*!
-\brief Класс LoginDialog
-\details Диалог для аутентификации пользователя 
-\author 
+\brief Описывает диалог аутентификации пользователя
+\author Ильина А.
 \date март 2016г.
 */
 class LoginDialog : public QDialog {

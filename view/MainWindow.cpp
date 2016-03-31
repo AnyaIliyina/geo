@@ -11,11 +11,11 @@
 MainWindow::MainWindow(QMainWindow *parent)
 {
 	// Показать диалог с запросом пароля до появления основного окна:
-	LoginDialog *ld = new LoginDialog();
+	LoginDialog *ld = new LoginDialog();   		
 	QObject::connect(ld, SIGNAL(logedIn()),
 		this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
 	ld->show();
-
+	
 	// "Собрать" окно из виджетов:				
 	configure();
 
@@ -31,6 +31,8 @@ MainWindow::~MainWindow()
 {
 }
 
+
+
 /*!
 "Собирает" основное окно из виджетов
 */
@@ -38,7 +40,7 @@ void MainWindow::configure()
 {
 	QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
-	setCentralWidget(txt);				// ? ? ? ? ? удалять ли *txt, *sv, *status, и когда ?
+	setCentralWidget(txt);				
 	QDockWidget *sv = new SiteView();
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
 	QStatusBar *status = new QStatusBar();
@@ -53,6 +55,7 @@ void MainWindow::showMW()
 {
 	this->show();
 }
+
 
 /*!
 Выводит сообщение на панель StatusBar

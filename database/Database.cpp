@@ -16,24 +16,28 @@ QSqlDatabase Database::db;
 
 
 /*!
-Создает базу данных, если её не существует (файл database/geoDB).
-\return QSqlDatabase dbase - БД со всеми необходимыми таблицами
+Метод для подготовки БД к работе.
+Если базы не существует, она будет создана (файл database/geoDB).
 */
 void Database::connectToDatabase()
 {
+	// инициализируем статическое поле Database::db
 	db = QSqlDatabase::addDatabase("QSQLITE");
 	QString pathToDB = QDir::currentPath() + QString("/database/geoDB");
 	db.setDatabaseName(pathToDB);
-	QFileInfo dbFile(pathToDB);
 	
-	if (!dbFile.exists())
+	// проверяем, существет ли файл с базой:
+	QFileInfo dbFile(pathToDB);	
+	if (!dbFile.exists())	
 	{
-		configure();
+		configure();	// если нет, восстанавливаем базу
+						//	(снова создаем все таблицы)
 	}
 }
 
 
-/*
+
+/*!
 Пытается открыть базу данных Database::db
 \return true - если база открыта
 */
@@ -48,7 +52,7 @@ bool Database::open()
 }
 
 
-/* 
+/*!
 Закрывает базу данных Database::db
 */
 void Database::close()
