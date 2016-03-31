@@ -9,15 +9,10 @@
 
 
 /*!
-*  \brief     
-*  \details
-*  \author    
-*  \version
+*  \brief    Представляет сущность Георесурс
+			(таблица Geodata_record в базе)
+*  \author   Козырева О.
 *  \date     15 март 2016
-*  \pre
-*  \bug
-*  \warning
-*  \copyright
 */
 
 class Geodata_record {
@@ -31,13 +26,13 @@ private:
 	QString m_place_name;
 	QString m_comment;
 public:
-	QString place_name();
-	Geodata_record(int site_id, int session_id, int format_id, int scale_id, int state_id, QString place_name, QString comment = "");
+	const QString& place_name() const;
+	Geodata_record(int site_id, int session_id, int format_id,
+		int scale_id, int state_id, const QString& place_name, const QString& comment = "");
 	Geodata_record(int id);
 	~Geodata_record();
 	int record_id();
 	bool insertIntoDatabase();
 	static bool createTable();
 	static bool completeTable();
-	QString static coded(QByteArray encodedStr);
 };

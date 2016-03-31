@@ -5,15 +5,19 @@
 #include "Database.h"
 #include <QTextCodec>
 
-QString Geodata_record::place_name()
-{
-	return m_place_name;
-}
 
 /*!
 Конструирует объект класса Geodata_record из параметров
+\param int site_id - id сайта:
+\param int session_id - id сессии;
+\param int format_id - id формата;
+\param int scale_id - id масштаба;
+\param int state_id - id состояния (актуальность);
+\param const QString& place_name - название местности;
+\param const QString& commant - комментарий;
 */
-Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, int state_id, QString place_name, QString comment)
+Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, 
+	int state_id, const QString& place_name, const QString& comment)
 {
 	m_record_id = 0;
 	m_site_id = site_id;
@@ -25,9 +29,22 @@ Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int s
 	m_comment = comment;
 }
 
+
+
 /*!
-Конструирует объект класса Geodata_record из данных в базе
-\param int id - id сайта в базе
+Возвращает название местности
+\return const QString& place_name - название местности
+*/
+const QString& Geodata_record::place_name() const
+{
+	return m_place_name;
+}
+
+
+
+/*!
+Создает Георесурс из данных в базе
+\param int id - id георесурса
 */
 Geodata_record::Geodata_record(int id)
 {
@@ -60,10 +77,15 @@ Geodata_record::~Geodata_record()
 {
 }
 
+/*!
+Возвращает id георесурса
+\return int record_id - id ресурса
+*/
 int Geodata_record::record_id()
 {
 	return m_record_id;
 }
+
 
 /*!
 Записывает геопространственную информацию в базу данных.
@@ -140,12 +162,4 @@ bool Geodata_record::completeTable()
 	return succeeded;
 }
 
-QString Geodata_record::coded(QByteArray encodedStr)
-{
-	// из QByteArray с кодировкой Windows-1251 
-	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
-	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
-	QString const string = codec->toUnicode(encodedStr);
-	return string;
-}
 
