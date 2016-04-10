@@ -29,13 +29,55 @@ private:
 	QString m_place_name;
 	QString m_comment;
 public:
+
+	/*!
+	Возвращает название местности
+	\return const QString& place_name - название местности
+	*/
 	const QString& place_name() const;
+	
+	/*!
+	Конструирует объект класса Geodata_record из параметров
+	\param int site_id - id сайта:
+	\param int session_id - id сессии;
+	\param int format_id - id формата;
+	\param int scale_id - id масштаба;
+	\param int state_id - id состояния (актуальность);
+	\param const QString& place_name - название местности;
+	\param const QString& commant - комментарий;
+	*/
 	Geodata_record(int site_id, int session_id, int format_id,
 		int scale_id, int state_id, const QString& place_name, const QString& comment = "");
+	
+	/*!
+	Создает Георесурс из данных в базе
+	\param int id - id георесурса
+	*/
 	Geodata_record(int id);
+	
 	~Geodata_record();
+	
+	/*!
+	Возвращает id георесурса
+	\return int record_id - id ресурса
+	*/
 	int record_id();
+	
+	/*!
+	Записывает геопространственную информацию в базу данных.
+	\return true - если запись в БД успешно добавлена
+	*/
 	bool insertIntoDatabase();
+	
+	/*!
+	Создает таблицу "geodata_records" в базе данных.
+	\return true - если таблица успешно создана
+	*/
 	static bool createTable();
+	
+	/*!
+	Заполняет таблицу "geodata_records" в БД начальными значениями.
+	\return true - если таблица успешно заполнена
+	*/
 	static bool completeTable();
 };
