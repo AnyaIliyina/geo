@@ -28,11 +28,37 @@ private:
 public:
 	
 	Session(int user_id, QDateTime date);
+	
+	/*!
+	Конструирует объект, используя информацию в базе
+	\param int id- id сессии
+	*/
 	Session(int id);
+	
 	~Session();
+	
+	/*!
+	Возвращает id сессии
+	\return int session_id - id сессии
+	*/
 	int session_id();
+	
+	/*!
+	Записывает информацию о сессии в базу данных.
+	\return true - если запись в БД успешно добавлена
+	*/
 	bool insertIntoDatabase();
+	
+	/*!
+	Создает таблицу "sessions" в базе данных.
+	\return true - если таблица успешно создана
+	*/
 	static bool createTable();
+	
+	/*!
+	Заполняет таблицу "sessions" начальными значениями
+	\return true - если записи успешно созданы
+	*/
 	static bool completeTable();
 
 };
