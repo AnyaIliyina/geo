@@ -15,19 +15,12 @@ QString Status::status_name()
 	return m_status_name;
 }
 
-/*!
-Конструирует объект класса Status из параметров
-*/
 Status::Status(QString status_name)
 {
 	m_status_id = 0;
 	m_status_name = status_name;
 }
 
-/*!
-Конструирует объект класса Status из данных в базе
-\param int id - id статуса в базе
-*/
 Status::Status(int id)
 {
 	Database::open();
@@ -52,11 +45,6 @@ int Status::status_id()
 	return m_status_id;
 }
 
-
-/*!
-Записывает информацию о статусе в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
 bool Status::insertIntoDatabase()
 {
 	Database::open();
@@ -74,10 +62,6 @@ bool Status::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "statuses" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Status::createTable()
 {
 	Database::open();
@@ -97,10 +81,6 @@ bool Status::createTable()
 	return true;
 }
 
-/*!
-Заполняет таблицу "statuses" в БД начальными значениями.
-\return true - если таблица успешно заполнена
-*/
 bool Status::completeTable()
 {
 	Status *s = new Status(coded("Проверено"));
