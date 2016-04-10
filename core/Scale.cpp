@@ -15,19 +15,12 @@ QString Scale::description()
 	return m_description;
 }
 
-/*!
-Конструирует объект класса Scale из параметров
-*/
 Scale::Scale(QString description)
 {
 	m_description = description;
 	m_scale_id = 0;
 }
 
-/*!
-Конструирует объект класса Scale из данных в базе
-\param int id - id сайта в базе
-*/
 Scale::Scale(int id)
 {
 	Database::open();
@@ -52,10 +45,6 @@ int Scale::scale_id()
 	return m_scale_id;
 }
 
-/*!
-Записывает информацию о масштабе в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
 bool Scale::insertIntoDatabase()
 {
 	Database::open();
@@ -73,10 +62,6 @@ bool Scale::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "scales" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Scale::createTable()
 {
 	Database::open();
@@ -104,11 +89,6 @@ QString Scale::coded(QByteArray encodedStr) // метод для получен�
 	return string;
 }
 
-
-/*!
-Заполняет таблицу "scales" в БД начальными значениями.
-\return true - если таблица успешно заполнена
-*/
 bool Scale::completeTable()
 {
 	Scale *s = new Scale("500:1");
