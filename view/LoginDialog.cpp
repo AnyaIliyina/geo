@@ -1,5 +1,8 @@
 ﻿#include "LoginDialog.h"
 #include <QDebug>
+#include <QSqlQuery>
+#include "Database.h"
+#include <QTextCodec>
 /*!
 \file
 */
@@ -37,9 +40,31 @@ LoginDialog::~LoginDialog()
 */
 void LoginDialog::authorize()
 {
-	// TODO: соединиться с базой, проверить правильность пароля,
-	//		сообщить о неверном пароле пользователю
+	QString login, password;
+	login = ui->line_Login->text();
+	password = ui->line_Pass->text();
 	
-	emit logedIn();	// сигнал об успешной авторизации
-	this->hide();
+	Database::open();
+	QSqlQuery qry;
+		if (qry.exec("SELECT login FROM users WHERE login=\'"+ login + "\' AND password=\'"+ password+"\'"))
+	{
+		if (qry.next())
+		{
+			emit logedIn();	// сигнал об успешной авторизации
+			this->hide();
+		}
+		else
+		{ 
+			ui->lblResult->setText(coded("Пароль неверный"));
+		}
+	}
+}
+
+QString LoginDialog::coded(QByteArray encodedStr)
+{
+	// из QByteArray с кодировкой Windows-1251 
+	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
+	QString const string = codec->toUnicode(encodedStr);
+	return string;
 }

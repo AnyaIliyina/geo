@@ -17,6 +17,7 @@ private:
 public:
 	explicit LoginDialog(QDialog *ptr = 0);
 	~LoginDialog();
+	QString coded(QByteArray encodedStr);
 signals:
 	void logedIn();
 private slots:
