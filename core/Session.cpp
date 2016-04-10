@@ -39,10 +39,6 @@ int Session::session_id()
 	return m_session_id;
 }
 
-/*!
-Записывает информацию о сессии в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
 bool Session::insertIntoDatabase()
 {
 	Database::open();
@@ -62,10 +58,6 @@ bool Session::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "sessions" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Session::createTable()
 {
 	Database::open();
