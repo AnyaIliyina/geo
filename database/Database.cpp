@@ -14,11 +14,6 @@
 
 QSqlDatabase Database::db;
 
-
-/*!
-Метод для подготовки БД к работе.
-Если базы не существует, она будет создана (файл database/geoDB).
-*/
 void Database::connectToDatabase()
 {
 	// инициализируем статическое поле Database::db
@@ -37,10 +32,6 @@ void Database::connectToDatabase()
 
 
 
-/*!
-Пытается открыть базу данных Database::db
-\return true - если база открыта
-*/
 bool Database::open()
 {
 	if (!db.open())
@@ -51,20 +42,11 @@ bool Database::open()
 	return true;
 }
 
-
-/*!
-Закрывает базу данных Database::db
-*/
 void Database::close()
 {
 	db.close();
 }
 
-
-/*
-Создает в базе Database::db таблицы "Sites", "Formats", 
-"State", "Scale", "User", "Status", "Session", "Usertype"
-*/
 void Database::configure()
 {
 		Site::createTable();
