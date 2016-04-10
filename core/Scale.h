@@ -22,12 +22,39 @@ private:
 
 public:
 	QString description();
+	
+	/*!
+	Конструирует объект класса Scale из параметров
+	*/
 	Scale(QString description);
+	
+	/*!
+	Конструирует объект класса Scale из данных в базе
+	\param int id - id сайта в базе
+	*/
 	Scale(int id);
+	
 	~Scale();
+	
 	int scale_id();
+	
+	/*!
+	Записывает информацию о масштабе в базу данных.
+	\return true - если запись в БД успешно добавлена
+	*/
 	bool insertIntoDatabase();
+	
+	/*!
+	Создает таблицу "scales" в базе данных.
+	\return true - если таблица успешно создана
+	*/
 	static bool createTable();
+	
+	
+	/*!
+	Заполняет таблицу "scales" в БД начальными значениями.
+	\return true - если таблица успешно заполнена
+	*/
 	static bool completeTable();
 	QString coded(QByteArray encodedStr);
 };
