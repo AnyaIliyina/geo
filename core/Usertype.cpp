@@ -15,19 +15,12 @@ QString Usertype::type_name()
 	return m_type_name;
 }
 
-/*!
-Конструирует объект класса Usertype из параметров
-*/
 Usertype::Usertype(QString type_name)
 {
 	m_type_id = 0;
 	m_type_name = type_name;
 }
 
-/*!
-Конструирует объект класса Usertype из данных в базе
-\param int id - id статуса в базе
-*/
 Usertype::Usertype(int id)
 {
 	Database::open();
@@ -51,10 +44,7 @@ int Usertype::type_id()
 {
 	return m_type_id;
 }
-/*!
-Записывает информацию о типе пользователя в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
+
 bool Usertype::insertIntoDatabase()
 {
 	Database::open();
@@ -72,10 +62,6 @@ bool Usertype::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "usertypes" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Usertype::createTable()
 {
 	Database::open();
@@ -95,10 +81,6 @@ bool Usertype::createTable()
 	return true;
 }
 
-/*!
-Заполняет таблицу "usertypes" в БД начальными значениями.
-\return true - если таблица успешно заполнена
-*/
 bool Usertype::completeTable()
 {
 	Usertype *user = new Usertype(coded("Модуль поиска"));
