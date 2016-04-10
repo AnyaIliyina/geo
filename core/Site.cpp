@@ -9,22 +9,11 @@
 \brief 
 */
 
-/*!
-Возвращает адрес сайта
-\return QString& url - адрес сайта
-*/
 const QString&  Site::url() const
 {
 	return m_url;
 }
 
-/*!
-Конструирует объект класса Site из параметров
-\param const QString& url - адрес(url) сайта;
-\param const QString& site_name - название сайта;
-\param int status;
-\param const QString& comment;
-*/
 Site::Site(const QString& url, const QString& site_name, int status, const QString& comment)
 {
 	m_site_id = 0;
@@ -34,10 +23,6 @@ Site::Site(const QString& url, const QString& site_name, int status, const QStri
 	m_comment = comment;
 }
 
-/*!
-Конструирует объект класса Site из данных в базе
-\param int id - id сайта
-*/
 Site::Site(int id)
 {
 	Database::open();
@@ -65,20 +50,11 @@ Site::~Site()
 }
 
 
-/*!
-Возвращает id сайта
-\return int site_id - id сайта;
-*/
 int Site::site_id() const
 {
 	return m_site_id;
 }
 
-
-/*!
-Записывает информацию о сайте в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
 bool Site::insertIntoDatabase()
 {
 	Database::open();
@@ -99,11 +75,6 @@ bool Site::insertIntoDatabase()
 	return true;
 }
 
-
-/*!
-Создает таблицу "sites" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Site::createTable()
 {
 	Database::open();
@@ -129,11 +100,6 @@ bool Site::createTable()
 	
 }
 
-
-/*!
-Заполняет таблицу "sites" в БД начальными значениями.
-\return true - если таблица успешно заполнена
-*/
 bool Site::completeTable()
 {
 	Site *s = new Site("http://beryllium.gis-lab.info/project/osmshp", "gis-lab");
@@ -144,12 +110,6 @@ bool Site::completeTable()
 	return succeeded;
 }
 
-
-/*!
-\brief Возвращает список сайтов с определенным status_id
-\param int statusId - id статуса
-\return QList<Site> siteList - список сайтов со статусом statusId
-*/
 QList<Site> Site::sitesByStatus(int statusId)
 {
 	QList<Site> siteList;
