@@ -6,16 +6,6 @@
 #include <QTextCodec>
 
 
-/*!
-Конструирует объект класса Geodata_record из параметров
-\param int site_id - id сайта:
-\param int session_id - id сессии;
-\param int format_id - id формата;
-\param int scale_id - id масштаба;
-\param int state_id - id состояния (актуальность);
-\param const QString& place_name - название местности;
-\param const QString& commant - комментарий;
-*/
 Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, 
 	int state_id, const QString& place_name, const QString& comment)
 {
@@ -29,23 +19,11 @@ Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int s
 	m_comment = comment;
 }
 
-
-
-/*!
-Возвращает название местности
-\return const QString& place_name - название местности
-*/
 const QString& Geodata_record::place_name() const
 {
 	return m_place_name;
 }
 
-
-
-/*!
-Создает Георесурс из данных в базе
-\param int id - id георесурса
-*/
 Geodata_record::Geodata_record(int id)
 {
 	Database::open();
@@ -77,20 +55,11 @@ Geodata_record::~Geodata_record()
 {
 }
 
-/*!
-Возвращает id георесурса
-\return int record_id - id ресурса
-*/
 int Geodata_record::record_id()
 {
 	return m_record_id;
 }
 
-
-/*!
-Записывает геопространственную информацию в базу данных.
-\return true - если запись в БД успешно добавлена
-*/
 bool Geodata_record::insertIntoDatabase()
 {
 	Database::open();
@@ -114,10 +83,6 @@ bool Geodata_record::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "geodata_records" в базе данных.
-\return true - если таблица успешно создана
-*/
 bool Geodata_record::createTable()
 {
 	Database::open();
@@ -149,10 +114,6 @@ bool Geodata_record::createTable()
 
 }
 
-/*!
-Заполняет таблицу "geodata_records" в БД начальными значениями.
-\return true - если таблица успешно заполнена
-*/
 bool Geodata_record::completeTable()
 {
 	Geodata_record *gdr = new Geodata_record(1,1,1,1,1, "Ekaterinburg","ohoho");
