@@ -9,40 +9,24 @@
 \brief  
 */
 
-/*!
-Возвращает название формата
-\return QString& format_name - название формата
-*/
+
 const QString& Format::format_name() const
 {
 	return m_format_name;
 }
 
-
-/*!
-Возвращает id формата
-\return int format_id - id формата
-*/
 int Format::format_id() const 
 {
 	return m_format_id;
 }
 
 
-/*!
-Создает формат с заданным названием
-\param const QString &format_name - название создаваемого формата
-*/
 Format::Format(const QString &format_name)
 {
 	m_format_name = format_name;
 	m_format_id = 0;
 }
 
-/*!
-Конструирует объект, используя информацию в базе
-\param int formatId- id формата
-*/
 Format::Format(int id)
 {
 	Database::open();
@@ -62,11 +46,6 @@ Format::~Format()
 {
 }
 
-
-/*!
-Записывает информацию о формате в таблицу БД "formats"
-\return true - если информация записана
-*/
 bool Format::insertIntoDatabase()
 {
 	Database::open();
@@ -84,10 +63,6 @@ bool Format::insertIntoDatabase()
 	return true;
 }
 
-/*!
-Создает таблицу "formats" в базе.
-\return true - если таблица успешно создана
-*/
 bool Format::createTable()
 {
 	Database::open();
@@ -107,10 +82,6 @@ bool Format::createTable()
 	return true;
 }
 
-/*!
-Заполняет таблицу "formats" начальными значениями
-\return true - если записи успешно созданы
-*/
 bool Format::completeTable()
 {
 	Format *f = new Format("Shapefile");
