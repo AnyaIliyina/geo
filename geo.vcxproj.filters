@@ -155,12 +155,18 @@
     <ClInclude Include="ui_LoginDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui_MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="ui_SiteView.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="view\LoginDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\MainWindow.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SiteView.ui">

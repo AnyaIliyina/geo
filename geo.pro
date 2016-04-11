@@ -14,4 +14,4 @@ HEADERS += database/Database.h  search_module/SM_Session.h \
 	core/Usertype.h core/Session.h core/Geodata_record.h \
 	view/SiteView.h view/MainWindow.h view/LoginDialog.h
 
-FORMS += view/SiteView.ui view/LoginDialog.ui 
+FORMS += view/SiteView.ui view/LoginDialog.ui view/MainWindow.ui

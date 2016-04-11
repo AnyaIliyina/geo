@@ -10,12 +10,13 @@
 
 MainWindow::MainWindow(QMainWindow *parent)
 {
+	ui = new Ui::MainWindow();
+	ui->setupUi(this);
+
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog();   		
-	QObject::connect(ld, SIGNAL(logedIn()),
-		this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
+	QObject::connect(ld, SIGNAL(logedIn()),	this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
 	ld->show();
-	
 	// "Собрать" окно из виджетов:				
 	configure();
 
@@ -42,7 +43,9 @@ void MainWindow::configure()
 	txt->setText("central central");
 	setCentralWidget(txt);				
 	QDockWidget *sv = new SiteView();
+	//sv->setSizePolicy()
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
+
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
 }
@@ -53,7 +56,7 @@ void MainWindow::configure()
 */
 void MainWindow::showMW()
 {
-	this->show();
+	this->showMaximized();
 }
 
 

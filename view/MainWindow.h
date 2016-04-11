@@ -3,6 +3,7 @@
 #include <QWidget>
 #include <QString>
 #include "LoginDialog.h"
+#include "ui_MainWindow.h"
 /*
 \file
 */
@@ -18,6 +19,7 @@ public:
 	explicit MainWindow(QMainWindow *parent = 0);
 	~MainWindow();
 private:
+	Ui::MainWindow *ui;
 	void configure();
 private slots:
 	void showMW();

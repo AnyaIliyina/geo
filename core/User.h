@@ -65,5 +65,9 @@ public:
 	*/
 	static bool completeTable();
 	
+	/*!
+
+	*/
+	static bool usersValig(const QString& login, const QString& password);
 };
 

@@ -95,3 +95,20 @@ bool User::completeTable()
 	Database::close();
 	return succeeded;
 }
+
+bool User::usersValig(const QString & login, const QString& password)
+{
+	Database::open();
+	QSqlQuery qry;
+	if (qry.exec("SELECT login FROM users WHERE login=\'" + login + "\' AND password=\'" + password + "\'"))
+	{
+		if (qry.next())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+}

@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include "Database.h"
 #include <QTextCodec>
+#include "User.h"
 /*!
 \file
 */
@@ -43,21 +44,15 @@ void LoginDialog::authorize()
 	QString login, password;
 	login = ui->line_Login->text();
 	password = ui->line_Pass->text();
-	
-	Database::open();
-	QSqlQuery qry;
-		if (qry.exec("SELECT login FROM users WHERE login=\'"+ login + "\' AND password=\'"+ password+"\'"))
-	{
-		if (qry.next())
+	if(User::usersValig(login, password))
 		{
-			emit logedIn();	// сигнал об успешной авторизации
-			this->hide();
+		emit logedIn();	// сигнал об успешной авторизации
+		this->hide();
 		}
 		else
 		{ 
-			ui->lblResult->setText(coded("Пароль неверный"));
+		ui->lblResult->setText(coded("Пароль неверный"));
 		}
-	}
 }
 
 QString LoginDialog::coded(QByteArray encodedStr)

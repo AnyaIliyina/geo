@@ -11,8 +11,8 @@ SiteView::SiteView(QDockWidget *parent) :
 	ui(new Ui::DockWidget)
 {
 	ui->setupUi(this);
-	this->setupModel( QStringList() <<trUtf8("id")
-		<< trUtf8("URL")
+	this->setupModel( QStringList() <<("id")
+		<< ("URL")
 		<< State::coded("Название сайта")
 		<< State::coded("Статус")
 		<< State::coded("Комментарии"));
