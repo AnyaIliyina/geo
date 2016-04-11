@@ -5,9 +5,9 @@
 \file
 \brief Временный класс для вывода содержимого таблицы Sites
 */
-
-SiteView::SiteView(QDockWidget *parent) :
-	QDockWidget(parent),
+/*
+SiteView::SiteView(QWidget *parent) :
+	QWidget(parent),
 	ui(new Ui::DockWidget)
 {
 	ui->setupUi(this);
@@ -42,4 +42,4 @@ void SiteView::createUi()
 	ui->SitesTblView->horizontalHeader()->setStretchLastSection(true);
 	
 	model->select();
-}
+}  */

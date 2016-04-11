@@ -1,9 +1,10 @@
 #include "MainWindow.h"
-#include "SiteView.h"
+#include "SitesView.h"
 #include "SM_Session.h"
 #include <QTextEdit>
 #include <QDebug>
 #include <QStatusBar>
+
 /*!
 \file
 */
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QMainWindow *parent)
 	LoginDialog *ld = new LoginDialog();   		
 	QObject::connect(ld, SIGNAL(logedIn()),	this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
 	ld->show();
+	
 	// "Собрать" окно из виджетов:				
 	configure();
 
@@ -42,10 +44,8 @@ void MainWindow::configure()
 	QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);				
-	QDockWidget *sv = new SiteView();
-	//sv->setSizePolicy()
+	QDockWidget *sv = new SitesView();
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
-
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
 }

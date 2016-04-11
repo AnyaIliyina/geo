@@ -23,10 +23,11 @@ namespace Ui {
 *  \author Козырева О.
 *  \date   март 2016
 */
-class  SiteView:public QDockWidget {
+/*
+class  SiteView:public QWidget {
 	Q_OBJECT
 public:
-	explicit SiteView(QDockWidget *parent = 0);
+	explicit SiteView(QWidget *parent = 0);
 	~SiteView();
 private:
 	Ui::DockWidget *ui;
@@ -34,4 +35,4 @@ private:
 private:
 	void setupModel(const QStringList &headers);
 	void createUi();
-};
+}; */

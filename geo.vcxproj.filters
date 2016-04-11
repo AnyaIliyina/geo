@@ -67,6 +67,9 @@
     <ClCompile Include="view\SiteView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\SitesView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,7 +114,10 @@
     <ClInclude Include="core\Site.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="view\SiteView.h">
+    <ClInclude Include="view\SiteView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="view\SitesView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="core\State.h">
@@ -146,10 +152,10 @@
     <ClCompile Include="release\moc_SM_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug\moc_SiteView.cpp">
+    <ClCompile Include="debug\moc_SitesView.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="release\moc_SiteView.cpp">
+    <ClCompile Include="release\moc_SitesView.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClInclude Include="ui_LoginDialog.h">
@@ -161,6 +167,9 @@
     <ClInclude Include="ui_SiteView.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui_SitesView.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="view\LoginDialog.ui">
@@ -170,6 +179,9 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SiteView.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\SitesView.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
