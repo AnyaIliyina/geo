@@ -23,14 +23,14 @@ Status::Status(QString status_name)
 
 Status::Status(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("statuses");
 	const QString filter = QString("status_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString status_name = model.record(0).value("status_name").toString();
-	Database::close();
+	db.close();
 
 	m_status_id = id;
 	m_status_name = status_name;
@@ -47,25 +47,25 @@ int Status::status_id()
 
 bool Status::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO statuses(status_name)\
 	VALUES (?)");
 	query.addBindValue(m_status_name);
 	if (!query.exec()) {
 		qDebug() << "State::insertIntoDatabase(): error inserting into Table statuses";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Status::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS statuses (\
 		status_id INTEGER PRIMARY KEY AUTOINCREMENT, \
 		status_name TEXT UNIQUE NOT NULL\
@@ -74,20 +74,18 @@ bool Status::createTable()
 	{
 		qDebug() << "error creating statuses Table in database";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Status::completeTable()
 {
 	Status *s = new Status(coded("Проверено"));
-
-	Database::open();
 	bool succeeded = s->insertIntoDatabase();
-	Database::close();
+	delete s;
 	return succeeded;
 }
 

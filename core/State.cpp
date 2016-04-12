@@ -23,14 +23,14 @@ State::State(QString state_name)
 
 State::State(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("states");
 	const QString filter = QString("state_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString state_name = model.record(0).value("state_name").toString();
-	Database::close();
+	db.close();
 
 	m_state_id = id;
 	m_state_name= state_name;
@@ -47,25 +47,25 @@ int State::state_id()
 
 bool State::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO states(state_name)\
 	VALUES (?)");
 	query.addBindValue(m_state_name);
 	if (!query.exec()) {
 		qDebug() << "State::insertIntoDatabase(): error inserting into Table states";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool State::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS states (\
 		state_id INTEGER PRIMARY KEY AUTOINCREMENT, \
 		state_name TEXT UNIQUE NOT NULL\
@@ -74,10 +74,10 @@ bool State::createTable()
 	{
 		qDebug() << "error creating states Table in database";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
@@ -92,9 +92,7 @@ QString State::coded(QByteArray encodedStr) // метод для получен�
 bool State::completeTable()
 {
 	State *s = new State(coded("Актуально"));
-
-	Database::open();
 	bool succeeded = s->insertIntoDatabase();
-	Database::close();
+	delete s;
 	return succeeded;
 }

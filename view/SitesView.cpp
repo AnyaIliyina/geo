@@ -26,7 +26,7 @@ SitesView::~SitesView()
 
 void SitesView::setupModel()// const QStringList & headers)
 {
-	Database::open();
+	QSqlDatabase db = Database::database();
 	model = new QSqlQueryModel(this);
 	model->setQuery(QString("SELECT site_name, url FROM sites WHERE site_id in (select site_id from geodata_records WHERE place_name='%1')").arg(ui->textGeo->text()));
 	

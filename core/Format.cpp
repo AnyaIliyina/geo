@@ -29,14 +29,14 @@ Format::Format(const QString &format_name)
 
 Format::Format(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("formats");
 	const QString filter = QString("format_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString format_name = model.record(0).value("format_name").toString();
-	Database::close();
+	db.close();
 
 	m_format_id = id;
 	m_format_name = format_name;
@@ -48,25 +48,25 @@ Format::~Format()
 
 bool Format::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO formats(format_name)\
 	VALUES (?)");
 	query.addBindValue(m_format_name);
 	if (!query.exec()) {
 		qDebug() << "Format::insertIntoDatabase(): error inserting into Table formats";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Format::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS formats (\
 		format_id INTEGER PRIMARY KEY AUTOINCREMENT, \
 		format_name TEXT UNIQUE NOT NULL\
@@ -75,18 +75,17 @@ bool Format::createTable()
 	{	
 		qDebug() << "error creating formats Table in database";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Format::completeTable()
 {
 	Format *f = new Format("Shapefile");
-	Database::open();
 	bool succeeded = f->insertIntoDatabase();
-	Database::close();
+	delete f;
 	return succeeded;
 }

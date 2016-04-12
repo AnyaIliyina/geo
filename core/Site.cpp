@@ -25,8 +25,8 @@ Site::Site(const QString& url, const QString& site_name, int status, const QStri
 
 Site::Site(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("sites");
 	//const QString filter("siteId == " + QString::number(site_id));
 	const QString filter = QString("site_id == %1").arg(id);
@@ -36,7 +36,7 @@ Site::Site(int id)
 	QString site_name = model.record(0).value("site_name").toString();
 	int status_id= model.record(0).value("status_id").toInt();
 	QString comment = model.record(0).value("comment").toString();
-	Database::close();
+	db.close();
 	
 	m_site_id = id;
 	m_url = url;
@@ -57,8 +57,8 @@ int Site::site_id() const
 
 bool Site::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO sites ( url, site_name, status_id, comment)\
 		VALUES (?, ?, ?, ?)");
 	query.addBindValue(m_url);
@@ -68,17 +68,17 @@ bool Site::insertIntoDatabase()
 	if (!query.exec()) {
 		qDebug() << "Site::insertIntoDatabase():  error inserting into Table sites";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Site::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.exec("PRAGMA foreign_keys = ON");
 	if ((!query.exec("CREATE TABLE IF NOT EXISTS  sites (\
 		site_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
@@ -92,10 +92,10 @@ bool Site::createTable()
 	{
 		qDebug() << "error creating sites Table in database.";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 	
 }
@@ -104,17 +104,16 @@ bool Site::completeTable()
 {
 	Site *s = new Site("http://beryllium.gis-lab.info/project/osmshp", "gis-lab");
 	// Site *s = new Site(QUrl("http://www.afanas.ru/mapbase/"));
-	Database::open();
 	bool succeeded = s->insertIntoDatabase();
-	Database::close();
+	delete s;
 	return succeeded;
 }
 
 QList<Site> Site::sitesByStatus(int statusId)
 {
 	QList<Site> siteList;
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("sites");
 	const QString filter = QString("status_id == %1").arg(statusId);
 	model.setFilter(filter);
@@ -125,6 +124,6 @@ QList<Site> Site::sitesByStatus(int statusId)
 		siteList.append(*s);
 		delete s;
 	}
-	Database::close();
+	db.close();
 	return siteList;
 }

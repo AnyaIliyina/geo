@@ -6,47 +6,50 @@
 #include "Status.h"
 #include "Session.h"
 #include "Usertype.h"
+#include "Site.h"
 #include "Geodata_record.h"
 #include <QFileInfo>
 /*!
 \file
 */
 
-QSqlDatabase Database::db;
+const QString Database::pathToDb = QDir::currentPath() + QString("/database/geoDB"); // путь к базе
 
-void Database::connectToDatabase()
+const QString Database::connectionName = "geoDb_connection";	// название подключения
+
+
+																/*!
+Создает подключение connectionName к базе.
+Если необходимо, заново создает таблицы базы pathToDb 
+*/
+void Database::restore()
 {
-	// инициализируем статическое поле Database::db
-	db = QSqlDatabase::addDatabase("QSQLITE");
-	QString pathToDB = QDir::currentPath() + QString("/database/geoDB");
-	db.setDatabaseName(pathToDB);
-	
-	// проверяем, существет ли файл с базой:
-	QFileInfo dbFile(pathToDB);	
-	if (!dbFile.exists())	
-	{
-		configure();	// если нет, восстанавливаем базу
-						//	(снова создаем все таблицы)
+	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
+	db.setDatabaseName(pathToDb);
+
+	// Если файла pathToDb не существует, создать все таблицы:
+	QFileInfo dbFile(pathToDb);
+	if (!dbFile.exists()) {
+		configure();
 	}
 }
 
 
-
-bool Database::open()
+/*!
+Возвращает открытое подключение к базе.
+\return QSqlDatabase db - подключение к базе
+*/
+QSqlDatabase Database::database()
 {
-	if (!db.open())
-	{
-		qDebug() << "Error opening database";
-		return false;
-	}
-	return true;
+	return QSqlDatabase::database(connectionName, true);;
 }
 
-void Database::close()
-{
-	db.close();
-}
 
+
+/*!
+Создает в базе таблицы "Sites", "Formats", 
+"State", "Scale", "User", "Status", "Session", "Usertype"
+*/
 void Database::configure()
 {
 		Site::createTable();

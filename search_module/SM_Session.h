@@ -23,9 +23,20 @@ Q_OBJECT
 public:
 	SM_Session();
 	~SM_Session();
+	
+	/*!	Начинает сессию поиска	*/
 	void start();
+
 private:
+	int m_session_id = -1;		// id сессии поиска
+
+	/*!
+	Отправляет сигнал основному окну с целью поменять
+	сообщение панели QStatusBar
+	\param const QString &text - текст нового сообщения
+	*/
 	void newMessage(const QString &text);
+
 signals:
 	void newStatusbarText(const QString &text);
 };

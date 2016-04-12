@@ -68,6 +68,6 @@ public:
 	/*!
 
 	*/
-	static bool usersValig(const QString& login, const QString& password);
+	static bool userIsValid(const QString& login, const QString& password);
 };
 

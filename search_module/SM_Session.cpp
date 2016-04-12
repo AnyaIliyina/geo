@@ -25,6 +25,8 @@ void SM_Session::start()
 {
 	Session *s = new Session(1, QDateTime::currentDateTime());
 	s->insertIntoDatabase();
+	m_session_id = s->session_id();
+	delete s;
 	emit newMessage(State::coded("Модуль поиска начал работу..."));
 }
 

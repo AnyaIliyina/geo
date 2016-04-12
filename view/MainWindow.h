@@ -10,7 +10,7 @@
 
 /*!
 \brief Описывает конфигурацию основного окна приложения
-\author Ильина А.
+\author Ильина А., Козырева О.
 \date март 2016г.
 */
 class MainWindow : public QMainWindow {

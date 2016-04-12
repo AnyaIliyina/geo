@@ -26,8 +26,8 @@ const QString& Geodata_record::place_name() const
 
 Geodata_record::Geodata_record(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("geodata_records");
 	const QString filter = QString("record_id == %1").arg(id);
 	model.setFilter(filter);
@@ -39,7 +39,7 @@ Geodata_record::Geodata_record(int id)
 	int scale_id = model.record(0).value("scale_id").toInt();
 	int state_id = model.record(0).value("state_id").toInt();
 	QString comment = model.record(0).value("comment").toString();
-	Database::close();
+	db.close();
 
 	m_record_id = id;
 	m_site_id = site_id;
@@ -62,8 +62,8 @@ int Geodata_record::record_id()
 
 bool Geodata_record::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO geodata_records ( site_id, session_id, format_id, scale_id, state_id, place_name, comment)\
 		VALUES (?, ?, ?, ?, ?, ?, ?)");
 	query.addBindValue(m_site_id);
@@ -76,17 +76,17 @@ bool Geodata_record::insertIntoDatabase()
 	if (!query.exec()) {
 		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Geodata_record::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS  geodata_records (\
 		record_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
 		site_id INTEGER,		\
@@ -106,10 +106,10 @@ bool Geodata_record::createTable()
 	{
 		qDebug() << "error creating geodata_records Table in database.";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 
 }
@@ -117,9 +117,8 @@ bool Geodata_record::createTable()
 bool Geodata_record::completeTable()
 {
 	Geodata_record *gdr = new Geodata_record(1,1,1,1,1, "Ekaterinburg","ohoho");
-	Database::open();
 	bool succeeded = gdr->insertIntoDatabase();
-	Database::close();
+	delete gdr;
 	return succeeded;
 }
 

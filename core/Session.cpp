@@ -14,15 +14,15 @@ Session::Session(int user_id, QDateTime date)
 
 Session::Session(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("sessions");
 	const QString filter = QString("session_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	int user_id = model.record(0).value("user_id").toInt();
 	int date = model.record(0).value("date").toInt();
-	Database::close();
+	db.close();
 
 	m_session_id = id;
 	m_user_id = user_id;
@@ -41,8 +41,8 @@ int Session::session_id()
 
 bool Session::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO sessions ( user_id, date)\
 		VALUES (?, ?)");
 	query.addBindValue(m_user_id);
@@ -51,17 +51,17 @@ bool Session::insertIntoDatabase()
 	if (!query.exec()) {
 		qDebug() << "Session::insertIntoDatabase():  error inserting into Table sessions";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Session::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if ((!query.exec("CREATE TABLE IF NOT EXISTS  sessions (\
 		session_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
 		user_id     INTEGER ,\
@@ -72,10 +72,10 @@ bool Session::createTable()
 	{
 		qDebug() << "error creating sessions Table in database.";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 
 }
@@ -83,9 +83,7 @@ bool Session::createTable()
 bool Session::completeTable()
 {
 	Session *s = new Session(1, QDateTime::currentDateTime());
-	
-	Database::open();
 	bool succeeded = s->insertIntoDatabase();
-	Database::close();
+	delete s;
 	return succeeded;
 }

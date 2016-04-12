@@ -18,8 +18,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog();   		
 	QObject::connect(ld, SIGNAL(logedIn()),	this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
-	//ld->show();
-	showMW();
+	ld->show();
+	
 
 	//Показать окно авторизации, при нажатии смены пользователя
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(showLD()));

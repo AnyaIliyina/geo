@@ -23,14 +23,14 @@ Scale::Scale(QString description)
 
 Scale::Scale(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("scales");
 	const QString filter = QString("scate_id == %1");
 	model.setFilter(filter);
 	model.select();
 	QString description = model.record(0).value("description").toString();
-	Database::close();
+	db.close();
 
 	m_scale_id = id;
 	m_description = description;
@@ -47,25 +47,25 @@ int Scale::scale_id()
 
 bool Scale::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO scales(description)\
 	VALUES (?)");
 	query.addBindValue(m_description);
 	if (!query.exec()) {
 		qDebug() << "Scale::insertIntoDatabase(): error inserting into Table scales";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Scale::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS scales (\
 		scale_id INTEGER PRIMARY KEY AUTOINCREMENT, \
 		description TEXT UNIQUE NOT NULL\
@@ -74,10 +74,10 @@ bool Scale::createTable()
 	{
 		qDebug() << "error creating scales Table in database";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
@@ -92,9 +92,7 @@ QString Scale::coded(QByteArray encodedStr) // метод для получен�
 bool Scale::completeTable()
 {
 	Scale *s = new Scale("500:1");
-
-	Database::open();
 	bool succeeded = s->insertIntoDatabase();
-	Database::close();
+	delete s;
 	return succeeded;
 }

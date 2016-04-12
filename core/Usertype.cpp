@@ -23,14 +23,14 @@ Usertype::Usertype(QString type_name)
 
 Usertype::Usertype(int id)
 {
-	Database::open();
-	QSqlTableModel model;
+	QSqlDatabase db = Database::database();
+	QSqlTableModel model(nullptr, db);
 	model.setTable("usertypes");
 	const QString filter = QString("type_id == %1").arg(id);
 	model.setFilter(filter);
 	model.select();
 	QString type_name = model.record(0).value("type_name").toString();
-	Database::close();
+	db.close();
 
 	m_type_id = id;
 	m_type_name = type_name;
@@ -47,25 +47,25 @@ int Usertype::type_id()
 
 bool Usertype::insertIntoDatabase()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	query.prepare("INSERT INTO usertypes(type_name)\
 	VALUES (?)");
 	query.addBindValue(m_type_name);
 	if (!query.exec()) {
 		qDebug() << "State::insertIntoDatabase(): error inserting into Table usertypes";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Usertype::createTable()
 {
-	Database::open();
-	QSqlQuery query;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS usertypes (\
 		type_id INTEGER PRIMARY KEY AUTOINCREMENT, \
 		type_name TEXT UNIQUE NOT NULL\
@@ -74,20 +74,18 @@ bool Usertype::createTable()
 	{
 		qDebug() << "error creating usertypes Table in database";
 		qDebug() << query.lastError().text();
-		Database::close();
+		db.close();
 		return false;
 	}
-	Database::close();
+	db.close();
 	return true;
 }
 
 bool Usertype::completeTable()
 {
 	Usertype *user = new Usertype(coded("Модуль поиска"));
-
-	Database::open();
 	bool succeeded = user->insertIntoDatabase();
-	Database::close();
+	delete user;
 	return succeeded;
 }
 
