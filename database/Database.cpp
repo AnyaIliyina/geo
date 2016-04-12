@@ -41,7 +41,10 @@ void Database::restore()
 */
 QSqlDatabase Database::database()
 {
-	return QSqlDatabase::database(connectionName, true);;
+	if (!QSqlDatabase::contains (connectionName))
+		qDebug() << "Database::database() error: connection " << connectionName << " not found";
+	
+	return QSqlDatabase::database(connectionName, true);
 }
 
 
