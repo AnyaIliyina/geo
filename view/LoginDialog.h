@@ -22,4 +22,6 @@ signals:
 	void logedIn();
 private slots:
 	void authorize();
+public slots:
+	void showLD();
 };

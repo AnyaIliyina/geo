@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QStatusBar>
 
+
 /*!
 \file
 */
@@ -17,8 +18,13 @@ MainWindow::MainWindow(QMainWindow *parent)
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog();   		
 	QObject::connect(ld, SIGNAL(logedIn()),	this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
-	ld->show();
-	
+	//ld->show();
+	showMW();
+
+	//Показать окно авторизации, при нажатии смены пользователя
+	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(showLD()));
+	QObject::connect(ui->actionUser, SIGNAL(triggered()), this, SLOT(closeMW()));
+
 	// "Собрать" окно из виджетов:				
 	configure();
 
@@ -27,6 +33,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 	QObject::connect(session, SIGNAL(newStatusbarText(const QString &)),
 		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
 	session->start();
+
+	
 }
 
 
@@ -59,6 +67,13 @@ void MainWindow::showMW()
 	this->showMaximized();
 }
 
+/*!
+Закрывает основное окно
+*/
+void MainWindow::closeMW()
+{
+	this->close();
+}
 
 /*!
 Выводит сообщение на панель StatusBar

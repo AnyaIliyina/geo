@@ -22,6 +22,9 @@ private:
 	Ui::SitesView *ui;
 	QSqlQueryModel *model;
 private:
-	void setupModel(const QStringList &headers);
+	
 	void createUi();
+	//void searchButton();
+public slots:
+	void setupModel();//const QStringList &headers*/);
 };

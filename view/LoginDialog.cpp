@@ -55,6 +55,15 @@ void LoginDialog::authorize()
 		}
 }
 
+/*!
+Показывает окно авторизации
+*/
+void LoginDialog::showLD()
+{
+	this->show();
+}
+
+
 QString LoginDialog::coded(QByteArray encodedStr)
 {
 	// из QByteArray с кодировкой Windows-1251 

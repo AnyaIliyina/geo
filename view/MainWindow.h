@@ -24,6 +24,7 @@ private:
 private slots:
 	void showMW();
 	void showMessage(const QString &message);
+	void closeMW();
 };
 
 

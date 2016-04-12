@@ -14,10 +14,9 @@ SitesView::SitesView(QDockWidget *parent) :
 	ui(new Ui::SitesView)
 {
 	ui->setupUi(this);
-	this->setupModel( QStringList() 
-		<< ("URL")
-		<< State::coded("Название сайта"));
-	this->createUi();
+	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(setupModel()));//QStringList() << ("URL") << State::coded("Название сайта"))));
+	//this->setupModel( QStringList() << ("URL")<< State::coded("Название сайта"));
+	//this->createUi();
 }
 
 SitesView::~SitesView()
@@ -25,15 +24,17 @@ SitesView::~SitesView()
 	delete ui;
 }
 
-void SitesView::setupModel( const QStringList & headers)
+void SitesView::setupModel()// const QStringList & headers)
 {
 	Database::open();
 	model = new QSqlQueryModel(this);
-	model->setQuery("SELECT site_name, url FROM sites WHERE site_id in (select site_id from geodata_records WHERE place_name='Ekaterinburg')");
-	for (int i = 0, j = 0; i < model->columnCount(); i++, j++)
+	model->setQuery(QString("SELECT site_name, url FROM sites WHERE site_id in (select site_id from geodata_records WHERE place_name='%1')").arg(ui->textGeo->text()));
+	
+	/*for (int i = 0, j = 0; i < model->columnCount(); i++, j++)
 	{
 		model->setHeaderData(i, Qt::Horizontal, headers[j]);
-	}
+	}*/
+	createUi();
 
 }
 
@@ -41,6 +42,13 @@ void SitesView::createUi()
 {
 	ui->tableView->setModel(model);
 	//ui->tableView->setColumnHidden(0, true);
-	
+	ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+	ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 	
 }
+
+/*void SitesView::searchButton()
+{
+	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(setupModel(QStringList() << ("URL") << State::coded("Название сайта"))));
+	
+}*/
