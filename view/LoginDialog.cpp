@@ -22,7 +22,7 @@ LoginDialog::LoginDialog(QDialog * ptr)
 	connect(ui->btn_login, SIGNAL(clicked()), SLOT(authorize()));
 	
 	// Прошли авторизацию - диалог может быть удален:
-	connect(this, SIGNAL(logedIn()), this, SLOT(deleteLater()));
+	connect(this, SIGNAL(logedIn()), this, SLOT(close()));
 
 }
 

@@ -18,13 +18,27 @@ class  SitesView:public QDockWidget {
 public:
 	explicit SitesView(QDockWidget *parent = 0);
 	~SitesView();
+
+	/*!
+	Метод для создания строки запроса	
+	\param QList<QString> args - список, содержащий строки, для составления запроса
+	\return QString qry - строка запроса к базе
+	*/
+	QString ParseWhereArgs(QList<QString>& args);
+
+	/*!
+	\param QString whereQryPart- строка запроса к базе
+	*/
+	void setupModel(QString& whereQryPart);
 private:
 	Ui::SitesView *ui;
 	QSqlQueryModel *model;
 private:
+	void createTable();
 	
-	void createUi();
-	//void searchButton();
 public slots:
-	void setupModel();//const QStringList &headers*/);
+	/*!
+	Слот для выполнения поиска по введенным данным
+	*/
+	void WhereQueryPart();
 };
