@@ -24,7 +24,7 @@ State::State(QString state_name)
 State::State(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("states");
 	const QString filter = QString("state_id == %1").arg(id);
 	model.setFilter(filter);

@@ -20,7 +20,7 @@ User::User(int type_id, QString login, QString password)
 User::User(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("users");
 	const QString filter = QString("user_id == %1").arg(id);
 	model.setFilter(filter);

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#pragma once
 
+#include <QObject>
 #include <QString>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -15,7 +15,8 @@
 *  \date		15 марта 2016
 */
 
-class User {
+class User:public QObject {
+	Q_OBJECT
 private:
 	int m_user_id;
 	int m_type_id;

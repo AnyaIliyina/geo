@@ -30,7 +30,7 @@ Format::Format(const QString &format_name)
 Format::Format(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("formats");
 	const QString filter = QString("format_id == %1").arg(id);
 	model.setFilter(filter);

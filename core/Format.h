@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <QObject>
 #include <QString>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -19,7 +20,8 @@
 */
 
 
-class Format {
+class Format: public QObject {
+	Q_OBJECT
 private:
 	int m_format_id;
 	QString m_format_name;

@@ -24,7 +24,7 @@ Status::Status(QString status_name)
 Status::Status(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("statuses");
 	const QString filter = QString("status_id == %1").arg(id);
 	model.setFilter(filter);

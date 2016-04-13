@@ -15,7 +15,7 @@ Session::Session(int user_id, QDateTime date)
 Session::Session(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("sessions");
 	const QString filter = QString("session_id == %1").arg(id);
 	model.setFilter(filter);

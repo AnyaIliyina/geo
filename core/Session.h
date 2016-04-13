@@ -1,6 +1,6 @@
 ﻿#pragma once
-#pragma once
 
+#include <QObject>
 #include <QString>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -19,7 +19,8 @@
 *  \date	15 марта 2016
 */
 
-class Session {
+class Session: public QObject  {
+	Q_OBJECT
 private:
 	int m_session_id;
 	int m_user_id;

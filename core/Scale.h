@@ -1,6 +1,6 @@
 ﻿#pragma once
-#pragma once
 
+#include <QObject>
 #include <QString>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -15,7 +15,8 @@
 *  \date 10 марта 2016
 */
 
-class Scale {
+class Scale: public QObject {
+	Q_OBJECT
 private:
 	int m_scale_id;
 	QString m_description;

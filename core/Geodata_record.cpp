@@ -27,7 +27,8 @@ const QString& Geodata_record::place_name() const
 Geodata_record::Geodata_record(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QObject *parent = new QObject();
+	QSqlTableModel model(parent, db);
 	model.setTable("geodata_records");
 	const QString filter = QString("record_id == %1").arg(id);
 	model.setFilter(filter);
@@ -40,6 +41,7 @@ Geodata_record::Geodata_record(int id)
 	int state_id = model.record(0).value("state_id").toInt();
 	QString comment = model.record(0).value("comment").toString();
 	db.close();
+	delete parent;
 
 	m_record_id = id;
 	m_site_id = site_id;

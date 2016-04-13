@@ -1,5 +1,6 @@
 #pragma once
 
+#include <QObject>
 #include <QString>
 #include <QDebug>
 #include <QSqlDatabase>
@@ -18,7 +19,8 @@
  *  \date      март 2016
  */
 
-class Site {
+class Site
+{
 private:
 	int m_site_id;
 	QString m_url;

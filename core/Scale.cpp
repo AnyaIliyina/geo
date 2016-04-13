@@ -24,7 +24,7 @@ Scale::Scale(QString description)
 Scale::Scale(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("scales");
 	const QString filter = QString("scate_id == %1");
 	model.setFilter(filter);

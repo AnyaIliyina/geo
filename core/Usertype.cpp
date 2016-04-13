@@ -24,7 +24,7 @@ Usertype::Usertype(QString type_name)
 Usertype::Usertype(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QSqlTableModel model(this, db);
 	model.setTable("usertypes");
 	const QString filter = QString("type_id == %1").arg(id);
 	model.setFilter(filter);

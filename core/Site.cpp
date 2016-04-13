@@ -26,7 +26,8 @@ Site::Site(const QString& url, const QString& site_name, int status, const QStri
 Site::Site(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QObject *parent = new QObject();
+	QSqlTableModel model(parent, db);
 	model.setTable("sites");
 	//const QString filter("siteId == " + QString::number(site_id));
 	const QString filter = QString("site_id == %1").arg(id);
@@ -37,6 +38,7 @@ Site::Site(int id)
 	int status_id= model.record(0).value("status_id").toInt();
 	QString comment = model.record(0).value("comment").toString();
 	db.close();
+	delete parent;
 	
 	m_site_id = id;
 	m_url = url;
@@ -113,7 +115,8 @@ QList<Site> Site::sitesByStatus(int statusId)
 {
 	QList<Site> siteList;
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
+	QObject *parent = new QObject();
+	QSqlTableModel model(parent, db);
 	model.setTable("sites");
 	const QString filter = QString("status_id == %1").arg(statusId);
 	model.setFilter(filter);
@@ -124,6 +127,7 @@ QList<Site> Site::sitesByStatus(int statusId)
 		siteList.append(*s);
 		delete s;
 	}
+	delete parent;
 	db.close();
 	return siteList;
 }
