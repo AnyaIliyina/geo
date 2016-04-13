@@ -49,7 +49,7 @@ void LoginDialog::authorize()
 	if (User::userIsValid(login, password))
 	{
 		emit logedIn();	// сигнал об успешной авторизации
-		this->hide();
+		//this->hide();
 		}
 	else
 		{ 
