@@ -57,6 +57,6 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
-	QString coded(QByteArray encodedStr);
+	static QString coded(QByteArray encodedStr);
 };
 

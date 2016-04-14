@@ -41,4 +41,5 @@ public slots:
 	Слот для выполнения поиска по введенным данным
 	*/
 	void WhereQueryPart();
+	
 };

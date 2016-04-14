@@ -52,6 +52,9 @@
     <ClCompile Include="view\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\NewDockWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="search_module\SM_Session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,9 +93,9 @@
     <ClInclude Include="database\Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\Format.h">
+    <CustomBuild Include="core\Format.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
     <ClInclude Include="core\Geodata_record.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -102,15 +105,18 @@
     <CustomBuild Include="view\MainWindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="view\NewDockWidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="search_module\SM_Session.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="core\Scale.h">
+    <CustomBuild Include="core\Scale.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Session.h">
+    </CustomBuild>
+    <CustomBuild Include="core\Session.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
     <ClInclude Include="core\Site.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -120,20 +126,26 @@
     <CustomBuild Include="view\SitesView.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="core\State.h">
+    <CustomBuild Include="core\State.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Status.h">
+    </CustomBuild>
+    <CustomBuild Include="core\Status.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\User.h">
+    </CustomBuild>
+    <CustomBuild Include="core\User.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="core\Usertype.h">
+    </CustomBuild>
+    <CustomBuild Include="core\Usertype.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug\moc_Format.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Format.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_LoginDialog.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -146,10 +158,28 @@
     <ClCompile Include="release\moc_MainWindow.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_NewDockWidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_NewDockWidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_SM_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_SM_Session.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Scale.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Scale.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Session.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_SitesView.cpp">
@@ -158,10 +188,37 @@
     <ClCompile Include="release\moc_SitesView.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_State.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_State.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Status.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Status.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_User.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_User.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Usertype.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Usertype.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClInclude Include="ui_LoginDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_MainWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_NewDockWidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_SiteView.h">
@@ -176,6 +233,9 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\MainWindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\NewDockWidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SiteView.ui">

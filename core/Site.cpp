@@ -54,10 +54,26 @@ Site::~Site()
 
 int Site::site_id() const
 {
+	
 	return m_site_id;
 }
 
-bool Site::insertIntoDatabase()
+bool Site::checkUrl(QString& url)
+{
+	QUrl myUrl(url);
+	if (!myUrl.isValid())
+	{
+		qDebug() << "getReply error: URL not valid";
+		return false;
+	}
+	else
+	{
+		qDebug() << "URL is valig";
+		return true;
+	}
+
+}
+int Site::insertIntoDatabase()
 {
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
@@ -71,10 +87,13 @@ bool Site::insertIntoDatabase()
 		qDebug() << "Site::insertIntoDatabase():  error inserting into Table sites";
 		qDebug() << query.lastError().text();
 		db.close();
-		return false;
+		return -1;
 	}
+	
+	int id = query.lastInsertId().toInt();
+	qDebug() << id;
 	db.close();
-	return true;
+	return id;
 }
 
 bool Site::createTable()

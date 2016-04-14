@@ -46,8 +46,9 @@ public:
 	\param const QString& place_name - название местности;
 	\param const QString& commant - комментарий;
 	*/
-	Geodata_record(int site_id, int session_id, int format_id,
-		int scale_id, int state_id, const QString& place_name, const QString& comment = "");
+	Geodata_record(int site_id, int format_id, const QString& place_name,
+		int session_id=1, int scale_id=1, int state_id=1,
+		const QString& comment = "");
 	
 	/*!
 	Создает Георесурс из данных в базе

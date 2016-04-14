@@ -57,12 +57,15 @@ public:
 	\return int site_id - id сайта;
 	*/
 	int site_id() const;
+
+	int site_id(QString & url, QString & site_name) const;
 	
+	static bool checkUrl(QString &url);
 	/*!
 	Записывает информацию о сайте в базу данных.
-	\return true - если запись в БД успешно добавлена
+	\return site_id
 	*/
-	bool insertIntoDatabase();
+	 int insertIntoDatabase();
 	
 	/*!
 	Создает таблицу "sites" в базе данных.

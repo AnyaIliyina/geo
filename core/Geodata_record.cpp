@@ -5,9 +5,8 @@
 #include "Database.h"
 #include <QTextCodec>
 
-
-Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int scale_id, 
-	int state_id, const QString& place_name, const QString& comment)
+Geodata_record::Geodata_record(int site_id, int format_id, const QString& place_name,
+	int session_id, int state_id, int scale_id, const QString& comment)
 {
 	m_record_id = 0;
 	m_site_id = site_id;
@@ -17,6 +16,8 @@ Geodata_record::Geodata_record(int site_id, int session_id, int format_id, int s
 	m_state_id = state_id;
 	m_place_name = place_name;
 	m_comment = comment;
+	qDebug() << site_id;
+	qDebug() << m_site_id;
 }
 
 const QString& Geodata_record::place_name() const
@@ -66,6 +67,7 @@ bool Geodata_record::insertIntoDatabase()
 {
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
+	//qDebug() << m_site_id;
 	query.prepare("INSERT INTO geodata_records ( site_id, session_id, format_id, scale_id, state_id, place_name, comment)\
 		VALUES (?, ?, ?, ?, ?, ?, ?)");
 	query.addBindValue(m_site_id);
@@ -117,11 +119,11 @@ bool Geodata_record::createTable()
 }
 
 bool Geodata_record::completeTable()
-{
-	Geodata_record *gdr = new Geodata_record(1,1,1,1,1, "Ekaterinburg","ohoho");
-	bool succeeded = gdr->insertIntoDatabase();
+{//переделать
+	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1, "ohoho");
+	int i=gdr->insertIntoDatabase();
 	delete gdr;
-	return succeeded;
+	return true;
 }
 
 

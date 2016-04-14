@@ -4,6 +4,7 @@
 #include <QTableWidget>
 #include <QSqlQueryModel>
 #include "Database.h"
+#include "NewDockWidget.h"
 /*!
 \file
 \brief 
@@ -13,6 +14,8 @@ SitesView::SitesView(QDockWidget *parent) :QDockWidget(parent),ui(new Ui::SitesV
 {
 	ui->setupUi(this);
 	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(WhereQueryPart()));
+	NewDockWidget *ndw = new NewDockWidget();
+	QObject::connect(ui->btnNew, SIGNAL(clicked()),ndw, SLOT(showNDW()));
 }
 
 SitesView::~SitesView()
