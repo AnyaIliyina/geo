@@ -6,6 +6,9 @@
 #include <QMap>
 #include "Session.h"
 
+#define PAGE_NOT_AVAILABLE -2;
+#define ERROR_INSERTING_INTO_DB -1;
+#define SUCCEEDED 0;
 /*!
 \file
 \brief 
@@ -20,7 +23,6 @@
 class  Parser : public QObject {
 Q_OBJECT
 public:
-	virtual void parse() = 0;
-private:
+	virtual int parse() = 0;
 	virtual const QByteArray* getReply(const QString& url);
 };

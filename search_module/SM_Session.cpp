@@ -11,7 +11,6 @@
 
 SM_Session::SM_Session()
 {
-	
 }
 
 SM_Session::~SM_Session()
