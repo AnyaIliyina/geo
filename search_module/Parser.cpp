@@ -12,16 +12,36 @@
 \brief 
 */
 
-const QByteArray * Parser::getReply(const QString & url)
+const QString & Parser::url()
+{
+	return m_url;
+}
+
+
+void Parser::setSessionId(int session_id)
+{
+	m_session_id = session_id;
+}
+
+void Parser::setUrl(const QString & url)
+{
+	m_url = url;
+}
+
+int Parser::session_id()
+{
+	return m_session_id;
+}
+
+
+const QByteArray * Parser::getReply()
 {
 	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 	// eventLoop блокирует все действия до тех пор пока ответ QNetworkReply не получен
 
-	QUrl myUrl(url);
-	if (!myUrl.isValid())
-		qDebug() << "getReply error: URL not valid";
+	QUrl myUrl(m_url);
 	QNetworkRequest req(myUrl);
 	QNetworkReply *reply = mgr.get(req);
 

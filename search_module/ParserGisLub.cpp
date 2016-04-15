@@ -8,7 +8,7 @@
 
 int ParserGisLub::parse()
 {
-	const QByteArray *ar = getReply(m_url);
+	const QByteArray *ar = getReply();
 	if (*ar == "")
 		return PAGE_NOT_AVAILABLE;
 }
@@ -16,7 +16,8 @@ int ParserGisLub::parse()
 
 ParserGisLub::ParserGisLub(int session_id)
 {
-	m_session_id = session_id;
+	setUrl("http://beryllium.gis-lab.info/project/osmshp");
+	setSessionId(session_id);
 }
 
 

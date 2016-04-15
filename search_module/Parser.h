@@ -15,7 +15,7 @@
 */
 
 /*!
-*  \brief
+*  \brief Базовый класс для 
 *  \details
 *  \author    Ильина А.
 *  \date      март 2016
@@ -24,5 +24,13 @@ class  Parser : public QObject {
 Q_OBJECT
 public:
 	virtual int parse() = 0;
-	virtual const QByteArray* getReply(const QString& url);
+	const QString& url();
+protected:
+	const QByteArray* getReply();
+	void setSessionId(int session_id);
+	void setUrl(const QString& url);
+	int session_id();
+private:
+	QString m_url;
+	int m_session_id;
 };
