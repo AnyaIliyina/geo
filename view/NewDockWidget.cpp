@@ -53,10 +53,9 @@ void NewDockWidget::addMessage()
 
 void NewDockWidget::getFormatId()
 {
-	
-	int m_format_id = ui->boxFormat->currentIndex();
-	
-	
+	qDebug() << "getting FormatId...";
+	 m_format_id = ui->boxFormat->currentIndex();
+	qDebug() << "m_formatId = " << m_format_id;
 }
 
 void NewDockWidget::getSiteId()
@@ -70,8 +69,13 @@ void NewDockWidget::getSiteId()
 		if (site_id > 0)
 		{
 			m_site_id = site_id;
+			qDebug() << "NewDockWidget m_site_id: " << m_site_id;
 			
-			
+		}
+		else
+		{
+			m_site_id=Site::site_id(m_url);
+			qDebug() << m_site_id;
 		}
 	}
 }

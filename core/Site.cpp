@@ -52,10 +52,25 @@ Site::~Site()
 }
 
 
-int Site::site_id() const
+int Site::site_id(QString & url) 
 {
-	
-	return m_site_id;
+	qDebug() << "Zashel v -1";
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT site_id FROM sites WHERE url=\'" + url + "\'"))
+	{
+		qDebug() << "Zapros ne proshel";
+	}
+	else
+	{
+		if (query.next())
+		{
+			int id = query.value(0).toInt();
+			return id;
+		}
+	}
+		
+
 }
 
 bool Site::checkUrl(QString& url)
