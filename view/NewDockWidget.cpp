@@ -16,6 +16,7 @@ NewDockWidget::NewDockWidget(QDockWidget * ptr)
 
 NewDockWidget::~NewDockWidget()
 {
+	qDebug() << "newDockWidget destructor";
 	delete ui;
 }
 
@@ -25,6 +26,7 @@ void NewDockWidget::addNewRecord()
 	textRead();
 	getSiteId();
 	getFormatId();
+	qDebug() << m_site_id, m_format_id, m_place_name;
 	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name);
 	ngdr->insertIntoDatabase();
 	
@@ -50,20 +52,24 @@ void NewDockWidget::addMessage()
 
 void NewDockWidget::getFormatId()
 {
+	qDebug() << "getting FormatId...";
 	int m_format_id = ui->boxFormat->currentIndex();
+	qDebug() << "m_formatId = " << m_format_id;
 	
 }
 
 void NewDockWidget::getSiteId()
 {
+	qDebug() << "getting SiteId...";
 	if (Site::checkUrl(m_url))
 	{
 		Site* ns = new Site(m_url, m_site_name);
 		int site_id = ns->insertIntoDatabase();
 		
-		if (!site_id == -1)
+		if (site_id > 0)
 		{
 			m_site_id = site_id;
+			qDebug() << "NewDockWidget m_site_id: " << m_site_id;
 			
 		}
 	}
@@ -79,14 +85,14 @@ void NewDockWidget::textRead()
 
 bool NewDockWidget::emptyLine()
 {
-	if ((m_place_name == "") || (m_url == "") || (m_site_name == ""))
+	/*if ((m_place_name == "") || (m_url == "") || (m_site_name == ""))
 	{
 			 return false;
 	}
 	else
-	{
+	{*/
 		return true;
-	}
+	//}
 }
 
 void NewDockWidget::showNDW()
