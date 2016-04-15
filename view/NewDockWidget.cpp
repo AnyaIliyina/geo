@@ -23,7 +23,7 @@ NewDockWidget::~NewDockWidget()
 void NewDockWidget::addNewRecord()
 {
 	
-	textRead();
+	
 	getSiteId();
 	getFormatId();
 	qDebug() << m_site_id, m_format_id, m_place_name;
@@ -32,7 +32,8 @@ void NewDockWidget::addNewRecord()
 	
 }
 void NewDockWidget::addMessage()
-{
+{	
+	textRead();
 	if (emptyLine())
 	{
 		int saveMsgBox = QMessageBox::information(this,
@@ -52,9 +53,9 @@ void NewDockWidget::addMessage()
 
 void NewDockWidget::getFormatId()
 {
-	qDebug() << "getting FormatId...";
+	
 	int m_format_id = ui->boxFormat->currentIndex();
-	qDebug() << "m_formatId = " << m_format_id;
+	
 	
 }
 
@@ -69,7 +70,7 @@ void NewDockWidget::getSiteId()
 		if (site_id > 0)
 		{
 			m_site_id = site_id;
-			qDebug() << "NewDockWidget m_site_id: " << m_site_id;
+			
 			
 		}
 	}
@@ -85,14 +86,14 @@ void NewDockWidget::textRead()
 
 bool NewDockWidget::emptyLine()
 {
-	/*if ((m_place_name == "") || (m_url == "") || (m_site_name == ""))
+	if ((m_place_name.isEmpty()) || (m_url.isEmpty()) || (m_site_name.isEmpty()))
 	{
 			 return false;
 	}
 	else
-	{*/
+	{
 		return true;
-	//}
+	}
 }
 
 void NewDockWidget::showNDW()

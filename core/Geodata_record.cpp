@@ -16,8 +16,7 @@ Geodata_record::Geodata_record(int site_id, int format_id, const QString& place_
 	m_state_id = state_id;
 	m_place_name = place_name;
 	m_comment = comment;
-	qDebug() << site_id;
-	qDebug() << m_site_id;
+
 }
 
 const QString& Geodata_record::place_name() const
