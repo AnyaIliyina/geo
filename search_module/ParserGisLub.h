@@ -23,7 +23,4 @@ public:
 	int parse();
 	ParserGisLub(int session_id);
 	~ParserGisLub();
-private:
-	const QString m_url = "http://beryllium.gis-lab.info/project/osmshp";
-	int m_session_id;
 };
