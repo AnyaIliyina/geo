@@ -41,7 +41,12 @@ public:
 	User(int id);
 	
 	~User();
-	
+
+	/*!
+	Возвращает идентификатор типа пользователя
+	*/
+	static int type_id(QString & login);
+
 	/*!
 	Возвращает id пользователя
 	\return int user_id - id пользователя в базе

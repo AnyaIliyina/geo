@@ -1,4 +1,5 @@
-﻿#include "ui_SitesView.h"
+﻿#pragma once
+#include "ui_SitesView.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>

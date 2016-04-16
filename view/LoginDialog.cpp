@@ -22,7 +22,7 @@ LoginDialog::LoginDialog(QDialog * ptr)
 	connect(ui->btn_login, SIGNAL(clicked()), SLOT(authorize()));
 	
 	// Прошли авторизацию - диалог может быть удален:
-	connect(this, SIGNAL(logedIn()), this, SLOT(close()));
+	connect(this, SIGNAL(logedIn(int)), this, SLOT(closed(int)));
 
 }
 
@@ -37,7 +37,7 @@ LoginDialog::~LoginDialog()
 
 
 /*!
-Проводит авторизоцию: ищет введеную пользователем
+Проводит авторизацию: ищет введеную пользователем
 пару Логин-Пароль в базе, испускает сигнал logedIn(), 
 если пара найдена.
 */
@@ -46,15 +46,22 @@ void LoginDialog::authorize()
 	QString login, password;
 	login = ui->line_Login->text();
 	password = ui->line_Pass->text();
+	
 	if (User::userIsValid(login, password))
-	{
-		emit logedIn();	// сигнал об успешной авторизации
+	{	
+		int type = User::type_id(login);
+		emit logedIn(type);	// сигнал об успешной авторизации
 		//this->hide();
 		}
 	else
 		{ 
 		ui->lblResult->setText(State::coded("Пароль неверный"));
 		}
+}
+
+void LoginDialog::closed(int)
+{
+	this->close();
 }
 
 /*!
@@ -64,3 +71,13 @@ void LoginDialog::showLD()
 {
 	this->show();
 }
+
+QString LoginDialog::getLogin() 
+{
+	//qDebug() << "Vot:" << m_login;
+	return m_login;
+}
+
+
+
+

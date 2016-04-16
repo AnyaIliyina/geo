@@ -1,7 +1,6 @@
 #include <QApplication>
 #include <qDebug>
 #include "Database.h"
-#include "SiteView.h"
 #include "MainWindow.h"
 
 /*!

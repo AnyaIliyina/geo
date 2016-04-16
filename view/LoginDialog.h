@@ -14,22 +14,27 @@ class LoginDialog : public QDialog {
 	Q_OBJECT
 private:
 	Ui::LoginDialog *ui;
+	
 public:
+	QString m_login;
+	 QString getLogin();
 	/*!	Конструктор
 	\param QDialog * ptr - указатель на родительский диалог	*/
 	explicit LoginDialog(QDialog *ptr = 0);
 
 	/*!	Деструктор	*/
 	~LoginDialog();
-
+	
+	
 signals:
-	void logedIn();			// сигнал об учпешной авторизации
+	void logedIn(int);			// сигнал об учпешной авторизации
 
 private slots:
 	/*!Проводит авторизоцию: 
 	ищет введеную пользователем пару Логин-Пароль в базе, 
 	испускает сигнал logedIn(), если пара найдена.*/
 	void authorize();
+	void closed(int);
 
 public slots:
 	/*!	Показывает диалог	*/

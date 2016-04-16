@@ -55,6 +55,15 @@
     <ClCompile Include="view\NewDockWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\NewRecordUser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search_module\Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search_module\ParserGisLub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="search_module\SM_Session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,10 +76,10 @@
     <ClCompile Include="core\Site.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\SiteView.cpp">
+    <ClCompile Include="view\SitesView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\SitesView.cpp">
+    <ClCompile Include="view\SitesViewUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\State.cpp">
@@ -108,6 +117,15 @@
     <CustomBuild Include="view\NewDockWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="view\NewRecordUser.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="search_module\Parser.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="search_module\ParserGisLub.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="search_module\SM_Session.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -120,10 +138,10 @@
     <ClInclude Include="core\Site.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="view\SiteView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <CustomBuild Include="view\SitesView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\SitesViewUser.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="core\State.h">
@@ -164,6 +182,24 @@
     <ClCompile Include="release\moc_NewDockWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_NewRecordUser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_NewRecordUser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Parser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Parser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ParserGisLub.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_ParserGisLub.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_SM_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -186,6 +222,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_SitesView.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_SitesViewUser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_SitesViewUser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_State.cpp">
@@ -221,10 +263,13 @@
     <ClInclude Include="ui_NewDockWidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_SiteView.h">
+    <ClInclude Include="ui_NewRecordUser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="ui_SitesView.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_SitesViewUser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -238,10 +283,13 @@
     <CustomBuild Include="view\NewDockWidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="view\SiteView.ui">
+    <CustomBuild Include="view\NewRecordUser.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SitesView.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\SitesViewUser.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -1,9 +1,11 @@
 #include "MainWindow.h"
 #include "SitesView.h"
+#include "SitesViewUser.h"
 #include "SM_Session.h"
 #include <QTextEdit>
 #include <QDebug>
 #include <QStatusBar>
+#include "User.h"
 
 
 /*!
@@ -16,17 +18,14 @@ MainWindow::MainWindow(QMainWindow *parent)
 	ui->setupUi(this);
 
 	// Показать диалог с запросом пароля до появления основного окна:
-	LoginDialog *ld = new LoginDialog();   		
-	QObject::connect(ld, SIGNAL(logedIn()),	this, SLOT(showMW()));	 // авторизация пройдена - отобразить основное окно 
+	LoginDialog *ld = new LoginDialog(); 
+
+	qDebug()<< QObject::connect(ld, SIGNAL(logedIn(int)),	this, SLOT(configure(int)));	 // авторизация пройдена - отобразить основное окно 
 	ld->show();
-	
 
 	//Показать окно авторизации, при нажатии смены пользователя
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(showLD()));
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), this, SLOT(closeMW()));
-
-	// "Собрать" окно из виджетов:				
-	configure();
 
 	// Начать работу модуля поиска
 	SM_Session *session = new SM_Session();
@@ -34,7 +33,6 @@ MainWindow::MainWindow(QMainWindow *parent)
 		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
 	session->start();
 
-	
 }
 
 
@@ -42,20 +40,31 @@ MainWindow::~MainWindow()
 {
 }
 
-
-
 /*!
 "Собирает" основное окно из виджетов
 */
-void MainWindow::configure()
+void MainWindow::configure(int type)
 {
 	QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
-	setCentralWidget(txt);				
-	QDockWidget *sv = new SitesView();
+	setCentralWidget(txt);
+	delete sv;
+	sv = new SitesView();
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
+	delete svu;
+	svu = new SitesViewUser();
+	addDockWidget(Qt::LeftDockWidgetArea, svu);
+	if (type!= 3)
+	{
+		svu->hide();
+	}
+	else
+	{
+		sv->hide();
+	}
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
+	showMW();
 }
 
 
@@ -73,6 +82,7 @@ void MainWindow::showMW()
 void MainWindow::closeMW()
 {
 	this->close();
+	
 }
 
 /*!

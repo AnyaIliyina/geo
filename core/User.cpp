@@ -41,6 +41,29 @@ User::~User()
 {
 }
 
+int User::type_id(QString & login)
+{
+	qDebug() << "Zapros type_id....";
+	qDebug() << login;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT type_id FROM users WHERE login=\'" + login + "\'"))
+	{
+		qDebug() << "Zapros ne proshel";
+	}
+	if (query.next())
+	{
+		int id = query.value(0).toInt();
+		qDebug() << id;
+		return id;
+	}
+	else
+	{
+		qDebug() << "Kakaha";
+	}
+	}
+
+
 int User::user_id()
 {
 	return m_user_id;
@@ -71,7 +94,7 @@ bool User::createTable()
 	QSqlQuery query(db);
 	if (!query.exec("CREATE TABLE IF NOT EXISTS  users (\
 		user_id  INTEGER         PRIMARY KEY AUTOINCREMENT, \
-		type_id     integer    UNIQUE NOT NULL,\
+		type_id     integer     NOT NULL,\
 		login NVARCHAR(16) UNIQUE NOT NULL,\
 		password NVARCHAR(16),\
 		FOREIGN KEY(type_id) REFERENCES usertypes(type_id)\
@@ -106,7 +129,7 @@ bool User::userIsValid(const QString & login, const QString& password)
 		db.close();
 		return false;
 	}
-			if (qry.next())
+		if (qry.next())
 		{
 			db.close();
 			return true;
