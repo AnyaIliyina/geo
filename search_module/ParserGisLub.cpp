@@ -28,19 +28,20 @@ int ParserGisLub::parse()
 
 	if (xml.readNextStartElement()) {
 		{
-			
+			str += xml.name();			
 			while (xml.readNextStartElement())
 			{
+				str += "\n   ";
 				str += xml.name();
-				str += "--\n";
+				
 				while (xml.readNextStartElement())
 				{
+					str += "\n       ";
 					str += xml.name();
-					str += "--\n";
 					while (xml.readNextStartElement())
 					{
+						str += "\n            ";
 						str += xml.name();
-						str += "--\n";
 						QXmlStreamAttributes attributes = xml.attributes();
 						for (int i = 0; i < attributes.count(); i++)
 						{
@@ -49,14 +50,13 @@ int ParserGisLub::parse()
 							str += attributes.at(i).value();
 						}
 						str += xml.readElementText(QXmlStreamReader::IncludeChildElements);
-						
 					}
 				}
 			}
 			if (xml.hasError())
 			{
-				str += xml.errorString();
 				str += "\n";
+				str += xml.errorString();
 			}
 		}
 		QTextEdit *txt = new QTextEdit;
