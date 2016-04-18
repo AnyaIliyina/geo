@@ -34,7 +34,7 @@ int Parser::session_id()
 }
 
 
-const QByteArray * Parser::getReply()
+QByteArray * Parser::getReply()
 {
 	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
@@ -46,7 +46,7 @@ const QByteArray * Parser::getReply()
 	QNetworkReply *reply = mgr.get(req);
 
 	eventLoop.exec();
-	const QByteArray *result;
+	QByteArray *result;
 	if (reply->error() == QNetworkReply::NoError) {
 		//success
 		result = new QByteArray(reply->readAll());

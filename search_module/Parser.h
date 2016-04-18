@@ -26,7 +26,7 @@ public:
 	virtual int parse() = 0;
 	const QString& url();
 protected:
-	const QByteArray* getReply();
+	QByteArray* getReply();
 	void setSessionId(int session_id);
 	void setUrl(const QString& url);
 	int session_id();

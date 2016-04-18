@@ -2,6 +2,7 @@
 
 #include "Parser.h"
 #include <QString>
+#include <QByteArray>
 #include <QObject>
 #include <QDebug>
 
@@ -21,7 +22,11 @@
 class  ParserGisLub : public Parser {
 	Q_OBJECT
 private:
-	const QByteArray& findTheTable(const QByteArray *reply);
+	/*!
+	Ищет в исходном тексте таблицу, удаляет текст до начала таблицы и после ее конца
+	\param QByteArray& ba - исходный текст
+	*/
+	void separateTableBody(QByteArray& ba);
 public:
 	int parse();
 	ParserGisLub(int session_id);
