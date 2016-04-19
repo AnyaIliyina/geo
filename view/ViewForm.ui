@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ViewForm</class>
+ <widget class="QWidget" name="ViewForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>540</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>540</width>
+    <height>420</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Результаты поиска</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>523</width>
+     <height>392</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="minimumSize">
+       <size>
+        <width>521</width>
+        <height>351</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTableView{
+border:none;
+}</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="btnNew">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Новая запись</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnEdit">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Редактировать</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnDelete">
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Удалить</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
