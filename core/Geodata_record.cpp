@@ -63,6 +63,15 @@ void Geodata_record::setPlacename(const QString& placename)
 	m_place_name = placename;
 }
 
+void Geodata_record::setUrl(const QString & url)
+{
+	QUrl u(url);
+	if (u.isValid())
+		m_url = url;
+	else
+		qDebug() << "Geodata_record::setUrl(const QString & url): url not valid";	
+}
+
 
 const QString& Geodata_record::place_name() const
 {

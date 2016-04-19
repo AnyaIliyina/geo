@@ -2,8 +2,7 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
-#include <QXmlQuery>
-#include <QBuffer>
+#include "Geodata_record.h"
 
 /*!
 \file
@@ -20,7 +19,8 @@ int ParserGisLub::parse(int session_id, int site_id)
 	
 	QXmlStreamReader xml(*reply);
 	QString str;
-	QList<QVariant> record_fields(QString placename, int state = 1);
+	Geodata_record *record = new Geodata_record();
+	
 		if (xml.readNextStartElement()) {
 		{
 			if(xml.name() == "tbody")
@@ -47,6 +47,12 @@ int ParserGisLub::parse(int session_id, int site_id)
 							str += attributes.at(i).value();
 						}
 						str += xml.readElementText();
+						/*QString _placename = xml.readElementText();
+						qDebug() << _placename;
+					
+						if (_placename != "") 
+							record->setPlacename(_placename);
+							*/
 					}
 
 				}
