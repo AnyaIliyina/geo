@@ -24,11 +24,11 @@ private:
 	int m_site_id;
 	int m_session_id;
 	int m_format_id;
-	int m_scale_id;
+	int m_scale_id = 1;
 	int m_state_id;
 	QString m_place_name;
 	QString m_url;
-	QString m_comment;
+	QString m_comment = "";
 public:
 	/*! Конструктор по умолчанию */
 	Geodata_record();
@@ -59,6 +59,10 @@ public:
 	/*! Устанавливает новое название местности
 	\param const QString& placename - название местности*/
 	void setPlacename(const QString& placename);
+
+	/*! Устанавливает новый адрес ресурса
+	\param const QString& url - адрес ресурса, */
+	void setUrl(const QString& url);
 
 	/*!
 	Возвращает название местности
