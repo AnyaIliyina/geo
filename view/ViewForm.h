@@ -1,13 +1,13 @@
-#pragma once
+п»ї#pragma once
 #include "ui_ViewForm.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
 
 /*!
-*  \brief  Вывод результатов поиска и работа с ними
-*  \author Козырева О.
-*  \date   апрель 2016
+*  \brief  Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРёСЃРєР° Рё СЂР°Р±РѕС‚Р° СЃ РЅРёРјРё
+*  \author РљРѕР·С‹СЂРµРІР° Рћ.
+*  \date   Р°РїСЂРµР»СЊ 2016
 */
 
 class ViewForm : public QWidget {
@@ -17,7 +17,7 @@ public:
 	~ViewForm();
 
 	/*!
-	\param QString whereQryPart- строка запроса к базе
+	\param QString whereQryPart- СЃС‚СЂРѕРєР° Р·Р°РїСЂРѕСЃР° Рє Р±Р°Р·Рµ
 	*/
 	void setupModel(QString& whereQryPart);
 private:

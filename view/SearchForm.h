@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "ui_SearchForm.h"
 #include <qapplication.h>
 #include <QMainWindow>
@@ -10,9 +10,9 @@ namespace Ui {
 }
 
 /*!
-*  \brief  Форма для поиска
-*  \author Козырева О.
-*  \date   апрель 2016
+*  \brief  Р¤РѕСЂРјР° РґР»СЏ РїРѕРёСЃРєР°
+*  \author РљРѕР·С‹СЂРµРІР° Рћ.
+*  \date   Р°РїСЂРµР»СЊ 2016
 */
 class  SearchForm:public QDockWidget {
 	Q_OBJECT
@@ -21,9 +21,9 @@ public:
 	~SearchForm();
 
 	/*!
-	Метод для создания строки запроса
-	\param QList<QString> args - список, содержащий строки, для составления запроса
-	\return QString qry - строка запроса к базе
+	РњРµС‚РѕРґ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СЃС‚СЂРѕРєРё Р·Р°РїСЂРѕСЃР°
+	\param QList<QString> args - СЃРїРёСЃРѕРє, СЃРѕРґРµСЂР¶Р°С‰РёР№ СЃС‚СЂРѕРєРё, РґР»СЏ СЃРѕСЃС‚Р°РІР»РµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+	\return QString qry - СЃС‚СЂРѕРєР° Р·Р°РїСЂРѕСЃР° Рє Р±Р°Р·Рµ
 	*/
 	QString ParseWhereArgs(QList<QString>& args);
 
@@ -33,7 +33,7 @@ private:
 	
 public slots:
 	/*!
-	Слот для выполнения поиска по введенным данным
+	РЎР»РѕС‚ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РїРѕРёСЃРєР° РїРѕ РІРІРµРґРµРЅРЅС‹Рј РґР°РЅРЅС‹Рј
 	*/
 	void WhereQueryPart();
 

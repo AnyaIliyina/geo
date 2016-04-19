@@ -1,4 +1,4 @@
-#include "SearchForm.h"
+﻿#include "SearchForm.h"
 #include "ui_SearchForm.h"
 #include "State.h"
 #include <QTableWidget>

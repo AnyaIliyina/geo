@@ -1,4 +1,4 @@
-#include "ViewForm.h"
+﻿#include "ViewForm.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
