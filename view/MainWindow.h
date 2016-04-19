@@ -18,18 +18,42 @@
 class MainWindow : public QMainWindow {
 	Q_OBJECT
 public:
+	/*! 
+	Конструктор 
+	\param QMainWindow *parent - родительский виджет
+	*/
 	explicit MainWindow(QMainWindow *parent = 0);
-	~MainWindow();
-private:
-	Ui::MainWindow *ui;
-	void showMW();
-	QString m_log;
-	SitesView *sv=nullptr;
-	SitesViewUser *svu=nullptr;
-private slots:
 	
+	/*! Деструктор*/
+	~MainWindow();
+
+private:
+	/*!
+	Выводит основное окно и начинает работу модуля поиска
+	*/
+	void showMW();
+	
+	Ui::MainWindow *ui;
+	QString m_log;
+	SitesView *sv = nullptr;
+	SitesViewUser *svu = nullptr;
+
+private slots:
+	/*!
+	Выводит сообщение на панель StatusBar
+	\param const QString &str - текст сообщения
+	*/
 	void showMessage(const QString &message);
+	
+	/*!
+	Закрывает основное окно
+	*/
 	void closeMW();
+	
+	/*!
+	"Собирает" основное окно из виджетов
+	\param int type - тип пользователя
+	*/
 	void configure(int);
 };
 
