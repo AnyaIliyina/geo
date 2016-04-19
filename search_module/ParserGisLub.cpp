@@ -20,7 +20,7 @@ int ParserGisLub::parse(int session_id, int site_id)
 	
 	QXmlStreamReader xml(*reply);
 	QString str;
-	QVariant record_fields(QString placename, int state = 1);
+	QList<QVariant> record_fields(QString placename, int state = 1);
 		if (xml.readNextStartElement()) {
 		{
 			if(xml.name() == "tbody")

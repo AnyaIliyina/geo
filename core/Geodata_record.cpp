@@ -19,9 +19,48 @@ Geodata_record::Geodata_record(int site_id, int format_id, const QString& place_
 	m_comment = comment;
 }
 
+Geodata_record::Geodata_record()
+{
+}
+
 const QString & Geodata_record::url() const
 {
 	return m_url;
+}
+
+
+bool Geodata_record::required_fields_filled()
+{
+	if (m_site_id <= 0)
+		return false;
+	if (m_format_id<=0)
+		return false;
+	if (m_session_id <= 0)
+		return false;
+	if (m_place_name == "")
+		return false;
+
+	return true;
+}
+
+void Geodata_record::setSiteId(int site_id)
+{
+	m_site_id = site_id;
+}
+
+void Geodata_record::setFormateId(int format_id)
+{
+	m_format_id = format_id;
+}
+
+void Geodata_record::setSessionId(int session_id)
+{
+	m_session_id = session_id;
+}
+
+void Geodata_record::setPlacename(const QString& placename)
+{
+	m_place_name = placename;
 }
 
 
@@ -71,9 +110,13 @@ int Geodata_record::record_id()
 
 bool Geodata_record::insertIntoDatabase()
 {
+	if (!required_fields_filled())
+	{
+		qDebug() << "Geodata_record::insertIntoDatabase(): record not valid";
+		return false;
+	}
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
-	qDebug() << "inserting geodata";
 	query.prepare("INSERT INTO geodata_records ( site_id, session_id, format_id, scale_id, state_id, place_name, comment, url)\
 		VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 	query.addBindValue(m_site_id);
