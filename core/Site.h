@@ -56,6 +56,12 @@ public:
 	Возвращает id сайта
 	\return int site_id - id сайта;
 	*/
+	int site_id();
+
+	/*!
+	Возвращает id сайта
+	\return int site_id - id сайта;
+	*/
 	static int site_id(QString &url);
 
 	static bool checkUrl(QString &url);

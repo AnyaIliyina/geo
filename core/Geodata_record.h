@@ -27,8 +27,15 @@ private:
 	int m_scale_id;
 	int m_state_id;
 	QString m_place_name;
+	QString m_url;
 	QString m_comment;
 public:
+	/*!
+	Возвращает адрес ресурса
+	\return const QString& url - адрес ресурса
+	*/
+	const QString& url() const;
+
 
 	/*!
 	Возвращает название местности
@@ -44,10 +51,11 @@ public:
 	\param int scale_id - id масштаба;
 	\param int state_id - id состояния (актуальность);
 	\param const QString& place_name - название местности;
+	\param const QString& url - адрес ресурса;
 	\param const QString& commant - комментарий;
 	*/
 	Geodata_record(int site_id, int format_id, const QString& place_name,
-		int session_id=1, int scale_id=1, int state_id=1,
+		int session_id=1, int scale_id=1, int state_id=1, const QString& url="",
 		const QString& comment = "");
 	
 	/*!

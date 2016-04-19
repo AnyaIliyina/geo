@@ -50,6 +50,12 @@ Site::~Site()
 }
 
 
+int Site::site_id()
+{
+	return m_site_id;
+}
+
+
 int Site::site_id(QString & url) 
 {
 	qDebug() << "Zashel v -1";
@@ -86,6 +92,8 @@ bool Site::checkUrl(QString& url)
 	}
 
 }
+
+
 int Site::insertIntoDatabase()
 {
 	QSqlDatabase db = Database::database();

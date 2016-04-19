@@ -2,42 +2,38 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
+#include <QXmlQuery>
+#include <QBuffer>
 
 /*!
 \file
 \brief 
 */
 
-int ParserGisLub::parse()
+int ParserGisLub::parse(int session_id, int site_id)
 {
 	QByteArray *reply = getReply();
 	if (*reply == "")
 		return PAGE_NOT_AVAILABLE;
 
 	separateTableBody(*reply);
-	QTextDocument doc(*reply);
 	
 	QXmlStreamReader xml(*reply);
 	QString str;
-	//
-	//while (!xml.atEnd() )
-	//{
-	//	QXmlStreamReader::TokenType token = xml.readNext();
-	//	//if (token == QXmlStreamReader::StartElement)
-	//	{
-
-	if (xml.readNextStartElement()) {
+	QVariant record_fields(QString placename, int state = 1);
+		if (xml.readNextStartElement()) {
 		{
-			str += xml.name();			
-			while (xml.readNextStartElement())
+			if(xml.name() == "tbody")
+				while (xml.readNextStartElement())
 			{
-				str += "\n   ";
-				str += xml.name();
-				
+				if (xml.name() == "tr")
 				while (xml.readNextStartElement())
 				{
-					str += "\n       ";
-					str += xml.name();
+					if (xml.name() == "td") {
+						str += "\n       ";
+						str += xml.name();
+					}
+					
 					while (xml.readNextStartElement())
 					{
 						str += "\n            ";
@@ -45,19 +41,17 @@ int ParserGisLub::parse()
 						QXmlStreamAttributes attributes = xml.attributes();
 						for (int i = 0; i < attributes.count(); i++)
 						{
+							str += "\n";
 							str += attributes.at(i).name();
 							str += ": ";
 							str += attributes.at(i).value();
 						}
-						str += xml.readElementText(QXmlStreamReader::IncludeChildElements);
+						str += xml.readElementText();
 					}
+
 				}
 			}
-			if (xml.hasError())
-			{
-				str += "\n";
-				str += xml.errorString();
-			}
+			
 		}
 		QTextEdit *txt = new QTextEdit;
 		txt->setText(str);
@@ -66,10 +60,10 @@ int ParserGisLub::parse()
 }
 
 
-ParserGisLub::ParserGisLub(int session_id)
+
+ParserGisLub::ParserGisLub()
 {
 	setUrl("http://beryllium.gis-lab.info/project/osmshp");
-	setSessionId(session_id);
 }
 
 
@@ -79,6 +73,11 @@ ParserGisLub::~ParserGisLub()
 }
 
 
+
+/*!
+Ищет в исходном тексте таблицу, удаляет текст до начала таблицы и после ее конца
+\param QByteArray& ba - исходный текст
+*/
 void ParserGisLub::separateTableBody(QByteArray& ba)
 {
 	const QString splitter1 = QString("<tbody>");
@@ -87,5 +86,9 @@ void ParserGisLub::separateTableBody(QByteArray& ba)
 	const QString splitter2 = QString("</tbody>");
 	int pos2 = ba.indexOf(splitter2) + splitter2.length();
 	
+	if ((pos1==-1) || (pos2==-1))
+		qDebug() << "ParserGisLub :: separateTableBody(QByteArray&) \
+error:\n table not found";
+
 	ba = ba.mid(pos1, pos2 - pos1);
 }
