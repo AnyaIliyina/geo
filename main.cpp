@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
 	Database::restore();
-	//ParserGisLub *p = new ParserGisLub(1);
-	//p->parse();
+	/*ParserGisLub *p = new ParserGisLub();
+	p->parse(1, 1);*/
 	MainWindow *w = new MainWindow();
 	return app.exec();
 };

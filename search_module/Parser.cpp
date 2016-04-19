@@ -18,19 +18,9 @@ const QString & Parser::url()
 }
 
 
-void Parser::setSessionId(int session_id)
-{
-	m_session_id = session_id;
-}
-
 void Parser::setUrl(const QString & url)
 {
 	m_url = url;
-}
-
-int Parser::session_id()
-{
-	return m_session_id;
 }
 
 

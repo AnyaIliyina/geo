@@ -20,19 +20,13 @@ MainWindow::MainWindow(QMainWindow *parent)
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog(); 
 
-	qDebug()<< QObject::connect(ld, SIGNAL(logedIn(int)),	this, SLOT(configure(int)));	 // авторизация пройдена - отобразить основное окно 
+	QObject::connect(ld, SIGNAL(logedIn(int)),	this, SLOT(configure(int)));	 // авторизация пройдена - отобразить основное окно, 
+																				// начать работу модуля поиска
 	ld->show();
 
 	//Показать окно авторизации, при нажатии смены пользователя
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(showLD()));
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), this, SLOT(closeMW()));
-
-	// Начать работу модуля поиска
-	SM_Session *session = new SM_Session();
-	QObject::connect(session, SIGNAL(newStatusbarText(const QString &)),
-		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
-	session->start();
-
 }
 
 
@@ -40,8 +34,10 @@ MainWindow::~MainWindow()
 {
 }
 
+
 /*!
 "Собирает" основное окно из виджетов
+\param int type - тип пользователя
 */
 void MainWindow::configure(int type)
 {
@@ -73,11 +69,17 @@ void MainWindow::configure(int type)
 
 
 /*!
-Выводит основное окно
+Выводит основное окно и начинает работу модуля поиска
 */
 void MainWindow::showMW()
 {
 	this->showMaximized();
+	
+	// Начать работу модуля поиска
+	SM_Session *session = new SM_Session();
+	QObject::connect(session, SIGNAL(newStatusbarText(const QString &)),
+		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
+	session->start();
 }
 
 /*!

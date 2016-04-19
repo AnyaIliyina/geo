@@ -23,14 +23,11 @@
 class  Parser : public QObject {
 Q_OBJECT
 public:
-	virtual int parse() = 0;
+	virtual int parse(int session_id, int site_id) = 0;
 	const QString& url();
 protected:
 	QByteArray* getReply();
-	void setSessionId(int session_id);
 	void setUrl(const QString& url);
-	int session_id();
 private:
 	QString m_url;
-	int m_session_id;
 };

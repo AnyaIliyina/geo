@@ -14,7 +14,7 @@
 /*!
 *  \brief    Представляет сущность Георесурс
 			(таблица Geodata_records)
-*  \author   Козырева О.
+*  \author   Козырева О., Ильина А.
 *  \date     15 март 2016
 */
 
@@ -27,8 +27,38 @@ private:
 	int m_scale_id;
 	int m_state_id;
 	QString m_place_name;
+	QString m_url;
 	QString m_comment;
 public:
+	/*! Конструктор по умолчанию */
+	Geodata_record();
+	
+	/*!
+	Возвращает адрес ресурса
+	\return const QString& url - адрес ресурса
+	*/
+	const QString& url() const;
+
+	/*! Определяет, присвоены ли значения ключевым полям
+	\return true - обязательные поля инициализированы 
+	\return false - обязательные поля не инициализированы */
+	bool required_fields_filled();
+
+	/*! Устанавливает значение id сайта
+	\param int site_id - новый id сайта*/
+	void setSiteId(int site_id);
+
+	/*! Устанавливает значение id формата
+	\param int format_id - новый id формата*/
+	void setFormateId(int format_id);
+
+	/*! Устанавливает значение id сессии
+	\param int session_id - новый id сессии*/
+	void setSessionId(int session_id);
+
+	/*! Устанавливает новое название местности
+	\param const QString& placename - название местности*/
+	void setPlacename(const QString& placename);
 
 	/*!
 	Возвращает название местности
@@ -44,18 +74,13 @@ public:
 	\param int scale_id - id масштаба;
 	\param int state_id - id состояния (актуальность);
 	\param const QString& place_name - название местности;
+	\param const QString& url - адрес ресурса;
 	\param const QString& commant - комментарий;
 	*/
 	Geodata_record(int site_id, int format_id, const QString& place_name,
-		int session_id=1, int scale_id=1, int state_id=1,
+		int session_id=1, int scale_id=1, int state_id=1, const QString& url="",
 		const QString& comment = "");
-	
-	/*!
-	Создает Георесурс из данных в базе
-	\param int id - id георесурса
-	*/
-	Geodata_record(int id);
-	
+		
 	~Geodata_record();
 	
 	/*!
@@ -64,6 +89,15 @@ public:
 	*/
 	int record_id();
 	
+
+	//______  Методы, обращающиеся к базе: _____________
+
+	/*!
+	Создает Георесурс из данных в базе
+	\param int id - id георесурса
+	*/
+	Geodata_record(int id);
+
 	/*!
 	Записывает геопространственную информацию в базу данных.
 	\return true - если запись в БД успешно добавлена
