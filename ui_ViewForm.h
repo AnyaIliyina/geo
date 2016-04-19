@@ -13,11 +13,12 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,45 +27,59 @@ class Ui_ViewForm
 {
 public:
     QWidget *widget;
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer;
     QPushButton *btnNew;
     QPushButton *btnEdit;
     QPushButton *btnDelete;
+    QSpacerItem *horizontalSpacer_2;
 
     void setupUi(QWidget *ViewForm)
     {
         if (ViewForm->objectName().isEmpty())
             ViewForm->setObjectName(QStringLiteral("ViewForm"));
-        ViewForm->resize(540, 420);
-        ViewForm->setMinimumSize(QSize(540, 420));
+        ViewForm->resize(599, 430);
+        ViewForm->setMinimumSize(QSize(599, 430));
+        ViewForm->setMaximumSize(QSize(16777215, 16777215));
+        QFont font;
+        font.setPointSize(9);
+        ViewForm->setFont(font);
+        ViewForm->setStyleSheet(QLatin1String("QWidget{\n"
+"border-width:2px;\n"
+"}"));
         widget = new QWidget(ViewForm);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(9, 9, 523, 392));
-        verticalLayout = new QVBoxLayout(widget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        widget->setGeometry(QRect(20, 10, 561, 402));
+        gridLayout = new QGridLayout(widget);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        gridLayout->setVerticalSpacing(17);
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         tableView = new QTableView(widget);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setMinimumSize(QSize(521, 351));
         tableView->setStyleSheet(QLatin1String("QTableView{\n"
-"border:none;\n"
+"border-width:2px\n"
 "}"));
 
-        verticalLayout->addWidget(tableView);
+        gridLayout->addWidget(tableView, 0, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(15);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, 10, -1, -1);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
         btnNew = new QPushButton(widget);
         btnNew->setObjectName(QStringLiteral("btnNew"));
-        QFont font;
-        font.setPointSize(9);
-        font.setBold(false);
-        font.setItalic(false);
-        font.setWeight(50);
-        btnNew->setFont(font);
+        QFont font1;
+        font1.setPointSize(9);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
+        btnNew->setFont(font1);
         btnNew->setAutoFillBackground(false);
         btnNew->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
@@ -124,8 +139,12 @@ public:
 
         horizontalLayout->addWidget(btnDelete);
 
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout->addLayout(horizontalLayout);
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+
+        gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
 
 
         retranslateUi(ViewForm);

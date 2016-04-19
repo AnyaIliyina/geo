@@ -249,7 +249,16 @@
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC core/Scale.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_Scale.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="view\SearchForm.h" />
+    <CustomBuild Include="view\SearchForm.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">view\SearchForm.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\SearchForm.h -o debug\moc_SearchForm.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC view/SearchForm.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_SearchForm.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">view\SearchForm.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\SearchForm.h -o release\moc_SearchForm.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC view/SearchForm.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_SearchForm.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <CustomBuild Include="core\Session.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">core\Session.h;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore core\Session.h -o debug\moc_Session.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
@@ -301,7 +310,16 @@
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC core/Usertype.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_Usertype.cpp;%(Outputs)</Outputs>
     </CustomBuild>
-    <ClInclude Include="view\ViewForm.h" />
+    <CustomBuild Include="view\ViewForm.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">view\ViewForm.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\ViewForm.h -o debug\moc_ViewForm.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC view/ViewForm.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_ViewForm.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">view\ViewForm.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore view\ViewForm.h -o release\moc_ViewForm.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC view/ViewForm.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_ViewForm.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_Format.cpp">
@@ -358,6 +376,12 @@
     <ClCompile Include="release\moc_Scale.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="debug\moc_SearchForm.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_SearchForm.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="debug\moc_Session.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
@@ -386,6 +410,12 @@
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_Usertype.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ViewForm.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_ViewForm.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
     <ClInclude Include="ui_LoginDialog.h" />

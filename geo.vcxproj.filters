@@ -132,9 +132,9 @@
     <CustomBuild Include="core\Scale.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="view\SearchForm.h">
+    <CustomBuild Include="view\SearchForm.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
     <CustomBuild Include="core\Session.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -153,9 +153,9 @@
     <CustomBuild Include="core\Usertype.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="view\ViewForm.h">
+    <CustomBuild Include="view\ViewForm.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_Format.cpp">
@@ -212,6 +212,12 @@
     <ClCompile Include="release\moc_Scale.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug\moc_SearchForm.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_SearchForm.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -240,6 +246,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Usertype.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ViewForm.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_ViewForm.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClInclude Include="ui_LoginDialog.h">

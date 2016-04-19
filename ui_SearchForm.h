@@ -15,11 +15,13 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDockWidget>
-#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,35 +30,45 @@ class Ui_SearchForm
 {
 public:
     QWidget *dockWidgetContents;
-    QGridLayout *gridLayout;
+    QWidget *widget;
+    QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *textGeo;
     QLabel *label_2;
     QLineEdit *textURL;
     QLabel *label_3;
     QComboBox *comboBox;
+    QWidget *widget1;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer;
     QPushButton *btnSearch;
+    QSpacerItem *horizontalSpacer_2;
 
     void setupUi(QDockWidget *SearchForm)
     {
         if (SearchForm->objectName().isEmpty())
             SearchForm->setObjectName(QStringLiteral("SearchForm"));
-        SearchForm->resize(300, 150);
-        SearchForm->setMinimumSize(QSize(300, 150));
-        QFont font;
-        font.setPointSize(9);
-        SearchForm->setFont(font);
+        SearchForm->resize(362, 200);
+        SearchForm->setMinimumSize(QSize(362, 200));
+        SearchForm->setMaximumSize(QSize(362, 200));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
-        gridLayout = new QGridLayout(dockWidgetContents);
-        gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        label = new QLabel(dockWidgetContents);
+        widget = new QWidget(dockWidgetContents);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(11, 10, 341, 108));
+        formLayout = new QFormLayout(widget);
+        formLayout->setObjectName(QStringLiteral("formLayout"));
+        formLayout->setVerticalSpacing(12);
+        formLayout->setContentsMargins(0, 12, 0, 12);
+        label = new QLabel(widget);
         label->setObjectName(QStringLiteral("label"));
+        QFont font;
+        font.setPointSize(9);
         label->setFont(font);
 
-        gridLayout->addWidget(label, 0, 0, 1, 2);
+        formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        textGeo = new QLineEdit(dockWidgetContents);
+        textGeo = new QLineEdit(widget);
         textGeo->setObjectName(QStringLiteral("textGeo"));
         textGeo->setFont(font);
         textGeo->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -67,15 +79,15 @@ public:
 "\n"
 "}"));
 
-        gridLayout->addWidget(textGeo, 0, 2, 1, 1);
+        formLayout->setWidget(0, QFormLayout::FieldRole, textGeo);
 
-        label_2 = new QLabel(dockWidgetContents);
+        label_2 = new QLabel(widget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 2);
+        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
-        textURL = new QLineEdit(dockWidgetContents);
+        textURL = new QLineEdit(widget);
         textURL->setObjectName(QStringLiteral("textURL"));
         textURL->setFont(font);
         textURL->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -86,15 +98,15 @@ public:
 "\n"
 "}"));
 
-        gridLayout->addWidget(textURL, 1, 2, 1, 1);
+        formLayout->setWidget(1, QFormLayout::FieldRole, textURL);
 
-        label_3 = new QLabel(dockWidgetContents);
+        label_3 = new QLabel(widget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setFont(font);
 
-        gridLayout->addWidget(label_3, 2, 0, 1, 1);
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
-        comboBox = new QComboBox(dockWidgetContents);
+        comboBox = new QComboBox(widget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setFont(font);
         comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
@@ -109,9 +121,19 @@ public:
 "background-color: rgb(255, 255, 255);\n"
 "border-radius:4}"));
 
-        gridLayout->addWidget(comboBox, 2, 2, 1, 1);
+        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
 
-        btnSearch = new QPushButton(dockWidgetContents);
+        widget1 = new QWidget(dockWidgetContents);
+        widget1->setObjectName(QStringLiteral("widget1"));
+        widget1->setGeometry(QRect(60, 130, 246, 24));
+        horizontalLayout = new QHBoxLayout(widget1);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        btnSearch = new QPushButton(widget1);
         btnSearch->setObjectName(QStringLiteral("btnSearch"));
         QPalette palette;
         QBrush brush(QColor(30, 30, 30, 255));
@@ -264,12 +286,13 @@ public:
 "}\n"
 ""));
 
-        gridLayout->addWidget(btnSearch, 3, 1, 1, 2);
+        horizontalLayout->addWidget(btnSearch);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
 
         SearchForm->setWidget(dockWidgetContents);
-        btnSearch->raise();
-        label->raise();
-        textGeo->raise();
 
         retranslateUi(SearchForm);
 

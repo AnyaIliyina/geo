@@ -45,7 +45,8 @@ void MainWindow::configure(int type)
 	setCentralWidget(vf);
 	SearchForm *sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
-	connect(sf,SIGNAL(SearchForm::wqp(QString)), vf,SLOT(ViewForm::refresh(QString)));
+	
+	connect(sf, SIGNAL(wqp(QString)), vf, SLOT(refresh(QString)));
 	/*QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);
@@ -74,7 +75,7 @@ void MainWindow::configure(int type)
 */
 void MainWindow::showMW()
 {
-	this->showMaximized();
+	this->show();
 	
 	// Начать работу модуля поиска
 	SM_Session *session = new SM_Session();

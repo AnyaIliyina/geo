@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
+    <width>962</width>
     <height>560</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>730</width>
-    <height>550</height>
+    <width>962</width>
+    <height>430</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,124 +29,6 @@
       <height>501</height>
      </rect>
     </property>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>0</y>
-       <width>258</width>
-       <height>480</height>
-      </rect>
-     </property>
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_1">
-        <property name="text">
-         <string>Поиск</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <layout class="QFormLayout" name="formLayout">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="textGeo"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Название сайта</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="textURL"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Формат</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QComboBox" name="comboBox">
-          <item>
-           <property name="text">
-            <string>Shapefile</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>jpg</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Название местности</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QPushButton" name="btnSearch">
-        <property name="text">
-         <string>Поиск</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QTableWidget" name="tableSite">
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <attribute name="verticalHeaderStretchLastSection">
-         <bool>true</bool>
-        </attribute>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2">
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QPushButton" name="btnNew">
-          <property name="text">
-           <string>Новая запись</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="btnEdit">
-          <property name="text">
-           <string>Редактировать</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="btnDelete">
-          <property name="text">
-           <string>Удалить</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -154,7 +36,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>730</width>
+     <width>962</width>
      <height>21</height>
     </rect>
    </property>
