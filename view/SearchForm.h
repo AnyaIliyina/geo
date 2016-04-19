@@ -26,7 +26,8 @@ public:
 	\return QString qry - строка запроса к базе
 	*/
 	QString ParseWhereArgs(QList<QString>& args);
-
+signals:
+	 void wqp(QString);
 	
 private:
 	Ui::SearchForm *ui;

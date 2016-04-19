@@ -57,7 +57,8 @@ void SearchForm::WhereQueryPart()
 		whereArgs.push_back(QString("(site_id IN (SELECT site_id FROM geodata_records WHERE format_id in (SELECT format_id FROM formats WHERE format_name='%1')))").arg(ui->comboBox->currentText()));
 	}
 	QString whereQryPart = ParseWhereArgs(whereArgs);
-	ViewForm::setupModel(whereQryPart);
+	emit wqp(whereQryPart);
+	//ViewForm::setupModel(whereQryPart);
 
 }
 

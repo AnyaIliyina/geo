@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
-#include <QXmlQuery>
+
 #include <QBuffer>
 
 /*!

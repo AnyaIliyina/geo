@@ -35,8 +35,7 @@ private:
 	
 	Ui::MainWindow *ui;
 	QString m_log;
-	SitesView *sv=nullptr;
-	SitesViewUser *svu=nullptr;
+	
 private slots:
 	/*!
 	Выводит сообщение на панель StatusBar

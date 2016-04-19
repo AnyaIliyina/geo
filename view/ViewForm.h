@@ -24,4 +24,6 @@ private:
 	void createTable();
 	Ui::ViewForm *ui;
 	QSqlQueryModel *model;
+private slots:
+void refresh(QString query);
 };

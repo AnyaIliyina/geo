@@ -45,6 +45,7 @@ void MainWindow::configure(int type)
 	setCentralWidget(vf);
 	SearchForm *sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
+	connect(sf,SIGNAL(SearchForm::wqp(QString)), vf,SLOT(ViewForm::refresh(QString)));
 	/*QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);

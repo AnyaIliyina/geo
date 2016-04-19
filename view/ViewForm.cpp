@@ -27,7 +27,10 @@ void ViewForm::setupModel(QString& whereQryPart)
 
 }
 
-
+void ViewForm::refresh(QString query)
+{
+	this->setupModel(query);
+}
 
 void ViewForm::createTable()
 {
