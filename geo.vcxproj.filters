@@ -70,16 +70,13 @@
     <ClCompile Include="core\Scale.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\SearchForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\Session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\Site.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\SitesView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\SitesViewUser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\State.cpp">
@@ -92,6 +89,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\Usertype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view\ViewForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -132,18 +132,15 @@
     <CustomBuild Include="core\Scale.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="view\SearchForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="core\Session.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="core\Site.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="view\SitesView.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="view\SitesViewUser.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="core\State.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -156,6 +153,9 @@
     <CustomBuild Include="core\Usertype.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="view\ViewForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="debug\moc_Format.cpp">
@@ -218,18 +218,6 @@
     <ClCompile Include="release\moc_Session.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug\moc_SitesView.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_SitesView.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\moc_SitesViewUser.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_SitesViewUser.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="debug\moc_State.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
@@ -266,10 +254,10 @@
     <ClInclude Include="ui_NewRecordUser.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_SitesView.h">
+    <ClInclude Include="ui_SearchForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_SitesViewUser.h">
+    <ClInclude Include="ui_ViewForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -286,10 +274,10 @@
     <CustomBuild Include="view\NewRecordUser.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="view\SitesView.ui">
+    <CustomBuild Include="view\SearchForm.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="view\SitesViewUser.ui">
+    <CustomBuild Include="view\ViewForm.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #include "MainWindow.h"
-#include "SitesView.h"
-#include "SitesViewUser.h"
+#include "SearchForm.h"
+#include "ViewForm.h"
 #include "SM_Session.h"
 #include <QTextEdit>
 #include <QDebug>
@@ -45,14 +45,18 @@ MainWindow::~MainWindow()
 */
 void MainWindow::configure(int type)
 {
-	QTextEdit *txt = new QTextEdit();
+	ViewForm *vf = new ViewForm();
+	setCentralWidget(vf);
+	SearchForm *sf=new SearchForm();
+	addDockWidget(Qt::LeftDockWidgetArea, sf);
+	/*QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);
 	delete sv;
-	sv = new SitesView();
+	sv = new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sv);
 	delete svu;
-	svu = new SitesViewUser();
+	svu = new SearchFormUser();
 	addDockWidget(Qt::LeftDockWidgetArea, svu);
 	if (type!= 3)
 	{
@@ -61,7 +65,7 @@ void MainWindow::configure(int type)
 	else
 	{
 		sv->hide();
-	}
+	}*/
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
 	showMW();

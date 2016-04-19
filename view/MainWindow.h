@@ -4,8 +4,8 @@
 #include <QString>
 #include "LoginDialog.h"
 #include "ui_MainWindow.h"
-#include "SitesView.h"
-#include "SitesViewUser.h"
+#include "SearchForm.h"
+#include "ViewForm.h"
 /*
 \file
 */
@@ -24,8 +24,7 @@ private:
 	Ui::MainWindow *ui;
 	void showMW();
 	QString m_log;
-	SitesView *sv=nullptr;
-	SitesViewUser *svu=nullptr;
+	
 private slots:
 	
 	void showMessage(const QString &message);
