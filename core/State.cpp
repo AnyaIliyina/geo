@@ -94,5 +94,8 @@ bool State::completeTable()
 	State *s = new State(coded("Актуально"));
 	bool succeeded = s->insertIntoDatabase();
 	delete s;
+	State *s2 = new State(coded("Неактуально"));
+	s2->insertIntoDatabase();
+	delete s2;
 	return succeeded;
 }
