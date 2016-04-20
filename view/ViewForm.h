@@ -16,7 +16,13 @@ public:
 	/*!
 	Конструктор
 	*/
-	explicit ViewForm(QWidget *parent = 0);
+	//explicit ViewForm(QWidget *parent = 0);
+
+	/*!
+	Конструктор
+	*/
+	explicit ViewForm(int session_id, QWidget *parent = 0);
+
 	/*!
 	Деструктор
 	*/
@@ -36,6 +42,9 @@ private:
 	Ui::ViewForm *ui;
 
 	QSqlQueryModel *model;
+
+	int m_session_id = -1;
+
 	/*!
 	Удаление выделенной записи
 	*/

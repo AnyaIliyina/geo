@@ -34,14 +34,15 @@ private:
 	void showMW();
 	
 	Ui::MainWindow *ui;
-	QString m_log;
+//	QString m_log;
+	int m_session_id = -1;
 	
 private slots:
 	/*!
 	Выводит сообщение на панель StatusBar
 	\param const QString &str - текст сообщения
 	*/
-	void showMessage(const QString &message);
+	void showStatus(const QString &status);
 	
 	/*!
 	Закрывает основное окно
@@ -52,7 +53,12 @@ private slots:
 	"Собирает" основное окно из виджетов
 	\param int type - тип пользователя
 	*/
-	void configure(int);
+	void configure();
+
+	/*!
+	Начинает сессию для пользователя user_id
+	\param  user_id - идентификатор пользователя */
+	void startSession(int user_id);
 };
 
 

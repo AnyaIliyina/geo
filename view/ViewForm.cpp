@@ -9,13 +9,22 @@
 #include "Scale.h"
 #include "Geodata_record.h"
 
-ViewForm::ViewForm(QWidget *parent) :QWidget(parent), ui(new Ui::ViewForm)
+//ViewForm::ViewForm(QWidget *parent) :QWidget(parent), ui(new Ui::ViewForm)	
+//{
+//	ui->setupUi(this);
+//	NewDockWidget *ndw = new NewDockWidget();
+//	QObject::connect(ui->btnNew, SIGNAL(clicked()), ndw, SLOT(showNDW()));
+//	QObject::connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(deleteMessage()));
+//	
+//}
+
+ViewForm::ViewForm(int session_id, QWidget * parent):QWidget(parent), ui(new Ui::ViewForm) // ??
 {
+	m_session_id = session_id;
 	ui->setupUi(this);
-	NewDockWidget *ndw = new NewDockWidget();
+	NewDockWidget *ndw = new NewDockWidget(m_session_id);
 	QObject::connect(ui->btnNew, SIGNAL(clicked()), ndw, SLOT(showNDW()));
 	QObject::connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(deleteMessage()));
-	
 }
 
 ViewForm::~ViewForm()

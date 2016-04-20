@@ -196,19 +196,19 @@ bool Geodata_record::completeTable()
 	return true;
 }
 
-+void Geodata_record::deleteRecord(int& id)
- +{
- +	QSqlDatabase db = Database::database();
- +	QSqlQuery query(db);
- +	qDebug() << id;
- +	QString idstr = QString::number(id);
- +	if (!query.exec("DELETE FROM geodata_records WHERE record_id=\'" + idstr + "\'"))
- +	{
- +		qDebug() << "Oshibka udaleniya";
- +		qDebug() << query.lastError().text();
- +	}
- +	else
- +	{
- +		qDebug() << "Udalilos";
- +	}
- +}
+void Geodata_record::deleteRecord(int& id)
+ {
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+ 	qDebug() << id;
+ 	QString idstr = QString::number(id);
+ 	if (!query.exec("DELETE FROM geodata_records WHERE record_id=\'" + idstr + "\'"))
+	{
+ 	qDebug() << "Oshibka udaleniya";
+ 		qDebug() << query.lastError().text();
+ 	}
+ 	else
+ 	{
+ 		qDebug() << "Udalilos";
+ 	}
+ }

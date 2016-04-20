@@ -48,6 +48,13 @@ public:
 	static int type_id(QString & login);
 
 	/*!
+	Возвращает id пользователя по логину
+	\param const QString& login - логин
+	\return int user_id - id пользователя
+		либо -1, если пользователь не найден*/
+	static int user_id(const QString& login);
+
+	/*!
 	Возвращает id пользователя
 	\return int user_id - id пользователя в базе
 	*/

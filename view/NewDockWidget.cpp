@@ -14,6 +14,15 @@ NewDockWidget::NewDockWidget(QDockWidget * ptr)
 	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(check()));
 }
 
+NewDockWidget::NewDockWidget(int session_id, QDockWidget * ptr)
+{
+	ui = new Ui::NewDockWidget();
+	ui->setupUi(this);
+	m_session_id = session_id;
+	
+	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(check()));
+}
+
 NewDockWidget::~NewDockWidget()
 {
 	qDebug() << "newDockWidget destructor";
@@ -25,7 +34,7 @@ void NewDockWidget::addNewRecord()
 	getSiteId();
 	getFormatId();
 	qDebug() << m_site_id, m_format_id, m_place_name;
-	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name);
+	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name, m_session_id, 1, 2);
 	ngdr->insertIntoDatabase();
 	int okMsgBox = QMessageBox::information(this, Scale::coded("Успех!"), Scale::coded("Новая запись успешно добавлена"), Scale::coded("Ok"));
 	if (okMsgBox == 0)

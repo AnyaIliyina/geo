@@ -2,6 +2,7 @@
 #include "SearchForm.h"
 #include "ViewForm.h"
 #include "SM_Session.h"
+#include "Session.h"
 #include <QTextEdit>
 #include <QDebug>
 #include <QStatusBar>
@@ -16,11 +17,11 @@ MainWindow::MainWindow(QMainWindow *parent)
 {
 	ui = new Ui::MainWindow();
 	ui->setupUi(this);
-
+	
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog(); 
 
-	QObject::connect(ld, SIGNAL(logedIn(int)),	this, SLOT(configure(int)));	 // авторизация пройдена - отобразить основное окно, 
+	QObject::connect(ld, SIGNAL(logedIn(int)),	this, SLOT(startSession(int)));	 // авторизация пройдена - отобразить основное окно, 
 																				// начать работу модуля поиска
 	ld->show();
 
@@ -37,11 +38,10 @@ MainWindow::~MainWindow()
 
 /*!
 "Собирает" основное окно из виджетов
-\param int type - тип пользователя
 */
-void MainWindow::configure(int type)
+void MainWindow::configure()
 {
-	ViewForm *vf = new ViewForm();
+	ViewForm *vf = new ViewForm(m_session_id);
 	setCentralWidget(vf);
 	SearchForm *sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
@@ -71,6 +71,17 @@ void MainWindow::configure(int type)
 }
 
 
+void MainWindow::startSession(int user_id)
+{
+	Session *session = new Session(user_id, QDateTime::currentDateTime());
+	if (!session->insertIntoDatabase())
+		qDebug() << " MainWindow::startSession(int user_id): error connecting to database";
+	m_session_id = session->session_id();
+	delete session;
+	configure();
+}
+
+
 /*!
 Выводит основное окно и начинает работу модуля поиска
 */
@@ -80,8 +91,8 @@ void MainWindow::showMW()
 	
 	// Начать работу модуля поиска
 	SM_Session *session = new SM_Session();
-	QObject::connect(session, SIGNAL(newStatusbarText(const QString &)),
-		SLOT(showMessage(const QString &)));	// по сигналу от session менять текст в StatusBar
+	qDebug() << QObject::connect(session, SIGNAL(statusOffered(const QString &)),
+		SLOT(showStatus(const QString &)));	// по сигналу от session менять текст в StatusBar
 	session->start();
 }
 
@@ -98,7 +109,7 @@ void MainWindow::closeMW()
 Выводит сообщение на панель StatusBar
 \param const QString &str - текст сообщения
 */
-void MainWindow::showMessage(const QString &str)
+void MainWindow::showStatus(const QString &str)
 {
 	statusBar()->showMessage(str);
 }

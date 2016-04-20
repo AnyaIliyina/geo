@@ -41,8 +41,8 @@ private:
 	сообщение панели QStatusBar
 	\param const QString &text - текст нового сообщения
 	*/
-	void newMessage(const QString &text);
+	void setStatus(const QString &text);
 
 signals:
-	void newStatusbarText(const QString &text);
+	void statusOffered(const QString &text);
 };

@@ -28,8 +28,8 @@ void SM_Session::start()
 	session->insertIntoDatabase();
 	m_session_id = session->session_id();
 	delete session;
+	emit setStatus(State::coded("Модуль поиска начал работу..."));
 	search();
-	emit newMessage(State::coded("Модуль поиска начал работу..."));
 }
 
 
@@ -47,20 +47,33 @@ void SM_Session::search()
 
 	// проверить, есть ли в списке сайтов такие, для которых имеется парсер:
 	QString urlGL = parserGL->url();		// url сайта GisLub
-	int site_GL_id = 0;
+	int siteIdGL = 0;
 	for (int i = 0; i < sites.count(); i++)
 	{
-		Site s = sites.at(i);
-		if (s.url().contains(urlGL))		// Сайт из списка содержит url сайта GisLub?
-			site_GL_id = s.site_id();		// - сохраним id сайта
+		Site site = sites.at(i);
+		if (site.url().contains(urlGL))		
+			siteIdGL = site.site_id();		
 	}
 	
-	// парсить:
-	if (site_GL_id > 0)
-		int search_result = parserGL->parse(m_session_id, site_GL_id);
+	// парсить найденные сайты:
+	int search_result = -3;
+	if (siteIdGL > 0)
+		search_result = parserGL->parse(m_session_id, siteIdGL);
 	delete parserGL;
 	
-	// TODO: вывести сообщение о результатах поиска в зависимости от search_result
+	// вывести сообщение о результатах поиска в зависимости от search_result
+	/*switch (search_result)
+	{
+	case 0:
+		emit setStatus(urlGl + State::coded(" проверен модулем поиска."));
+		break;
+	case -1:
+		emit setStatus(urlGl + State::coded(" - ошибка при проверке."));
+		break;
+	case -2:
+		emit setStatus(urlGl + State::coded(" недоступен."));
+		break;
+	}*/
 	
 }
 
@@ -70,7 +83,7 @@ void SM_Session::search()
 сообщение панели QStatusBar
 \param const QString &text - текст нового сообщения
 */
-void SM_Session::newMessage(const QString &text)
+void SM_Session::setStatus(const QString &text)
 {
-	emit newStatusbarText(text);
+	emit statusOffered(text);
 }

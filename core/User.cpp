@@ -64,6 +64,20 @@ int User::type_id(QString & login)
 	}
 
 
+int User::user_id(const QString & login)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT user_id FROM users WHERE login=\'" + login + "\'"))
+		return -1;	
+	if (query.next())
+		return query.value(0).toInt();		
+	else
+		return -1;
+}
+
+
+
 int User::user_id()
 {
 	return m_user_id;
@@ -118,7 +132,7 @@ bool User::completeTable()
 	return succeeded;
 }
 
-bool User::userIsValid(const QString & login, const QString& password)
+bool User::userIsValid(const QString& login, const QString& password)
 {
 	QSqlDatabase db = Database::database();
 	QSqlQuery qry(db);

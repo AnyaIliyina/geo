@@ -49,8 +49,8 @@ void LoginDialog::authorize()
 	
 	if (User::userIsValid(login, password))
 	{	
-		int type = User::type_id(login);
-		emit logedIn(type);	// сигнал об успешной авторизации
+		int user_id = User::user_id(login);
+		emit logedIn(user_id);	// сигнал об успешной авторизации
 		//this->hide();
 		}
 	else

@@ -17,12 +17,21 @@ private:
 	QString m_format_name;
 	int m_format_id;
 	int m_site_id;
+	int m_session_id = -1;
 public:
 	/*!
 	Конструктор
 	\param QDockWidget *ptr - указатель на родительский виджет
 	*/
 	explicit NewDockWidget(QDockWidget *ptr = 0);
+
+	/*!
+	Конструктор
+	\param QDockWidget *ptr - указатель на родительский виджет
+	*/
+	explicit NewDockWidget(int session_id, QDockWidget *ptr = 0);
+	
+	
 	/*!
 	Деструктор
 	*/
