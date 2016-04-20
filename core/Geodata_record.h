@@ -131,4 +131,9 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
+	
+	/*!
+	Удаляет запись по его id;
+	*/
+	static void deleteRecord(int & id);
 };
