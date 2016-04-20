@@ -40,14 +40,7 @@ void NewDockWidget::check()
 	textRead();
 	if (emptyLine())
 	{
-		if (Site::checkUrl(m_url))
-		{
 			addMessage();
-		}
-		else
-		{
-			ui->lineError->setText(Scale::coded("URL не работает."));
-		}
 	}
 	else
 	{

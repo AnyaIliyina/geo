@@ -62,3 +62,7 @@ void SearchForm::WhereQueryPart()
 
 }
 
+void SearchForm::clickSearch()
+{
+	ui->btnSearch->clicked();
+}

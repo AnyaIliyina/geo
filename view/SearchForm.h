@@ -27,6 +27,10 @@ public:
 	*/
 	QString ParseWhereArgs(QList<QString>& args);
 signals:
+	/*!
+	Сигнал, содержащий строку запроса
+	\param QString - полная строка запроса на создание записи
+	*/
 	 void wqp(QString);
 	
 private:
@@ -37,5 +41,9 @@ public slots:
 	Слот для выполнения поиска по введенным данным
 	*/
 	void WhereQueryPart();
+	/*!
+	Слот нажатия кнопки поиска
+	*/
+	void clickSearch();
 
 };

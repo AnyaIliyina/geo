@@ -78,22 +78,6 @@ int Site::site_id(QString & url, QString & site_name)
 
 }
 
-bool Site::checkUrl(QString& url)
-{
-	QUrl myUrl(url);
-	if (!myUrl.isValid())
-	{
-		qDebug() << "getReply error: URL not valid";
-		return false;
-	}
-	else
-	{
-		qDebug() << "URL is valig";
-		return true;
-	}
-
-}
-
 
 int Site::insertIntoDatabase()
 {

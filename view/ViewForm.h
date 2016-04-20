@@ -13,17 +13,46 @@
 class ViewForm : public QWidget {
 	Q_OBJECT
 public:
+	/*!
+	Конструктор
+	*/
 	explicit ViewForm(QWidget *parent = 0);
+	/*!
+	Деструктор
+	*/
 	~ViewForm();
 
 	/*!
+	
 	\param QString whereQryPart- строка запроса к базе
 	*/
 	void setupModel(QString& whereQryPart);
 private:
+	/*!
+	
+	*/
 	void createTable();
+
 	Ui::ViewForm *ui;
+
 	QSqlQueryModel *model;
+	/*!
+	Удаление выделенной записи
+	*/
+	void deleteRecord();
 private slots:
-void refresh(QString query);
+	/*!
+	Слот для вызова setupModel
+	\param QString query - строка запроса
+	*/
+	void refresh(QString query);
+	/*!
+	Слот вывода сообщения об удалении записи
+	*/
+	void deleteMessage();
+signals:
+	/*!
+	Сигнал успешного удаления
+	*/
+	void del();
 };
