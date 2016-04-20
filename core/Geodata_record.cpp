@@ -28,6 +28,11 @@ const QString & Geodata_record::url() const
 	return m_url;
 }
 
+int Geodata_record::state_id()
+{
+	return m_state_id;
+}
+
 
 bool Geodata_record::required_fields_filled()
 {
@@ -36,7 +41,7 @@ bool Geodata_record::required_fields_filled()
 	if (m_format_id<=0)
 		return false;
 	if (m_session_id <= 0)
-		return false;
+			return false;
 	if (m_place_name == "")
 		return false;
 
@@ -58,18 +63,23 @@ void Geodata_record::setSessionId(int session_id)
 	m_session_id = session_id;
 }
 
+void Geodata_record::setStateId(int state_id)
+{
+	m_state_id = state_id;
+}
+
 void Geodata_record::setPlacename(const QString& placename)
 {
 	m_place_name = placename;
 }
 
 void Geodata_record::setUrl(const QString & url)
-{
+{/*
 	QUrl u(url);
-	if (u.isValid())
+	if (u.isValid())*/
 		m_url = url;
-	else
-		qDebug() << "Geodata_record::setUrl(const QString & url): url not valid";	
+	/*else
+		qDebug() << "Geodata_record::setUrl(const QString & url): url not valid";	*/
 }
 
 
@@ -184,23 +194,6 @@ bool Geodata_record::completeTable()
 	int i=gdr->insertIntoDatabase();
 	delete gdr;
 	return true;
-}
-
-void Geodata_record::deleteRecord(int& id)
-{
-	QSqlDatabase db = Database::database();
-	QSqlQuery query(db);
-	qDebug() << id;
-	QString idstr = QString::number(id);
-	if (!query.exec("DELETE FROM geodata_records WHERE record_id=\'" + idstr + "\'"))
-	{
-		qDebug() << "Oshibka udaleniya";
-		qDebug() << query.lastError().text();
-	}
-	else
-	{
-		qDebug() << "Udalilos";
-	}
 }
 
 

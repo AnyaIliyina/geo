@@ -31,15 +31,34 @@ private:
 	QString m_comment = "";
 public:
 	/*! Конструктор по умолчанию */
-	Geodata_record();
-	
+	Geodata_record();	
+
+	/*!
+	Возвращает id георесурса
+	\return int record_id - id ресурса
+	*/
+	int record_id();
+
 	/*!
 	Возвращает адрес ресурса
 	\return const QString& url - адрес ресурса
 	*/
 	const QString& url() const;
 
-	/*! Определяет, присвоены ли значения ключевым полям
+	/*!
+	Возвращает значение актуальности
+	\return int state_id 
+	*/
+	int state_id();
+
+	/*!
+	Возвращает название местности
+	\return const QString& place_name - название местности
+	*/
+	const QString& place_name() const;
+
+	/*! 
+	Определяет, присвоены ли значения ключевым полям
 	\return true - обязательные поля инициализированы 
 	\return false - обязательные поля не инициализированы */
 	bool required_fields_filled();
@@ -56,6 +75,10 @@ public:
 	\param int session_id - новый id сессии*/
 	void setSessionId(int session_id);
 
+	/*! Устанавливает актуальность георесурса в state_id
+	\param int state_id*/
+	void setStateId(int state_id);
+
 	/*! Устанавливает новое название местности
 	\param const QString& placename - название местности*/
 	void setPlacename(const QString& placename);
@@ -64,12 +87,7 @@ public:
 	\param const QString& url - адрес ресурса, */
 	void setUrl(const QString& url);
 
-	/*!
-	Возвращает название местности
-	\return const QString& place_name - название местности
-	*/
-	const QString& place_name() const;
-	
+
 	/*!
 	Конструирует объект класса Geodata_record из параметров
 	\param int site_id - id сайта:
@@ -86,13 +104,7 @@ public:
 		const QString& comment = "");
 		
 	~Geodata_record();
-	
-	/*!
-	Возвращает id георесурса
-	\return int record_id - id ресурса
-	*/
-	int record_id();
-	
+
 
 	//______  Методы, обращающиеся к базе: _____________
 
@@ -119,9 +131,4 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
-
-	/*!
-	Удаляет запись по его id;
-	*/
-	static void deleteRecord(int & id);
 };
