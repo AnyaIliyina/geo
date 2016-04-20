@@ -54,9 +54,11 @@ bool Session::insertIntoDatabase()
 		db.close();
 		return false;
 	}
+	m_session_id = query.lastInsertId().toInt();
 	db.close();
 	return true;
 }
+
 
 bool Session::createTable()
 {
