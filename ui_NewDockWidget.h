@@ -30,7 +30,7 @@ class Ui_NewDockWidget
 {
 public:
     QWidget *dockWidgetContents;
-    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_2;
     QVBoxLayout *verticalLayout;
     QGridLayout *gridLayout;
     QLabel *label;
@@ -52,29 +52,33 @@ public:
     {
         if (NewDockWidget->objectName().isEmpty())
             NewDockWidget->setObjectName(QStringLiteral("NewDockWidget"));
-        NewDockWidget->resize(420, 272);
+        NewDockWidget->resize(420, 280);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(NewDockWidget->sizePolicy().hasHeightForWidth());
         NewDockWidget->setSizePolicy(sizePolicy);
-        NewDockWidget->setMinimumSize(QSize(420, 265));
-        NewDockWidget->setMaximumSize(QSize(420, 272));
+        NewDockWidget->setMinimumSize(QSize(420, 280));
+        NewDockWidget->setMaximumSize(QSize(420, 280));
+        QFont font;
+        font.setPointSize(9);
+        NewDockWidget->setFont(font);
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
         dockWidgetContents->setMaximumSize(QSize(420, 250));
-        verticalLayout_2 = new QVBoxLayout(dockWidgetContents);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        gridLayout_2 = new QGridLayout(dockWidgetContents);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(10);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        verticalLayout->setContentsMargins(-1, 10, -1, -1);
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setHorizontalSpacing(10);
         gridLayout->setVerticalSpacing(15);
+        gridLayout->setContentsMargins(-1, 0, -1, 20);
         label = new QLabel(dockWidgetContents);
         label->setObjectName(QStringLiteral("label"));
-        QFont font;
-        font.setPointSize(10);
         label->setFont(font);
 
         gridLayout->addWidget(label, 0, 0, 1, 1);
@@ -82,6 +86,13 @@ public:
         linePlace = new QLineEdit(dockWidgetContents);
         linePlace->setObjectName(QStringLiteral("linePlace"));
         linePlace->setFont(font);
+        linePlace->setStyleSheet(QLatin1String("QLineEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}"));
 
         gridLayout->addWidget(linePlace, 0, 1, 1, 1);
 
@@ -94,6 +105,13 @@ public:
         lineUrl = new QLineEdit(dockWidgetContents);
         lineUrl->setObjectName(QStringLiteral("lineUrl"));
         lineUrl->setFont(font);
+        lineUrl->setStyleSheet(QLatin1String("QLineEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}"));
 
         gridLayout->addWidget(lineUrl, 1, 1, 1, 1);
 
@@ -106,6 +124,13 @@ public:
         lineSite = new QLineEdit(dockWidgetContents);
         lineSite->setObjectName(QStringLiteral("lineSite"));
         lineSite->setFont(font);
+        lineSite->setStyleSheet(QLatin1String("QLineEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}"));
 
         gridLayout->addWidget(lineSite, 2, 1, 1, 1);
 
@@ -118,6 +143,17 @@ public:
         boxFormat = new QComboBox(dockWidgetContents);
         boxFormat->setObjectName(QStringLiteral("boxFormat"));
         boxFormat->setFont(font);
+        boxFormat->setStyleSheet(QLatin1String("QComboBox{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}\n"
+"QComboBox:editable{\n"
+"\n"
+"background-color: rgb(255, 255, 255);\n"
+"border-radius:4}"));
 
         gridLayout->addWidget(boxFormat, 3, 1, 1, 1);
 
@@ -130,6 +166,13 @@ public:
         lineScale = new QLineEdit(dockWidgetContents);
         lineScale->setObjectName(QStringLiteral("lineScale"));
         lineScale->setFont(font);
+        lineScale->setStyleSheet(QLatin1String("QLineEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}"));
 
         gridLayout->addWidget(lineScale, 4, 1, 1, 1);
 
@@ -141,12 +184,44 @@ public:
         btnCreate = new QPushButton(dockWidgetContents);
         btnCreate->setObjectName(QStringLiteral("btnCreate"));
         btnCreate->setFont(font);
+        btnCreate->setStyleSheet(QLatin1String("QPushButton{\n"
+"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
+"font: 9pt ;\n"
+"	border-color: rgb(144, 144, 144);\n"
+"	\n"
+"	color: rgb(30, 30, 30);\n"
+"border-width: 1px;\n"
+"border-radius:4;\n"
+"border-style:solid;\n"
+"\n"
+"min-width:150px;\n"
+"max-width:150px;\n"
+"min-height:20px;\n"
+"max-height:20px;\n"
+"}\n"
+""));
 
         horizontalLayout->addWidget(btnCreate);
 
         btnCancel = new QPushButton(dockWidgetContents);
         btnCancel->setObjectName(QStringLiteral("btnCancel"));
         btnCancel->setFont(font);
+        btnCancel->setStyleSheet(QLatin1String("QPushButton{\n"
+"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
+"font: 9pt ;\n"
+"	border-color: rgb(144, 144, 144);\n"
+"	\n"
+"	color: rgb(30, 30, 30);\n"
+"border-width: 1px;\n"
+"border-radius:4;\n"
+"border-style:solid;\n"
+"\n"
+"min-width:150px;\n"
+"max-width:150px;\n"
+"min-height:20px;\n"
+"max-height:20px;\n"
+"}\n"
+""));
 
         horizontalLayout->addWidget(btnCancel);
 
@@ -154,12 +229,13 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
 
-        verticalLayout_2->addLayout(verticalLayout);
+        gridLayout_2->addLayout(verticalLayout, 0, 0, 1, 1);
 
         lineError = new QLabel(dockWidgetContents);
         lineError->setObjectName(QStringLiteral("lineError"));
+        lineError->setFont(font);
 
-        verticalLayout_2->addWidget(lineError);
+        gridLayout_2->addWidget(lineError, 1, 0, 1, 1);
 
         NewDockWidget->setWidget(dockWidgetContents);
 

@@ -42,8 +42,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(962, 560);
-        MainWindow->setMinimumSize(QSize(962, 430));
+        MainWindow->resize(1050, 560);
+        MainWindow->setMinimumSize(QSize(1050, 430));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QStringLiteral("actionExit"));
         actionUser = new QAction(MainWindow);
@@ -56,7 +56,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 962, 21));
+        menubar->setGeometry(QRect(0, 0, 1050, 21));
         menu = new QMenu(menubar);
         menu->setObjectName(QStringLiteral("menu"));
         menuView = new QMenu(menubar);

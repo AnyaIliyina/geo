@@ -30,7 +30,7 @@ class Ui_SearchForm
 {
 public:
     QWidget *dockWidgetContents;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QFormLayout *formLayout;
     QLabel *label;
     QLineEdit *textGeo;
@@ -38,7 +38,7 @@ public:
     QLineEdit *textURL;
     QLabel *label_3;
     QComboBox *comboBox;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *btnSearch;
@@ -51,24 +51,25 @@ public:
         SearchForm->resize(362, 200);
         SearchForm->setMinimumSize(QSize(362, 200));
         SearchForm->setMaximumSize(QSize(362, 200));
+        QFont font;
+        font.setPointSize(9);
+        SearchForm->setFont(font);
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QStringLiteral("dockWidgetContents"));
-        widget = new QWidget(dockWidgetContents);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(11, 10, 341, 108));
-        formLayout = new QFormLayout(widget);
+        layoutWidget = new QWidget(dockWidgetContents);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(11, 10, 341, 108));
+        formLayout = new QFormLayout(layoutWidget);
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setVerticalSpacing(12);
         formLayout->setContentsMargins(0, 12, 0, 12);
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
-        QFont font;
-        font.setPointSize(9);
         label->setFont(font);
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        textGeo = new QLineEdit(widget);
+        textGeo = new QLineEdit(layoutWidget);
         textGeo->setObjectName(QStringLiteral("textGeo"));
         textGeo->setFont(font);
         textGeo->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -81,13 +82,13 @@ public:
 
         formLayout->setWidget(0, QFormLayout::FieldRole, textGeo);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
 
         formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
 
-        textURL = new QLineEdit(widget);
+        textURL = new QLineEdit(layoutWidget);
         textURL->setObjectName(QStringLiteral("textURL"));
         textURL->setFont(font);
         textURL->setStyleSheet(QLatin1String("QLineEdit{\n"
@@ -100,13 +101,13 @@ public:
 
         formLayout->setWidget(1, QFormLayout::FieldRole, textURL);
 
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setFont(font);
 
         formLayout->setWidget(2, QFormLayout::LabelRole, label_3);
 
-        comboBox = new QComboBox(widget);
+        comboBox = new QComboBox(layoutWidget);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setFont(font);
         comboBox->setStyleSheet(QLatin1String("QComboBox{\n"
@@ -123,17 +124,17 @@ public:
 
         formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
 
-        widget1 = new QWidget(dockWidgetContents);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(60, 130, 246, 24));
-        horizontalLayout = new QHBoxLayout(widget1);
+        layoutWidget1 = new QWidget(dockWidgetContents);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(60, 130, 246, 24));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        btnSearch = new QPushButton(widget1);
+        btnSearch = new QPushButton(layoutWidget1);
         btnSearch->setObjectName(QStringLiteral("btnSearch"));
         QPalette palette;
         QBrush brush(QColor(30, 30, 30, 255));

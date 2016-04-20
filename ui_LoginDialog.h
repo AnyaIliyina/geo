@@ -45,7 +45,19 @@ public:
     {
         if (LoginDialog->objectName().isEmpty())
             LoginDialog->setObjectName(QStringLiteral("LoginDialog"));
-        LoginDialog->resize(294, 120);
+        LoginDialog->resize(348, 119);
+        QFont font;
+        font.setPointSize(9);
+        LoginDialog->setFont(font);
+        LoginDialog->setStyleSheet(QLatin1String("QLineEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:20px;\n"
+"min-height:20px;\n"
+"\n"
+"}\n"
+"\n"
+""));
         gridLayout = new QGridLayout(LoginDialog);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         lblResult = new QLabel(LoginDialog);
@@ -95,11 +107,43 @@ public:
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         btn_login = new QPushButton(LoginDialog);
         btn_login->setObjectName(QStringLiteral("btn_login"));
+        btn_login->setStyleSheet(QLatin1String("QPushButton{\n"
+"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
+"font: 9pt ;\n"
+"	border-color: rgb(144, 144, 144);\n"
+"	\n"
+"	color: rgb(30, 30, 30);\n"
+"border-width: 1px;\n"
+"border-radius:4;\n"
+"border-style:solid;\n"
+"\n"
+"min-width:110px;\n"
+"max-width:110px;\n"
+"min-height:20px;\n"
+"max-height:20px;\n"
+"}\n"
+""));
 
         horizontalLayout_2->addWidget(btn_login);
 
         btn_exit = new QPushButton(LoginDialog);
         btn_exit->setObjectName(QStringLiteral("btn_exit"));
+        btn_exit->setStyleSheet(QLatin1String("QPushButton{\n"
+"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
+"font: 9pt ;\n"
+"	border-color: rgb(144, 144, 144);\n"
+"	\n"
+"	color: rgb(30, 30, 30);\n"
+"border-width: 1px;\n"
+"border-radius:4;\n"
+"border-style:solid;\n"
+"\n"
+"min-width:110px;\n"
+"max-width:110px;\n"
+"min-height:20px;\n"
+"max-height:20px;\n"
+"}\n"
+""));
 
         horizontalLayout_2->addWidget(btn_exit);
 

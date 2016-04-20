@@ -6,12 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>294</width>
-    <height>120</height>
+    <width>348</width>
+    <height>119</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}
+
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
@@ -63,6 +79,24 @@
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
         <widget class="QPushButton" name="btn_login">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:110px;
+max-width:110px;
+min-height:20px;
+max-height:20px;
+}
+</string>
+         </property>
          <property name="text">
           <string>Ok</string>
          </property>
@@ -70,6 +104,24 @@
        </item>
        <item>
         <widget class="QPushButton" name="btn_exit">
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:110px;
+max-width:110px;
+min-height:20px;
+max-height:20px;
+}
+</string>
+         </property>
          <property name="text">
           <string>Отмена</string>
          </property>

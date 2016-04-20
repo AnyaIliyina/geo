@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>420</width>
-    <height>272</height>
+    <height>280</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,14 +19,19 @@
   <property name="minimumSize">
    <size>
     <width>420</width>
-    <height>265</height>
+    <height>280</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>420</width>
-    <height>272</height>
+    <height>280</height>
    </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Новая запись</string>
@@ -38,11 +43,23 @@
      <height>250</height>
     </size>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
       <item>
        <layout class="QGridLayout" name="gridLayout">
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>20</number>
+        </property>
         <property name="horizontalSpacing">
          <number>10</number>
         </property>
@@ -53,7 +70,7 @@
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text">
@@ -65,8 +82,17 @@
          <widget class="QLineEdit" name="linePlace">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}</string>
           </property>
          </widget>
         </item>
@@ -74,7 +100,7 @@
          <widget class="QLabel" name="label_2">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text">
@@ -86,8 +112,17 @@
          <widget class="QLineEdit" name="lineUrl">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}</string>
           </property>
          </widget>
         </item>
@@ -95,7 +130,7 @@
          <widget class="QLabel" name="label_3">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text">
@@ -107,8 +142,17 @@
          <widget class="QLineEdit" name="lineSite">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}</string>
           </property>
          </widget>
         </item>
@@ -116,7 +160,7 @@
          <widget class="QLabel" name="label_4">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text">
@@ -128,8 +172,21 @@
          <widget class="QComboBox" name="boxFormat">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QComboBox{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}
+QComboBox:editable{
+
+background-color: rgb(255, 255, 255);
+border-radius:4}</string>
           </property>
           <item>
            <property name="text">
@@ -147,7 +204,7 @@
          <widget class="QLabel" name="label_5">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
           </property>
           <property name="text">
@@ -159,8 +216,17 @@
          <widget class="QLineEdit" name="lineScale">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+border-radius:4;
+border-width:1px;
+max-height:20px;
+min-height:20px;
+
+}</string>
           </property>
          </widget>
         </item>
@@ -172,8 +238,26 @@
          <widget class="QPushButton" name="btnCreate">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}
+</string>
           </property>
           <property name="text">
            <string>Создать</string>
@@ -184,8 +268,26 @@
          <widget class="QPushButton" name="btnCancel">
           <property name="font">
            <font>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}
+</string>
           </property>
           <property name="text">
            <string>Отмена</string>
@@ -196,8 +298,13 @@
       </item>
      </layout>
     </item>
-    <item>
+    <item row="1" column="0">
      <widget class="QLabel" name="lineError">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>

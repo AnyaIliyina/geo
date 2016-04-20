@@ -56,12 +56,13 @@ int Site::site_id()
 }
 
 
-int Site::site_id(QString & url) 
+int Site::site_id(QString & url, QString & site_name) 
 {
 	qDebug() << "Zashel v -1";
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
-	if (!query.exec("SELECT site_id FROM sites WHERE url=\'" + url + "\'"))
+	
+	if (!query.exec("SELECT site_id FROM sites WHERE (url=\'" + url + "\') OR (site_name=\'" + site_name + "\')"))
 	{
 		qDebug() << "Zapros ne proshel";
 	}
@@ -72,8 +73,8 @@ int Site::site_id(QString & url)
 			int id = query.value(0).toInt();
 			return id;
 		}
+
 	}
-		
 
 }
 
@@ -109,12 +110,15 @@ int Site::insertIntoDatabase()
 		qDebug() << query.lastError().text();
 		db.close();
 		return -1;
+		qDebug() << -1;
+
+	}
+	else {
+		int id = query.lastInsertId().toInt();
+		db.close();
+		return id;
 	}
 	
-	int id = query.lastInsertId().toInt();
-	qDebug() << id;
-	db.close();
-	return id;
 }
 
 bool Site::createTable()

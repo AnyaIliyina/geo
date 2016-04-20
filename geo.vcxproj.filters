@@ -55,9 +55,6 @@
     <ClCompile Include="view\NewDockWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\NewRecordUser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="search_module\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -115,9 +112,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\NewDockWidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="view\NewRecordUser.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="search_module\Parser.h">
@@ -180,12 +174,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_NewDockWidget.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\moc_NewRecordUser.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_NewRecordUser.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_Parser.cpp">
@@ -263,9 +251,6 @@
     <ClInclude Include="ui_NewDockWidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_NewRecordUser.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="ui_SearchForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -281,9 +266,6 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\NewDockWidget.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="view\NewRecordUser.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SearchForm.ui">

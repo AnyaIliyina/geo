@@ -46,15 +46,15 @@ void SearchForm::WhereQueryPart()
 	QList<QString> whereArgs;
 	if (!ui->textGeo->text().isEmpty())
 	{
-		whereArgs.push_back(QString("(site_id IN (SELECT site_id FROM geodata_records WHERE place_name='%1'))").arg(ui->textGeo->text()));
+		whereArgs.push_back(QString("(place_name='%1')").arg(ui->textGeo->text()));
 	}
 	if (!ui->textURL->text().isEmpty())
 	{
-		whereArgs.push_back(QString("(site_name='%1')").arg(ui->textURL->text()));
+		whereArgs.push_back(QString("(sites.site_id=geodata_records.site_id in (SELECT site_id FROM sites WHERE site_name='%1'))").arg(ui->textURL->text()));
 	}
 	if (!ui->comboBox->currentText().isEmpty())
 	{
-		whereArgs.push_back(QString("(site_id IN (SELECT site_id FROM geodata_records WHERE format_id in (SELECT format_id FROM formats WHERE format_name='%1')))").arg(ui->comboBox->currentText()));
+		whereArgs.push_back(QString("(formats.format_id=geodata_records.format_id in  (SELECT format_id FROM formats WHERE  format_name='%1'))").arg(ui->comboBox->currentText()));
 	}
 	QString whereQryPart = ParseWhereArgs(whereArgs);
 	emit wqp(whereQryPart);

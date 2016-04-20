@@ -48,11 +48,14 @@ private:
 	Проверка на заполнение ячеек
 	*/
 	bool emptyLine();
-private slots:
 	/*!
 	Выводит сообщение о создании новой записи
 	*/
 	void addMessage();
+private slots:
+	
+
+	void check();
 public slots:
 	/*!
 	Показывает виджет

@@ -22,7 +22,8 @@ void ViewForm::setupModel(QString& whereQryPart)
 {
 	QSqlDatabase db = Database::database();
 	model = new QSqlQueryModel(this);
-	model->setQuery(QString("SELECT site_name, url FROM sites %1").arg(whereQryPart), db);
+	model->setQuery(QString("SELECT sites.site_name, formats.format_name, scales.description, states.state_name, geodata_records.place_name, geodata_records.comment\
+		FROM sites, formats, scales, states, geodata_records %1").arg(whereQryPart), db);
 	createTable();
 
 }

@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class Ui_ViewForm
 {
 public:
-    QWidget *widget;
+    QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
     QTableView *tableView;
     QHBoxLayout *horizontalLayout;
@@ -40,7 +40,7 @@ public:
     {
         if (ViewForm->objectName().isEmpty())
             ViewForm->setObjectName(QStringLiteral("ViewForm"));
-        ViewForm->resize(599, 430);
+        ViewForm->resize(688, 467);
         ViewForm->setMinimumSize(QSize(599, 430));
         ViewForm->setMaximumSize(QSize(16777215, 16777215));
         QFont font;
@@ -49,14 +49,12 @@ public:
         ViewForm->setStyleSheet(QLatin1String("QWidget{\n"
 "border-width:2px;\n"
 "}"));
-        widget = new QWidget(ViewForm);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(20, 10, 561, 402));
-        gridLayout = new QGridLayout(widget);
+        gridLayout_2 = new QGridLayout(ViewForm);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout = new QGridLayout();
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setVerticalSpacing(17);
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        tableView = new QTableView(widget);
+        tableView = new QTableView(ViewForm);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setMinimumSize(QSize(521, 351));
         tableView->setStyleSheet(QLatin1String("QTableView{\n"
@@ -72,7 +70,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        btnNew = new QPushButton(widget);
+        btnNew = new QPushButton(ViewForm);
         btnNew->setObjectName(QStringLiteral("btnNew"));
         QFont font1;
         font1.setPointSize(9);
@@ -99,7 +97,7 @@ public:
 
         horizontalLayout->addWidget(btnNew);
 
-        btnEdit = new QPushButton(widget);
+        btnEdit = new QPushButton(ViewForm);
         btnEdit->setObjectName(QStringLiteral("btnEdit"));
         btnEdit->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
@@ -119,7 +117,7 @@ public:
 
         horizontalLayout->addWidget(btnEdit);
 
-        btnDelete = new QPushButton(widget);
+        btnDelete = new QPushButton(ViewForm);
         btnDelete->setObjectName(QStringLiteral("btnDelete"));
         btnDelete->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
@@ -145,6 +143,9 @@ public:
 
 
         gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
+
+
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
 
         retranslateUi(ViewForm);
