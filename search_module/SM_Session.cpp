@@ -39,22 +39,29 @@ void SM_Session::start()
 */
 void SM_Session::search()
 {
-	ParserGisLub *parserGL = new ParserGisLub();
-	QString urlGL = parserGL->url();
-	QList<Site> sites = Site::sitesByStatus(0); // список сайтов, нуждающихся в проверке 
-												//					(со статусом 0)
+	// получить список сайтов со статусом 0 (нуждающихся в проверке):
+	QList<Site> sites = Site::sitesByStatus(0); 
+
+	// создать все возможные парсеры (пока только ParserGisLub):
+	ParserGisLub *parserGL = new ParserGisLub();	
+
+	// проверить, есть ли в списке сайтов такие, для которых имеется парсер:
+	QString urlGL = parserGL->url();		// url сайта GisLub
 	int site_GL_id = 0;
 	for (int i = 0; i < sites.count(); i++)
 	{
 		Site s = sites.at(i);
-		if (s.url().contains(urlGL))
-		{
-			site_GL_id = s.site_id();
-
-		}
+		if (s.url().contains(urlGL))		// Сайт из списка содержит url сайта GisLub?
+			site_GL_id = s.site_id();		// - сохраним id сайта
 	}
+	
+	// парсить:
 	if (site_GL_id > 0)
-		parserGL->parse(m_session_id, site_GL_id);
+		int search_result = parserGL->parse(m_session_id, site_GL_id);
+	delete parserGL;
+	
+	// TODO: вывести сообщение о результатах поиска в зависимости от search_result
+	
 }
 
 
