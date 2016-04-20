@@ -3,11 +3,13 @@
 #include <QTextEdit>
 #include <QXmlStreamReader>
 #include "Geodata_record.h"
+#include "State.h"
 
 /*!
 \file
 \brief 
 */
+
 
 int ParserGisLub::parse(int session_id, int site_id)
 {
@@ -15,54 +17,40 @@ int ParserGisLub::parse(int session_id, int site_id)
 	if (*reply == "")
 		return PAGE_NOT_AVAILABLE;
 
-	separateTableBody(*reply);
-	
-	QXmlStreamReader xml(*reply);
-	QString str;
+	separateTableBody(*reply);	
 	Geodata_record *record = new Geodata_record();
-	
-		if (xml.readNextStartElement()) {
-		{
-			if(xml.name() == "tbody")
-				while (xml.readNextStartElement())
-			{
-				if (xml.name() == "tr")
-				while (xml.readNextStartElement())
-				{
-					if (xml.name() == "td") {
-						str += "\n       ";
-						str += xml.name();
-					}
-					
-					while (xml.readNextStartElement())
-					{
-						str += "\n            ";
-						str += xml.name();
-						QXmlStreamAttributes attributes = xml.attributes();
-						for (int i = 0; i < attributes.count(); i++)
+	int counter = 0;					
+	QXmlStreamReader xml(*reply);
+	while (xml.readNextStartElement())				// в <tbody>
+	{
+		if (xml.name() == "tr")
+			while (xml.readNextStartElement())		// в <tr>
+			{	
+				while (xml.readNextStartElement())	// в <td>
 						{
-							str += "\n";
-							str += attributes.at(i).name();
-							str += ": ";
-							str += attributes.at(i).value();
+							if (fmod(counter, 4) == 0)
+								record->setUrl(QString("http://view-source:beryllium.gis-lab.info").
+									append(xml.attributes().at(0).value()));
+							QString buffer = xml.readElementText();
+							if (fmod(counter, 4) == 0)
+								record->setPlacename(buffer.simplified());
+							if (fmod(counter - 1, 4) == 0)
+							{
+								record->setStateId(buffer.contains(State::coded("Не")) ? 2 : 1);
+								record->setFormateId(1);
+								record->setSiteId(site_id);
+								record->setSessionId(session_id);
+								qDebug() << record->url();
+								if(!record->insertIntoDatabase())
+									return ERROR_INSERTING_INTO_DB;
+							}
+							counter++;
 						}
-						str += xml.readElementText();
-						/*QString _placename = xml.readElementText();
-						qDebug() << _placename;
-					
-						if (_placename != "") 
-							record->setPlacename(_placename);
-							*/
-					}
-
-				}
-			}
-			
-		}
-		QTextEdit *txt = new QTextEdit;
-		txt->setText(str);
-		txt->show();
+			}	
 	}
+	//TODO: изменить статус сайта - сайт прошел проверку модулем поиска
+	delete record;
+	return SUCCEEDED;
 }
 
 

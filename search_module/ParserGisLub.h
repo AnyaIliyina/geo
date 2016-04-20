@@ -26,7 +26,7 @@ private:
 	\param QByteArray& ba - исходный текст
 	*/
 	void separateTableBody(QByteArray& ba);
-public:
+	public:
 	int parse(int session_id, int site_id);
 	ParserGisLub();
 	~ParserGisLub();
