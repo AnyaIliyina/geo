@@ -32,7 +32,7 @@ public:
 	
 	\param QString whereQryPart- строка запроса к базе
 	*/
-	void setupModel(QString& whereQryPart);
+	void setupModel(QString& whereQryPart, const QStringList &headers );
 private:
 	/*!
 	
@@ -42,6 +42,7 @@ private:
 	Ui::ViewForm *ui;
 
 	QSqlQueryModel *model;
+	
 
 	int m_session_id = -1;
 

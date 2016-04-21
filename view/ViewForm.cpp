@@ -8,6 +8,8 @@
 #include <QMessageBox>
 #include "Scale.h"
 #include "Geodata_record.h"
+#include <QSortFilterProxyModel>
+
 
 //ViewForm::ViewForm(QWidget *parent) :QWidget(parent), ui(new Ui::ViewForm)	
 //{
@@ -32,28 +34,46 @@ ViewForm::~ViewForm()
 	delete ui;
 }
 
-void ViewForm::setupModel(QString& whereQryPart)
+void ViewForm::setupModel(QString& whereQryPart, const QStringList &headers)
 {
 	QSqlDatabase db = Database::database();
 	model = new QSqlQueryModel(this);
+	
 	model->setQuery(QString("SELECT geodata_records.record_id, sites.site_name, formats.format_name, scales.description, states.state_name, geodata_records.place_name, geodata_records.comment\
 		FROM sites, formats, scales, states, geodata_records WHERE geodata_records.site_id=sites.site_id AND states.state_id=geodata_records.state_id\
 		AND formats.format_id=geodata_records.format_id %1").arg(whereQryPart), db);
+	for (int i = 0, j = 0;i < model->columnCount();i++, j++)
+	{
+		model->setHeaderData(i, Qt::Horizontal, headers[j]);
+	}
+	
+	
 	createTable();
 
 }
 
 void ViewForm::refresh(QString query)
 {
-	this->setupModel(query);
+	this->setupModel(query, QStringList() << Scale::coded("id")
+		<< Scale::coded("Название сайта")
+		<< Scale::coded("Формат")
+		<< Scale::coded("Масштаб")
+		<< Scale::coded("Статус")
+		<< Scale::coded("Название местности")
+		<< Scale::coded("Комментарии"));
 }
+
 
 void ViewForm::createTable()
 {
-	ui->tableView->setModel(model);
+	QSortFilterProxyModel *filterModel = new QSortFilterProxyModel();
+	filterModel->setSourceModel(model);
+	ui->tableView->setModel(filterModel);
 	ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
 	ui->tableView->setColumnHidden(0, true);
+	ui->tableView->setSortingEnabled(true);
+
 	//ui->tableView->resizeColumnsToContents();
 
 }
