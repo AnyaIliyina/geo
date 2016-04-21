@@ -19,10 +19,10 @@ LoginDialog::LoginDialog(QDialog * ptr)
 	ui->setupUi(this);
 
 	// По нажатию Ok пытаемся авторизоваться:
-	connect(ui->btn_login, SIGNAL(clicked()), SLOT(authorize()));
+	connect(ui->btn_login, SIGNAL(clicked()), SLOT(slotAuthenticate()));
 	
 	// Прошли авторизацию - диалог может быть удален:
-	connect(this, SIGNAL(logedIn(int)), this, SLOT(closed(int)));
+	connect(this, SIGNAL(signalLogedIn(int)), this, SLOT(slotClose(int)));
 
 }
 
@@ -41,7 +41,7 @@ LoginDialog::~LoginDialog()
 пару Логин-Пароль в базе, испускает сигнал logedIn(), 
 если пара найдена.
 */
-void LoginDialog::authorize()
+void LoginDialog::slotAuthenticate()
 {
 	QString login, password;
 	login = ui->line_Login->text();
@@ -50,7 +50,7 @@ void LoginDialog::authorize()
 	if (User::userIsValid(login, password))
 	{	
 		int user_id = User::user_id(login);
-		emit logedIn(user_id);	// сигнал об успешной авторизации
+		emit signalLogedIn(user_id);	// сигнал об успешной авторизации
 		//this->hide();
 		}
 	else
@@ -59,7 +59,7 @@ void LoginDialog::authorize()
 		}
 }
 
-void LoginDialog::closed(int)
+void LoginDialog::slotClose(int)
 {
 	this->close();
 }
@@ -67,7 +67,7 @@ void LoginDialog::closed(int)
 /*!
 Показывает диалог аутентификации
 */
-void LoginDialog::showLD()
+void LoginDialog::slotShowLD()
 {
 	this->show();
 }

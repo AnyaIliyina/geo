@@ -62,13 +62,14 @@ private:
 	*/
 	void addMessage();
 private slots:
+	/*!
 	
-
-	void check();
+	*/
+	void slotCheck();
 public slots:
 	/*!
 	Показывает виджет
 	*/
-	void showNDW();
+	void slotShowNDW();
 	
 };

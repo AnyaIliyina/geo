@@ -27,16 +27,22 @@ public:
 	
 	
 signals:
-	void logedIn(int);			// сигнал об учпешной авторизации
+	/*!
+	
+	*/
+	void signalLogedIn(int);			// сигнал об учпешной авторизации
 
 private slots:
 	/*!Проводит авторизоцию: 
 	ищет введеную пользователем пару Логин-Пароль в базе, 
 	испускает сигнал logedIn(), если пара найдена.*/
-	void authorize();
-	void closed(int);
+	void slotAuthenticate();
+	/*!
+	
+	*/
+	void slotClose(int);
 
 public slots:
 	/*!	Показывает диалог	*/
-	void showLD();
+	void slotShowLD();
 };

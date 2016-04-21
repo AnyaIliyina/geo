@@ -25,8 +25,8 @@ ViewForm::ViewForm(int session_id, QWidget * parent): ui(new Ui::ViewForm) // ??
 	m_session_id = session_id;
 	ui->setupUi(this);
 	NewDockWidget *ndw = new NewDockWidget(m_session_id);
-	QObject::connect(ui->btnNew, SIGNAL(clicked()), ndw, SLOT(showNDW()));
-	QObject::connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(deleteMessage()));
+	QObject::connect(ui->btnNew, SIGNAL(clicked()), ndw, SLOT(slotShowNDW()));
+	QObject::connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(slotDeleteMessage()));
 }
 
 ViewForm::~ViewForm()
@@ -52,7 +52,7 @@ void ViewForm::setupModel(QString& whereQryPart, const QStringList &headers)
 
 }
 
-void ViewForm::refresh(QString query)
+void ViewForm::slotRefresh(QString query)
 {
 	this->setupModel(query, QStringList() << Scale::coded("id")
 		<< Scale::coded("Название сайта")
@@ -78,7 +78,7 @@ void ViewForm::createTable()
 
 }
 
-void ViewForm::deleteMessage()
+void ViewForm::slotDeleteMessage()
 {
 	int  deleteMsgBox = QMessageBox::information(this,
 		Scale::coded("Удалить выбранную запись?"), Scale::coded("Выбранная запись будет удалена из базы"),
@@ -94,5 +94,5 @@ void ViewForm::deleteRecord()
 	QModelIndex cur = ui->tableView->currentIndex();
 	int id = cur.sibling(cur.row(), 0).data().toInt();
 	Geodata_record::deleteRecord(id);
-	emit del();
+	emit signalDeleted();
 }

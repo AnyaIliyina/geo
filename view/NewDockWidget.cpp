@@ -11,7 +11,7 @@ NewDockWidget::NewDockWidget(QDockWidget * ptr)
 	ui = new Ui::NewDockWidget();
 	ui->setupUi(this);
 	
-	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(check()));
+	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(slotCheck()));
 }
 
 NewDockWidget::NewDockWidget(int session_id, QDockWidget * ptr)
@@ -20,7 +20,7 @@ NewDockWidget::NewDockWidget(int session_id, QDockWidget * ptr)
 	ui->setupUi(this);
 	m_session_id = session_id;
 	
-	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(check()));
+	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(slotCheck()));
 }
 
 NewDockWidget::~NewDockWidget()
@@ -44,7 +44,7 @@ void NewDockWidget::addNewRecord()
 	
 }
 
-void NewDockWidget::check()
+void NewDockWidget::slotCheck()
 {
 	textRead();
 	if (emptyLine())
@@ -113,7 +113,7 @@ bool NewDockWidget::emptyLine()
 	}
 }
 
-void NewDockWidget::showNDW()
+void NewDockWidget::slotShowNDW()
 {
 	this->show();
 }

@@ -31,19 +31,19 @@ signals:
 	Сигнал, содержащий строку запроса
 	\param QString - полная строка запроса на создание записи
 	*/
-	 void wqp(QString);
+	 void signalQueryCreated(QString);
 	
 private:
 	Ui::SearchForm *ui;
 	
 public slots:
 	/*!
-	Слот для выполнения поиска по введенным данным
+	Слот для создания строки запроса
 	*/
-	void WhereQueryPart();
+	void slotCreateQuery();
 	/*!
 	Слот нажатия кнопки поиска
 	*/
-	void clickSearch();
+	void slotClickSearch();
 
 };

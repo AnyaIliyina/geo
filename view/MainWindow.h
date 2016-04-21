@@ -42,23 +42,23 @@ private slots:
 	Выводит сообщение на панель StatusBar
 	\param const QString &str - текст сообщения
 	*/
-	void showStatus(const QString &status);
+	void slotShowStatus(const QString &status);
 	
 	/*!
 	Закрывает основное окно
 	*/
-	void closeMW();
+	void slotCloseMW();
 	
 	/*!
 	"Собирает" основное окно из виджетов
 	\param int type - тип пользователя
 	*/
-	void configure();
+	void slotConfigure();
 
 	/*!
 	Начинает сессию для пользователя user_id
 	\param  user_id - идентификатор пользователя */
-	void startSession(int user_id);
+	void slotStartSession(int user_id);
 };
 
 

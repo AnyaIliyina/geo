@@ -85,5 +85,5 @@ void SM_Session::search()
 */
 void SM_Session::setStatus(const QString &text)
 {
-	emit statusOffered(text);
+	emit signalStatusOffered(text);
 }

@@ -44,5 +44,5 @@ private:
 	void setStatus(const QString &text);
 
 signals:
-	void statusOffered(const QString &text);
+	void signalStatusOffered(const QString &text);
 };

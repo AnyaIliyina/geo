@@ -55,14 +55,14 @@ private slots:
 	Слот для вызова setupModel
 	\param QString query - строка запроса
 	*/
-	void refresh(QString query);
+	void slotRefresh(QString query);
 	/*!
 	Слот вывода сообщения об удалении записи
 	*/
-	void deleteMessage();
+	void slotDeleteMessage();
 signals:
 	/*!
 	Сигнал успешного удаления
 	*/
-	void del();
+	void signalDeleted();
 };

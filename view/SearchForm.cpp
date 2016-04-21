@@ -14,7 +14,7 @@
 SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
-	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(WhereQueryPart()));
+	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(slotCreateQuery()));
 	
 }
 
@@ -45,7 +45,7 @@ QString SearchForm::ParseWhereArgs(QList<QString>& args)
 	return qry;
 }
 
-void SearchForm::WhereQueryPart()
+void SearchForm::slotCreateQuery()
 {
 	QList<QString> whereArgs;
 	if (!ui->textGeo->text().isEmpty())
@@ -62,12 +62,12 @@ void SearchForm::WhereQueryPart()
 	}
 	QString whereQryPart = ParseWhereArgs(whereArgs);
 	qDebug() << whereQryPart;
-	emit wqp(whereQryPart);
+	emit signalQueryCreated(whereQryPart);
 	//ViewForm::setupModel(whereQryPart);
 
 }
 
-void SearchForm::clickSearch()
+void SearchForm::slotClickSearch()
 {
 	ui->btnSearch->clicked();
 }
