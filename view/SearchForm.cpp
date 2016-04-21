@@ -29,15 +29,19 @@ QString SearchForm::ParseWhereArgs(QList<QString>& args)
 	{
 		return QString();
 	}
-	QString qry = " WHERE ";
+	QString qry = " AND ";
 	for (int i = 0;i < args.length();i++)
 	{
+		
 		qry += args[i];
 		if (i != (args.length() - 1))
 		{
 			qry += " AND ";
+
 		}
+		
 	}
+	qDebug() << qry;
 	return qry;
 }
 
@@ -57,6 +61,7 @@ void SearchForm::WhereQueryPart()
 		whereArgs.push_back(QString("(formats.format_id=geodata_records.format_id in  (SELECT format_id FROM formats WHERE  format_name='%1'))").arg(ui->comboBox->currentText()));
 	}
 	QString whereQryPart = ParseWhereArgs(whereArgs);
+	qDebug() << whereQryPart;
 	emit wqp(whereQryPart);
 	//ViewForm::setupModel(whereQryPart);
 
