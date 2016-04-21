@@ -152,11 +152,21 @@ border-radius:4}</string>
          <string>Shapefile</string>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>jpg</string>
-        </property>
-       </item>
+        <item>
+          <property name="text">
+            <string>Shapefile</string>
+          </property>
+        </item>
+        <item>
+          <property name="text">
+            <string>Jpg</string>
+          </property>
+        </item>
+        <item>
+          <property name="text">
+            <string>Png</string>
+          </property>
+        </item>
       </widget>
      </item>
     </layout>

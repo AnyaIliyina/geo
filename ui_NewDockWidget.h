@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'NewDockWidget.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -256,6 +256,8 @@ public:
         boxFormat->insertItems(0, QStringList()
          << QString()
          << QApplication::translate("NewDockWidget", "Shapefile", 0)
+         << QApplication::translate("NewDockWidget", "Jpg", 0)
+         << QApplication::translate("NewDockWidget", "Png", 0)
         );
         label_5->setText(QApplication::translate("NewDockWidget", "\320\234\320\260\321\201\321\210\321\202\320\260\320\261", 0));
         btnCreate->setText(QApplication::translate("NewDockWidget", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214", 0));
