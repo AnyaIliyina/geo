@@ -18,7 +18,7 @@
 //	
 //}
 
-ViewForm::ViewForm(int session_id, QWidget * parent):QWidget(parent), ui(new Ui::ViewForm) // ??
+ViewForm::ViewForm(int session_id, QWidget * parent): ui(new Ui::ViewForm) // ??
 {
 	m_session_id = session_id;
 	ui->setupUi(this);
@@ -37,7 +37,8 @@ void ViewForm::setupModel(QString& whereQryPart)
 	QSqlDatabase db = Database::database();
 	model = new QSqlQueryModel(this);
 	model->setQuery(QString("SELECT geodata_records.record_id, sites.site_name, formats.format_name, scales.description, states.state_name, geodata_records.place_name, geodata_records.comment\
-		FROM sites, formats, scales, states, geodata_records WHERE geodata_records.site_id=sites.site_id %1").arg(whereQryPart), db);
+		FROM sites, formats, scales, states, geodata_records WHERE geodata_records.site_id=sites.site_id AND states.state_id=geodata_records.state_id\
+		AND formats.format_id=geodata_records.format_id %1").arg(whereQryPart), db);
 	createTable();
 
 }

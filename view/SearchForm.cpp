@@ -11,7 +11,7 @@
 \brief
 */
 
-SearchForm::SearchForm(QDockWidget *parent) :QDockWidget(parent), ui(new Ui::SearchForm)
+SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
 	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(WhereQueryPart()));
