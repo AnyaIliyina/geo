@@ -18,6 +18,8 @@ const QString & Parser::url()
 }
 
 
+
+
 void Parser::setUrl(const QString & url)
 {
 	m_url = url;
