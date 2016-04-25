@@ -28,27 +28,27 @@ void Parser::setUrl(const QString & url)
 
 QByteArray * Parser::getReply()
 {
+	return getReply(m_url);
+}
+
+
+QByteArray * Parser::getReply(const QString & url)
+{
 	QEventLoop eventLoop;
 	QNetworkAccessManager mgr;
 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
-	// eventLoop блокирует все действия до тех пор пока ответ QNetworkReply не получен
+		// eventLoop после exec() заблокирует все действия - до тех пор пока ответ QNetworkReply не получен
 
-	QUrl myUrl(m_url);
-	QNetworkRequest req(myUrl);
-	QNetworkReply *reply = mgr.get(req);
-
+	QUrl myUrl(url);
+	QNetworkRequest request(myUrl);
+	QNetworkReply *reply = mgr.get(request);
 	eventLoop.exec();
 	QByteArray *result;
-	if (reply->error() == QNetworkReply::NoError) {
-		//success
-		result = new QByteArray(reply->readAll());
-		delete reply;
-	}
-	else {
-		//failure
-		result = new QByteArray(nullptr);
-		//result = "Failure" + reply->errorString());
-		delete reply;
-	}
+	if (reply->error() == QNetworkReply::NoError)		
+		result = new QByteArray(reply->readAll());		// успех		
+	else
+		result = new QByteArray(nullptr);				// ошибка
+		
+	delete reply;
 	return result;
 }
