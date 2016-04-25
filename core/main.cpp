@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <qDebug>
 #include "Database.h"
-#include "ParserGisLub.h"
+#include "ParserGeofabrik.h"
 #include "MainWindow.h"
 
 /*!
@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
 	Database::restore();
-	/*ParserGisLub *p = new ParserGisLub();
+	/*ParserGeofabrik *p = new ParserGeofabrik();
 	p->parse(1, 1);*/
 	MainWindow *w = new MainWindow();
 	return app.exec();

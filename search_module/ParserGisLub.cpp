@@ -10,6 +10,9 @@
 \brief 
 */
 
+#define stateID_actual 1
+#define stateID_notActual 2
+#define formatID_shape 1
 
 int ParserGisLub::parse(int session_id, int site_id)
 {
@@ -17,36 +20,37 @@ int ParserGisLub::parse(int session_id, int site_id)
 	if (*reply == "")
 		return PAGE_NOT_AVAILABLE;
 
-	separateTableBody(*reply);	
+	separateTableBody(*reply);
 	Geodata_record *record = new Geodata_record();
-	int counter = 0;					
+	int counter = 0;
 	QXmlStreamReader xml(*reply);
 	while (xml.readNextStartElement())				// в <tbody>
 	{
 		if (xml.name() == "tr")
 			while (xml.readNextStartElement())		// в <tr>
-			{	
+			{
 				while (xml.readNextStartElement())	// в <td>
-						{
-							if (fmod(counter, 4) == 0)
-								record->setUrl(QString("http://view-source:beryllium.gis-lab.info").
-									append(xml.attributes().at(0).value()));
-							QString buffer = xml.readElementText();
-							if (fmod(counter, 4) == 0)
-								record->setPlacename(buffer.simplified());
-							if (fmod(counter - 1, 4) == 0)
-							{
-								record->setStateId(buffer.contains(State::coded("Не")) ? 2 : 1);
-								record->setFormateId(1);
-								record->setSiteId(site_id);
-								record->setSessionId(session_id);
-								qDebug() << record->url();
-								if(!record->insertIntoDatabase())
-									return ERROR_INSERTING_INTO_DB;
-							}
-							counter++;
-						}
-			}	
+				{
+					if (fmod(counter, 4) == 0)
+						record->setUrl(QString("http://view-source:beryllium.gis-lab.info").
+							append(xml.attributes().at(0).value()));
+					QString buffer = xml.readElementText();
+					if (fmod(counter, 4) == 0)
+						record->setPlacename(buffer.simplified());
+					if (fmod(counter - 1, 4) == 0)
+					{
+						record->setStateId(buffer.contains(State::coded("Не")) ?
+							stateID_notActual : stateID_actual);
+						record->setFormateId(formatID_shape);
+						record->setSiteId(site_id);
+						record->setSessionId(session_id);
+						qDebug() << record->url();
+						if (!record->insertIntoDatabase())
+							return ERROR_INSERTING_INTO_DB;
+					}
+					counter++;
+				}
+			}
 	}
 	//TODO: изменить статус сайта - сайт прошел проверку модулем поиска
 	delete record;
