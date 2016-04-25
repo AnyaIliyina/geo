@@ -12,8 +12,8 @@ int ParserGeofabrik::parse(int session_id, int site_id)
 	QByteArray *reply = getReply();
 	if (*reply == "")
 		return PAGE_NOT_AVAILABLE;
-	separateTable(*reply);
 
+	separateTable(*reply);
 	QTextEdit *txt = new QTextEdit();
 	QTextDocument doc(*reply);
 	txt->setText(doc.toHtml());

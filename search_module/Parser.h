@@ -27,6 +27,7 @@ public:
 	const QString& url();
 protected:
 	QByteArray* getReply();
+	QByteArray* getReply(const QString& url);
 	void setUrl(const QString& url);
 private:
 	QString m_url;
