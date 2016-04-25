@@ -58,9 +58,6 @@
     <ClCompile Include="search_module\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="search_module\ParserGeofabrik.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="search_module\ParserGisLub.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -94,7 +91,7 @@
     <ClCompile Include="view\ViewForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\main.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -118,9 +115,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="search_module\Parser.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="search_module\ParserGeofabrik.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="search_module\ParserGisLub.h">
@@ -186,12 +180,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Parser.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\moc_ParserGeofabrik.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_ParserGeofabrik.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_ParserGisLub.cpp">
