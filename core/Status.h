@@ -57,6 +57,13 @@ public:
 	static bool createTable();
 
 	/*!
+	Записывает в базу данных список статусов
+	\param QStringList statusNames - список названий статусов
+	\return true - статусы записаны в БД
+	\return false - возникли ошибки*/
+	static bool insert(QStringList statusNames);
+
+	/*!
 	Заполняет таблицу "statuses" в БД начальными значениями.
 	\return true - если таблица успешно заполнена
 	*/
