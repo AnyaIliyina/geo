@@ -1,29 +1,28 @@
-﻿  MOC core/Format.h
-  MOC view/LoginDialog.h
-  MOC view/MainWindow.h
-  MOC view/NewDockWidget.h
-  MOC search_module/Parser.h
-  MOC search_module/ParserGeofabrik.h
-  MOC search_module/ParserGisLub.h
-  MOC search_module/SM_Session.h
-  MOC core/Scale.h
-  MOC view/SearchForm.h
-  MOC core/Session.h
-  MOC core/State.h
+﻿  MOC search_module/Parser.h
   MOC core/Status.h
-  MOC core/User.h
-  MOC core/Usertype.h
-  MOC view/ViewForm.h
   UIC view/LoginDialog.ui
   UIC view/MainWindow.ui
   UIC view/NewDockWidget.ui
   UIC view/SearchForm.ui
 view\SearchForm.ui : warning : The name 'layoutWidget' (QWidget) is already in use, defaulting to 'layoutWidget1'.
   UIC view/ViewForm.ui
-  Database.cpp
-  Format.cpp
-  Geodata_record.cpp
-core\Geodata_record.cpp(194): warning C4189: 'i': local variable is initialized but not referenced
+  main.cpp
+core\main.cpp(17): warning C4189: 'w': local variable is initialized but not referenced
+  moc_LoginDialog.cpp
+  moc_MainWindow.cpp
+  moc_NewDockWidget.cpp
+  moc_Parser.cpp
+  moc_ParserGeofabrik.cpp
+  moc_ParserGisLub.cpp
+  moc_SearchForm.cpp
+  moc_Status.cpp
+  moc_ViewForm.cpp
+  Parser.cpp
+  ParserGeofabrik.cpp
+search_module\ParserGeofabrik.cpp(10): warning C4100: 'site_id': unreferenced formal parameter
+search_module\ParserGeofabrik.cpp(10): warning C4100: 'session_id': unreferenced formal parameter
+  ParserGisLub.cpp
+  SM_Session.cpp
   LoginDialog.cpp
 view\LoginDialog.cpp(16): warning C4100: 'ptr': unreferenced formal parameter
   MainWindow.cpp
@@ -31,45 +30,11 @@ view\MainWindow.cpp(16): warning C4100: 'parent': unreferenced formal parameter
   NewDockWidget.cpp
 view\NewDockWidget.cpp(9): warning C4100: 'ptr': unreferenced formal parameter
 view\NewDockWidget.cpp(17): warning C4100: 'ptr': unreferenced formal parameter
-  Parser.cpp
-  ParserGeofabrik.cpp
-search_module\ParserGeofabrik.cpp(10): warning C4100: 'site_id': unreferenced formal parameter
-search_module\ParserGeofabrik.cpp(10): warning C4100: 'session_id': unreferenced formal parameter
-  ParserGisLub.cpp
-  SM_Session.cpp
-  Scale.cpp
   SearchForm.cpp
 view\SearchForm.cpp(14): warning C4100: 'parent': unreferenced formal parameter
-  Session.cpp
-  Site.cpp
-  State.cpp
-  Status.cpp
-  User.cpp
-  Usertype.cpp
   ViewForm.cpp
 view\ViewForm.cpp(23): warning C4100: 'parent': unreferenced formal parameter
-  main.cpp
-core\main.cpp(17): warning C4189: 'w': local variable is initialized but not referenced
   Generating Code...
-c:\users\анна\source\repos\geo\core\user.cpp(64): warning C4715: 'User::type_id': not all control paths return a value
-c:\users\анна\source\repos\geo\core\site.cpp(94): warning C4715: 'Site::site_id': not all control paths return a value
 c:\users\анна\source\repos\geo\search_module\parsergeofabrik.cpp(21): warning C4715: 'ParserGeofabrik::parse': not all control paths return a value
-  Compiling...
-  moc_Format.cpp
-  moc_LoginDialog.cpp
-  moc_MainWindow.cpp
-  moc_NewDockWidget.cpp
-  moc_Parser.cpp
-  moc_ParserGeofabrik.cpp
-  moc_ParserGisLub.cpp
-  moc_SM_Session.cpp
-  moc_Scale.cpp
-  moc_SearchForm.cpp
-  moc_Session.cpp
-  moc_State.cpp
-  moc_Status.cpp
-  moc_User.cpp
-  moc_Usertype.cpp
-  moc_ViewForm.cpp
-  Generating Code...
+  LINK : debug\\geo.exe not found or not built by the last incremental link; performing full link
   geo.vcxproj -> C:\Users\Анна\Source\Repos\geo\debug\geo.exe
