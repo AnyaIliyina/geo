@@ -310,9 +310,7 @@ public:
         comboBox->insertItems(0, QStringList()
          << QString()
          << QApplication::translate("SearchForm", "Shapefile", 0)
-         << QApplication::translate("SearchForm", "Shapefile", 0)
-         << QApplication::translate("SearchForm", "Jpg", 0)
-         << QApplication::translate("SearchForm", "Png", 0)
+         << QApplication::translate("SearchForm", "jpg", 0)
         );
         btnSearch->setText(QApplication::translate("SearchForm", "\320\237\320\276\320\270\321\201\320\272", 0));
     } // retranslateUi

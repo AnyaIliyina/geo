@@ -12,17 +12,16 @@ int ParserGeofabrik::parse(int session_id, int site_id)
 	QByteArray *reply = getReply();
 	if (*reply == "")
 		return PAGE_NOT_AVAILABLE;
-	separateTable(*reply);
-
+	//separateTable(*reply);
 	QTextEdit *txt = new QTextEdit();
 	QTextDocument doc(*reply);
-	txt->setText(doc.toHtml());
+	txt->setText(*reply);
 	txt->show();
 }
 
 ParserGeofabrik::ParserGeofabrik()
 {
-	setUrl("http://download.geofabrik.de/index.html");
+	setUrl("http://translate.google.com/translate?hl=&sl=auto&tl=ru&u=http%3A%2F%2Fdownload.geofabrik.de%2Findex.html&sandbox=1");
 }
 
 
