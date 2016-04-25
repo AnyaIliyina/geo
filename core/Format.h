@@ -71,4 +71,9 @@ public:
 	*/
 	static bool completeTable();
 
+	/*!
+	Возращает список форматов
+	\return QStringList listFormat - список названий форматов
+	*/
+	static QStringList getFormatNames();
 };

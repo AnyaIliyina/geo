@@ -4,10 +4,36 @@
 #include <QSqlRecord>
 #include "Database.h"
 
+
 /*!
 \file
 \brief 
 */
+
+QStringList Site::getSiteNames()
+//QSqlQueryModel Site::getSiteNames()
+{
+	/*
+	QSqlDatabase db = Database::database();
+	QSqlQueryModel *model = new QSqlQueryModel(nullptr);
+	model->setQuery("SELECT site_name FROM sites");
+	return model;
+	*/
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	QStringList listSites;
+	if (!query.exec("SELECT site_name FROM sites"))
+	{
+		qDebug() << query.lastError().text();
+		db.close();
+		return listSites;
+	}
+	while (query.next()) {
+		QString name = query.value(0).toString();
+		listSites.push_back(name);
+	}
+	return listSites;
+}
 
 const QString&  Site::url() const
 {
@@ -56,15 +82,15 @@ int Site::site_id()
 }
 
 
-int Site::site_id(QString & url, QString & site_name) 
+int Site::site_id(QString & site_name) 
 {
-	qDebug() << "Zashel v -1";
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
-	
-	if (!query.exec("SELECT site_id FROM sites WHERE (url=\'" + url + "\') OR (site_name=\'" + site_name + "\')"))
+	if (!query.exec("SELECT site_id FROM sites WHERE site_name=\'" + site_name + "\'"))
 	{
 		qDebug() << "Zapros ne proshel";
+		qDebug() << query.lastError().text();
+		return -1;
 	}
 	else
 	{
@@ -73,9 +99,7 @@ int Site::site_id(QString & url, QString & site_name)
 			int id = query.value(0).toInt();
 			return id;
 		}
-
 	}
-
 }
 
 

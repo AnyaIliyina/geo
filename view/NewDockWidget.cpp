@@ -5,6 +5,9 @@
 #include "Geodata_record.h"
 #include <QMessageBox>
 #include "Scale.h"
+#include <QComboBox>
+#include <QSqlQueryModel>
+#include "Format.h"
 
 NewDockWidget::NewDockWidget(QDockWidget * ptr)
 {
@@ -19,7 +22,10 @@ NewDockWidget::NewDockWidget(int session_id, QDockWidget * ptr)
 	ui = new Ui::NewDockWidget();
 	ui->setupUi(this);
 	m_session_id = session_id;
-	
+	QStringList listSites = Site::getSiteNames();
+	ui->boxSite->addItems(listSites);
+	QStringList listFormats = Format::getFormatNames();
+	ui->boxFormat->addItems(listFormats);
 	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(slotCheck()));
 }
 
@@ -34,7 +40,7 @@ void NewDockWidget::addNewRecord()
 	getSiteId();
 	getFormatId();
 	qDebug() << m_site_id, m_format_id, m_place_name;
-	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name, m_session_id, 1, 2);
+	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name, m_session_id, 1, 2, m_url, m_comment);
 	ngdr->insertIntoDatabase();
 	int okMsgBox = QMessageBox::information(this, Scale::coded("Успех!"), Scale::coded("Новая запись успешно добавлена"), Scale::coded("Ok"));
 	if (okMsgBox == 0)
@@ -53,7 +59,7 @@ void NewDockWidget::slotCheck()
 	}
 	else
 	{
-		ui->lineError->setText(Scale::coded("Заполни первые 4 поля, товарищ!"));
+		ui->lineError->setText(Scale::coded("Заполни поля, выделенные звездочкой, товарищ!"));
 	}
 }
 
@@ -71,39 +77,32 @@ void NewDockWidget::addMessage()
 void NewDockWidget::getFormatId()
 {
 	qDebug() << "getting FormatId...";
-	 m_format_id = ui->boxFormat->currentIndex();
+	 m_format_id = ui->boxFormat->currentIndex() +1;
 	qDebug() << "m_formatId = " << m_format_id;
 }
 
 void NewDockWidget::getSiteId()
 {
 	qDebug() << "getting SiteId...";
-	Site* ns = new Site(m_url, m_site_name);
-	int site_id = ns->insertIntoDatabase();
-	if (site_id > 0)
-		{
-			m_site_id = site_id;
-			qDebug() << "NewDockWidget m_site_id: " << m_site_id;
-			
-		}
-		else
-		{
-			m_site_id=Site::site_id(m_url, m_site_name);
-			qDebug() << m_site_id;
-		}
+	m_site_id=Site::site_id(m_site_name);
+	qDebug() << m_site_id; // если можно удалять сайты, то раскоментить*/ 
+	//m_site_id = ui->boxSite->currentIndex();
+		
 }
 
 void NewDockWidget::textRead()
 {
 	m_place_name = ui->linePlace->text();
 	m_url = ui->lineUrl->text();
-	m_site_name = ui->lineSite->text();
+	m_site_name = ui->boxSite->currentText();
 	m_format_name = ui->boxFormat->currentText();
+	m_comment = ui->textEdit->toPlainText();
+	qDebug() << m_comment;
 }
 
 bool NewDockWidget::emptyLine()
 {
-	if ((m_place_name.isEmpty()) || (m_url.isEmpty()) || (m_site_name.isEmpty()) ||(m_format_name.isEmpty()))
+	if ((m_place_name.isEmpty()) || (m_site_name.isEmpty()) ||(m_format_name.isEmpty()))
 	{
 			 return false;
 	}

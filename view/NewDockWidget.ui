@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>420</width>
-    <height>280</height>
+    <height>346</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>420</width>
-    <height>280</height>
+    <height>346</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>420</width>
-    <height>280</height>
+    <height>400</height>
    </size>
   </property>
   <property name="font">
@@ -40,143 +40,72 @@
    <property name="maximumSize">
     <size>
      <width>420</width>
-     <height>250</height>
+     <height>400</height>
     </size>
    </property>
-   <layout class="QGridLayout" name="gridLayout_2">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
+     <layout class="QFormLayout" name="formLayout">
+      <property name="horizontalSpacing">
        <number>10</number>
       </property>
-      <property name="topMargin">
+      <property name="verticalSpacing">
+       <number>15</number>
+      </property>
+      <property name="bottomMargin">
        <number>10</number>
       </property>
-      <item>
-       <layout class="QGridLayout" name="gridLayout">
-        <property name="topMargin">
-         <number>0</number>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
         </property>
-        <property name="bottomMargin">
-         <number>20</number>
+        <property name="text">
+         <string>Название места *</string>
         </property>
-        <property name="horizontalSpacing">
-         <number>10</number>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="linePlace">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
         </property>
-        <property name="verticalSpacing">
-         <number>15</number>
-        </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Название места</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="linePlace">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
 border-radius:4;
 border-width:1px;
 max-height:20px;
 min-height:20px;
 
 }</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>URL</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineUrl">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-border-radius:4;
-border-width:1px;
-max-height:20px;
-min-height:20px;
-
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Название сайта</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineSite">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
-border-radius:4;
-border-width:1px;
-max-height:20px;
-min-height:20px;
-
-}</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Формат данных</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QComboBox" name="boxFormat">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QComboBox{
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Название сайта *</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="boxSite">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
 border-radius:4;
 border-width:1px;
 max-height:20px;
@@ -187,128 +116,219 @@ QComboBox:editable{
 
 background-color: rgb(255, 255, 255);
 border-radius:4}</string>
-          </property>
-          <item>
-           <property name="text">
-            <string/>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Shapefile</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Jpg</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Png</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Масштаб</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lineScale">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QLineEdit{
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>URL </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineUrl">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
 border-radius:4;
 border-width:1px;
 max-height:20px;
 min-height:20px;
 
 }</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        </property>
+       </widget>
       </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="btnCreate">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
-font: 9pt ;
-	border-color: rgb(144, 144, 144);
-	
-	color: rgb(30, 30, 30);
-border-width: 1px;
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Формат данных *</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="boxFormat">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox{
 border-radius:4;
-border-style:solid;
-
-min-width:150px;
-max-width:150px;
-min-height:20px;
+border-width:1px;
 max-height:20px;
+min-height:20px;
+
 }
-</string>
-          </property>
-          <property name="text">
-           <string>Создать</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnCancel">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
-background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
-font: 9pt ;
-	border-color: rgb(144, 144, 144);
-	
-	color: rgb(30, 30, 30);
-border-width: 1px;
+QComboBox:editable{
+
+background-color: rgb(255, 255, 255);
+border-radius:4}</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Масштаб</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineScale">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
 border-radius:4;
-border-style:solid;
-
-min-width:150px;
-max-width:150px;
-min-height:20px;
+border-width:1px;
 max-height:20px;
-}
-</string>
-          </property>
-          <property name="text">
-           <string>Отмена</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+min-height:20px;
+
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Комментарии</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="styleSheet">
+         <string notr="true">QTextEdit{
+border-radius:8;
+border-width:1px;
+max-height:70px;
+min-height:70px;
+
+}</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
+    <item row="2" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>15</number>
+      </property>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnCreate">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Создать</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnCancel">
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
+font: 9pt ;
+	border-color: rgb(144, 144, 144);
+	
+	color: rgb(30, 30, 30);
+border-width: 1px;
+border-radius:4;
+border-style:solid;
+
+min-width:150px;
+max-width:150px;
+min-height:20px;
+max-height:20px;
+}
+</string>
+        </property>
+        <property name="text">
+         <string>Отмена</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0">
      <widget class="QLabel" name="lineError">
       <property name="font">
        <font>

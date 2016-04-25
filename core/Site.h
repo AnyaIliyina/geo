@@ -28,7 +28,12 @@ private:
 	QString m_site_name;
 	QString m_comment;
 public:
-
+	/*!
+	Возращает список сайтов 
+	\return QStringList listSites - список названий сайтов
+	*/
+//	static QSqlQueryModel getSiteNames();
+	static QStringList getSiteNames();
 	/*!
 	Возвращает адрес сайта
 	\return QString& url - адрес сайта
@@ -62,7 +67,7 @@ public:
 	Возвращает id сайта
 	\return int site_id - id сайта;
 	*/
-	static int site_id(QString &url, QString &site_name);
+	static int site_id(QString &site_name);
 
 	static bool checkUrl(QString &url);
 	/*!

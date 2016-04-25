@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,6 +28,7 @@ class Ui_MainWindow
 public:
     QAction *actionExit;
     QAction *actionUser;
+    QAction *action;
     QWidget *centralwidget;
     QWidget *widget;
     QMenuBar *menubar;
@@ -48,6 +49,8 @@ public:
         actionExit->setObjectName(QStringLiteral("actionExit"));
         actionUser = new QAction(MainWindow);
         actionUser->setObjectName(QStringLiteral("actionUser"));
+        action = new QAction(MainWindow);
+        action->setObjectName(QStringLiteral("action"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         widget = new QWidget(centralwidget);
@@ -77,6 +80,7 @@ public:
         menubar->addAction(menu->menuAction());
         menubar->addAction(menuView->menuAction());
         menubar->addAction(menuHelp->menuAction());
+        menu->addAction(action);
         menu->addAction(actionUser);
         menu->addAction(actionExit);
 
@@ -91,6 +95,7 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionExit->setText(QApplication::translate("MainWindow", "&\320\222\321\213\321\205\320\276\320\264", 0));
         actionUser->setText(QApplication::translate("MainWindow", "&\320\241\320\274\320\265\320\275\320\270\321\202\321\214 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", 0));
+        action->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\262\321\213\320\271 \320\270\321\201\321\202\320\276\321\207\320\275\320\270\320\272", 0));
         menu->setTitle(QApplication::translate("MainWindow", "&\320\244\320\260\320\271\320\273", 0));
         menuView->setTitle(QApplication::translate("MainWindow", "&\320\222\320\270\320\264", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "&\320\241\320\277\321\200\320\260\320\262\320\272\320\260", 0));

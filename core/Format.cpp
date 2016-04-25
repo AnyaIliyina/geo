@@ -89,3 +89,21 @@ bool Format::completeTable()
 	delete f;
 	return succeeded;
 }
+
+QStringList Format::getFormatNames()
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	QStringList listFormat;
+	if (!query.exec("SELECT format_name FROM formats"))
+	{
+		qDebug() << query.lastError().text();
+		db.close();
+		return listFormat;
+	}
+	while (query.next()) {
+		QString name = query.value(0).toString();
+		listFormat.push_back(name);
+	}
+	return listFormat;
+}

@@ -141,7 +141,9 @@
     <ClCompile Include="view\LoginDialog.cpp" />
     <ClCompile Include="view\MainWindow.cpp" />
     <ClCompile Include="view\NewDockWidget.cpp" />
+    <ClCompile Include="view\NewSource.cpp" />
     <ClCompile Include="search_module\Parser.cpp" />
+    <ClCompile Include="search_module\ParserGeofabrik.cpp" />
     <ClCompile Include="search_module\ParserGisLub.cpp" />
     <ClCompile Include="search_module\SM_Session.cpp" />
     <ClCompile Include="core\Scale.cpp" />
@@ -153,7 +155,7 @@
     <ClCompile Include="core\User.cpp" />
     <ClCompile Include="core\Usertype.cpp" />
     <ClCompile Include="view\ViewForm.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="core\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="database\Database.h" />
@@ -198,6 +200,7 @@
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC view/NewDockWidget.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_NewDockWidget.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="view\NewSource.h" />
     <CustomBuild Include="search_module\Parser.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">search_module\Parser.h;%(AdditionalInputs)</AdditionalInputs>
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore search_module\Parser.h -o debug\moc_Parser.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
@@ -207,6 +210,16 @@
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore search_module\Parser.h -o release\moc_Parser.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC search_module/Parser.h</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_Parser.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="search_module\ParserGeofabrik.h">
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">search_module\ParserGeofabrik.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore search_module\ParserGeofabrik.h -o debug\moc_ParserGeofabrik.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">MOC search_module/ParserGeofabrik.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">debug\moc_ParserGeofabrik.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">search_module\ParserGeofabrik.h;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;C:\Qt\5.5.1\qtbase\bin\moc.exe  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_OPENGL_ES_2 -DQT_OPENGL_ES_2_ANGLE -D_MSC_VER=1900 -D_WIN32 -IC:/Qt/5.5.1/qtbase/mkspecs/win32-msvc2015 -IC:/Users/OlyaMolya/Desktop/??????/geo -IC:/Users/OlyaMolya/Desktop/??????/geo/core -IC:/Users/OlyaMolya/Desktop/??????/geo/database -IC:/Users/OlyaMolya/Desktop/??????/geo/view -IC:/Users/OlyaMolya/Desktop/??????/geo/search_module -IC:/Qt/5.5.1/qtbase/include -IC:/Qt/5.5.1/qtbase/include/QtWidgets -IC:/Qt/5.5.1/qtbase/include/QtGui -IC:/Qt/5.5.1/qtbase/include/QtANGLE -IC:/Qt/5.5.1/qtbase/include/QtNetwork -IC:/Qt/5.5.1/qtbase/include/QtSql -IC:/Qt/5.5.1/qtbase/include/QtCore search_module\ParserGeofabrik.h -o release\moc_ParserGeofabrik.cpp&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">MOC search_module/ParserGeofabrik.h</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">release\moc_ParserGeofabrik.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="search_module\ParserGisLub.h">
       <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">search_module\ParserGisLub.h;%(AdditionalInputs)</AdditionalInputs>
@@ -341,6 +354,12 @@
     <ClCompile Include="release\moc_Parser.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="debug\moc_ParserGeofabrik.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_ParserGeofabrik.cpp">
+      <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="debug\moc_ParserGisLub.cpp">
       <ExcludedFromBuild Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">true</ExcludedFromBuild>
     </ClCompile>
@@ -404,6 +423,7 @@
     <ClInclude Include="ui_LoginDialog.h" />
     <ClInclude Include="ui_MainWindow.h" />
     <ClInclude Include="ui_NewDockWidget.h" />
+    <ClInclude Include="ui_NewSource.h" />
     <ClInclude Include="ui_SearchForm.h" />
     <ClInclude Include="ui_ViewForm.h" />
   </ItemGroup>
@@ -440,6 +460,17 @@
       <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;(set QT_PLUGIN_PATH=C:\Qt\5.5.1\qtbase\plugins) &amp; (set PATH=C:\Qt\5.5.1\qtbase\lib;%PATH:)=^)%) &amp; C:\Qt\5.5.1\qtbase\bin\uic.exe view\NewDockWidget.ui -o ui_NewDockWidget.h&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
       <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">UIC view/NewDockWidget.ui</Message>
       <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">ui_NewDockWidget.h;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="view\NewSource.ui">
+      <FileType>Document</FileType>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">view\NewSource.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;(set QT_PLUGIN_PATH=C:\Qt\5.5.1\qtbase\plugins) &amp; (set PATH=C:\Qt\5.5.1\qtbase\lib;%PATH:)=^)%) &amp; C:\Qt\5.5.1\qtbase\bin\uic.exe view\NewSource.ui -o ui_NewSource.h&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">UIC view/NewSource.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|Win32&apos;">ui_NewSource.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">view\NewSource.ui;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">setlocal&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;(set QT_PLUGIN_PATH=C:\Qt\5.5.1\qtbase\plugins) &amp; (set PATH=C:\Qt\5.5.1\qtbase\lib;%PATH:)=^)%) &amp; C:\Qt\5.5.1\qtbase\bin\uic.exe view\NewSource.ui -o ui_NewSource.h&#x000D;&#x000A;if errorlevel 1 goto VCEnd&#x000D;&#x000A;endlocal</Command>
+      <Message Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">UIC view/NewSource.ui</Message>
+      <Outputs Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|Win32&apos;">ui_NewSource.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="view\SearchForm.ui">
       <FileType>Document</FileType>

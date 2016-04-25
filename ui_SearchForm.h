@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'SearchForm.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -310,7 +310,9 @@ public:
         comboBox->insertItems(0, QStringList()
          << QString()
          << QApplication::translate("SearchForm", "Shapefile", 0)
-         << QApplication::translate("SearchForm", "jpg", 0)
+         << QApplication::translate("SearchForm", "Shapefile", 0)
+         << QApplication::translate("SearchForm", "Jpg", 0)
+         << QApplication::translate("SearchForm", "Png", 0)
         );
         btnSearch->setText(QApplication::translate("SearchForm", "\320\237\320\276\320\270\321\201\320\272", 0));
     } // retranslateUi

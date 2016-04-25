@@ -55,7 +55,13 @@
     <ClCompile Include="view\NewDockWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="view\NewSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="search_module\Parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="search_module\ParserGeofabrik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="search_module\ParserGisLub.cpp">
@@ -91,7 +97,7 @@
     <ClCompile Include="view\ViewForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="core\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,7 +120,13 @@
     <CustomBuild Include="view\NewDockWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="view\NewSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="search_module\Parser.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="search_module\ParserGeofabrik.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="search_module\ParserGisLub.h">
@@ -180,6 +192,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Parser.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_ParserGeofabrik.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_ParserGeofabrik.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_ParserGisLub.cpp">
@@ -251,6 +269,9 @@
     <ClInclude Include="ui_NewDockWidget.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="ui_NewSource.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="ui_SearchForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -266,6 +287,9 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\NewDockWidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="view\NewSource.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\SearchForm.ui">
