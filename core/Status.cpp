@@ -53,7 +53,7 @@ bool Status::insertIntoDatabase()
 	VALUES (?)");
 	query.addBindValue(m_status_name);
 	if (!query.exec()) {
-		qDebug() << "State::insertIntoDatabase(): error inserting into Table statuses";
+		qDebug() << "Status::insertIntoDatabase(): error inserting into Table statuses";
 		qDebug() << query.lastError().text();
 		db.close();
 		return false;
@@ -83,10 +83,31 @@ bool Status::createTable()
 
 bool Status::completeTable()
 {
-	Status *s = new Status(coded("Проверено"));
-	bool succeeded = s->insertIntoDatabase();
-	delete s;
-	return succeeded;
+	QStringList statusNames;
+	statusNames << coded("Не проверено")
+		<< coded("Проверено модулем поиска")
+		<< coded("Проверено экспертом");
+	return insert(statusNames);
+}
+
+bool Status::insert(QStringList statusNames)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < statusNames.count(); i++)
+	{
+		query.prepare("INSERT INTO statuses(status_name)\
+	VALUES (?)");
+		query.addBindValue(statusNames.at(i));
+		if (!query.exec()) {
+			qDebug() << "Status :: insert(QStringList statusNames): error inserting into Table statuses";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+	return true;
 }
 
 QString Status::coded(QByteArray encodedStr)
