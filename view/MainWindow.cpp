@@ -1,6 +1,5 @@
 #include "MainWindow.h"
 #include "SearchForm.h"
-#include "ViewForm.h"
 #include "SM_Session.h"
 #include "Session.h"
 #include <QTextEdit>
@@ -8,7 +7,8 @@
 #include <QStatusBar>
 #include "User.h"
 #include "NewSource.h"
-
+#include "ViewWindow.h"
+#include "State.h"
 
 /*!
 \file
@@ -44,13 +44,20 @@ MainWindow::~MainWindow()
 */
 void MainWindow::slotConfigure()
 {
-	ViewForm *vf = new ViewForm(m_session_id);
-	setCentralWidget(vf);
-	SearchForm *sf=new SearchForm();
+	//ViewForm *vf = new ViewForm(m_session_id);
+	//setCentralWidget(vf);
+	ViewWindow *vw = new ViewWindow(m_session_id);
+	QDockWidget *viewDockWidget = new QDockWidget("Список записей");
+	viewDockWidget->setWidget(vw);
+	viewDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+	
+	addDockWidget(Qt::RightDockWidgetArea, viewDockWidget);
+	setCentralWidget(NULL);
+	sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
 	
-	connect(sf, SIGNAL(signalQueryCreated(QString)), vf, SLOT(slotRefresh(QString)));
-	connect(vf, SIGNAL(signalDeleted()), sf, SLOT(slotClickSearch()));
+	connect(sf, SIGNAL(signalQueryCreated(QString)), vw, SLOT(slotRefresh(QString)));
+	connect(vw, SIGNAL(signalDeleted()), sf, SLOT(slotClickSearch()));
 	/*QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);

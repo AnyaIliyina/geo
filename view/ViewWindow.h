@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "ui_ViewForm.h"
+#include "ui_ViewWindow.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
@@ -10,23 +10,23 @@
 *  \date   апрель 2016
 */
 
-class ViewForm : public QWidget {
+class ViewWindow : public QMainWindow {
 	Q_OBJECT
 public:
 	/*!
 	Конструктор
 	*/
-	//explicit ViewForm(QWidget *parent = 0);
+	//explicit ViewWindow(QWidget *parent = 0);
 
 	/*!
 	Конструктор
 	*/
-	explicit ViewForm(int session_id, QWidget *parent = 0);
+	explicit ViewWindow(int session_id, QWidget *parent = 0);
 
 	/*!
 	Деструктор
 	*/
-	~ViewForm();
+	~ViewWindow();
 
 	/*!
 	
@@ -39,7 +39,7 @@ private:
 	*/
 	void createTable();
 
-	Ui::ViewForm *ui;
+	Ui::ViewWindow *ui;
 
 	QSqlQueryModel *model;
 	
