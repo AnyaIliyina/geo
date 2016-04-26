@@ -120,9 +120,9 @@
     <CustomBuild Include="view\NewDockWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <ClInclude Include="view\NewSource.h">
+    <CustomBuild Include="view\NewSource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
+    </CustomBuild>
     <CustomBuild Include="search_module\Parser.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -186,6 +186,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_NewDockWidget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_NewSource.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_NewSource.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_Parser.cpp">

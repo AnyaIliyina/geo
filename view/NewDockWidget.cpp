@@ -41,13 +41,18 @@ void NewDockWidget::addNewRecord()
 	getFormatId();
 	qDebug() << m_site_id, m_format_id, m_place_name;
 	Geodata_record* ngdr= new Geodata_record(m_site_id, m_format_id, m_place_name, m_session_id, 1, 2, m_url, m_comment);
-	ngdr->insertIntoDatabase();
-	int okMsgBox = QMessageBox::information(this, Scale::coded("Успех!"), Scale::coded("Новая запись успешно добавлена"), Scale::coded("Ok"));
-	if (okMsgBox == 0)
+	if (ngdr->insertIntoDatabase())
 	{
-		ui->btnCancel->click();
+		int okMsgBox = QMessageBox::information(this, Scale::coded("Успех!"), Scale::coded("Новая запись успешно добавлена"), Scale::coded("Ok"));
+		if (okMsgBox == 0)
+		{
+			ui->btnCancel->click();
+		}
 	}
-	
+	else
+	{
+		int okMsgBox = QMessageBox::information(this, Scale::coded("Ошибка"), Scale::coded("Новая запись не добавлена"), Scale::coded("Ok"));
+	}
 }
 
 void NewDockWidget::slotCheck()

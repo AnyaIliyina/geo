@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QStatusBar>
 #include "User.h"
+#include "NewSource.h"
 
 
 /*!
@@ -20,7 +21,7 @@ MainWindow::MainWindow(QMainWindow *parent)
 	
 	// Показать диалог с запросом пароля до появления основного окна:
 	LoginDialog *ld = new LoginDialog(); 
-
+	NewSource *ns = new NewSource();
 	QObject::connect(ld, SIGNAL(signalLogedIn(int)),	this, SLOT(slotStartSession(int)));	 // авторизация пройдена - отобразить основное окно, 
 																				// начать работу модуля поиска
 	ld->show();
@@ -28,6 +29,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 	//Показать окно авторизации, при нажатии смены пользователя
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(slotShowLD()));
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), this, SLOT(slotCloseMW()));
+	
+	QObject::connect(ui->actionNewSource, SIGNAL(triggered()), ns, SLOT(slotShowNS()));
 }
 
 

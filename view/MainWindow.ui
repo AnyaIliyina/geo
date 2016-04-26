@@ -44,7 +44,7 @@
     <property name="title">
      <string>&amp;Файл</string>
     </property>
-    <addaction name="action"/>
+    <addaction name="actionNewSource"/>
     <addaction name="actionUser"/>
     <addaction name="actionExit"/>
    </widget>
@@ -95,7 +95,7 @@
     <string>&amp;Сменить пользователя</string>
    </property>
   </action>
-  <action name="action">
+  <action name="actionNewSource">
    <property name="text">
     <string>Новый источник</string>
    </property>

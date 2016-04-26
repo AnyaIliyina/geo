@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'NewSource.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -21,6 +21,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -34,19 +35,22 @@ public:
     QLineEdit *lineUrl;
     QLabel *label_3;
     QLineEdit *lineSite;
+    QLabel *label_4;
+    QTextEdit *textEdit;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *btnCreate;
     QPushButton *btnCancel;
     QSpacerItem *horizontalSpacer_2;
+    QLabel *lineError;
 
     void setupUi(QWidget *NewSource)
     {
         if (NewSource->objectName().isEmpty())
             NewSource->setObjectName(QStringLiteral("NewSource"));
-        NewSource->resize(438, 114);
-        NewSource->setMinimumSize(QSize(380, 114));
-        NewSource->setMaximumSize(QSize(500, 114));
+        NewSource->resize(474, 210);
+        NewSource->setMinimumSize(QSize(380, 210));
+        NewSource->setMaximumSize(QSize(500, 210));
         QFont font;
         font.setPointSize(9);
         NewSource->setFont(font);
@@ -54,7 +58,8 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
-        formLayout->setVerticalSpacing(15);
+        formLayout->setHorizontalSpacing(10);
+        formLayout->setVerticalSpacing(10);
         label_2 = new QLabel(NewSource);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
@@ -92,6 +97,27 @@ public:
 "}"));
 
         formLayout->setWidget(1, QFormLayout::FieldRole, lineSite);
+
+        label_4 = new QLabel(NewSource);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setFont(font);
+
+        formLayout->setWidget(2, QFormLayout::LabelRole, label_4);
+
+        textEdit = new QTextEdit(NewSource);
+        textEdit->setObjectName(QStringLiteral("textEdit"));
+        textEdit->setStyleSheet(QLatin1String("QTextEdit{\n"
+"border-radius:4;\n"
+"border-width:1px;\n"
+"max-height:70px;\n"
+"min-height:70px;\n"
+"\n"
+"}"));
+
+        formLayout->setWidget(2, QFormLayout::FieldRole, textEdit);
+
+
+        gridLayout->addLayout(formLayout, 0, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(15);
@@ -149,13 +175,16 @@ public:
         horizontalLayout->addItem(horizontalSpacer_2);
 
 
-        formLayout->setLayout(2, QFormLayout::SpanningRole, horizontalLayout);
+        gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
 
+        lineError = new QLabel(NewSource);
+        lineError->setObjectName(QStringLiteral("lineError"));
 
-        gridLayout->addLayout(formLayout, 0, 0, 1, 1);
+        gridLayout->addWidget(lineError, 2, 0, 1, 1);
 
 
         retranslateUi(NewSource);
+        QObject::connect(btnCancel, SIGNAL(clicked()), NewSource, SLOT(close()));
 
         QMetaObject::connectSlotsByName(NewSource);
     } // setupUi
@@ -165,8 +194,10 @@ public:
         NewSource->setWindowTitle(QApplication::translate("NewSource", "\320\235\320\276\320\262\321\213\320\271 \320\270\321\201\321\202\320\276\321\207\320\275\320\270\320\272", 0));
         label_2->setText(QApplication::translate("NewSource", "URL \321\201\320\260\320\271\321\202\320\260", 0));
         label_3->setText(QApplication::translate("NewSource", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \321\201\320\260\320\271\321\202\320\260", 0));
+        label_4->setText(QApplication::translate("NewSource", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\270", 0));
         btnCreate->setText(QApplication::translate("NewSource", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214", 0));
         btnCancel->setText(QApplication::translate("NewSource", "\320\236\321\202\320\274\320\265\320\275\320\260", 0));
+        lineError->setText(QString());
     } // retranslateUi
 
 };
