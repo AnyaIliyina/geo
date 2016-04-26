@@ -13,6 +13,7 @@
 #define stateID_actual 1
 #define stateID_notActual 2
 #define formatID_shape 1
+#define statusId_checked 2
 
 int ParserGisLub::parse(int session_id, int site_id)
 {
@@ -52,7 +53,7 @@ int ParserGisLub::parse(int session_id, int site_id)
 				}
 			}
 	}
-	//TODO: изменить статус сайта - сайт прошел проверку модулем поиска
+	//TODO: изменить статус сайта на statusId_checked 
 	delete record;
 	return SUCCEEDED;
 }
