@@ -39,8 +39,8 @@ void SM_Session::start()
 */
 void SM_Session::search()
 {
-	// получить список сайтов со статусом 0 (нуждающихся в проверке):
-	QList<Site> sites = Site::sitesByStatus(0); 
+	// получить список сайтов со статусом 1 (нуждающихся в проверке):
+	QList<Site> sites = Site::sitesByStatus(1); 
 
 	// создать все возможные парсеры (пока только ParserGisLub):
 	ParserGisLub *parserGL = new ParserGisLub();	

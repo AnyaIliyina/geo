@@ -41,13 +41,40 @@ public:
 	const QString& url() const;
 	
 	/*!
+	Возвращает название сайта
+	\return QString& site_name - название сайта
+	*/
+	const QString& site_name() const;
+	
+	/*!
+	Возвращает комментарий
+	\return QString& comment - комментарий
+	*/
+	const QString& comment() const;
+
+	/*!
+	Возвращает id сайта
+	\return int site_id - id сайта;
+	*/
+	int site_id() const;
+
+	/*!
+	Возвращает id статуса
+	\return int status_id - id статуса;
+	*/
+	int status_id() const;
+
+	void setStatusId(int status_id);
+
+	
+	/*!
 	Конструирует объект класса Site из параметров
 	\param const QString& url - адрес(url) сайта;
 	\param const QString& site_name - название сайта;
 	\param int status;
 	\param const QString& comment;
 	*/
-	Site(const QString& url, const QString& site_name, int status = 0, const QString& comment="");
+	Site(const QString& url, const QString& site_name, int status = 1, const QString& comment="");
 	
 	/*!
 	Конструирует объект класса Site из данных в базе
@@ -69,7 +96,8 @@ public:
 	*/
 	static int site_id(QString &site_name);
 
-	static bool checkUrl(QString &url);
+	//static bool checkUrl(QString &url);
+	
 	/*!
 	Записывает информацию о сайте в базу данных.
 	\return site_id
@@ -94,5 +122,14 @@ public:
 	\return QList<Site> siteList - список сайтов со статусом statusId
 	*/
 	static QList<Site> sitesByStatus(int statusId);
+	
+	
+	/*!
+ 	 Записывает информацию о сайтах из списка в базу
+ 	 \param (QList<Site> sites - список сайтов
+ 	 \return true - информация записана
+ 	 \false -  возникли ошибки
+ 	*/
+ 	 static bool insert(QList<Site> sites);
 
 };

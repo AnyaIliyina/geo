@@ -35,6 +35,17 @@ QStringList Site::getSiteNames()
 	return listSites;
 }
 
+const QString & Site::site_name() const
+{
+	return m_site_name;
+}
+
+const QString & Site::comment() const
+{
+	return m_comment;
+}
+
+
 const QString&  Site::url() const
 {
 	return m_url;
@@ -79,6 +90,11 @@ Site::~Site()
 int Site::site_id()
 {
 	return m_site_id;
+}
+
+int Site::status_id() const
+{
+	return m_status_id;
 }
 
 
@@ -129,6 +145,32 @@ int Site::insertIntoDatabase()
 	
 }
 
+
+bool Site::insert(QList<Site> sites)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < sites.count(); i++)
+	{
+		query.prepare("INSERT INTO sites ( url, site_name, status_id, comment)\
+		VALUES (?, ?, ?, ?)");
+		query.addBindValue(sites.at(i).url());
+		query.addBindValue(sites.at(i).site_name());
+		query.addBindValue(sites.at(i).status_id());
+		query.addBindValue(sites.at(i).comment());
+		if (!query.exec()) {
+			qDebug() << "Site::insertIntoDatabase(QList<Site> sites):  error inserting into Table sites";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+	return true;
+}
+
+
+
 bool Site::createTable()
 {
 	QSqlDatabase db = Database::database();
@@ -156,11 +198,11 @@ bool Site::createTable()
 
 bool Site::completeTable()
 {
-	Site *s = new Site("http://beryllium.gis-lab.info/project/osmshp", "gis-lab");
-	// Site *s = new Site(QUrl("http://www.afanas.ru/mapbase/"));
-	bool succeeded = s->insertIntoDatabase();
-	delete s;
-	return succeeded;
+		QList<Site> sites;
+	sites << Site("http://beryllium.gis-lab.info/project/osmshp", "gis-lab.info")
+		<< Site("http://www.afanas.ru/mapbase/", "afanas.ru")
+		<< Site("http://download.geofabrik.de/index.html", "geofabrik.de");
+	return insert(sites);
 }
 
 QList<Site> Site::sitesByStatus(int statusId)
