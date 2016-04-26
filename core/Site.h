@@ -74,7 +74,7 @@ public:
 	\param int status;
 	\param const QString& comment;
 	*/
-	Site(const QString& url, const QString& site_name, int status = 0, const QString& comment="");
+	Site(const QString& url, const QString& site_name, int status = 1, const QString& comment="");
 	
 	/*!
 	Конструирует объект класса Site из данных в базе
@@ -96,7 +96,8 @@ public:
 	*/
 	static int site_id(QString &site_name);
 
-	static bool checkUrl(QString &url);
+	//static bool checkUrl(QString &url);
+	
 	/*!
 	Записывает информацию о сайте в базу данных.
 	\return site_id
@@ -121,5 +122,14 @@ public:
 	\return QList<Site> siteList - список сайтов со статусом statusId
 	*/
 	static QList<Site> sitesByStatus(int statusId);
+	
+	
+	/*!
+ 	 Записывает информацию о сайтах из списка в базу
+ 	 \param (QList<Site> sites - список сайтов
+ 	 \return true - информация записана
+ 	 \false -  возникли ошибки
+ 	*/
+ 	 static bool insert(QList<Site> sites);
 
 };
