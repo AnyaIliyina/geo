@@ -41,6 +41,33 @@ public:
 	const QString& url() const;
 	
 	/*!
+	Возвращает название сайта
+	\return QString& site_name - название сайта
+	*/
+	const QString& site_name() const;
+	
+	/*!
+	Возвращает комментарий
+	\return QString& comment - комментарий
+	*/
+	const QString& comment() const;
+
+	/*!
+	Возвращает id сайта
+	\return int site_id - id сайта;
+	*/
+	int site_id() const;
+
+	/*!
+	Возвращает id статуса
+	\return int status_id - id статуса;
+	*/
+	int status_id() const;
+
+	void setStatusId(int status_id);
+
+	
+	/*!
 	Конструирует объект класса Site из параметров
 	\param const QString& url - адрес(url) сайта;
 	\param const QString& site_name - название сайта;
