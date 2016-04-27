@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 #include "Database.h"
 #include "NewDockWidget.h"
+#include <QLineEdit>
 /*!
 \file
 \brief
@@ -13,7 +14,7 @@
 SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
-//	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(slotCreateQuery()));
+	QObject::connect(ui->textGeo, SIGNAL(QLineEdit::textEdited()), this, SLOT(slotCreateQuery()));
 	
 }
 
@@ -43,7 +44,6 @@ QString SearchForm::ParseWhereArgs(QList<QString>& args)
 	qDebug() << qry;
 	return qry;
 }
-
 void SearchForm::slotCreateQuery()
 {
 	QList<QString> whereArgs;
