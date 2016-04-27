@@ -56,8 +56,8 @@ void MainWindow::slotConfigure()
 	sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
 	
-	//connect(sf, SIGNAL(signalQueryCreated(QString)), vw, SLOT(slotRefresh(QString)));
-	//connect(vw, SIGNAL(signalDeleted()), sf, SLOT(slotClickSearch()));
+	connect(sf, SIGNAL(signalQueryCreated(QString)), vw, SLOT(slotRefresh(QString)));
+	connect(vw, SIGNAL(signalDeleted()), sf, SLOT(slotClickSearch()));
 	/*QTextEdit *txt = new QTextEdit();
 	txt->setText("central central");
 	setCentralWidget(txt);
