@@ -9,6 +9,7 @@
 #include "Scale.h"
 #include "Geodata_record.h"
 #include <QSortFilterProxyModel>
+#include "TableModel.h"
 
 ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
@@ -47,9 +48,9 @@ void ViewWindow::setupModel(const QStringList & headers)
 void ViewWindow::setupModel(const QStringList &headers, QString whereQryPart)
 {
 	QSqlDatabase db = Database::database();
-	model = new QSqlQueryModel(this);
+	model = new TableModel(this);
 	
-	model->setQuery(QString("SELECT geodata_records.record_id, geodata_records.place_name, sites.site_name, formats.format_name, scales.description,\
+	/*model->setQuery(QString("SELECT geodata_records.record_id, geodata_records.place_name, sites.site_name, formats.format_name, scales.description,\
 	 states.state_name, sessions.date, usertypes.type_name, geodata_records.comment \
 	FROM sites,sessions, users, formats, usertypes, scales, states, geodata_records\
 	 WHERE geodata_records.site_id=sites.site_id AND states.state_id=geodata_records.state_id AND formats.format_id=geodata_records.format_id\
@@ -58,7 +59,7 @@ void ViewWindow::setupModel(const QStringList &headers, QString whereQryPart)
 	{
 		model->setHeaderData(i, Qt::Horizontal, headers[j]);
 	}
-	model->sort(0, Qt::AscendingOrder);
+	model->sort(0, Qt::AscendingOrder);*/
 	createTable();
 
 }

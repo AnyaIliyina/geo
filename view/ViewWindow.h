@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
+#include "TableModel.h"
 
 /*!
 *  \brief  Вывод результатов поиска и работа с ними
@@ -33,6 +34,7 @@ public:
 	*/
 	void setupModel( const QStringList &headers, QString whereQryPart = "" );
 private:
+	TableModel* model;
 	/*!
 	
 	*/
@@ -44,7 +46,6 @@ private:
 	Ui::ViewWindow *ui;
 	//SqlRelationalTableModel *model;
 	int m_session_id = -1;
-	QSqlQueryModel *model; 
 	/*!
 	Удаление выделенной записи
 	*/
