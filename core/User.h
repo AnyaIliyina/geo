@@ -6,7 +6,6 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QUrl>
-#include <QDateTime>
 
 /*!
 *  \brief Представляет сущность Пользователь
@@ -15,9 +14,8 @@
 *  \date		15 марта 2016
 */
 
-class User:public QObject {
-	Q_OBJECT
-private:
+class User {
+	private:
 	int m_user_id;
 	int m_type_id;
 	QString m_login;
@@ -32,7 +30,7 @@ public:
 	\param QString login - логин пользователя
 	\param  QString password - пароль пользователя
 	*/
-	User(int type_id, QString login, QString password);
+	User(int type_id, const QString& login, const QString& password);
 	
 	/*!
 	Конструирует объект класса User из данных в базе
@@ -41,6 +39,22 @@ public:
 	User(int id);
 	
 	~User();
+
+	/*!
+	Возвращает идентификатор типа
+	\return int type_id*/
+	int type_id() const;
+	
+	/*!
+	Возвращает логин
+	\return const QString& login*/
+	const QString& login() const;
+
+	/*!
+	Возвращает пароль
+	\return const QString& password
+	*/
+	const QString& password() const;
 
 	/*!
 	Возвращает идентификатор типа пользователя
@@ -53,6 +67,14 @@ public:
 	\return int user_id - id пользователя
 		либо -1, если пользователь не найден*/
 	static int user_id(const QString& login);
+
+	/*!
+	Записывает в БД информацию о пользователях из списка
+	\param QList<User>users - список пользователей;
+	\return true - информация записана в БД;
+	\return false - произошла ошибка;
+	*/
+	static bool insert(QList<User>users);
 
 	/*!
 	Возвращает id пользователя

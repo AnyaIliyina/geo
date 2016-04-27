@@ -81,6 +81,26 @@ bool State::createTable()
 	return true;
 }
 
+bool State::insert(QStringList stateNames)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < stateNames.count(); i++)
+	{
+		query.prepare("INSERT INTO states(state_name)\
+	VALUES (?)");
+		query.addBindValue(stateNames.at(i));
+		if (!query.exec()) {
+			qDebug() << "State :: insert(QStringList stateNames): error inserting into Table states";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+	return true;
+}
+
 QString State::coded(QByteArray encodedStr) // метод для получения строки в кодировке Unicode 
 { // из QByteArray с кодировкой Windows-1251 
 	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
@@ -91,11 +111,11 @@ QString State::coded(QByteArray encodedStr) // метод для получен�
 
 bool State::completeTable()
 {
-	State *s = new State(coded("Актуально"));
-	bool succeeded = s->insertIntoDatabase();
-	delete s;
-	State *s2 = new State(coded("Неактуально"));
-	s2->insertIntoDatabase();
-	delete s2;
-	return succeeded;
+	QStringList stateNames;
+	stateNames << coded("Не установлено")
+		<< coded("Актуально (мп)")
+		<< coded("Неактуально (мп)")
+		<< coded("Актуально")
+		<< coded("Неактуально");
+	return insert(stateNames);
 }

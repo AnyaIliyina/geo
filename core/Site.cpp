@@ -45,6 +45,11 @@ const QString & Site::comment() const
 	return m_comment;
 }
 
+int Site::site_id() const
+{
+	return m_site_id;
+}
+
 
 const QString&  Site::url() const
 {
@@ -97,6 +102,25 @@ int Site::status_id() const
 	return m_status_id;
 }
 
+bool Site::setStatusId(int site_id, int status_id)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	query.prepare("UPDATE sites\
+		SET status_id = ?\
+		WHERE site_id = ?");
+	query.addBindValue(status_id);
+	query.addBindValue(site_id);
+	if (!query.exec()) {
+		qDebug() << "Site::setStatusId(int site_id, int status_id):  error inserting into Table sites";
+		qDebug() << query.lastError().text();
+		db.close();
+		return false;
+	}
+	db.close();
+	return true;
+}
+
 
 int Site::site_id(QString & site_name) 
 {
@@ -134,8 +158,6 @@ int Site::insertIntoDatabase()
 		qDebug() << query.lastError().text();
 		db.close();
 		return -1;
-		qDebug() << -1;
-
 	}
 	else {
 		int id = query.lastInsertId().toInt();

@@ -9,7 +9,7 @@ QString User::login()
 	return m_login;
 }
 
-User::User(int type_id, QString login, QString password)
+User::User(int type_id, const QString& login, const QString& password)
 {
 	m_user_id = 0;
 	m_type_id = type_id;
@@ -20,7 +20,7 @@ User::User(int type_id, QString login, QString password)
 User::User(int id)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(this, db);
+	QSqlTableModel model(nullptr, db);
 	model.setTable("users");
 	const QString filter = QString("user_id == %1").arg(id);
 	model.setFilter(filter);
@@ -41,27 +41,35 @@ User::~User()
 {
 }
 
+int User::type_id() const
+{
+	return m_type_id;
+}
+
+const QString & User::login() const
+{
+	return m_login;
+}
+
+const QString & User::password() const
+{
+	return m_password;
+}
+
+
 int User::type_id(QString & login)
 {
-	qDebug() << "Zapros type_id....";
-	qDebug() << login;
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
+	int id = -1;
 	if (!query.exec("SELECT type_id FROM users WHERE login=\'" + login + "\'"))
 	{
-		qDebug() << "Zapros ne proshel";
+		qDebug() << "User::type_id(QString & login) - SQL error";
 	}
 	if (query.next())
-	{
-		int id = query.value(0).toInt();
-		qDebug() << id;
-		return id;
-	}
-	else
-	{
-		qDebug() << "Kakaha";
-	}
-	}
+			id = query.value(0).toInt();
+	return id;
+}
 
 
 int User::user_id(const QString & login)
@@ -77,6 +85,28 @@ int User::user_id(const QString & login)
 }
 
 
+
+bool User::insert(QList<User> users)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < users.count(); i++)
+	{
+		query.prepare("INSERT INTO users ( type_id, login, password)\
+		VALUES (?, ?, ?)");
+		query.addBindValue(users.at(i).type_id());
+		query.addBindValue(users.at(i).login());
+		query.addBindValue(users.at(i).password());
+		if (!query.exec()) {
+			qDebug() << "User::insert(QList<User> users):  error inserting into Table users";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+	return false;
+}
 
 int User::user_id()
 {
@@ -126,17 +156,19 @@ bool User::createTable()
 
 bool User::completeTable()
 {
-	User *user = new User(1, "search_module", "111");
-	bool succeeded = user->insertIntoDatabase();
-	delete user;
-	return succeeded;
+	QList<User> users;
+	users << User(1, "search_module", "111")
+		<< User(2, "system", "111")
+		<< User(3, "Olga", "iamolga")
+		<< User(4, "uservasya", "iamvasya");
+	return insert(users);
 }
 
 bool User::userIsValid(const QString& login, const QString& password)
 {
-	QSqlDatabase db = Database::database();
+	QSqlDatabase db = Database::database();	
 	QSqlQuery qry(db);
-	if (!qry.exec("SELECT login FROM users WHERE login=\'" + login + "\' AND password=\'" + password + "\'"))
+	if (!qry.exec("SELECT login FROM users WHERE login=\'" + login + "\' AND password=\'" + password + "\' AND type_id > 2"))
 	{
 		qDebug() << "error while checking if user is valid.";
 		qDebug() << qry.lastError().text();

@@ -4,14 +4,15 @@
 #include <QXmlStreamReader>
 #include "Geodata_record.h"
 #include "State.h"
+#include "Site.h"
 
 /*!
 \file
 \brief 
 */
 
-#define stateID_actual 1
-#define stateID_notActual 2
+#define stateID_actual 2
+#define stateID_notActual 3
 #define formatID_shape 1
 #define statusId_checked 2
 
@@ -53,8 +54,8 @@ int ParserGisLub::parse(int session_id, int site_id)
 				}
 			}
 	}
-	//TODO: изменить статус сайта на statusId_checked 
 	delete record;
+	Site::setStatusId(site_id, statusId_checked);
 	return SUCCEEDED;
 }
 

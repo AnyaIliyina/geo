@@ -61,6 +61,13 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
+
+	/*!
+	Записывает в базу данных список типов пользователей
+	\param QStringList typeNames - список названий типов
+	\return true - статусы записаны в БД
+	\return false - возникли ошибки*/
+	static bool insert(QStringList typeNames);
 	
 	QString static coded(QByteArray encodedStr);
 };

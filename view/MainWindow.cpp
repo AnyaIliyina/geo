@@ -93,10 +93,10 @@ void MainWindow::showMW()
 	this->show();
 	
 	// Начать работу модуля поиска
-	/*SM_Session *session = new SM_Session();
+	SM_Session *session = new SM_Session();
 	qDebug() << QObject::connect(session, SIGNAL(signalStatusOffered(const QString &)),
 		SLOT(slotShowStatus(const QString &)));	// по сигналу от session менять текст в StatusBar
-	session->start();*/
+	session->start();
 }
 
 /*!

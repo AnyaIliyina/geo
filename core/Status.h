@@ -69,14 +69,7 @@ public:
 	\return false - возникли ошибки*/
 	static bool insert(QStringList statusNames);
 	
-	/*!
-	Записывает в базу данных список статусов
-	\param QStringList statusNames - список названий статусов
-	\return true - статусы записаны в БД
-	\return false - возникли ошибки*/
-	static bool insert(QStringList statusNames);
-
-	
+		
 	QString static coded(QByteArray encodedStr);
 };
 
