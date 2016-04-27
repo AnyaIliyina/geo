@@ -15,7 +15,7 @@
 /*! 
  *  \brief     Представляет сущность Сайт
 			(таблица sites)
- *  \author    Ильина А.
+ *  \author    Ильина А., Козырева О.
  *  \date      март 2016
  */
 
@@ -64,7 +64,13 @@ public:
 	*/
 	int status_id() const;
 
-	void setStatusId(int status_id);
+	/*!
+	Изменяет статус сайта в базе
+	\param int site_id - id сайта, статус которого нужно изменить;
+	\param int status_id - id нового статуса
+	\return true - статус изменен
+	\return false - произошла ошибка*/
+	static bool setStatusId(int site_id, int status_id);
 
 	
 	/*!

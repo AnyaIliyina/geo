@@ -61,6 +61,13 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
+
+	/*!
+	Записывает в базу данных список состояний
+	\param QStringList stateNames - список названий состояний
+	\return true - статусы записаны в БД
+	\return false - возникли ошибки*/
+	static bool insert(QStringList stateNames);
 	
 	QString static coded(QByteArray encodedStr);
 };

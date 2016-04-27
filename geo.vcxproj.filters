@@ -27,16 +27,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
-      <Extensions>qrc;*</Extensions>
-      <ParseFiles>false</ParseFiles>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -104,7 +94,7 @@
     <ClCompile Include="core\Usertype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view\ViewWindow.cpp">
+    <ClCompile Include="view\ViewForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\main.cpp">
@@ -169,7 +159,7 @@
     <CustomBuild Include="core\Usertype.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="view\ViewWindow.h">
+    <CustomBuild Include="view\ViewForm.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -270,16 +260,10 @@
     <ClCompile Include="release\moc_Usertype.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug\moc_ViewWindow.cpp">
+    <ClCompile Include="debug\moc_ViewForm.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="release\moc_ViewWindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\qrc_ViewWindowRes.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\qrc_ViewWindowRes.cpp">
+    <ClCompile Include="release\moc_ViewForm.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClInclude Include="ui_LoginDialog.h">
@@ -297,7 +281,7 @@
     <ClInclude Include="ui_SearchForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_ViewWindow.h">
+    <ClInclude Include="ui_ViewForm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -317,13 +301,8 @@
     <CustomBuild Include="view\SearchForm.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="view\ViewWindow.ui">
+    <CustomBuild Include="view\ViewForm.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="view\icons\ViewWindowRes.qrc">
-      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

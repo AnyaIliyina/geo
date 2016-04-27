@@ -69,7 +69,9 @@ public:
 	\return false - возникли ошибки*/
 	static bool insert(QStringList statusNames);
 	
+	
 
+	
 	QString static coded(QByteArray encodedStr);
 };
 

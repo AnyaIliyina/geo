@@ -83,10 +83,32 @@ bool Usertype::createTable()
 
 bool Usertype::completeTable()
 {
-	Usertype *user = new Usertype(coded("Модуль поиска"));
-	bool succeeded = user->insertIntoDatabase();
-	delete user;
-	return succeeded;
+	QStringList typeNames;
+	typeNames << coded("Модуль поиска")
+		<< coded("Система")
+		<< coded("Эксперт")
+		<< coded("Пользователь");
+	return insert(typeNames);
+}
+
+bool Usertype::insert(QStringList typeNames)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < typeNames.count(); i++)
+	{
+		query.prepare("INSERT INTO usertypes(type_name)\
+	VALUES (?)");
+		query.addBindValue(typeNames.at(i));
+		if (!query.exec()) {
+			qDebug() << "Usertype::insert(QStringList typeNames): error inserting into Table states";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+	return true;
 }
 
 QString Usertype::coded(QByteArray encodedStr)
