@@ -29,6 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_NewSource
 {
 public:
+    QAction *action_add;
     QGridLayout *gridLayout;
     QFormLayout *formLayout;
     QLabel *label_2;
@@ -48,18 +49,23 @@ public:
     {
         if (NewSource->objectName().isEmpty())
             NewSource->setObjectName(QStringLiteral("NewSource"));
-        NewSource->resize(474, 210);
+        NewSource->resize(476, 230);
         NewSource->setMinimumSize(QSize(380, 210));
-        NewSource->setMaximumSize(QSize(500, 210));
+        NewSource->setMaximumSize(QSize(500, 230));
         QFont font;
         font.setPointSize(9);
         NewSource->setFont(font);
+        action_add = new QAction(NewSource);
+        action_add->setObjectName(QStringLiteral("action_add"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/check.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_add->setIcon(icon);
         gridLayout = new QGridLayout(NewSource);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         formLayout = new QFormLayout();
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setHorizontalSpacing(10);
-        formLayout->setVerticalSpacing(10);
+        formLayout->setVerticalSpacing(12);
         label_2 = new QLabel(NewSource);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setFont(font);
@@ -120,53 +126,40 @@ public:
         gridLayout->addLayout(formLayout, 0, 0, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(15);
+        horizontalLayout->setSpacing(30);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(-1, 5, -1, 5);
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer);
 
         btnCreate = new QPushButton(NewSource);
         btnCreate->setObjectName(QStringLiteral("btnCreate"));
+        btnCreate->setMaximumSize(QSize(152, 30));
         btnCreate->setFont(font);
-        btnCreate->setStyleSheet(QLatin1String("QPushButton{\n"
-"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
-"font: 9pt ;\n"
-"	border-color: rgb(144, 144, 144);\n"
-"	\n"
-"	color: rgb(30, 30, 30);\n"
-"border-width: 1px;\n"
-"border-radius:4;\n"
-"border-style:solid;\n"
-"\n"
-"min-width:150px;\n"
-"max-width:150px;\n"
-"min-height:20px;\n"
-"max-height:20px;\n"
-"}\n"
-""));
+        btnCreate->setStyleSheet(QLatin1String("QPushButton{border:0px\n"
+"}"));
+        btnCreate->setIcon(icon);
+        btnCreate->setIconSize(QSize(30, 30));
+        btnCreate->setFlat(true);
 
         horizontalLayout->addWidget(btnCreate);
 
         btnCancel = new QPushButton(NewSource);
         btnCancel->setObjectName(QStringLiteral("btnCancel"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(btnCancel->sizePolicy().hasHeightForWidth());
+        btnCancel->setSizePolicy(sizePolicy);
+        btnCancel->setMaximumSize(QSize(152, 30));
         btnCancel->setFont(font);
-        btnCancel->setStyleSheet(QLatin1String("QPushButton{\n"
-"background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));\n"
-"font: 9pt ;\n"
-"	border-color: rgb(144, 144, 144);\n"
-"	\n"
-"	color: rgb(30, 30, 30);\n"
-"border-width: 1px;\n"
-"border-radius:4;\n"
-"border-style:solid;\n"
-"\n"
-"min-width:150px;\n"
-"max-width:150px;\n"
-"min-height:20px;\n"
-"max-height:20px;\n"
-"}\n"
-""));
+        btnCancel->setStyleSheet(QStringLiteral("QPushButton{border:0px}"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/close.png"), QSize(), QIcon::Normal, QIcon::Off);
+        btnCancel->setIcon(icon1);
+        btnCancel->setIconSize(QSize(30, 30));
+        btnCancel->setFlat(true);
 
         horizontalLayout->addWidget(btnCancel);
 
@@ -192,11 +185,12 @@ public:
     void retranslateUi(QWidget *NewSource)
     {
         NewSource->setWindowTitle(QApplication::translate("NewSource", "\320\235\320\276\320\262\321\213\320\271 \320\270\321\201\321\202\320\276\321\207\320\275\320\270\320\272", 0));
+        action_add->setText(QApplication::translate("NewSource", "&add", 0));
         label_2->setText(QApplication::translate("NewSource", "URL \321\201\320\260\320\271\321\202\320\260", 0));
         label_3->setText(QApplication::translate("NewSource", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265 \321\201\320\260\320\271\321\202\320\260", 0));
         label_4->setText(QApplication::translate("NewSource", "\320\232\320\276\320\274\320\274\320\265\320\275\321\202\320\260\321\200\320\270\320\270", 0));
-        btnCreate->setText(QApplication::translate("NewSource", "\320\241\320\276\320\267\320\264\320\260\321\202\321\214", 0));
-        btnCancel->setText(QApplication::translate("NewSource", "\320\236\321\202\320\274\320\265\320\275\320\260", 0));
+        btnCreate->setText(QString());
+        btnCancel->setText(QString());
         lineError->setText(QString());
     } // retranslateUi
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>474</width>
-    <height>210</height>
+    <width>476</width>
+    <height>230</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>500</width>
-    <height>210</height>
+    <height>230</height>
    </size>
   </property>
   <property name="font">
@@ -37,7 +37,7 @@
       <number>10</number>
      </property>
      <property name="verticalSpacing">
-      <number>10</number>
+      <number>12</number>
      </property>
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
@@ -129,7 +129,13 @@ min-height:70px;
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
-      <number>15</number>
+      <number>30</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
      </property>
      <item>
       <spacer name="horizontalSpacer">
@@ -146,61 +152,76 @@ min-height:70px;
      </item>
      <item>
       <widget class="QPushButton" name="btnCreate">
+       <property name="maximumSize">
+        <size>
+         <width>152</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>9</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{
-background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
-font: 9pt ;
-	border-color: rgb(144, 144, 144);
-	
-	color: rgb(30, 30, 30);
-border-width: 1px;
-border-radius:4;
-border-style:solid;
-
-min-width:150px;
-max-width:150px;
-min-height:20px;
-max-height:20px;
-}
-</string>
+        <string notr="true">QPushButton{border:0px
+}</string>
        </property>
        <property name="text">
-        <string>Создать</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="icons/ViewWindowRes.qrc">
+         <normaloff>:/check.png</normaloff>:/check.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btnCancel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>152</width>
+         <height>30</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>9</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{
-background-color:qlineargradient(spread:reflect, x1:0.0225989, y1:0.023, x2:0, y2:1, stop:0 rgba(255, 255, 255, 255), stop:0.813559 rgba(204, 204, 204, 255), stop:1 rgba(162, 162, 184, 255));
-font: 9pt ;
-	border-color: rgb(144, 144, 144);
-	
-	color: rgb(30, 30, 30);
-border-width: 1px;
-border-radius:4;
-border-style:solid;
-
-min-width:150px;
-max-width:150px;
-min-height:20px;
-max-height:20px;
-}
-</string>
+        <string notr="true">QPushButton{border:0px}</string>
        </property>
        <property name="text">
-        <string>Отмена</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="icons/ViewWindowRes.qrc">
+         <normaloff>:/close.png</normaloff>:/close.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -227,8 +248,19 @@ max-height:20px;
     </widget>
    </item>
   </layout>
+  <action name="action_add">
+   <property name="icon">
+    <iconset resource="icons/ViewWindowRes.qrc">
+     <normaloff>:/check.png</normaloff>:/check.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;add</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons/ViewWindowRes.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btnCancel</sender>

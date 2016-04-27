@@ -5,7 +5,6 @@
 #include <QSqlQueryModel>
 #include "Database.h"
 #include "NewDockWidget.h"
-#include "ViewForm.h"
 /*!
 \file
 \brief
@@ -14,7 +13,7 @@
 SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
-	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(slotCreateQuery()));
+//	QObject::connect(ui->btnSearch, SIGNAL(clicked()), this, SLOT(slotCreateQuery()));
 	
 }
 
@@ -69,5 +68,5 @@ void SearchForm::slotCreateQuery()
 
 void SearchForm::slotClickSearch()
 {
-	ui->btnSearch->clicked();
+	//ui->btnSearch->clicked();
 }

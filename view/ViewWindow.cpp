@@ -1,4 +1,4 @@
-﻿#include "ViewForm.h"
+﻿#include "ViewWindow.h"
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
@@ -11,7 +11,7 @@
 #include <QSortFilterProxyModel>
 
 
-//ViewForm::ViewForm(QWidget *parent) :QWidget(parent), ui(new Ui::ViewForm)	
+//ViewWindow::ViewWindow(QWidget *parent) :QWidget(parent), ui(new Ui::ViewWindow)	
 //{
 //	ui->setupUi(this);
 //	NewDockWidget *ndw = new NewDockWidget();
@@ -20,21 +20,21 @@
 //	
 //}
 
-ViewForm::ViewForm(int session_id, QWidget * parent): ui(new Ui::ViewForm) // ??
+ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
 	m_session_id = session_id;
 	ui->setupUi(this);
 	NewDockWidget *ndw = new NewDockWidget(m_session_id);
-	QObject::connect(ui->btnNew, SIGNAL(clicked()), ndw, SLOT(slotShowNDW()));
-	QObject::connect(ui->btnDelete, SIGNAL(clicked()), this, SLOT(slotDeleteMessage()));
+	QObject::connect(ui->action_New, SIGNAL(triggered()), ndw, SLOT(slotShowNDW()));
+	QObject::connect(ui->action_Delete, SIGNAL(triggered()), this, SLOT(slotDeleteMessage()));
 }
 
-ViewForm::~ViewForm()
+ViewWindow::~ViewWindow()
 {
 	delete ui;
 }
 
-void ViewForm::setupModel(QString& whereQryPart, const QStringList &headers)
+void ViewWindow::setupModel(QString& whereQryPart, const QStringList &headers)
 {
 	QSqlDatabase db = Database::database();
 	model = new QSqlQueryModel(this);
@@ -52,7 +52,7 @@ void ViewForm::setupModel(QString& whereQryPart, const QStringList &headers)
 
 }
 
-void ViewForm::slotRefresh(QString query)
+void ViewWindow::slotRefresh(QString query)
 {
 	this->setupModel(query, QStringList() << Scale::coded("id")
 		<< Scale::coded("Название сайта")
@@ -64,7 +64,7 @@ void ViewForm::slotRefresh(QString query)
 }
 
 
-void ViewForm::createTable()
+void ViewWindow::createTable()
 {
 	QSortFilterProxyModel *filterModel = new QSortFilterProxyModel();
 	filterModel->setSourceModel(model);
@@ -78,7 +78,7 @@ void ViewForm::createTable()
 
 }
 
-void ViewForm::slotDeleteMessage()
+void ViewWindow::slotDeleteMessage()
 {
 	int  deleteMsgBox = QMessageBox::information(this,
 		Scale::coded("Удалить выбранную запись?"), Scale::coded("Выбранная запись будет удалена из базы"),
@@ -89,7 +89,7 @@ void ViewForm::slotDeleteMessage()
 	}
 }
 
-void ViewForm::deleteRecord()
+void ViewWindow::deleteRecord()
 {
 	QModelIndex cur = ui->tableView->currentIndex();
 	int id = cur.sibling(cur.row(), 0).data().toInt();

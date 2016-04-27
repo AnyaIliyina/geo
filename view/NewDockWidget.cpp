@@ -9,17 +9,17 @@
 #include <QSqlQueryModel>
 #include "Format.h"
 
-NewDockWidget::NewDockWidget(QDockWidget * ptr)
+NewDockWidget::NewDockWidget(QWidget * ptr)
 {
-	ui = new Ui::NewDockWidget();
+	ui = new Ui::NewRecord();
 	ui->setupUi(this);
 	
 	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(slotCheck()));
 }
 
-NewDockWidget::NewDockWidget(int session_id, QDockWidget * ptr)
+NewDockWidget::NewDockWidget(int session_id, QWidget * ptr)
 {
-	ui = new Ui::NewDockWidget();
+	ui = new Ui::NewRecord();
 	ui->setupUi(this);
 	m_session_id = session_id;
 	QStringList listSites = Site::getSiteNames();

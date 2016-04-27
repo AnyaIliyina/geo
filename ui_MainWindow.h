@@ -18,7 +18,6 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -33,11 +32,8 @@ public:
     QWidget *widget;
     QMenuBar *menubar;
     QMenu *menu;
-    QMenu *menuView;
     QMenu *menuHelp;
     QStatusBar *statusbar;
-    QToolBar *toolBar;
-    QToolBar *toolBar_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -45,40 +41,38 @@ public:
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1050, 560);
         MainWindow->setMinimumSize(QSize(1050, 430));
+        QFont font;
+        font.setPointSize(9);
+        MainWindow->setFont(font);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QStringLiteral("actionExit"));
+        actionExit->setFont(font);
         actionUser = new QAction(MainWindow);
         actionUser->setObjectName(QStringLiteral("actionUser"));
+        actionUser->setFont(font);
         actionNewSource = new QAction(MainWindow);
         actionNewSource->setObjectName(QStringLiteral("actionNewSource"));
+        actionNewSource->setFont(font);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         widget = new QWidget(centralwidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, 10, 321, 501));
+        widget->setGeometry(QRect(340, 0, 711, 511));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1050, 21));
         menu = new QMenu(menubar);
         menu->setObjectName(QStringLiteral("menu"));
-        menuView = new QMenu(menubar);
-        menuView->setObjectName(QStringLiteral("menuView"));
+        menu->setGeometry(QRect(0, 0, 186, 116));
         menuHelp = new QMenu(menubar);
         menuHelp->setObjectName(QStringLiteral("menuHelp"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
         MainWindow->setStatusBar(statusbar);
-        toolBar = new QToolBar(MainWindow);
-        toolBar->setObjectName(QStringLiteral("toolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
-        toolBar_2 = new QToolBar(MainWindow);
-        toolBar_2->setObjectName(QStringLiteral("toolBar_2"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar_2);
 
         menubar->addAction(menu->menuAction());
-        menubar->addAction(menuView->menuAction());
         menubar->addAction(menuHelp->menuAction());
         menu->addAction(actionNewSource);
         menu->addAction(actionUser);
@@ -97,10 +91,7 @@ public:
         actionUser->setText(QApplication::translate("MainWindow", "&\320\241\320\274\320\265\320\275\320\270\321\202\321\214 \320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\321\202\320\265\320\273\321\217", 0));
         actionNewSource->setText(QApplication::translate("MainWindow", "\320\235\320\276\320\262\321\213\320\271 \320\270\321\201\321\202\320\276\321\207\320\275\320\270\320\272", 0));
         menu->setTitle(QApplication::translate("MainWindow", "&\320\244\320\260\320\271\320\273", 0));
-        menuView->setTitle(QApplication::translate("MainWindow", "&\320\222\320\270\320\264", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "&\320\241\320\277\321\200\320\260\320\262\320\272\320\260", 0));
-        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
-        toolBar_2->setWindowTitle(QApplication::translate("MainWindow", "toolBar_2", 0));
     } // retranslateUi
 
 };
