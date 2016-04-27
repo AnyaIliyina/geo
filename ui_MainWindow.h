@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -39,8 +39,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1050, 560);
-        MainWindow->setMinimumSize(QSize(1050, 430));
+        MainWindow->resize(1040, 560);
+        MainWindow->setMinimumSize(QSize(1040, 430));
         QFont font;
         font.setPointSize(9);
         MainWindow->setFont(font);
@@ -57,11 +57,11 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         widget = new QWidget(centralwidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(340, 0, 711, 511));
+        widget->setGeometry(QRect(340, 0, 690, 511));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1050, 21));
+        menubar->setGeometry(QRect(0, 0, 1000, 21));
         menu = new QMenu(menubar);
         menu->setObjectName(QStringLiteral("menu"));
         menu->setGeometry(QRect(0, 0, 186, 116));

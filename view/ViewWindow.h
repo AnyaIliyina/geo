@@ -3,6 +3,7 @@
 #include <qapplication.h>
 #include <QMainWindow>
 #include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 /*!
 *  \brief  Вывод результатов поиска и работа с ними
@@ -16,11 +17,6 @@ public:
 	/*!
 	Конструктор
 	*/
-	//explicit ViewWindow(QWidget *parent = 0);
-
-	/*!
-	Конструктор
-	*/
 	explicit ViewWindow(int session_id, QWidget *parent = 0);
 
 	/*!
@@ -29,23 +25,26 @@ public:
 	~ViewWindow();
 
 	/*!
-	
+		*/
+	//void setupModel(const QStringList &headers);
+		
+	/*!
 	\param QString whereQryPart- строка запроса к базе
 	*/
-	void setupModel(QString& whereQryPart, const QStringList &headers );
+	void setupModel( const QStringList &headers, QString whereQryPart = "" );
 private:
 	/*!
 	
 	*/
 	void createTable();
+	/*!
 
+	*/
+	void Refresh();
 	Ui::ViewWindow *ui;
-
-	QSqlQueryModel *model;
-	
-
+	//SqlRelationalTableModel *model;
 	int m_session_id = -1;
-
+	QSqlQueryModel *model; 
 	/*!
 	Удаление выделенной записи
 	*/
@@ -55,7 +54,7 @@ private slots:
 	Слот для вызова setupModel
 	\param QString query - строка запроса
 	*/
-	void slotRefresh(QString query);
+	//void slotRefresh(QString query);
 	/*!
 	Слот вывода сообщения об удалении записи
 	*/
