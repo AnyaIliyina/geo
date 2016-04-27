@@ -1,0 +1,8 @@
+﻿  UIC view/MainWindow.ui
+  main.cpp
+core\main.cpp(17): warning C4189: w: локальная переменная инициализирована, но не использована
+  moc_MainWindow.cpp
+  MainWindow.cpp
+view\MainWindow.cpp(17): warning C4100: parent: неиспользованный формальный параметр
+  Создание кода...
+  geo.vcxproj -> C:\Users\OlyaMolya\Desktop\Диплом\geo\debug\geo.exe
