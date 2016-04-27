@@ -148,26 +148,6 @@ QComboBox:editable{
 background-color: rgb(255, 255, 255);
 border-radius:4}</string>
        </property>
-       <item>
-        <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Shapefile</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Jpg</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Png</string>
-        </property>
-       </item>
       </widget>
      </item>
     </layout>

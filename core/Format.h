@@ -58,6 +58,13 @@ public:
 	\return true - если информация записана
 	*/
 	bool insertIntoDatabase();
+
+	/*!
+	Записывает в базу данных список форматов
+	\param QStringList formatNames - список названий форматов
+	\return true - форматы записаны в БД
+	\return false - возникли ошибки*/
+	static bool insert(QStringList formatNames);
 	
 	/*!
 	Создает таблицу "formats" в базе.

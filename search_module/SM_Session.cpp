@@ -62,19 +62,8 @@ void SM_Session::search()
 	delete parserGL;
 	
 	// вывести сообщение о результатах поиска в зависимости от search_result
-	/*switch (search_result)
-	{
-	case 0:
-		emit setStatus(urlGl + State::coded(" проверен модулем поиска."));
-		break;
-	case -1:
-		emit setStatus(urlGl + State::coded(" - ошибка при проверке."));
-		break;
-	case -2:
-		emit setStatus(urlGl + State::coded(" недоступен."));
-		break;
-	}*/
-	
+	if((search_result==0)|(siteIdGL==0))
+		emit setStatus(State::coded("Модуль поиска: все сайты проверены."));
 }
 
 
