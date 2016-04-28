@@ -8,14 +8,7 @@
 #include <QComboBox>
 #include <QSqlQueryModel>
 #include "Format.h"
-
-NewDockWidget::NewDockWidget(QWidget * ptr)
-{
-	ui = new Ui::NewRecord();
-	ui->setupUi(this);
-	
-	connect(ui->btnCreate, SIGNAL(clicked()), SLOT(slotCheck()));
-}
+#include "ViewWindow.h"
 
 NewDockWidget::NewDockWidget(int session_id, QWidget * ptr)
 {
@@ -47,6 +40,7 @@ void NewDockWidget::addNewRecord()
 		if (okMsgBox == 0)
 		{
 			ui->btnCancel->click();
+			emit signalAdded();
 		}
 	}
 	else

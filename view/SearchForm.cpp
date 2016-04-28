@@ -16,7 +16,7 @@ SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
 	ui->comboBox->addItems(Format::getFormatNames());
-	QObject::connect(ui->textGeo, SIGNAL(QLineEdit::textEdited()), this, SLOT(slotCreateQuery()));
+	//QObject::connect(ui->textGeo, SIGNAL(QLineEdit::textEdited()), this, SLOT(slotCreateQuery()));
 	
 }
 
@@ -64,11 +64,5 @@ void SearchForm::slotCreateQuery()
 	QString whereQryPart = ParseWhereArgs(whereArgs);
 	qDebug() << whereQryPart;
 	emit signalQueryCreated(whereQryPart);
-	//ViewForm::setupModel(whereQryPart);
-
 }
 
-void SearchForm::slotClickSearch()
-{
-	//ui->btnSearch->clicked();
-}

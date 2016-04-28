@@ -24,12 +24,6 @@ public:
 	Конструктор
 	\param QDockWidget *ptr - указатель на родительский виджет
 	*/
-	explicit NewDockWidget(QWidget *ptr = 0);
-
-	/*!
-	Конструктор
-	\param QDockWidget *ptr - указатель на родительский виджет
-	*/
 	explicit NewDockWidget(int session_id, QWidget *ptr = 0);
 	
 	/*!
@@ -71,5 +65,6 @@ public slots:
 	Показывает виджет
 	*/
 	void slotShowNDW();
-	
+signals:
+	void signalAdded();
 };

@@ -3,24 +3,37 @@
 #include "Database.h"
 #include <QSqlRecord>
 #include <QSqlTableModel>
+#include <QSqlError>
 
 TableModel::TableModel(QObject *parent) :QAbstractTableModel(parent)
 {
 	QSqlDatabase db = Database::database();
-	QSqlTableModel model(nullptr, db);
-	model.setTable("geodata_records");
-	/*const QString filter = QString("record_id == %1").arg(id);
-	model.setFilter(filter);*/
-	model.select();
-	for (int i = 0; i < model.rowCount(); i++)
+	QSqlQuery q = QSqlQuery(db);
+	q.setForwardOnly(true);
+	q.prepare("SELECT geodata_records.record_id, geodata_records.place_name, sites.site_name, formats.format_name, scales.description, \
+		states.state_name, sessions.date, usertypes.type_name, geodata_records.comment \
+		FROM sites, sessions, users, formats, usertypes, scales, states, geodata_records\
+		WHERE geodata_records.site_id = sites.site_id AND states.state_id = geodata_records.state_id AND formats.format_id = geodata_records.format_id\
+		AND usertypes.type_id = users.type_id AND users.user_id = sessions.user_id AND geodata_records.session_id = sessions.session_id");
+	if (!q.exec())
+	{
+		qDebug() << q.lastError().text();
+		db.close();
+	}
+	while (q.next())
 	{
 		int row = m_geo.count();
 		beginInsertRows(QModelIndex(), row, row);
 		GeoData g;
-
-		g[PLACE_NAME] = model.record(i).value("place_name").toString();
-		g[FORMAT_NAME] = model.record(0).value("format_id").toInt();
-		
+		g[ID] = q.value(0).toInt();
+		g[PLACE_NAME] = q.value(1).toString();
+		g[SITE_NAME] = q.value(2).toString();
+		g[FORMAT_NAME] = q.value(3).toString();
+		g[DESCRIPTION] = q.value(4).toString();
+		g[STATE_NAME] = q.value(5).toString();
+		g[DATE] = q.value(6).toString();
+		g[USER_TYPE] = q.value(7).toString();
+		g[COMMENT] = q.value(8).toString();
 		m_geo << g;
 		endInsertRows();
 	}

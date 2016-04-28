@@ -24,27 +24,21 @@ public:
 	Деструктор
 	*/
 	~ViewWindow();
-
-	/*!
-		*/
-	//void setupModel(const QStringList &headers);
 		
 	/*!
 	\param QString whereQryPart- строка запроса к базе
 	*/
-	void setupModel( const QStringList &headers, QString whereQryPart = "" );
+	 void setupModel();
+
 private:
-	TableModel* model;
+	 TableModel* model;
 	/*!
 	
 	*/
-	void createTable();
-	/*!
-
-	*/
-	void Refresh();
+	 void createTable();
+	
 	Ui::ViewWindow *ui;
-	//SqlRelationalTableModel *model;
+	
 	int m_session_id = -1;
 	/*!
 	Удаление выделенной записи
@@ -52,14 +46,14 @@ private:
 	void deleteRecord();
 private slots:
 	/*!
-	Слот для вызова setupModel
-	\param QString query - строка запроса
-	*/
-	//void slotRefresh(QString query);
-	/*!
 	Слот вывода сообщения об удалении записи
 	*/
 	void slotDeleteMessage();
+
+	/*!
+
+	*/
+	 void slotRefresh();
 signals:
 	/*!
 	Сигнал успешного удаления

@@ -41,9 +41,4 @@ public slots:
 	Слот для создания строки запроса
 	*/
 	void slotCreateQuery();
-	/*!
-	Слот нажатия кнопки поиска
-	*/
-	void slotClickSearch();
-
 };
