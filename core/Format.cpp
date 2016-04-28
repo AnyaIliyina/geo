@@ -63,6 +63,25 @@ bool Format::insertIntoDatabase()
 	return true;
 }
 
+bool Format::insert(QStringList formatNames)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	for (int i = 0; i < formatNames.count(); i++)
+	{
+		query.prepare("INSERT INTO formats(format_name)\
+	VALUES (?)");
+		query.addBindValue(formatNames.at(i));
+		if (!query.exec()) {
+			qDebug() << "Format::insert(QStringList formatNames): error inserting into Table formats";
+			qDebug() << query.lastError().text();
+			db.close();
+			return false;
+		}
+	}
+	db.close();
+}
+
 bool Format::createTable()
 {
 	QSqlDatabase db = Database::database();
@@ -84,10 +103,12 @@ bool Format::createTable()
 
 bool Format::completeTable()
 {
-	Format *f = new Format("Shapefile");
-	bool succeeded = f->insertIntoDatabase();
-	delete f;
-	return succeeded;
+	QStringList formatNames;
+	formatNames << ".shp"
+				<< ".osm.pbf"
+				<< ".osm.bz2"
+				<< ".png";
+	return insert(formatNames);
 }
 
 QStringList Format::getFormatNames()

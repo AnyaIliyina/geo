@@ -4,6 +4,7 @@
 #include <QTableWidget>
 #include <QSqlQueryModel>
 #include "Database.h"
+#include "Format.h"
 #include "NewDockWidget.h"
 #include <QLineEdit>
 /*!
@@ -14,6 +15,7 @@
 SearchForm::SearchForm(QDockWidget *parent) :ui(new Ui::SearchForm)
 {
 	ui->setupUi(this);
+	ui->comboBox->addItems(Format::getFormatNames());
 	QObject::connect(ui->textGeo, SIGNAL(QLineEdit::textEdited()), this, SLOT(slotCreateQuery()));
 	
 }
