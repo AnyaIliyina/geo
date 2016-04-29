@@ -46,6 +46,12 @@ bool Geodata_record::required_fields_filled()
 		return false;
 
 	return true;
+
+}
+
+void Geodata_record::setRecordId(int record_id)
+{
+	m_record_id = record_id;
 }
 
 void Geodata_record::setSiteId(int site_id)
@@ -127,7 +133,7 @@ int Geodata_record::record_id()
 }
 
 
-bool Geodata_record::insertIntoDatabase()
+int Geodata_record::insertIntoDatabase()
 {
 	if (!required_fields_filled())
 	{
@@ -150,10 +156,40 @@ bool Geodata_record::insertIntoDatabase()
 		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
 		qDebug() << query.lastError().text();
 		db.close();
-		return false;
+		return -1;
+	}
+	query.next();
+	db.close();
+
+	return query.value(0).toInt();
+}
+
+void Geodata_record::updateRecord()
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	query.prepare("UPDATE geodata_records\
+					SET\
+					site_id =:site_id, session_id=:session_id, format_id=:format_id,\
+					scale_id=:scale_id, state_id=:state_id, place_name=:place_name,\
+					comment=:comment, url=:url WHERE record_id=:record_id");
+	query.bindValue(":site_id", m_site_id);
+	query.bindValue(":session_id", m_session_id);
+	query.bindValue(":format_id", m_format_id);
+	query.bindValue(":scale_id", m_scale_id);
+	query.bindValue(":state_id", m_state_id);
+	query.bindValue(":place_name", m_place_name);
+	query.bindValue(":comment", m_comment);
+	query.bindValue(":url", m_url);
+	query.bindValue(":record_id", m_record_id);
+	if (!query.exec()) {
+		qDebug() << "Geodata_record::updateRecord():  error update geodata_records";
+		qDebug() << query.lastError().text();
+		db.close();
+	
 	}
 	db.close();
-	return true;
+
 }
 
 bool Geodata_record::createTable()

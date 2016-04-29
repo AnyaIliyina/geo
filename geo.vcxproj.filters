@@ -47,22 +47,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\Base_item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Combo_delegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="database\Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\Format.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\Geodata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\Geodata_record.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Item_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\Item_model.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="view\LoginDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="view\MainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="view\NewDockWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="view\NewSource.cpp">
@@ -115,22 +127,34 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\Base_item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="core\Combo_delegate.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <ClInclude Include="database\Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <CustomBuild Include="core\Format.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="core\Geodata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\Geodata_record.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\Item_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="core\Item_model.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="view\LoginDialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\MainWindow.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="view\NewDockWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\NewSource.h">
@@ -169,6 +193,9 @@
     <CustomBuild Include="core\TableModel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="core\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="core\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -180,10 +207,22 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="debug\moc_Combo_delegate.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Combo_delegate.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="debug\moc_Format.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Format.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_Item_model.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_Item_model.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_LoginDialog.cpp">
@@ -196,12 +235,6 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_MainWindow.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="debug\moc_NewDockWidget.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="release\moc_NewDockWidget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_NewSource.cpp">
@@ -294,9 +327,6 @@
     <ClInclude Include="ui_MainWindow.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui_NewDockWidget.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="ui_NewSource.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -312,9 +342,6 @@
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\MainWindow.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="view\NewDockWidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="view\NewSource.ui">

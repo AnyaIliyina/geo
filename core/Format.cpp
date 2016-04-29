@@ -15,9 +15,24 @@ const QString& Format::format_name() const
 	return m_format_name;
 }
 
-int Format::format_id() const 
+int Format::format_id(QString format_name) 
 {
-	return m_format_id;
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT format_id FROM formats WHERE format_name=\'" + format_name + "\'"))
+	{
+		qDebug() << "Zapros ne proshel";
+		qDebug() << query.lastError().text();
+		return -1;
+	}
+	else
+	{
+		if (query.next())
+		{
+			int id = query.value(0).toInt();
+			return id;
+		}
+	}
 }
 
 

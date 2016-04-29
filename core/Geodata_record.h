@@ -63,6 +63,10 @@ public:
 	\return false - обязательные поля не инициализированы */
 	bool required_fields_filled();
 
+	/*! Устанавливает значение id записи
+	\param int record_id - новый id записи*/
+	void setRecordId(int record_id);
+
 	/*! Устанавливает значение id сайта
 	\param int site_id - новый id сайта*/
 	void setSiteId(int site_id);
@@ -100,8 +104,8 @@ public:
 	\param const QString& commant - комментарий;
 	*/
 	Geodata_record(int site_id, int format_id, const QString& place_name,
-		int session_id=1, int scale_id=1, int state_id=1, const QString& url="",
-		const QString& comment = "");
+		int session_id=1, int scale_id=1, int state_id=1, const QString& url=" ",
+		const QString& comment =" ");
 		
 	~Geodata_record();
 
@@ -118,7 +122,12 @@ public:
 	Записывает геопространственную информацию в базу данных.
 	\return true - если запись в БД успешно добавлена
 	*/
-	bool insertIntoDatabase();
+	int insertIntoDatabase();
+
+	/*!
+	
+	*/
+	void updateRecord();
 	
 	/*!
 	Создает таблицу "geodata_records" в базе данных.

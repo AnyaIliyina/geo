@@ -5,7 +5,6 @@
 #include <QSqlQueryModel>
 #include "Database.h"
 #include "Format.h"
-#include "NewDockWidget.h"
 #include <QLineEdit>
 /*!
 \file

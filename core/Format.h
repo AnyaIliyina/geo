@@ -37,7 +37,7 @@ public:
 	Возвращает id формата
 	\return int format_id - id формата
 	*/
-	int format_id() const;
+	static int format_id(QString format_name);
 	
 	/*!
 	Создает формат с заданным названием
