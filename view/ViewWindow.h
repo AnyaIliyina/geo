@@ -72,8 +72,8 @@ private slots:
 	 /*
 	 
 	 */
-    void slotButtonChanged(const QItemSelection &, const QItemSelection &);
-	void slotButtonChanged();
+    void slotEnableButtons(const QItemSelection &, const QItemSelection &);
+	void slotEnableButtons();
 signals:
 
 

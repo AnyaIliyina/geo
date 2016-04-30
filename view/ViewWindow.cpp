@@ -24,8 +24,8 @@ ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow)
 	QObject::connect(ui->action_Edit, SIGNAL(triggered()), this, SLOT(slotEdit()));
 	QObject::connect(ui->action_Yes, SIGNAL(triggered()), this, SLOT(slotSave()));
 	QObject::connect(ui->action_No, SIGNAL(triggered()), this, SLOT(slotCancel()));
-	QObject::connect(ui->tableView->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)) ,this, SLOT(slotButtonChanged(const QItemSelection &, const QItemSelection &)) );
-	QObject::connect(this, SIGNAL(signalChangeEditMode()), this, SLOT(slotButtonChanged()));
+	QObject::connect(ui->tableView->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)) ,this, SLOT(slotEnableButtons(const QItemSelection &, const QItemSelection &)) );
+	QObject::connect(this, SIGNAL(signalChangeEditMode()), this, SLOT(slotEnableButtons()));
 }
 
 ViewWindow::~ViewWindow()
@@ -46,7 +46,7 @@ void ViewWindow::slotRefresh()
 	setupModel();
 }
 
-void ViewWindow::slotButtonChanged()
+void ViewWindow::slotEnableButtons()
 {
 	qDebug() << "SLOOOOOOOT";
 	if (m_editMode)
@@ -80,7 +80,7 @@ void ViewWindow::slotButtonChanged()
 	}
 }
 
-void ViewWindow::slotButtonChanged(const QItemSelection &, const QItemSelection &)
+void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection &)
 {
 	qDebug() << "SLOOOOOOOT";
 	if (m_editMode)
@@ -139,7 +139,9 @@ void ViewWindow::slotAdd()
 	QModelIndex index;
 	model->insertRows(0, 1, index);
 	auto rowCount = model->rowCount(index);
-	auto child = model->index(rowCount - 1, 0, index);
+	qDebug() << rowCount;
+	auto child = model->index(rowCount - 1, 0, index); 
+	qDebug() << child;
 	ui->tableView->selectionModel()->setCurrentIndex(child, QItemSelectionModel::SelectCurrent);
 	ui->tableView->edit(child);
 }

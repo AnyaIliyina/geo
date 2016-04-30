@@ -44,37 +44,14 @@ MainWindow::~MainWindow()
 */
 void MainWindow::slotConfigure()
 {
-	//ViewForm *vf = new ViewForm(m_session_id);
-	//setCentralWidget(vf);
+	
 	ViewWindow *vw = new ViewWindow(m_session_id);
 	QDockWidget *viewDockWidget = new QDockWidget("Список записей");
 	viewDockWidget->setWidget(vw);
 	viewDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
-	
-	addDockWidget(Qt::RightDockWidgetArea, viewDockWidget);
-	setCentralWidget(NULL);
+	setCentralWidget(viewDockWidget);
 	sf=new SearchForm();
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
-	
-	//connect(sf, SIGNAL(signalQueryCreated(QString)), vw, SLOT(slotRefresh(QString)));
-	//connect(vw, SIGNAL(signalDeleted()), sf, SLOT(slotClickSearch()));
-	/*QTextEdit *txt = new QTextEdit();
-	txt->setText("central central");
-	setCentralWidget(txt);
-	delete sv;
-	sv = new SearchForm();
-	addDockWidget(Qt::LeftDockWidgetArea, sv);
-	delete svu;
-	svu = new SearchFormUser();
-	addDockWidget(Qt::LeftDockWidgetArea, svu);
-	if (type!= 3)
-	{
-		svu->hide();
-	}
-	else
-	{
-		sv->hide();
-	}*/
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
 	showMW();
