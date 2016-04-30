@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ViewWindow_t {
-    QByteArrayData data[5];
-    char stringdata0[56];
+    QByteArrayData data[11];
+    char stringdata0[126];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,14 +30,22 @@ struct qt_meta_stringdata_ViewWindow_t {
 static const qt_meta_stringdata_ViewWindow_t qt_meta_stringdata_ViewWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "ViewWindow"
-QT_MOC_LITERAL(1, 11, 13), // "signalDeleted"
-QT_MOC_LITERAL(2, 25, 0), // ""
-QT_MOC_LITERAL(3, 26, 17), // "slotDeleteMessage"
-QT_MOC_LITERAL(4, 44, 11) // "slotRefresh"
+QT_MOC_LITERAL(1, 11, 20), // "signalChangeEditMode"
+QT_MOC_LITERAL(2, 32, 0), // ""
+QT_MOC_LITERAL(3, 33, 7), // "slotAdd"
+QT_MOC_LITERAL(4, 41, 10), // "slotDelete"
+QT_MOC_LITERAL(5, 52, 8), // "slotEdit"
+QT_MOC_LITERAL(6, 61, 8), // "slotSave"
+QT_MOC_LITERAL(7, 70, 10), // "slotCancel"
+QT_MOC_LITERAL(8, 81, 11), // "slotRefresh"
+QT_MOC_LITERAL(9, 93, 17), // "slotEnableButtons"
+QT_MOC_LITERAL(10, 111, 14) // "QItemSelection"
 
     },
-    "ViewWindow\0signalDeleted\0\0slotDeleteMessage\0"
-    "slotRefresh"
+    "ViewWindow\0signalChangeEditMode\0\0"
+    "slotAdd\0slotDelete\0slotEdit\0slotSave\0"
+    "slotCancel\0slotRefresh\0slotEnableButtons\0"
+    "QItemSelection"
 };
 #undef QT_MOC_LITERAL
 
@@ -47,7 +55,7 @@ static const uint qt_meta_data_ViewWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -55,17 +63,29 @@ static const uint qt_meta_data_ViewWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
+       1,    0,   59,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    0,   63,    2, 0x08 /* Private */,
+       7,    0,   64,    2, 0x08 /* Private */,
+       8,    0,   65,    2, 0x08 /* Private */,
+       9,    2,   66,    2, 0x08 /* Private */,
+       9,    0,   71,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 10, 0x80000000 | 10,    2,    2,
     QMetaType::Void,
 
        0        // eod
@@ -77,9 +97,15 @@ void ViewWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         ViewWindow *_t = static_cast<ViewWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->signalDeleted(); break;
-        case 1: _t->slotDeleteMessage(); break;
-        case 2: _t->slotRefresh(); break;
+        case 0: _t->signalChangeEditMode(); break;
+        case 1: _t->slotAdd(); break;
+        case 2: _t->slotDelete(); break;
+        case 3: _t->slotEdit(); break;
+        case 4: _t->slotSave(); break;
+        case 5: _t->slotCancel(); break;
+        case 6: _t->slotRefresh(); break;
+        case 7: _t->slotEnableButtons((*reinterpret_cast< const QItemSelection(*)>(_a[1])),(*reinterpret_cast< const QItemSelection(*)>(_a[2]))); break;
+        case 8: _t->slotEnableButtons(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -87,12 +113,11 @@ void ViewWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         void **func = reinterpret_cast<void **>(_a[1]);
         {
             typedef void (ViewWindow::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ViewWindow::signalDeleted)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&ViewWindow::signalChangeEditMode)) {
                 *result = 0;
             }
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject ViewWindow::staticMetaObject = {
@@ -120,19 +145,19 @@ int ViewWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 9;
     }
     return _id;
 }
 
 // SIGNAL 0
-void ViewWindow::signalDeleted()
+void ViewWindow::signalChangeEditMode()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }

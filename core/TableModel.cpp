@@ -10,11 +10,15 @@ TableModel::TableModel(QObject *parent) :QAbstractTableModel(parent)
 	QSqlDatabase db = Database::database();
 	QSqlQuery q = QSqlQuery(db);
 	q.setForwardOnly(true);
-	q.prepare("SELECT geodata_records.record_id, geodata_records.place_name, sites.site_name, formats.format_name, scales.description, \
-		states.state_name, sessions.date, usertypes.type_name, geodata_records.comment \
-		FROM sites, sessions, users, formats, usertypes, scales, states, geodata_records\
-		WHERE geodata_records.site_id = sites.site_id AND states.state_id = geodata_records.state_id AND formats.format_id = geodata_records.format_id\
-		AND usertypes.type_id = users.type_id AND users.user_id = sessions.user_id AND geodata_records.session_id = sessions.session_id");
+	q.prepare("SELECT record_id, place_name, site_name,  format_name, description, state_name,  date, type_name, geodata_records.url, geodata_records.comment"
+		"FROM geodata_records"
+		"JOIN sites ON geodata_records.site_id=sites.site_id"
+		"JOIN formats ON geodata_records.format_id=formats.format_id"
+		"JOIN scales ON scales.scale_id=geodata_records.scale_id"
+		"JOIN states ON states.state_id=geodata_records.state_id"
+		"JOIN sessions ON sessions.session_id=geodata_records.session_id"
+		"JOIN users ON sessions.user_id=users.user_id"
+		"JOIN usertypes ON users.type_id=usertypes.type_id");
 	if (!q.exec())
 	{
 		qDebug() << q.lastError().text();

@@ -5,6 +5,8 @@
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include "TableModel.h"
+#include "Item_model.h"
+#include "Geodata.h"
 
 /*!
 *  \brief  Вывод результатов поиска и работа с ними
@@ -31,7 +33,7 @@ public:
 	 void setupModel();
 
 private:
-	 TableModel* model;
+	ItemModel* model;
 	/*!
 	
 	*/
@@ -40,23 +42,40 @@ private:
 	Ui::ViewWindow *ui;
 	
 	int m_session_id = -1;
-	/*!
-	Удаление выделенной записи
-	*/
-	void deleteRecord();
+	bool m_editMode = false;
+	
 private slots:
 	/*!
-	Слот вывода сообщения об удалении записи
+	Слот добавления
 	*/
-	void slotDeleteMessage();
-
+	void slotAdd();
+	/*!
+	Слот удаления
+	*/
+	void slotDelete();
+	/*
+	 Слот редактирования
+	 */
+	 void slotEdit();
+	 /*!
+	 Слот применения изменений
+	 */
+	 void slotSave();
+	 /*!
+	 Слот отмены изменений
+	 */
+	 void slotCancel();
 	/*!
 
 	*/
 	 void slotRefresh();
+	 /*
+	 
+	 */
+    void slotEnableButtons(const QItemSelection &, const QItemSelection &);
+	void slotEnableButtons();
 signals:
-	/*!
-	Сигнал успешного удаления
-	*/
-	void signalDeleted();
+
+
+	void signalChangeEditMode();
 };
