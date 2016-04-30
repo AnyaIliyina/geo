@@ -106,9 +106,9 @@ bool Geodata::setData(int column, const QVariant& value, int role) {
 		if (column == 7)
 			m_user_type= value.toString();
 		if (column == 8)
-			m_url == value.toString();
+			m_url = value.toString();
 		if (column == 9)
-			m_comment== value.toString();
+			m_comment= value.toString();
 		}
 	
 	return true;
@@ -172,18 +172,22 @@ bool Geodata::hasChildren() const {
 bool Geodata::save() {
 	auto db = QSqlDatabase::database();
 	QSqlQuery query(db);
+	if (m_comment == NULL)
+		m_comment = " ";
+	if (m_url == NULL)
+		m_url = " ";
 	if (m_id == 0) {
 		//Создание
 		getSiteId();
 		getFormatId();
-		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name, 1, 1, 1, m_url, m_comment);
+		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  1, 1, 1, m_url, m_comment );
 		m_id = ngdr->insertIntoDatabase();
 	}
 	else {
 		// Изменение 
 		getSiteId();
 		getFormatId();
-		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, 1, 1, 2, m_url, m_comment);
+		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, 1, 1, 2,m_url, m_comment );
 		ngdr->setRecordId(m_id);
 		ngdr->updateRecord();
 	}
@@ -218,11 +222,11 @@ bool Geodata::cancel() {
 	m_place_name=query.value(1).toString();
 	m_site_name= query.value(2).toString();
 	m_format_name = query.value(3).toString();
-	m_description = query.value(4).toString();;
-	m_state_name = query.value(5).toString();;
-	m_date= query.value(6).toString();;
-	m_user_type = query.value(7).toString();;
-	m_url = query.value(8).toString();;
+	m_description = query.value(4).toString();
+	m_state_name = query.value(5).toString();
+	m_date= query.value(6).toString();
+	m_user_type = query.value(7).toString();
+	m_url = query.value(8).toString();
 	m_comment = query.value(9).toString();
 
 	return true;
@@ -257,14 +261,15 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 		geo->m_place_name = query.value(1).toString(); // 
 		geo->m_site_name = query.value(2).toString(); // 
 		geo->m_format_name = query.value(3).toString();
-		geo->m_description = query.value(4).toString();;
-		geo->m_state_name = query.value(5).toString();;
+		geo->m_description = query.value(4).toString();
+		geo->m_state_name = query.value(5).toString();
 		geo->m_date =QDateTime::fromTime_t(query.value(6).toInt()).toString("dd.MM.yy");
-		geo->m_user_type = query.value(7).toString();;
-		geo->m_url = query.value(8).toString();;
+		geo->m_user_type = query.value(7).toString();
+		geo->m_url = query.value(8).toString();
 		geo->m_comment = query.value(9).toString();
 
 		list << geo;
+
 	}
 
 	return list;

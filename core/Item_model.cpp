@@ -10,7 +10,7 @@
 ItemModel::~ItemModel() {
 	if (m_rootItem != NULL) {
 		delete m_rootItem;
-		m_rootItem == NULL;
+		m_rootItem = NULL;
 	}
 	m_editedItem = NULL;
 };
@@ -39,7 +39,7 @@ int ItemModel::columnCount(const QModelIndex& parent) const {
 		parentItem = m_rootItem;
 	else
 		parentItem = static_cast<BaseItem*>(parent.internalPointer());
-
+	
 	return parentItem->columnCount();
 };
 
@@ -96,8 +96,11 @@ QVariant ItemModel::data(const QModelIndex& index, int role) const {
 	BaseItem* item = static_cast<BaseItem*>(index.internalPointer());
 
 	if (role == Qt::BackgroundRole && item != m_editedItem)
+	{
+		
 		return QVariant();
-
+	}
+	
 	return item->data(index.column(), role);
 };
 
@@ -148,7 +151,7 @@ bool ItemModel::insertRows(int row, int count, const QModelIndex& parent) {
 	BaseItem* child = ItemFactory::createNew(m_type);
 	parentItem->appendChild(child);
 	m_editedItem = child;
-
+	
 	this->beginInsertRows(parent, parentItem->rowCount() - 1, parentItem->rowCount() - 1);
 	this->endInsertRows();
 
@@ -200,9 +203,12 @@ bool ItemModel::removeRows(int row, int count, const QModelIndex& index) {
 
 void ItemModel::startEditMode(const QModelIndex& index) {
 	if (!index.isValid())
+	{
 		return;
-
+		qDebug() << "index invalid";
+	}
 	m_editedItem = static_cast<BaseItem*>(index.internalPointer());
+	qDebug()<<m_editedItem;
 };
 
 bool ItemModel::allowSave() {

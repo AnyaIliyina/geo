@@ -164,6 +164,7 @@ void ViewWindow::slotEdit()
 	m_editMode = true;
 	emit signalChangeEditMode();
 	auto index = ui->tableView->selectionModel()->currentIndex();
+	qDebug() << index;
 	model->startEditMode(index);
 	ui->tableView->edit(index);
 }
