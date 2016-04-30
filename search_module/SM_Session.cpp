@@ -44,6 +44,7 @@ void SM_Session::search()
 
 	// создать все возможные парсеры (пока только ParserGisLub):
 	ParserGisLub *parserGL = new ParserGisLub();	
+	// TODO : ParserGeofabric
 
 	// проверить, есть ли в списке сайтов такие, для которых имеется парсер:
 	QString urlGL = parserGL->url();		// url сайта GisLub
@@ -51,8 +52,8 @@ void SM_Session::search()
 	for (int i = 0; i < sites.count(); i++)
 	{
 		Site site = sites.at(i);
-		if (site.url().contains(urlGL))		
-			siteIdGL = site.site_id();		
+		if (site.url().contains(urlGL))
+					siteIdGL = site.site_id();
 	}
 	
 	// парсить найденные сайты:

@@ -51,6 +51,14 @@ public:
 	*/
 	int state_id();
 
+
+	/*!
+	Возвращает id формата
+	\return int format_id
+	*/
+	int format_id();
+
+
 	/*!
 	Возвращает название местности
 	\return const QString& place_name - название местности

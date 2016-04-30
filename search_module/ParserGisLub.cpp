@@ -2,9 +2,6 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
-#include "Geodata_record.h"
-#include "State.h"
-#include "Site.h"
 
 /*!
 \file
@@ -16,6 +13,7 @@
 #define formatID_shape 1
 #define statusId_checked 2
 
+
 int ParserGisLub::parse(int session_id, int site_id)
 {
 	QByteArray *reply = getReply();
@@ -23,9 +21,23 @@ int ParserGisLub::parse(int session_id, int site_id)
 		return PAGE_NOT_AVAILABLE;
 
 	separateTableBody(*reply);
+
 	Geodata_record *record = new Geodata_record();
+	record->setFormateId(formatID_shape);
+	record->setSiteId(site_id);
+	record->setSessionId(session_id);
+
+	int result = parseTable(*reply, record);
+	if (result == 0)
+		Site::setStatusId(site_id, statusId_checked);
+	return result;	
+}
+
+
+int ParserGisLub::parseTable(QByteArray & content, Geodata_record * record)
+{
 	int counter = 0;
-	QXmlStreamReader xml(*reply);
+	QXmlStreamReader xml(content);
 	while (xml.readNextStartElement())				// в <tbody>
 	{
 		if (xml.name() == "tr")
@@ -43,9 +55,6 @@ int ParserGisLub::parse(int session_id, int site_id)
 					{
 						record->setStateId(buffer.contains(State::coded("Не")) ?
 							stateID_notActual : stateID_actual);
-						record->setFormateId(formatID_shape);
-						record->setSiteId(site_id);
-						record->setSessionId(session_id);
 						qDebug() << record->url();
 						if (!record->insertIntoDatabase())
 							return ERROR_INSERTING_INTO_DB;
@@ -55,10 +64,8 @@ int ParserGisLub::parse(int session_id, int site_id)
 			}
 	}
 	delete record;
-	Site::setStatusId(site_id, statusId_checked);
 	return SUCCEEDED;
 }
-
 
 
 ParserGisLub::ParserGisLub()
@@ -71,7 +78,6 @@ ParserGisLub::ParserGisLub()
 ParserGisLub::~ParserGisLub()
 {
 }
-
 
 
 /*!

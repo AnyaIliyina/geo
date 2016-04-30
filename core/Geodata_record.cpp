@@ -33,6 +33,11 @@ int Geodata_record::state_id()
 	return m_state_id;
 }
 
+int Geodata_record::format_id()
+{
+	return m_format_id;
+}
+
 
 bool Geodata_record::required_fields_filled()
 {
