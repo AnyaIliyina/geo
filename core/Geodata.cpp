@@ -14,7 +14,8 @@
 
 Geodata::~Geodata() {};
 
-Geodata::Geodata() {
+Geodata::Geodata(int session_id) {
+	m_session_id = session_id;
 
 };
 
@@ -101,10 +102,10 @@ bool Geodata::setData(int column, const QVariant& value, int role) {
 			m_description= value.toString();
 		if (column == 5)
 			m_state_name = value.toString();
-		if (column == 6)
+		/*if (column == 6)
 			m_date = value.toString();
 		if (column == 7)
-			m_user_type= value.toString();
+			m_user_type= value.toString();*/
 		if (column == 8)
 			m_url = value.toString();
 		if (column == 9)
@@ -170,6 +171,7 @@ bool Geodata::hasChildren() const {
 };
 
 bool Geodata::save() {
+
 	auto db = QSqlDatabase::database();
 	QSqlQuery query(db);
 	if (m_comment == NULL)
@@ -180,14 +182,14 @@ bool Geodata::save() {
 		//Создание
 		getSiteId();
 		getFormatId();
-		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  1, 1, 1, m_url, m_comment );
+		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  m_session_id, 1, 1, m_url, m_comment );
 		m_id = ngdr->insertIntoDatabase();
 	}
 	else {
 		// Изменение 
 		getSiteId();
 		getFormatId();
-		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, 1, 1, 2,m_url, m_comment );
+		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, m_session_id, 1, 2,m_url, m_comment );
 		ngdr->setRecordId(m_id);
 		ngdr->updateRecord();
 	}
@@ -256,7 +258,7 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 	}
 
 	while (query.next()) {
-		Geodata* geo = new Geodata();
+		Geodata* geo = new Geodata(m_session_id);
 		geo->m_id = query.value(0).toInt(); // id
 		geo->m_place_name = query.value(1).toString(); // 
 		geo->m_site_name = query.value(2).toString(); // 

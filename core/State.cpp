@@ -113,9 +113,26 @@ bool State::completeTable()
 {
 	QStringList stateNames;
 	stateNames << coded("Не установлено")
-		<< coded("Актуально (мп)")
-		<< coded("Неактуально (мп)")
 		<< coded("Актуально")
 		<< coded("Неактуально");
 	return insert(stateNames);
 }
+
+QStringList State::getStates()
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	QStringList listStates;
+	if (!query.exec("SELECT state_name FROM states"))
+	{
+		qDebug() << query.lastError().text();
+		db.close();
+		return listStates;
+	}
+	while (query.next()) {
+		QString name = query.value(0).toString();
+		listStates.push_back(name);
+	}
+	return listStates;
+}
+

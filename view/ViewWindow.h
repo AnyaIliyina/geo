@@ -33,7 +33,7 @@ public:
 	 void setupModel();
 
 private:
-	ItemModel* model;
+	ItemModel* m_model=nullptr;
 	/*!
 	
 	*/

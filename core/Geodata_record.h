@@ -27,8 +27,8 @@ private:
 	int m_scale_id = 1;
 	int m_state_id;
 	QString m_place_name;
-	QString m_url;
-	QString m_comment ;
+	QString m_url="";
+	QString m_comment="" ;
 public:
 	/*! Конструктор по умолчанию */
 	Geodata_record();	

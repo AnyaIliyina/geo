@@ -2,11 +2,13 @@
 #include "Database.h"
 #include "TableModel.h"
 #include "Scale.h"
+#include "State.h"
 #include "Geodata_record.h"
 #include "Item_model.h"
 #include "Combo_delegate.h"
 #include "Site.h"
 #include "Format.h"
+#include "Session.h"
 #include <QSortFilterProxyModel>
 #include <QApplication>
 #include <QMainWindow>
@@ -17,6 +19,7 @@
 ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
 	m_session_id = session_id;
+	qDebug() <<"view window"<< m_session_id;
 	ui->setupUi(this);
 	setupModel();
 	QObject::connect(ui->action_New, SIGNAL(triggered()), this, SLOT(slotAdd()));
@@ -31,15 +34,15 @@ ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow)
 ViewWindow::~ViewWindow()
 {
 	delete ui;
+	delete m_model;
 }
 
 void ViewWindow::setupModel()
 {
+	delete m_model;
 	QSqlDatabase db = Database::database();
-	model = new ItemModel();
-	
+	m_model = new ItemModel(m_session_id);
 	createTable();
-
 }
 void ViewWindow::slotRefresh()
 {
@@ -119,12 +122,21 @@ void ViewWindow::createTable()
 {
 	//QSortFilterProxyModel *filterModel = new QSortFilterProxyModel();
 	//filterModel->setSourceModel(model);
-	model->loadData(0);
-	ui->tableView->setModel(model);
+	m_model->loadData(0);
+	ui->tableView->setModel(m_model);
+
 	auto comboDelegateSite = new ComboDelegate(Site::getSiteNames(), this);
 	ui->tableView->setItemDelegateForColumn(2, comboDelegateSite);
+
 	auto comboDelegateFormat = new ComboDelegate(Format::getFormatNames(), this);
 	ui->tableView->setItemDelegateForColumn(3, comboDelegateFormat);
+
+	auto comboDelegateScale = new ComboDelegate(Scale::getDescription(), this);
+	ui->tableView->setItemDelegateForColumn(4, comboDelegateScale);
+
+	auto comboDelegateState = new ComboDelegate(State::getStates(), this);
+	ui->tableView->setItemDelegateForColumn(5, comboDelegateState);
+
 	ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	ui->tableView->setColumnHidden(0, true);
 	ui->tableView->setSortingEnabled(true);
@@ -137,10 +149,10 @@ void ViewWindow::slotAdd()
 	m_editMode = true;
 	emit signalChangeEditMode();
 	QModelIndex index;
-	model->insertRows(0, 1, index);
-	auto rowCount = model->rowCount(index);
+	m_model->insertRows(0, 1, index);
+	auto rowCount = m_model->rowCount(index);
 	qDebug() << rowCount;
-	auto child = model->index(rowCount - 1, 0, index); 
+	auto child = m_model->index(rowCount - 1, 0, index); 
 	qDebug() << child;
 	ui->tableView->selectionModel()->setCurrentIndex(child, QItemSelectionModel::SelectCurrent);
 	ui->tableView->edit(child);
@@ -155,7 +167,7 @@ void ViewWindow::slotDelete()
 	{
 		auto index = ui->tableView->selectionModel()->currentIndex();
 		qDebug()<<"Slot Delete" << index;
-		model->removeRows(0, 1, index);
+		m_model->removeRows(0, 1, index);
 	}
 }
 
@@ -165,13 +177,13 @@ void ViewWindow::slotEdit()
 	emit signalChangeEditMode();
 	auto index = ui->tableView->selectionModel()->currentIndex();
 	qDebug() << index;
-	model->startEditMode(index);
+	m_model->startEditMode(index);
 	ui->tableView->edit(index);
 }
 
 void ViewWindow::slotSave()
 {
-	if (model->save())
+	if (m_model->save())
 	{
 		m_editMode = false;
 		emit signalChangeEditMode();
@@ -185,7 +197,7 @@ void ViewWindow::slotSave()
 
 void ViewWindow::slotCancel()
 {
-	if (model->cancel())
+	if (m_model->cancel())
 	{
 		m_editMode = false;
 		emit signalChangeEditMode();

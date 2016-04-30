@@ -64,6 +64,7 @@ void MainWindow::slotStartSession(int user_id)
 	if (!session->insertIntoDatabase())
 		qDebug() << " MainWindow::startSession(int user_id): error connecting to database";
 	m_session_id = session->session_id();
+	qDebug() << "SEEEEEEEEEE" << m_session_id;
 	delete session;
 	slotConfigure();
 }

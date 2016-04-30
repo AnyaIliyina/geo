@@ -58,5 +58,14 @@ public:
 	*/
 	static bool completeTable();
 	static QString coded(QByteArray encodedStr);
+
+	static QStringList getDescription();
+
+	/*!
+	Записывает в базу данных список масштабов
+	\param QStringList descriptions - список названий масштабов
+	\return true - масштабы записаны в БД
+	\return false - возникли ошибки*/
+	static bool insert(QStringList descriptions);
 };
 

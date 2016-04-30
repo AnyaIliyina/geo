@@ -70,4 +70,9 @@ public:
 	static bool insert(QStringList stateNames);
 	
 	QString static coded(QByteArray encodedStr);
+
+	/*!
+	
+	*/
+	static QStringList getStates();
 };
