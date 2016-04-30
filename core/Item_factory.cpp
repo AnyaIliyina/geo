@@ -11,7 +11,6 @@ BaseItem* ItemFactory::loadFromDb(int type) {
 	
 	// Добавляем истинные значения верхнему элементу
 	for (int i = 0; i < children.count(); i++)
-		
 		item->appendChild(children[i]);
 
 	return item;
