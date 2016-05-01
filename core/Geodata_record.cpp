@@ -193,7 +193,6 @@ void Geodata_record::updateRecord()
 	
 	}
 	db.close();
-
 }
 
 bool Geodata_record::createTable()
@@ -252,3 +251,25 @@ void Geodata_record::deleteRecord(int& id)
  		qDebug() << "Udalilos";
  	}
  }
+
+void Geodata_record::deleteRecords(int site_id, int author_id)
+{
+
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	query.prepare("DELETE FROM geodata_records \
+	WHERE site_id=:site_id\
+	AND session_id = (\
+					SELECT session_id FROM sessions\
+					WHERE user_id =:user_id\
+					)"
+		);
+	query.bindValue(":site_id", site_id);
+	query.bindValue(":user_id", author_id);
+	if (!query.exec()) {
+		qDebug() << "Geodata_record::deleteRecords(int site_id, int author_id):  error";
+		qDebug() << query.lastError().text();
+		db.close();
+	}
+	db.close();
+}

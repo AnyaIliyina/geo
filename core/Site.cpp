@@ -191,6 +191,21 @@ bool Site::insert(QList<Site> sites)
 	return true;
 }
 
+bool Site::uncheckedSitesFound()
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT site_id FROM sites WHERE status_id=1"))
+	{
+		qDebug() << "Site::uncheckedSitesFound() error";
+		qDebug() << query.lastError().text();
+		db.close();
+		return false;
+	}
+	if(query.next())
+		return true;
+}
+
 
 
 bool Site::createTable()

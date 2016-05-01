@@ -150,7 +150,13 @@ public:
 	static bool completeTable();
 	
 	/*!
-	Удаляет запись по его id;
+	Удаляет запись по ее id;
 	*/
 	static void deleteRecord(int & id);
+
+	/*!
+	Удаляет записи, созданные пользователем author_id и относящиеся к сайту site_id
+	\param site_id - id сайта
+	\param author_id - id пользователя*/
+	static void deleteRecords(int site_id, int author_id);
 };
