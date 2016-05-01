@@ -138,7 +138,7 @@ int Geodata_record::record_id()
 }
 
 
-int Geodata_record::insertIntoDatabase()
+bool Geodata_record::insertIntoDatabase()
 {
 	if (!required_fields_filled())
 	{
@@ -161,12 +161,11 @@ int Geodata_record::insertIntoDatabase()
 		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
 		qDebug() << query.lastError().text();
 		db.close();
-		return -1;
+		return false;
 	}
-	query.next();
+	m_record_id = query.lastInsertId().toInt();
 	db.close();
-
-	return query.value(0).toInt();
+	return true;
 }
 
 void Geodata_record::updateRecord()
