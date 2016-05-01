@@ -16,10 +16,8 @@
 #include <QTableView>
 #include <QMessageBox>
 
-ViewWindow::ViewWindow(int session_id, QWidget * parent): ui(new Ui::ViewWindow) // ??
+ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
-	m_session_id = session_id;
-	qDebug() <<"view window"<< m_session_id;
 	ui->setupUi(this);
 	setupModel();
 	QObject::connect(ui->action_New, SIGNAL(triggered()), this, SLOT(slotAdd()));
@@ -41,7 +39,7 @@ void ViewWindow::setupModel()
 {
 	delete m_model;
 	QSqlDatabase db = Database::database();
-	m_model = new ItemModel(m_session_id);
+	m_model = new ItemModel();
 	createTable();
 }
 void ViewWindow::slotRefresh()

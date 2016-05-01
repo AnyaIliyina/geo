@@ -17,6 +17,9 @@ const QString Database::pathToDb = QDir::currentPath() + QString("/database/geoD
 
 const QString Database::connectionName = "geoDb_connection";	// название подключения
 
+int Database::CurrentSessionId = -1;
+
+int Database::SmSessionId = -1;
 
 																/*!
 Создает подключение connectionName к базе.
@@ -32,6 +35,26 @@ void Database::restore()
 	if (!dbFile.exists()) {
 		configure();
 	}
+}
+
+void Database::setCurrentSessionId(int _session_id)
+{
+	CurrentSessionId = _session_id;
+}
+
+void Database::setSmSessionId(int smSessionId)
+{
+	SmSessionId = smSessionId;
+}
+
+int Database::currentSessionId()
+{
+	return CurrentSessionId;
+}
+
+int Database::smSessionId()
+{
+	return SmSessionId;
 }
 
 

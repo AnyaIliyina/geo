@@ -14,9 +14,7 @@
 
 Geodata::~Geodata() {};
 
-Geodata::Geodata(int session_id) {
-	m_session_id = session_id;
-
+Geodata::Geodata() {
 };
 
 int Geodata::columnCount() const {
@@ -172,8 +170,6 @@ bool Geodata::hasChildren() const {
 
 bool Geodata::save() {
 
-	auto db = QSqlDatabase::database();
-	QSqlQuery query(db);
 	if (m_comment == NULL)
 		m_comment = " ";
 	if (m_url == NULL)
@@ -182,16 +178,20 @@ bool Geodata::save() {
 		//Создание
 		getSiteId();
 		getFormatId();
-		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  m_session_id, 1, 1, m_url, m_comment );
-		m_id = ngdr->insertIntoDatabase();
+		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name, Database::currentSessionId(), 1, 1, m_url, m_comment );
+		qDebug() << ngdr->insertIntoDatabase();
+		m_id = ngdr->record_id();
+		delete ngdr;
 	}
 	else {
 		// Изменение 
 		getSiteId();
 		getFormatId();
-		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, m_session_id, 1, 2,m_url, m_comment );
+		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, Database::currentSessionId(), 1, 2,m_url, m_comment );
 		ngdr->setRecordId(m_id);
 		ngdr->updateRecord();
+		m_id = ngdr->record_id();
+		delete ngdr;
 	}
 
 	return true;
@@ -258,7 +258,7 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 	}
 
 	while (query.next()) {
-		Geodata* geo = new Geodata(m_session_id);
+		Geodata* geo = new Geodata();
 		geo->m_id = query.value(0).toInt(); // id
 		geo->m_place_name = query.value(1).toString(); // 
 		geo->m_site_name = query.value(2).toString(); // 

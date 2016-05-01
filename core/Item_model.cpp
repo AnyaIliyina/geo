@@ -15,8 +15,7 @@ ItemModel::~ItemModel() {
 	m_editedItem = NULL;
 };
 
-ItemModel::ItemModel(int session_id) : QAbstractItemModel() {
-	m_session_id = session_id;
+ItemModel::ItemModel() : QAbstractItemModel() {
 };
 
 int ItemModel::rowCount(const QModelIndex& parent) const {
@@ -149,7 +148,7 @@ bool ItemModel::insertRows(int row, int count, const QModelIndex& parent) {
 		parentItem = static_cast<BaseItem*>(parent.internalPointer());
 
 	// Фабрика
-	BaseItem* child = ItemFactory::createNew(m_type, m_session_id);
+	BaseItem* child = ItemFactory::createNew(m_type);
 	parentItem->appendChild(child);
 	m_editedItem = child;
 	
@@ -268,7 +267,7 @@ void ItemModel::loadData(int type, QVariant id) {
 	}
 	m_editedItem = NULL;
 
-	m_rootItem = ItemFactory::loadFromDb(type, m_session_id);
+	m_rootItem = ItemFactory::loadFromDb(type);
 	m_type = type;
 
 	this->endResetModel();

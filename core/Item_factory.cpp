@@ -3,9 +3,9 @@
 #include "types.h"
 #include "Geodata.h"
 
-BaseItem* ItemFactory::loadFromDb(int type, int session_id) {
+BaseItem* ItemFactory::loadFromDb(int type) {
 	// Создаем верхний элемент
-	BaseItem* item = createNew(type, session_id);
+	BaseItem* item = createNew(type);
 
 	QList<BaseItem*> children = item->loadItemsFromDb();
 	
@@ -17,12 +17,12 @@ BaseItem* ItemFactory::loadFromDb(int type, int session_id) {
 	return item;
 };
 
-BaseItem* ItemFactory::createNew(int type, int session_id) {
+BaseItem* ItemFactory::createNew(int type) {
 	switch (type)
 	{
 	
 	case ItemTypes::GeodataType:
-		return new Geodata(session_id);
+		return new Geodata();
 	
 	default:
 		return NULL;

@@ -20,7 +20,7 @@ public:
 	/*!
 	Конструктор
 	*/
-	explicit ViewWindow(int session_id, QWidget *parent = 0);
+	explicit ViewWindow(QWidget *parent = 0);
 
 	/*!
 	Деструктор
@@ -41,7 +41,6 @@ private:
 	
 	Ui::ViewWindow *ui;
 	
-	int m_session_id = -1;
 	bool m_editMode = false;
 	
 private slots:

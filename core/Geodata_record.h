@@ -130,7 +130,7 @@ public:
 	Записывает геопространственную информацию в базу данных.
 	\return true - если запись в БД успешно добавлена
 	*/
-	int insertIntoDatabase();
+	bool insertIntoDatabase();
 
 	/*!
 	
