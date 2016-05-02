@@ -3,6 +3,7 @@
 #include "Database.h"
 #include "ParserGisLub.h"
 #include "ParserGeofabrik.h"
+#include "Site.h"
 #include "MainWindow.h"
 
 /*!
@@ -16,7 +17,9 @@ int main(int argc, char* argv[])
 	/*ParserGeofabrik *p = new ParserGeofabrik();
 	p->parse(1, 3);
 	ParserGisLub *pgl = new ParserGisLub();
-	pgl->parse(1, 1);*/
+	pgl->parse(1, 1);
+	qDebug() << Site::uncheckedSitesFound();*/
+	
 	MainWindow *w = new MainWindow();
 	return app.exec();
 };

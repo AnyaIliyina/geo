@@ -227,13 +227,13 @@ bool Geodata_record::createTable()
 
 }
 
-bool Geodata_record::completeTable()
-{//переделать
-	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1,"ek.ru", "ohoho");
-	int i=gdr->insertIntoDatabase();
-	delete gdr;
-	return true;
-}
+//bool Geodata_record::completeTable()
+//{//переделать
+//	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1,"ek.ru", "ohoho");
+//	int i=gdr->insertIntoDatabase();
+//	delete gdr;
+//	return true;
+//}
 
 void Geodata_record::deleteRecord(int& id)
  {

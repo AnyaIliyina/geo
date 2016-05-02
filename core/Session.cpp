@@ -82,10 +82,40 @@ bool Session::createTable()
 
 }
 
-bool Session::completeTable()
+bool Session::createSession(int user_id)
 {
-	Session *s = new Session(1, QDateTime::currentDateTime());
-	bool succeeded = s->insertIntoDatabase();
-	delete s;
-	return succeeded;
+	Session *session = new Session(user_id, QDateTime::currentDateTime());
+	if(!session->insertIntoDatabase())
+		return false;
+	Database::setCurrentSessionId(session->session_id());
+	delete session;
+	return true;
 }
+
+bool Session::createSMsession()
+{
+	Session *session = new Session(1, QDateTime::currentDateTime());
+	if (!session->insertIntoDatabase())
+		return false;
+	Database::setSmSessionId(session->session_id());
+	delete session;
+	return true;
+}
+
+bool Session::createSystemSession()
+{
+	Session *session = new Session(2, QDateTime::currentDateTime());
+	if (!session->insertIntoDatabase())
+		return false;
+	Database::setSystemSessionId(session->session_id());
+	delete session;
+	return true;
+}
+
+//bool Session::completeTable()
+//{
+//	Session *s = new Session(1, QDateTime::currentDateTime());
+//	bool succeeded = s->insertIntoDatabase();
+//	delete s;
+//	return succeeded;
+//}

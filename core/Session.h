@@ -57,10 +57,26 @@ public:
 	static bool createTable();
 	
 	/*!
+	Создает сессию для пользователя user_id
+	\param int user_id - id пользователя
+	\return true - сессия создана*/
+	static bool createSession(int user_id);
+
+	/*!
+	Создает сессию для модуля поиска
+	\return true - сессия создана*/
+	static bool createSMsession();
+
+	/*!
+	Создает сессию для Системы
+	\return true - сессия создана*/
+	static bool createSystemSession();
+
+	/*!
 	Заполняет таблицу "sessions" начальными значениями
 	\return true - если записи успешно созданы
 	*/
-	static bool completeTable();
+	//static bool completeTable();
 
 };
 

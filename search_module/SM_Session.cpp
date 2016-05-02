@@ -26,10 +26,7 @@ SM_Session::~SM_Session()
 */
 void SM_Session::start()
 {
-	Session *session = new Session(1, QDateTime::currentDateTime());
-	session->insertIntoDatabase();
-	m_session_id = session->session_id();
-	delete session;
+	Session::createSMsession();
 	emit setStatus(State::coded("Модуль поиска начал работу..."));
 	search();
 }
@@ -56,12 +53,12 @@ void SM_Session::search()
 		if (site.url().contains(parserGL->url()))	
 		{
 				Geodata_record::deleteRecords(site.site_id(), 1);
-				result += parserGL->parse(m_session_id, site.site_id());
+				result += parserGL->parse(Database::smSessionId(), site.site_id());
 		}
 		if (site.url().contains(parserGeofabrik->url()))
 		{
 			Geodata_record::deleteRecords(site.site_id(), 1);
-			result += parserGeofabrik->parse(m_session_id, site.site_id());
+			result += parserGeofabrik->parse(Database::smSessionId(), site.site_id());
 		}
 	}
 

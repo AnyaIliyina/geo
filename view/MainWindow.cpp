@@ -61,12 +61,8 @@ void MainWindow::slotConfigure()
 
 void MainWindow::slotStartSession(int user_id)
 {
-	Session *session = new Session(user_id, QDateTime::currentDateTime());
-	if (!session->insertIntoDatabase())
-		qDebug() << " MainWindow::startSession(int user_id): error connecting to database";
-	Database::setCurrentSessionId(session->session_id());
+	Session::createSession(user_id);
 	qDebug() << "SEEEEEEEEEE" << Database::currentSessionId();
-	delete session;
 	slotConfigure();
 }
 

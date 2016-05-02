@@ -147,7 +147,7 @@ public:
 	Заполняет таблицу "geodata_records" в БД начальными значениями.
 	\return true - если таблица успешно заполнена
 	*/
-	static bool completeTable();
+	//static bool completeTable();
 	
 	/*!
 	Удаляет запись по ее id;
