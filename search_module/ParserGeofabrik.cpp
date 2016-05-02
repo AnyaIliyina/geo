@@ -30,8 +30,8 @@ int ParserGeofabrik::parse(int site_id)
 	while (!m_pages.isEmpty())
 	{
 		QString currentPage = m_pages.pop();
-		m_currUrl = currentPage.left(currentPage.lastIndexOf('.'));
-		qDebug() << "m_currUrl = " << m_currUrl;
+		/*m_currUrl = currentPage.left(currentPage.lastIndexOf('.'));
+		qDebug() << "m_currUrl = " << m_currUrl;*/
 		QByteArray *reply = getReply(currentPage);
 		qDebug() << "\ngoing to " << currentPage;
 		if (*reply == "")
@@ -81,7 +81,7 @@ int ParserGeofabrik::parseTable(QByteArray &content, Geodata_record* record, boo
 							record->setUrl(QString("http://download.geofabrik.de").
 								append(temp.right(temp.length() - 1)));
 						else
-							record->setUrl(m_currUrl+temp);
+							record->setUrl("http://download.geofabrik.de/" +temp);
 						qDebug() << record->url();
 						m_pages.push(record->url());
 						qDebug() << m_pages.length();

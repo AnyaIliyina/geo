@@ -55,11 +55,11 @@ void SM_Session::search()
 				Geodata_record::deleteRecords(site.site_id(), 1);
 				result += parserGL->parse(site.site_id());
 		}
-		if (site.url().contains(parserGeofabrik->url()))
+		/*if (site.url().contains(parserGeofabrik->url()))
 		{
 			Geodata_record::deleteRecords(site.site_id(), 1);
 			result += parserGeofabrik->parse(site.site_id());
-		}
+		}*/
 	}
 
 	delete parserGL;
