@@ -202,8 +202,15 @@ bool Site::uncheckedSitesFound()
 		db.close();
 		return false;
 	}
-	if(query.next())
+
+	if (query.next())	{
+		db.close();
 		return true;
+	}
+	else	{
+		db.close();
+		return false;
+	}
 }
 
 

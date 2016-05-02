@@ -2,6 +2,7 @@
 #include "SearchForm.h"
 #include "SM_Session.h"
 #include "Session.h"
+#include "Site.h"
 #include <QTextEdit>
 #include <QDebug>
 #include <QStatusBar>
@@ -75,10 +76,14 @@ void MainWindow::showMW()
 	this->show();
 	
 	// Начать работу модуля поиска
-	SM_Session *session = new SM_Session();
-	qDebug() << QObject::connect(session, SIGNAL(signalStatusOffered(const QString &)),
-		SLOT(slotShowStatus(const QString &)));	// по сигналу от session менять текст в StatusBar
-	session->start();
+	if (Site::uncheckedSitesFound()) 
+	{
+		SM_Session *session = new SM_Session();
+		qDebug() << QObject::connect(session, SIGNAL(signalStatusOffered(const QString &)),
+			SLOT(slotShowStatus(const QString &)));	// по сигналу от session менять текст в StatusBar
+		session->start();
+	}
+	else statusBar()->showMessage("Модуль поиска: не найдено сайтов для проверки");
 }
 
 /*!

@@ -184,6 +184,5 @@ bool User::userIsValid(const QString& login, const QString& password)
 		{
 			db.close();
 			return false;
-		}
-	
+		}	
 }

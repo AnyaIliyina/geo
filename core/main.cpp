@@ -21,9 +21,8 @@ int main(int argc, char* argv[])
 	/*ParserGeofabrik *p = new ParserGeofabrik();
 	p->parse(3);
 	ParserGisLub *pgl = new ParserGisLub();
-	pgl->parse(1);
-	qDebug() << Site::uncheckedSitesFound();*/
-	
+	pgl->parse(1);*/
+		
 	MainWindow *w = new MainWindow();
 	return app.exec();
 };
