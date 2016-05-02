@@ -208,7 +208,7 @@ void ItemModel::startEditMode(const QModelIndex& index) {
 		qDebug() << "index invalid";
 	}
 	m_editedItem = static_cast<BaseItem*>(index.internalPointer());
-	qDebug()<<m_editedItem;
+	qDebug()<<"startEditMode m_editItem"<<m_editedItem;
 };
 
 bool ItemModel::allowSave() {
@@ -272,3 +272,19 @@ void ItemModel::loadData(int type, QVariant id) {
 
 	this->endResetModel();
 };
+
+//QModelIndex ItemModel::mapFromSource(const QModelIndex & index) const
+//{
+//	if (index.isValid())
+//		return createIndex(index.row(), index.column());
+//	else
+//		return QModelIndex();
+//}
+//
+//QModelIndex ItemModel::mapToSource(const QModelIndex & index) const
+//{
+//	if (index.isValid())
+//		return createIndex(index.row(), index.column());
+//	else
+//		return QModelIndex();
+//}

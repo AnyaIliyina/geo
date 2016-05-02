@@ -7,6 +7,7 @@
 #include "TableModel.h"
 #include "Item_model.h"
 #include "Geodata.h"
+#include "QSortFilterProxyModel"
 
 /*!
 *  \brief  Вывод результатов поиска и работа с ними
@@ -38,7 +39,7 @@ private:
 	
 	*/
 	 void createTable();
-	
+	 QSortFilterProxyModel *filterModel;
 	Ui::ViewWindow *ui;
 	
 	bool m_editMode = false;
