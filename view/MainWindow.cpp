@@ -79,7 +79,7 @@ void MainWindow::showMW()
 	if (Site::uncheckedSitesFound()) 
 	{
 		SM_Session *session = new SM_Session();
-		qDebug() << QObject::connect(session, SIGNAL(signalStatusOffered(const QString &)),
+		QObject::connect(session, SIGNAL(signalStatusOffered(const QString &)),
 			SLOT(slotShowStatus(const QString &)));	// по сигналу от session менять текст в StatusBar
 		session->start();
 	}

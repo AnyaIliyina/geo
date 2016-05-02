@@ -22,7 +22,7 @@ int Database::CurrentSessionId = 0;
 
 int Database::SmSessionId = 0;
 
-int Database::SystemSessionId = 0;
+int Database::SystemSessionId = 1;
 
 																/*!
 Создает подключение connectionName к базе.
@@ -37,7 +37,7 @@ void Database::restore(int session_id)
 	QFileInfo dbFile(pathToDb);
 	if (!dbFile.exists()) {
 		configure();
-		Log::create(session_id, "restore");
+		Log::create(session_id, "Database: restore");
 	}
 }
 
@@ -109,5 +109,6 @@ void Database::configure()
 		Geodata_record::createTable();
 		// Geodata_record::completeTable();
 		Session::createTable();
-		// Session::completeTable();
+		Session::completeTable();
+		Log::createTable();
 }

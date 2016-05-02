@@ -14,15 +14,11 @@
 int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
-	
-	Database::restore();
-	
-	
+	Database::restore();	
 	/*ParserGeofabrik *p = new ParserGeofabrik();
 	p->parse(3);
 	ParserGisLub *pgl = new ParserGisLub();
-	pgl->parse(1);*/
-		
+	pgl->parse(1);*/		
 	MainWindow *w = new MainWindow();
 	return app.exec();
 };

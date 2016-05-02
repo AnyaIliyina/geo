@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QUrl>
 #include <QDateTime>
-
+#include "Database.h"
 /*!
 \file
 */
@@ -70,7 +70,7 @@ public:
 	\param int status_id - id нового статуса
 	\return true - статус изменен
 	\return false - произошла ошибка*/
-	static bool setStatusId(int site_id, int status_id);
+	static bool setStatusId(int site_id, int status_id, int session_id = Database::smSessionId());
 
 	
 	/*!
@@ -108,7 +108,7 @@ public:
 	Записывает информацию о сайте в базу данных.
 	\return site_id
 	*/
-	 int insertIntoDatabase();
+	 int insertIntoDatabase(int session_id = Database::currentSessionId());
 	
 	/*!
 	Создает таблицу "sites" в базе данных.
