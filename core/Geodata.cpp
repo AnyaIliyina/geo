@@ -4,6 +4,8 @@
 #include "State.h"
 #include "Site.h"
 #include "Format.h"
+#include "Scale.h"
+#include "State.h"
 #include <QBrush>
 #include <QDebug>
 #include <QPixmap>
@@ -31,10 +33,7 @@ void Geodata::removeChild(BaseItem* child) {
 	if (geodata == NULL)
 		return;
 
-	if (!child->isNew()) {
-		Geodata_record::deleteRecord(geodata->m_id);
-	}
-
+	Geodata_record::deleteRecord(geodata->m_id);
 	m_children.removeOne(child);
 };
 
@@ -178,18 +177,18 @@ bool Geodata::save() {
 		m_comment = " ";
 	if (m_url == NULL)
 		m_url = " ";
+	getSiteId();
+	getFormatId();
+	getScaleId();
+	getStateId();
 	if (m_id == 0) {
 		//Создание
-		getSiteId();
-		getFormatId();
-		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  m_session_id, 1, 1, m_url, m_comment );
+		Geodata_record* ngdr = new Geodata_record(m_site_id, m_format_id, m_place_name,  m_session_id, m_state_id, m_scale_id, m_url, m_comment );
 		m_id = ngdr->insertIntoDatabase();
 	}
 	else {
 		// Изменение 
-		getSiteId();
-		getFormatId();
-		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, m_session_id, 1, 2,m_url, m_comment );
+		Geodata_record *ngdr = new Geodata_record( m_site_id, m_format_id, m_place_name, m_session_id, m_state_id, m_scale_id, m_url, m_comment );
 		ngdr->setRecordId(m_id);
 		ngdr->updateRecord();
 	}
@@ -226,7 +225,7 @@ bool Geodata::cancel() {
 	m_format_name = query.value(3).toString();
 	m_description = query.value(4).toString();
 	m_state_name = query.value(5).toString();
-	m_date= query.value(6).toString();
+	m_date= QDateTime::fromTime_t(query.value(6).toInt()).toString("dd.MM.yy");
 	m_user_type = query.value(7).toString();
 	m_url = query.value(8).toString();
 	m_comment = query.value(9).toString();
@@ -279,7 +278,7 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 
 void Geodata::getFormatId()
 {
-	qDebug() << "getting FormatId...";
+	
 	m_format_id = Format::format_id(m_format_name);
 	qDebug() << "m_formatId = " << m_format_id;
 }
@@ -291,3 +290,14 @@ void Geodata::getSiteId()
 	qDebug() << m_site_id; 
 
 }
+
+void Geodata::getScaleId()
+{
+	m_scale_id = Scale::scale_id(m_description);
+}
+
+void Geodata::getStateId()
+{
+	m_state_id = State::state_id(m_state_name);
+}
+

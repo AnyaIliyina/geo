@@ -120,10 +120,11 @@ void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection 
 
 void ViewWindow::createTable()
 {
-	//QSortFilterProxyModel *filterModel = new QSortFilterProxyModel();
-	//filterModel->setSourceModel(model);
 	m_model->loadData(0);
-	ui->tableView->setModel(m_model);
+	filterModel = new QSortFilterProxyModel();
+	filterModel->setSourceModel(m_model);
+	
+	ui->tableView->setModel(filterModel);
 
 	auto comboDelegateSite = new ComboDelegate(Site::getSiteNames(), this);
 	ui->tableView->setItemDelegateForColumn(2, comboDelegateSite);
@@ -149,36 +150,44 @@ void ViewWindow::slotAdd()
 	m_editMode = true;
 	emit signalChangeEditMode();
 	QModelIndex index;
-	m_model->insertRows(0, 1, index);
-	auto rowCount = m_model->rowCount(index);
-	qDebug() << rowCount;
-	auto child = m_model->index(rowCount - 1, 0, index); 
-	qDebug() << child;
+	auto m_index = filterModel->mapToSource(index);
+	m_model->insertRows(0, 1, m_index);
+	auto rowCount = m_model->rowCount(m_index);
+	qDebug() << "slotAdd rowcount" << rowCount;
+	auto child = m_model->index(rowCount - 1, 0, m_index); 
+	qDebug() << "slotAdd child"<<child;
 	ui->tableView->selectionModel()->setCurrentIndex(child, QItemSelectionModel::SelectCurrent);
+	qDebug() << "SLot add child" << child;
 	ui->tableView->edit(child);
 }
 
 void ViewWindow::slotDelete()
 {
+	
 	int  deleteMsgBox = QMessageBox::question(this, "",
 		Scale::coded("Удалить выбранную запись?"),
 		QMessageBox::Yes, QMessageBox::No);
 	if (deleteMsgBox == QMessageBox::Yes)
 	{
 		auto index = ui->tableView->selectionModel()->currentIndex();
+		auto m_index = filterModel->mapToSource(index);
 		qDebug()<<"Slot Delete" << index;
-		m_model->removeRows(0, 1, index);
+		qDebug() << "Slot Delete" << m_index;
+		m_model->removeRows(0, 1, m_index);
 	}
 }
 
 void ViewWindow::slotEdit()
 {
+	
 	m_editMode = true;
 	emit signalChangeEditMode();
 	auto index = ui->tableView->selectionModel()->currentIndex();
-	qDebug() << index;
-	m_model->startEditMode(index);
-	ui->tableView->edit(index);
+	qDebug() <<"slotEdit index" <<index;
+	auto m_index= filterModel->mapToSource(index);
+	qDebug() << "index map" << m_index;
+	m_model->startEditMode(m_index);
+	ui->tableView->edit(m_index);
 }
 
 void ViewWindow::slotSave()
@@ -192,7 +201,7 @@ void ViewWindow::slotSave()
 	else
 		QMessageBox::critical(this, "", Scale::coded("Не удалось применить изменения"), QMessageBox::Ok);
 	auto index = ui->tableView->selectionModel()->currentIndex();
-	
+	auto m_index = filterModel->mapToSource(index);
 }
 
 void ViewWindow::slotCancel()
@@ -205,8 +214,9 @@ void ViewWindow::slotCancel()
 	else
 		QMessageBox::critical(this, "", Scale::coded("Не удалось отменить изменения"), QMessageBox::Ok);
 	auto index = ui->tableView->selectionModel()->currentIndex();
+	auto m_index = filterModel->mapToSource(index);
 	ui->tableView->reset();
-	ui->tableView->selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select |
+	ui->tableView->selectionModel()->setCurrentIndex(m_index, QItemSelectionModel::Select |
 		QItemSelectionModel::Rows);
 	
 }

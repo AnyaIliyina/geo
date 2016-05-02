@@ -45,6 +45,26 @@ int Scale::scale_id()
 	return m_scale_id;
 }
 
+int Scale::scale_id(QString description)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT scale_id FROM scales WHERE description=\'" + description + "\'"))
+	{
+		qDebug() << "Zapros ne proshel";
+		qDebug() << query.lastError().text();
+		return -1;
+	}
+	else
+	{
+		if (query.next())
+		{
+			int id = query.value(0).toInt();
+			return id;
+		}
+	}
+}
+
 bool Scale::insertIntoDatabase()
 {
 	QSqlDatabase db = Database::database();

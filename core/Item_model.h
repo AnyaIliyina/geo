@@ -40,7 +40,8 @@ public:
 	bool removeRows(int row, int count, const QModelIndex& index) Q_DECL_OVERRIDE;
 	//bool moveRows(const QModelIndex& sourceParent, int sourceRow, int count,
 	//	const QModelIndex& destinationParent, int destinationChild) Q_DECL_OVERRIDE;
-	
+	//QModelIndex mapFromSource(const QModelIndex& index) const;
+	//QModelIndex mapToSource(const QModelIndex& index) const;
 	void startEditMode(const QModelIndex& index);
 	bool allowSave();
 	bool save();

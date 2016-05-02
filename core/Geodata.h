@@ -35,6 +35,8 @@ public:
 
 	void getFormatId();
 	void getSiteId();
+	void getScaleId();
+	void getStateId();
 
 	QList<BaseItem*> loadItemsFromDb() Q_DECL_OVERRIDE;
 
@@ -42,6 +44,8 @@ private:
 
 	int m_id = 0;
 	int m_session_id=0;
+	int m_state_id = 0;
+	int m_scale_id = 0;
 	QString m_place_name;
 	QString m_site_name;
 	QString m_format_name;

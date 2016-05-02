@@ -45,6 +45,12 @@ public:
 	int state_id();
 	
 	/*!
+	Возвращает id статуса
+	\return int state_id - id статуса
+	*/
+	static int state_id(QString state_name);
+
+	/*!
 	Записывает информацию о статусе в базу данных.
 	\return true - если запись в БД успешно добавлена
 	*/

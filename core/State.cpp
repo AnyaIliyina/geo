@@ -45,6 +45,26 @@ int State::state_id()
 	return m_state_id;
 }
 
+int State::state_id(QString state_name)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	if (!query.exec("SELECT state_id FROM states WHERE state_name=\'" + state_name + "\'"))
+	{
+		qDebug() << "Zapros ne proshel";
+		qDebug() << query.lastError().text();
+		return -1;
+	}
+	else
+	{
+		if (query.next())
+		{
+			int id = query.value(0).toInt();
+			return id;
+		}
+	}
+}
+
 bool State::insertIntoDatabase()
 {
 	QSqlDatabase db = Database::database();

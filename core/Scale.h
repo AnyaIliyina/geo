@@ -38,6 +38,7 @@ public:
 	~Scale();
 	
 	int scale_id();
+	static int scale_id(QString description);
 	
 	/*!
 	Записывает информацию о масштабе в базу данных.
