@@ -14,13 +14,13 @@
 #define stateID_actual 2
 #define statusId_checked 2
 
-int ParserGeofabrik::parse(int session_id, int site_id)
+int ParserGeofabrik::parse(int site_id)
 {
 	m_pages.push("http://download.geofabrik.de/south-america.html");
 	//m_pages.push(url());
 	//m_pages.push("http://download.geofabrik.de/europe.html");
 	Geodata_record *record = new Geodata_record();
-	record->setSessionId(session_id);
+	record->setSessionId(m_session_id);
 	record->setSiteId(site_id);
 	record->setStateId(stateID_actual);
 	/*QByteArray *replyIndex = getReply(m_pages.pop());

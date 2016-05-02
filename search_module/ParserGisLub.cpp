@@ -14,7 +14,7 @@
 #define statusId_checked 2
 
 
-int ParserGisLub::parse(int session_id, int site_id)
+int ParserGisLub::parse(int site_id)
 {
 	QByteArray *reply = getReply();
 	if (*reply == "")
@@ -25,7 +25,7 @@ int ParserGisLub::parse(int session_id, int site_id)
 	Geodata_record *record = new Geodata_record();
 	record->setFormateId(formatID_shape);
 	record->setSiteId(site_id);
-	record->setSessionId(session_id);
+	record->setSessionId(m_session_id);
 
 	int result = parseTable(*reply, record);
 	if (result == 0)

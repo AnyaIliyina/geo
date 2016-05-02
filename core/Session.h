@@ -76,7 +76,7 @@ public:
 	Заполняет таблицу "sessions" начальными значениями
 	\return true - если записи успешно созданы
 	*/
-	//static bool completeTable();
+	static bool completeTable();
 
 };
 

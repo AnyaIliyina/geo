@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <qDebug>
 #include "Database.h"
+#include "Session.h"
 #include "ParserGisLub.h"
 #include "ParserGeofabrik.h"
 #include "Site.h"
@@ -13,11 +14,14 @@
 int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
+	
 	Database::restore();
+	
+	
 	/*ParserGeofabrik *p = new ParserGeofabrik();
-	p->parse(1, 3);
+	p->parse(3);
 	ParserGisLub *pgl = new ParserGisLub();
-	pgl->parse(1, 1);
+	pgl->parse(1);
 	qDebug() << Site::uncheckedSitesFound();*/
 	
 	MainWindow *w = new MainWindow();

@@ -53,12 +53,12 @@ void SM_Session::search()
 		if (site.url().contains(parserGL->url()))	
 		{
 				Geodata_record::deleteRecords(site.site_id(), 1);
-				result += parserGL->parse(Database::smSessionId(), site.site_id());
+				result += parserGL->parse(site.site_id());
 		}
 		if (site.url().contains(parserGeofabrik->url()))
 		{
 			Geodata_record::deleteRecords(site.site_id(), 1);
-			result += parserGeofabrik->parse(Database::smSessionId(), site.site_id());
+			result += parserGeofabrik->parse(site.site_id());
 		}
 	}
 
