@@ -9,6 +9,7 @@
 #include "NewSource.h"
 #include "ViewWindow.h"
 #include "State.h"
+#include "Database.h"
 
 /*!
 \file
@@ -45,7 +46,7 @@ MainWindow::~MainWindow()
 void MainWindow::slotConfigure()
 {
 	
-	ViewWindow *vw = new ViewWindow(m_session_id);
+	ViewWindow *vw = new ViewWindow();
 	QDockWidget *viewDockWidget = new QDockWidget("Список записей");
 	viewDockWidget->setWidget(vw);
 	viewDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
@@ -60,12 +61,8 @@ void MainWindow::slotConfigure()
 
 void MainWindow::slotStartSession(int user_id)
 {
-	Session *session = new Session(user_id, QDateTime::currentDateTime());
-	if (!session->insertIntoDatabase())
-		qDebug() << " MainWindow::startSession(int user_id): error connecting to database";
-	m_session_id = session->session_id();
-	qDebug() << "SEEEEEEEEEE" << m_session_id;
-	delete session;
+	Session::createSession(user_id);
+	qDebug() << "SEEEEEEEEEE" << Database::currentSessionId();
 	slotConfigure();
 }
 

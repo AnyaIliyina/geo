@@ -4,6 +4,7 @@
 \brief
 */
 #include "Parser.h"
+#include <QStack>
 
 
 /*!
@@ -30,6 +31,10 @@ public:
 	ParserGeofabrik();
 	~ParserGeofabrik();
 private:
+	QStack<QString> m_pages;
+
+	QString m_currUrl;
+
 	/*!
 	Ищет в исходном тексте таблицу, удаляет текст до начала таблицы и после ее конца.
 	\param QByteArray& ba - исходный текст
@@ -42,8 +47,9 @@ private:
 	Сохраняет полученную запись в БД. Адреса добавляет в стек pages.
 	\param QByteArray& content - содержимое таблицы;
 	\param QStack<QString>& pages - стек;
-	\param Geodata_record* record - запись;*/
-	void parseTable(QByteArray& content, QStack<QString> pages, Geodata_record* record);
+	\param Geodata_record* record - запись;
+	\return 0 -  не возникло ошибок*/
+	int parseTable(QByteArray& content, Geodata_record* record, bool isIndex = false);
 
 	QStringRef translate(const QString& text);
 };

@@ -130,7 +130,7 @@ public:
 	Записывает геопространственную информацию в базу данных.
 	\return true - если запись в БД успешно добавлена
 	*/
-	int insertIntoDatabase();
+	bool insertIntoDatabase();
 
 	/*!
 	
@@ -147,10 +147,16 @@ public:
 	Заполняет таблицу "geodata_records" в БД начальными значениями.
 	\return true - если таблица успешно заполнена
 	*/
-	static bool completeTable();
+	//static bool completeTable();
 	
 	/*!
-	Удаляет запись по его id;
+	Удаляет запись по ее id;
 	*/
 	static void deleteRecord(int & id);
+
+	/*!
+	Удаляет записи, созданные пользователем author_id и относящиеся к сайту site_id
+	\param site_id - id сайта
+	\param author_id - id пользователя*/
+	static void deleteRecords(int site_id, int author_id);
 };

@@ -34,7 +34,6 @@ private:
 	
 	Ui::MainWindow *ui;
 //	QString m_log;
-	int m_session_id = -1;
 	SearchForm *sf;
 private slots:
 	/*!

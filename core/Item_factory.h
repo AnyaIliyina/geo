@@ -16,7 +16,7 @@ class BaseItem;
 static class ItemFactory
 {
 public:
-	static BaseItem* loadFromDb(int type, int session_id );
+	static BaseItem* loadFromDb(int type);
 
-	static BaseItem* createNew(int type, int session_id);
+	static BaseItem* createNew(int type);
 };

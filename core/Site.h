@@ -138,4 +138,8 @@ public:
  	*/
  	 static bool insert(QList<Site> sites);
 
+	 /*!
+	 Проверяет, есть ли в базе сайты со статусом 1
+	 \return true - найден хотя бы один сайт со статусом 1*/
+	 static bool uncheckedSitesFound();
 };

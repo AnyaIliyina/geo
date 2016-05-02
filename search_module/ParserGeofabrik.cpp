@@ -1,7 +1,6 @@
 ﻿#include "ParserGeofabrik.h"
 #include "Geodata_record.h"
 #include <QTextEdit>
-#include <QStack>
 #include <QXmlStreamReader>
 
 /*!
@@ -17,20 +16,36 @@
 
 int ParserGeofabrik::parse(int session_id, int site_id)
 {
-	QStack <QString>pages;
-	pages.push(url());
+	m_pages.push("http://download.geofabrik.de/south-america.html");
+	//m_pages.push(url());
+	//m_pages.push("http://download.geofabrik.de/europe.html");
 	Geodata_record *record = new Geodata_record();
 	record->setSessionId(session_id);
 	record->setSiteId(site_id);
 	record->setStateId(stateID_actual);
-	while (!pages.isEmpty())
+	/*QByteArray *replyIndex = getReply(m_pages.pop());
+	separateTable(*replyIndex);
+	parseTable(*replyIndex, record, true);*/
+
+	while (!m_pages.isEmpty())
 	{
-		QByteArray *reply = getReply(pages.pop());
+		QString currentPage = m_pages.pop();
+		m_currUrl = currentPage.left(currentPage.lastIndexOf('.'));
+		qDebug() << "m_currUrl = " << m_currUrl;
+		QByteArray *reply = getReply(currentPage);
+		qDebug() << "\ngoing to " << currentPage;
 		if (*reply == "")
+		{
+			qDebug() << "wrong adress(";
 			return PAGE_NOT_AVAILABLE;
+		}
 		if (!separateTable(*reply))
+		{
+			qDebug() << "table not separated, move on";
 			continue;
-		parseTable(*reply, pages, record);
+		}
+		if(parseTable(*reply, record)==-1)
+			return ERROR_INSERTING_INTO_DB;
 	}
 	Site::setStatusId(site_id, statusId_checked);
 	return SUCCEEDED;
@@ -43,7 +58,7 @@ ParserGeofabrik::ParserGeofabrik()
 }
 
 
-void ParserGeofabrik::parseTable(QByteArray &content, QStack<QString> pages, Geodata_record* record)
+int ParserGeofabrik::parseTable(QByteArray &content, Geodata_record* record, bool isIndex)
 { // TODO: передать QStack<QString> pages по ссылке
 	QXmlStreamReader xml(content);
 	int counter = 0;
@@ -58,11 +73,19 @@ void ParserGeofabrik::parseTable(QByteArray &content, QStack<QString> pages, Geo
 				{
 					if (fmod(counter, 4) == 0)
 					{
+						qDebug() << "temp before: " << temp;
 						temp = xml.attributes().at(0).value().toString();
-						record->setUrl(QString("http://download.geofabrik.de").append(temp.right(temp.length() - 1)));
-						pages.push(record->url());
+						qDebug() << "temp after: " << temp;
+						qDebug() << m_pages.length();
+						if (isIndex)
+							record->setUrl(QString("http://download.geofabrik.de").
+								append(temp.right(temp.length() - 1)));
+						else
+							record->setUrl(m_currUrl+temp);
 						qDebug() << record->url();
-					//	temp.clear();
+						m_pages.push(record->url());
+						qDebug() << m_pages.length();
+						
 					}
 					int columnNumber = fmod(counter, 4);
 					switch (columnNumber)
@@ -74,15 +97,17 @@ void ParserGeofabrik::parseTable(QByteArray &content, QStack<QString> pages, Geo
 						if (temp != "[missing]")
 						{
 							record->setFormateId(formatID_pbf);
-							record->insertIntoDatabase();
+							if(!record->insertIntoDatabase())
+								return ERROR_INSERTING_INTO_DB;
 						}
 						break;
 					case 2:
 						temp = xml.readElementText();
-						if (temp != "[missing]")
+						if (temp != "[missing]") 
 						{
 							record->setFormateId(formatID_shape);
-							record->insertIntoDatabase();
+							if (!record->insertIntoDatabase())
+								return ERROR_INSERTING_INTO_DB;
 						}
 						break;
 					case 3:
@@ -90,7 +115,8 @@ void ParserGeofabrik::parseTable(QByteArray &content, QStack<QString> pages, Geo
 						if (temp != "[missing]")
 						{
 							record->setFormateId(formatID_bz2);
-							record->insertIntoDatabase();
+							if (!record->insertIntoDatabase())
+								return ERROR_INSERTING_INTO_DB;
 						}
 						break;
 					}
@@ -100,6 +126,7 @@ void ParserGeofabrik::parseTable(QByteArray &content, QStack<QString> pages, Geo
 		}
 	}
 	delete record;
+	return SUCCEEDED;
 }
 
 
@@ -117,14 +144,18 @@ ParserGeofabrik::~ParserGeofabrik()
 
 bool ParserGeofabrik::separateTable(QByteArray& ba)
 {
+	if(ba.indexOf("No sub regions are defined for this region")>-1)
+	{
+		qDebug() << "no subregions";
+		return false;
+	}
+	//if(ba.indexOf("<p>No sub regions are defined for this region.</p>"))
+
 	const QString splitter1 = QString("<table id=\"subregions\">");
-	int pos1 = ba.indexOf(splitter1);
+	int pos1 = ba.lastIndexOf(splitter1);
 
 	const QString splitter2 = QString("</table>");
-	int pos2 = ba.indexOf(splitter2) + splitter2.length();
-
-	if ((pos1 == -1) || (pos2 == -1))				// таблица не найдена
-		return false;
+	int pos2 = ba.lastIndexOf(splitter2) + splitter2.length();
 
 	ba = ba.mid(pos1, pos2 - pos1);
 
@@ -133,6 +164,6 @@ bool ParserGeofabrik::separateTable(QByteArray& ba)
 	ba.remove(ba.indexOf(errorPronePart), errorPronePart.length()+1);
 	ba.replace("<img src=\"/img/cross.png\">",
 		"<a href=\"no\">[missing]</a>");			
-
+	
 	return true;
 }

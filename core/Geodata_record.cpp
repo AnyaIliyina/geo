@@ -138,7 +138,7 @@ int Geodata_record::record_id()
 }
 
 
-int Geodata_record::insertIntoDatabase()
+bool Geodata_record::insertIntoDatabase()
 {
 	if (!required_fields_filled())
 	{
@@ -161,12 +161,11 @@ int Geodata_record::insertIntoDatabase()
 		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
 		qDebug() << query.lastError().text();
 		db.close();
-		return -1;
+		return false;
 	}
-	query.next();
+	m_record_id = query.lastInsertId().toInt();
 	db.close();
-
-	return query.value(0).toInt();
+	return true;
 }
 
 void Geodata_record::updateRecord()
@@ -194,7 +193,6 @@ void Geodata_record::updateRecord()
 	
 	}
 	db.close();
-
 }
 
 bool Geodata_record::createTable()
@@ -229,13 +227,13 @@ bool Geodata_record::createTable()
 
 }
 
-bool Geodata_record::completeTable()
-{//переделать
-	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1,"ek.ru", "ohoho");
-	int i=gdr->insertIntoDatabase();
-	delete gdr;
-	return true;
-}
+//bool Geodata_record::completeTable()
+//{//переделать
+//	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1,"ek.ru", "ohoho");
+//	int i=gdr->insertIntoDatabase();
+//	delete gdr;
+//	return true;
+//}
 
 void Geodata_record::deleteRecord(int& id)
  {
@@ -253,3 +251,25 @@ void Geodata_record::deleteRecord(int& id)
  		qDebug() << "Udalilos";
  	}
  }
+
+void Geodata_record::deleteRecords(int site_id, int author_id)
+{
+
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	query.prepare("DELETE FROM geodata_records \
+	WHERE site_id=:site_id\
+	AND session_id = (\
+					SELECT session_id FROM sessions\
+					WHERE user_id =:user_id\
+					)"
+		);
+	query.bindValue(":site_id", site_id);
+	query.bindValue(":user_id", author_id);
+	if (!query.exec()) {
+		qDebug() << "Geodata_record::deleteRecords(int site_id, int author_id):  error";
+		qDebug() << query.lastError().text();
+		db.close();
+	}
+	db.close();
+}

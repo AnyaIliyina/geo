@@ -18,7 +18,7 @@ class ItemModel : public QAbstractItemModel
 	Q_OBJECT
 public:
 	~ItemModel();
-	ItemModel(int session_id);
+	ItemModel();
 
 	int rowCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_OVERRIDE;
 	int columnCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_OVERRIDE;
@@ -56,6 +56,5 @@ private:
 	
 	BaseItem* m_rootItem = NULL;
 	BaseItem* m_editedItem = NULL;
-	int m_session_id;
 	int m_type = 0;
 };

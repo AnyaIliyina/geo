@@ -15,7 +15,7 @@ class Geodata : public BaseItem
 {
 public:
 	virtual ~Geodata();
-	Geodata(int session_id);
+	Geodata();
 
 	int columnCount() const Q_DECL_OVERRIDE;
 
@@ -43,7 +43,6 @@ public:
 private:
 
 	int m_id = 0;
-	int m_session_id=0;
 	int m_state_id = 0;
 	int m_scale_id = 0;
 	QString m_place_name;
