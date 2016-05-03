@@ -55,6 +55,8 @@ private:
 	QString m_user_type;
 	QString m_url;
 	QString m_comment;
+	/*QString m_all1;
+	QString m_all;*/
 	int m_format_id;
 	int m_site_id;
 	int m_type = 0;
