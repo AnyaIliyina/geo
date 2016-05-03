@@ -30,7 +30,7 @@ public:
 	\return -2 - страница недоступна;
 	\return -1 - ошибка при записи в БД;
 	*/
-	int parse(int session_id, int site_id);
+	int parse(int site_id);
 	
 	ParserGisLub();
 	~ParserGisLub();

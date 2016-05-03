@@ -8,6 +8,7 @@
 #include "State.h"
 #include "Site.h"
 #include "Geodata_record.h"
+#include "Database.h"
 
 #define PAGE_NOT_AVAILABLE -2;
 #define ERROR_INSERTING_INTO_DB -1;
@@ -35,7 +36,7 @@ public:
 	\return -2 - страница недоступна;
 	\return -1 - ошибка при записи в БД;
 	*/
-	virtual int parse(int session_id, int site_id) = 0;
+	virtual int parse(int site_id) = 0;
 	
 	/*!
 	Возвращает url страницы, с которой работает парсер
@@ -60,6 +61,9 @@ protected:
 	\param const QString& url - новое значение m_url*/
 	void setUrl(const QString& url);
 
+	int m_session_id = Database::smSessionId();
+
 private:
 	QString m_url;
+	
 };

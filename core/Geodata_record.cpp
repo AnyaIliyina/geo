@@ -3,6 +3,7 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 #include "Database.h"
+#include "Log.h"
 #include <QTextCodec>
 
 Geodata_record::Geodata_record(int site_id, int format_id, const QString& place_name,
@@ -159,12 +160,15 @@ bool Geodata_record::insertIntoDatabase()
 	query.addBindValue(m_url);
 	if (!query.exec()) {
 		qDebug() << "Geodata_record::insertIntoDatabase():  error inserting into Table geodata_records";
-		qDebug() << query.lastError().text();
+		QString error_string = query.lastError().text();
+		qDebug() << error_string;
 		db.close();
+		Log::create(m_session_id, "Geodata_record: insert",  0, error_string);
 		return false;
 	}
 	m_record_id = query.lastInsertId().toInt();
 	db.close();
+	Log::create(m_session_id, "Geodata_record: insert", m_record_id);	
 	return true;
 }
 
@@ -188,11 +192,13 @@ void Geodata_record::updateRecord()
 	query.bindValue(":record_id", m_record_id);
 	if (!query.exec()) {
 		qDebug() << "Geodata_record::updateRecord():  error update geodata_records";
-		qDebug() << query.lastError().text();
+		QString errorString = query.lastError().text();
+		qDebug() << errorString;		
 		db.close();
-	
+		Log::create(m_session_id, "Geodata_record: update", m_record_id, errorString);
 	}
 	db.close();
+	Log::create(m_session_id, "Geodata_record: update", m_record_id);
 }
 
 bool Geodata_record::createTable()
@@ -235,7 +241,7 @@ bool Geodata_record::createTable()
 //	return true;
 //}
 
-void Geodata_record::deleteRecord(int& id)
+void Geodata_record::deleteRecord(int& id, int session_id)
  {
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
@@ -244,17 +250,19 @@ void Geodata_record::deleteRecord(int& id)
  	if (!query.exec("DELETE FROM geodata_records WHERE record_id=\'" + idstr + "\'"))
 	{
  	qDebug() << "Oshibka udaleniya";
- 		qDebug() << query.lastError().text();
+ 		QString errorString = query.lastError().text();
+		qDebug() << errorString;
+		Log::create(session_id, "Geodata_record: delete", id, errorString);
  	}
  	else
  	{
  		qDebug() << "Udalilos";
+		Log::create(session_id, "Geodata_record: delete", id);
  	}
  }
 
 void Geodata_record::deleteRecords(int site_id, int author_id)
 {
-
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
 	query.prepare("DELETE FROM geodata_records \
@@ -272,4 +280,28 @@ void Geodata_record::deleteRecords(int site_id, int author_id)
 		db.close();
 	}
 	db.close();
+}
+
+void Geodata_record::deleteOldSmRecords(int site_id, int session_id)
+{
+	QSqlDatabase db = Database::database();
+	QSqlQuery query(db);
+	query.prepare("DELETE FROM geodata_records \
+	WHERE geodata_records.site_id=:site_id\
+	AND geodata_records.session_id = (\
+					SELECT session_id FROM sessions\
+					WHERE sessions.user_id = 1 AND sessions.session_id<:session_id\
+					)"
+		);
+	query.bindValue(":site_id", site_id);
+	query.bindValue(":session_id", Database::smSessionId());
+	if (!query.exec()) {
+		qDebug() << "Geodata_record::deleteOldSmRecords(int site_id):  error";
+		QString errorString = query.lastError().text();
+		qDebug() << errorString;
+		Log::create(session_id, "Geodata_records: delete (Old, Sm, by site_id)", site_id, errorString);
+		db.close();
+	}
+	db.close();
+	Log::create(session_id, "Geodata_records: delete (Old, Sm, by site_id)", site_id);
 }

@@ -45,20 +45,23 @@ void SM_Session::search()
 	ParserGisLub *parserGL = new ParserGisLub();	
 	ParserGeofabrik *parserGeofabrik = new ParserGeofabrik();
 
-	int result = 0;
-	// Если для сайта есть парсер, удалить старые записи, методом parse(int, int) создать новые.
+	// Если для сайта есть парсер, вызвать parse(int, int), удалить стрые записи.
+	int resultGeofabrik; int resultGL;
 	for (int s = 0; s < sites.count(); s++)
 	{	
 		Site site = sites.at(s);
-		if (site.url().contains(parserGL->url()))	
+		if (site.url().contains(parserGL->url()))
 		{
-				Geodata_record::deleteRecords(site.site_id(), 1);
-				result += parserGL->parse(Database::smSessionId(), site.site_id());
+				resultGL = parserGL->parse(site.site_id());
+				if (resultGL == 0)
+					Geodata_record::deleteOldSmRecords(site.site_id());				
 		}
+		
 		if (site.url().contains(parserGeofabrik->url()))
 		{
-			Geodata_record::deleteRecords(site.site_id(), 1);
-			result += parserGeofabrik->parse(Database::smSessionId(), site.site_id());
+			resultGeofabrik = parserGeofabrik->parse(site.site_id());
+			if (resultGeofabrik == 0)
+				Geodata_record::deleteOldSmRecords(site.site_id());
 		}
 	}
 
@@ -66,7 +69,7 @@ void SM_Session::search()
 	delete parserGeofabrik;
 	
 	// вывести сообщение о результатах поиска в зависимости от search_result
-	if (result==0)
+	if (resultGL==0 && resultGeofabrik==0)
 		emit setStatus(State::coded("Модуль поиска: все сайты проверены."));
 }
 

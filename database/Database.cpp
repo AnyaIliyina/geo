@@ -6,6 +6,7 @@
 #include "Status.h"
 #include "Session.h"
 #include "Usertype.h"
+#include "Log.h"
 #include "Site.h"
 #include "Geodata_record.h"
 #include <QFileInfo>
@@ -17,17 +18,17 @@ const QString Database::pathToDb = QDir::currentPath() + QString("/database/geoD
 
 const QString Database::connectionName = "geoDb_connection";	// название подключения
 
-int Database::CurrentSessionId = -1;
+int Database::CurrentSessionId = 0;
 
-int Database::SmSessionId = -1;
+int Database::SmSessionId = 0;
 
-int Database::SystemSessionId = -1;
+int Database::SystemSessionId = 1;
 
 																/*!
 Создает подключение connectionName к базе.
 Если необходимо, заново создает таблицы базы pathToDb 
 */
-void Database::restore()
+void Database::restore(int session_id)
 {
 	QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
 	db.setDatabaseName(pathToDb);
@@ -36,6 +37,7 @@ void Database::restore()
 	QFileInfo dbFile(pathToDb);
 	if (!dbFile.exists()) {
 		configure();
+		Log::create(session_id, "Database: restore");
 	}
 }
 
@@ -107,5 +109,6 @@ void Database::configure()
 		Geodata_record::createTable();
 		// Geodata_record::completeTable();
 		Session::createTable();
-		// Session::completeTable();
+		Session::completeTable();
+		Log::createTable();
 }

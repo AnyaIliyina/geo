@@ -32,7 +32,7 @@ public:
 	
 	/*! Создает подключение connectionName к базе. 
 	Если необходимо, заново создает таблицы базы pathToDb */
-	static void restore();
+	static void restore(int session_id = Database::SystemSessionId);
 
 	/*!
 	Устнонавливает id текущей пользовательской сессии

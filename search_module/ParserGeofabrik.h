@@ -27,7 +27,7 @@ public:
 	\return 0 - без ошибок;
 	\return -2 - страница недоступна;
 	*/
-	int parse(int session_id, int site_id);
+	int parse(int site_id);
 	ParserGeofabrik();
 	~ParserGeofabrik();
 private:

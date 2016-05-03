@@ -2,6 +2,8 @@
 
 #include <QString>
 #include <QDebug>
+#include "Geodata.h"
+#include "Database.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QUrl>
@@ -152,11 +154,16 @@ public:
 	/*!
 	Удаляет запись по ее id;
 	*/
-	static void deleteRecord(int & id);
+	static void deleteRecord(int & id, int session_id = Database::currentSessionId());
 
 	/*!
 	Удаляет записи, созданные пользователем author_id и относящиеся к сайту site_id
 	\param site_id - id сайта
 	\param author_id - id пользователя*/
 	static void deleteRecords(int site_id, int author_id);
+
+	/*!Удаляет записи, относящиеся к сайту site_id
+	и созданные модулем поиска до текущей сессии
+	\param int site_id - id сайта */
+	static void deleteOldSmRecords(int site_id, int session_id = Database::smSessionId());
 };

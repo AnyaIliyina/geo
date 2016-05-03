@@ -112,10 +112,13 @@ bool Session::createSystemSession()
 	return true;
 }
 
-//bool Session::completeTable()
-//{
-//	Session *s = new Session(1, QDateTime::currentDateTime());
-//	bool succeeded = s->insertIntoDatabase();
-//	delete s;
-//	return succeeded;
-//}
+bool Session::completeTable()
+{
+	// Первая сессия в базе - сессия Системы(user_id = 2);
+	Session *s = new Session(2, QDateTime::currentDateTime());
+	bool succeeded = s->insertIntoDatabase();
+	if(succeeded)
+		Database::setSystemSessionId(s->session_id());
+	delete s;
+	return succeeded;
+}

@@ -2,7 +2,7 @@
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
+#include "Log.h"
 
 
 /*!
@@ -102,7 +102,7 @@ int Site::status_id() const
 	return m_status_id;
 }
 
-bool Site::setStatusId(int site_id, int status_id)
+bool Site::setStatusId(int site_id, int status_id, int session_id)
 {
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
@@ -113,11 +113,13 @@ bool Site::setStatusId(int site_id, int status_id)
 	query.addBindValue(site_id);
 	if (!query.exec()) {
 		qDebug() << "Site::setStatusId(int site_id, int status_id):  error inserting into Table sites";
-		qDebug() << query.lastError().text();
+		QString errorString =  query.lastError().text();
 		db.close();
+		Log::create(session_id, "Site: setStatusId", site_id, errorString);
 		return false;
 	}
 	db.close();
+	Log::create(session_id, "Site: setStatusId", site_id);
 	return true;
 }
 
@@ -143,7 +145,7 @@ int Site::site_id(QString & site_name)
 }
 
 
-int Site::insertIntoDatabase()
+int Site::insertIntoDatabase(int session_id)
 {
 	QSqlDatabase db = Database::database();
 	QSqlQuery query(db);
@@ -155,13 +157,16 @@ int Site::insertIntoDatabase()
 	query.addBindValue(m_comment);
 	if (!query.exec()) {
 		qDebug() << "Site::insertIntoDatabase():  error inserting into Table sites";
-		qDebug() << query.lastError().text();
+		QString errorString = query.lastError().text();
+		qDebug() << errorString;
 		db.close();
+		Log::create(session_id, "Site: insert", 0, errorString);
 		return -1;
 	}
 	else {
 		int id = query.lastInsertId().toInt();
 		db.close();
+		Log::create(session_id, "Site: insert", id);
 		return id;
 	}
 	
@@ -202,8 +207,15 @@ bool Site::uncheckedSitesFound()
 		db.close();
 		return false;
 	}
-	if(query.next())
+
+	if (query.next())	{
+		db.close();
 		return true;
+	}
+	else	{
+		db.close();
+		return false;
+	}
 }
 
 
