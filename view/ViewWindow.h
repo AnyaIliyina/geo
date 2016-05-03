@@ -7,6 +7,7 @@
 #include "TableModel.h"
 #include "Item_model.h"
 #include "Geodata.h"
+#include "SortFilterProxyModel.h"
 #include "QSortFilterProxyModel"
 
 /*!
@@ -39,7 +40,7 @@ private:
 	
 	*/
 	 void createTable();
-	 QSortFilterProxyModel *filterModel;
+	 SortFilterProxyModel *filterModel;
 	Ui::ViewWindow *ui;
 	
 	bool m_editMode = false;
@@ -74,8 +75,8 @@ private slots:
 	 */
     void slotEnableButtons(const QItemSelection &, const QItemSelection &);
 	void slotEnableButtons();
+	void slotFilterChanged(QString text);
 signals:
-
-
 	void signalChangeEditMode();
+
 };

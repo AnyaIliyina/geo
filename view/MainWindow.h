@@ -5,6 +5,7 @@
 #include "LoginDialog.h"
 #include "ui_MainWindow.h"
 #include "SearchForm.h"
+#include "ViewWindow.h"
 /*
 \file
 */
@@ -35,6 +36,7 @@ private:
 	Ui::MainWindow *ui;
 //	QString m_log;
 	SearchForm *sf;
+	ViewWindow *vw;
 private slots:
 	/*!
 	Выводит сообщение на панель StatusBar

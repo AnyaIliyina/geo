@@ -31,8 +31,8 @@ MainWindow::MainWindow(QMainWindow *parent)
 	//Показать окно авторизации, при нажатии смены пользователя
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), ld, SLOT(slotShowLD()));
 	QObject::connect(ui->actionUser, SIGNAL(triggered()), this, SLOT(slotCloseMW()));
-	
 	QObject::connect(ui->actionNewSource, SIGNAL(triggered()), ns, SLOT(slotShowNS()));
+	
 }
 
 
@@ -46,13 +46,13 @@ MainWindow::~MainWindow()
 */
 void MainWindow::slotConfigure()
 {
-	
-	ViewWindow *vw = new ViewWindow();
+	vw = new ViewWindow();
 	QDockWidget *viewDockWidget = new QDockWidget("Список записей");
 	viewDockWidget->setWidget(vw);
 	viewDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
 	setCentralWidget(viewDockWidget);
 	sf=new SearchForm();
+	QObject::connect(sf, SIGNAL(filterChanged(QString)), vw, SLOT(slotFilterChanged(QString)));
 	addDockWidget(Qt::LeftDockWidgetArea, sf);
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);

@@ -9,12 +9,15 @@
 #include "Site.h"
 #include "Format.h"
 #include "Session.h"
+#include "SearchForm.h"
+#include "SortFilterProxyModel.h"
 #include <QSortFilterProxyModel>
 #include <QApplication>
 #include <QMainWindow>
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QMessageBox>
+
 
 ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
@@ -27,6 +30,7 @@ ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 	QObject::connect(ui->action_No, SIGNAL(triggered()), this, SLOT(slotCancel()));
 	QObject::connect(ui->tableView->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)) ,this, SLOT(slotEnableButtons(const QItemSelection &, const QItemSelection &)) );
 	QObject::connect(this, SIGNAL(signalChangeEditMode()), this, SLOT(slotEnableButtons()));
+	
 }
 
 ViewWindow::~ViewWindow()
@@ -81,6 +85,12 @@ void ViewWindow::slotEnableButtons()
 	}
 }
 
+void ViewWindow::slotFilterChanged(QString text)
+{
+	QRegExp regExp(text,Qt::CaseInsensitive);
+	filterModel->setFilterRegExp(regExp);
+}
+
 void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection &)
 {
 	qDebug() << "SLOOOOOOOT";
@@ -119,9 +129,8 @@ void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection 
 void ViewWindow::createTable()
 {
 	m_model->loadData(0);
-	filterModel = new QSortFilterProxyModel();
+	filterModel = new SortFilterProxyModel();
 	filterModel->setSourceModel(m_model);
-	
 	ui->tableView->setModel(filterModel);
 
 	auto comboDelegateSite = new ComboDelegate(Site::getSiteNames(), this);
