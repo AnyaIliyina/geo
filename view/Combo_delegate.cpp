@@ -1,4 +1,4 @@
-#include "combo_delegate.h"
+#include "Combo_delegate.h"
 
 #include <QComboBox>
 

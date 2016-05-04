@@ -10,6 +10,7 @@
 #include "Session.h"
 #include "SearchForm.h"
 #include "SortFilterProxyModel.h"
+#include "Url_delegate.h"
 #include <QSortFilterProxyModel>
 #include <QApplication>
 #include <QMainWindow>
@@ -152,6 +153,9 @@ void ViewWindow::createTable()
 
 	auto comboDelegateState = new ComboDelegate(State::getStates(), this);
 	ui->tableView->setItemDelegateForColumn(5, comboDelegateState);
+
+	auto url_delegate = new Url_delegate(this);
+	ui->tableView->setItemDelegateForColumn(8, url_delegate);
 
 	ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	ui->tableView->setColumnHidden(0, true);
