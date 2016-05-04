@@ -1,30 +1,41 @@
-/*!
-
-	\file
-	\brief 
-	\author 
-	\date Апрель 2016
-
-*/
-
 #pragma once
 
 #include "Base_item.h"
 
+/*!
+
+\file
+\brief	Наследник Item_model
+\author Козырева О.А.
+\date Апрель 2016
+
+*/
+
 class Geodata : public BaseItem
 {
 public:
+
 	virtual ~Geodata();
 	Geodata();
 
+	/*!
+	Возвращает количество колонок
+	\return int - количество колонок
+	*/
 	int columnCount() const Q_DECL_OVERRIDE;
 
 	void removeChild(BaseItem* child) Q_DECL_OVERRIDE;
 
 	QVariant data(int column, int role) const Q_DECL_OVERRIDE;
-	bool setData(int column, const QVariant& value, int role) Q_DECL_OVERRIDE;
 
+	bool setData(int column, const QVariant& value, int role);
+
+	/*!
+	Метод устанавливает названия колонок
+	\return QVariant
+	*/
 	QVariant headerData(int section, int role) const Q_DECL_OVERRIDE;
+
 
 	bool isValid() const Q_DECL_OVERRIDE;
 	bool isNew() const Q_DECL_OVERRIDE;
@@ -55,6 +66,8 @@ private:
 	QString m_user_type;
 	QString m_url;
 	QString m_comment;
+	/*QString m_all1;
+	QString m_all;*/
 	int m_format_id;
 	int m_site_id;
 	int m_type = 0;

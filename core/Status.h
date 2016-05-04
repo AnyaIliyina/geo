@@ -9,10 +9,11 @@
 #include <QDateTime>
 
 /*!
-*  \brief Представляет сущность Статус
+	\file
+	\brief Представляет сущность Статус
 			(таблица statuses)
-*  \author Козырева О.
-*  \date 15 марта 2016
+	\author Козырева О.
+	\date 15 марта 2016
 */
 
 class Status : public QObject {
@@ -36,6 +37,9 @@ public:
 	*/
 	Status(int id);
 	
+	/*!
+	Деструктор
+	*/
 	~Status();
 	
 	/*!
@@ -69,9 +73,5 @@ public:
 	\return false - возникли ошибки*/
 	static bool insert(QStringList statusNames);
 	
-	
-
-	
-	QString static coded(QByteArray encodedStr);
 };
 

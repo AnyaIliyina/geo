@@ -57,6 +57,8 @@ QVariant Geodata::data(int column, int role) const {
 			return m_url;
 		if (column == 9)
 			return m_comment;
+		/*if (column == 10)
+			return m_all;*/
 	}
 
 	if (role == Qt::UserRole) {
@@ -107,6 +109,7 @@ bool Geodata::setData(int column, const QVariant& value, int role) {
 			m_url = value.toString();
 		if (column == 9)
 			m_comment= value.toString();
+		
 		}
 	
 	return true;
@@ -135,6 +138,8 @@ QVariant Geodata::headerData(int section, int role) const {
 			return "URL";
 		if (section == 9)
 			return "Комментарии";
+		/*if (section == 10)
+			return "Все";*/
 	}
 
 	return QVariant();
@@ -231,7 +236,8 @@ bool Geodata::cancel() {
 	m_user_type = query.value(7).toString();
 	m_url = query.value(8).toString();
 	m_comment = query.value(9).toString();
-
+	//m_all = m_place_name + m_site_name + m_format_name;
+	
 	return true;
 };
 
@@ -261,7 +267,7 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 	while (query.next()) {
 		Geodata* geo = new Geodata();
 		geo->m_id = query.value(0).toInt(); // id
-		geo->m_place_name = query.value(1).toString(); // 
+		geo->m_place_name = query.value(1).toString();
 		geo->m_site_name = query.value(2).toString(); // 
 		geo->m_format_name = query.value(3).toString();
 		geo->m_description = query.value(4).toString();
@@ -270,7 +276,8 @@ QList<BaseItem*> Geodata::loadItemsFromDb() {
 		geo->m_user_type = query.value(7).toString();
 		geo->m_url = query.value(8).toString();
 		geo->m_comment = query.value(9).toString();
-
+		/*m_all1 = geo->m_place_name + geo->m_site_name;
+		geo->m_all= m_all1 + geo->m_format_name;*/
 		list << geo;
 
 	}

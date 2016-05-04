@@ -6,14 +6,12 @@
 #include "ui_MainWindow.h"
 #include "SearchForm.h"
 #include "ViewWindow.h"
-/*
-\file
-*/
 
 /*!
-\brief Описывает конфигурацию основного окна приложения
-\author Ильина А., Козырева О.
-\date март 2016г.
+	\file
+	\brief Описывает конфигурацию основного окна приложения
+	\author Ильина А., Козырева О.
+	\date март 2016г.
 */
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -34,9 +32,9 @@ private:
 	void showMW();
 	
 	Ui::MainWindow *ui;
-//	QString m_log;
 	SearchForm *sf;
 	ViewWindow *vw;
+
 private slots:
 	/*!
 	Выводит сообщение на панель StatusBar

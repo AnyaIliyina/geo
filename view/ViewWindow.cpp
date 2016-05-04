@@ -1,6 +1,5 @@
 ﻿#include "ViewWindow.h"
 #include "Database.h"
-#include "TableModel.h"
 #include "Scale.h"
 #include "State.h"
 #include "Geodata_record.h"
@@ -23,6 +22,7 @@ ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 {
 	ui->setupUi(this);
 	setupModel();
+	setDisabled();
 	QObject::connect(ui->action_New, SIGNAL(triggered()), this, SLOT(slotAdd()));
 	QObject::connect(ui->action_Delete, SIGNAL(triggered()), this, SLOT(slotDelete()));
 	QObject::connect(ui->action_Edit, SIGNAL(triggered()), this, SLOT(slotEdit()));
@@ -30,7 +30,7 @@ ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 	QObject::connect(ui->action_No, SIGNAL(triggered()), this, SLOT(slotCancel()));
 	QObject::connect(ui->tableView->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)) ,this, SLOT(slotEnableButtons(const QItemSelection &, const QItemSelection &)) );
 	QObject::connect(this, SIGNAL(signalChangeEditMode()), this, SLOT(slotEnableButtons()));
-	
+	QObject::connect(this, SIGNAL(dataChanged()), this, SLOT(slotRefresh()));
 }
 
 ViewWindow::~ViewWindow()
@@ -46,6 +46,16 @@ void ViewWindow::setupModel()
 	m_model = new ItemModel();
 	createTable();
 }
+
+void ViewWindow::setDisabled()
+{
+	ui->action_Edit->setEnabled(false);
+	ui->action_Delete->setEnabled(false);
+	ui->action_New->setEnabled(false);
+	ui->action_Yes->setEnabled(false);
+	ui->action_No->setEnabled(false);
+}
+
 void ViewWindow::slotRefresh()
 {
 	setupModel();
@@ -53,7 +63,6 @@ void ViewWindow::slotRefresh()
 
 void ViewWindow::slotEnableButtons()
 {
-	qDebug() << "SLOOOOOOOT";
 	if (m_editMode)
 	{
 		ui->action_Edit->setEnabled(false);
@@ -85,15 +94,8 @@ void ViewWindow::slotEnableButtons()
 	}
 }
 
-void ViewWindow::slotFilterChanged(QString text)
-{
-	QRegExp regExp(text,Qt::CaseInsensitive);
-	filterModel->setFilterRegExp(regExp);
-}
-
 void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection &)
 {
-	qDebug() << "SLOOOOOOOT";
 	if (m_editMode)
 	{
 		ui->action_Edit->setEnabled(false);
@@ -124,6 +126,12 @@ void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection 
 		}
 	}
 	
+}
+
+void ViewWindow::slotFilterChanged(QString text)
+{
+	QRegExp regExp(text, Qt::CaseInsensitive);
+	filterModel->setFilterRegExp(regExp);
 }
 
 void ViewWindow::createTable()
@@ -160,12 +168,10 @@ void ViewWindow::slotAdd()
 	auto m_index = filterModel->mapToSource(index);
 	m_model->insertRows(0, 1, m_index);
 	auto rowCount = m_model->rowCount(m_index);
-	qDebug() << "slotAdd rowcount" << rowCount;
 	auto child = m_model->index(rowCount - 1, 0, m_index); 
-	qDebug() << "slotAdd child"<<child;
 	ui->tableView->selectionModel()->setCurrentIndex(child, QItemSelectionModel::SelectCurrent);
-	qDebug() << "SLot add child" << child;
 	ui->tableView->edit(child);
+	
 }
 
 void ViewWindow::slotDelete()
@@ -178,8 +184,6 @@ void ViewWindow::slotDelete()
 	{
 		auto index = ui->tableView->selectionModel()->currentIndex();
 		auto m_index = filterModel->mapToSource(index);
-		qDebug()<<"Slot Delete" << index;
-		qDebug() << "Slot Delete" << m_index;
 		m_model->removeRows(0, 1, m_index);
 	}
 }
@@ -190,9 +194,7 @@ void ViewWindow::slotEdit()
 	m_editMode = true;
 	emit signalChangeEditMode();
 	auto index = ui->tableView->selectionModel()->currentIndex();
-	qDebug() <<"slotEdit index" <<index;
 	auto m_index= filterModel->mapToSource(index);
-	qDebug() << "index map" << m_index;
 	m_model->startEditMode(m_index);
 	ui->tableView->edit(m_index);
 }
@@ -204,11 +206,13 @@ void ViewWindow::slotSave()
 		m_editMode = false;
 		emit signalChangeEditMode();
 		QMessageBox::information(this, "", Scale::coded("Сохранено"), QMessageBox::Ok);
+		emit dataChanged();
 	}
 	else
 		QMessageBox::critical(this, "", Scale::coded("Не удалось применить изменения"), QMessageBox::Ok);
 	auto index = ui->tableView->selectionModel()->currentIndex();
 	auto m_index = filterModel->mapToSource(index);
+
 }
 
 void ViewWindow::slotCancel()

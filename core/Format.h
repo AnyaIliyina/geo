@@ -8,15 +8,13 @@
 #include <QUrl>
 #include <QDateTime>
 
-/*!
-\file
-*/
 
 /*!
-*  \brief    Представляет сущность Формат
+	\file
+	\brief    Представляет сущность Формат
 (таблица formats)
-*  \author   Козырева О.
-*  \date     15 март 2016
+	\author   Козырева О.
+	\date     15 март 2016
 */
 
 

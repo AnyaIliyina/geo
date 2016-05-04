@@ -9,10 +9,11 @@
 #include <QDateTime>
 
 /*!
-*  \brief Представляет сущность Масштаб
+	\file
+    \brief Представляет сущность Масштаб
 		(таблица scales)
-*  \author Козырева О.
-*  \date 10 марта 2016
+    \author Козырева О.
+	\date 10 марта 2016
 */
 
 class Scale: public QObject {
@@ -22,22 +23,38 @@ private:
 	QString m_description;
 
 public:
-	QString description();
-	
+		
 	/*!
-	Конструирует объект класса Scale из параметров
+	Конструирует объект класса Scale
+	\param QString description - масштаб 
 	*/
 	Scale(QString description);
+
+	/*!
+	Деструктор
+	*/
+	~Scale();
 	
+	/*!
+	Возвращает машстаб
+	*/
+	QString description();
+
 	/*!
 	Конструирует объект класса Scale из данных в базе
 	\param int id - id сайта в базе
 	*/
 	Scale(int id);
 	
-	~Scale();
-	
+	/*!
+	Возвращает id масштаба
+	*/
 	int scale_id();
+
+	/*!
+	Возвращает id заданного масштаба
+	\param QString description - масштаб
+	*/
 	static int scale_id(QString description);
 	
 	/*!
@@ -58,8 +75,11 @@ public:
 	\return true - если таблица успешно заполнена
 	*/
 	static bool completeTable();
-	static QString coded(QByteArray encodedStr);
 
+	/*!
+	Получает список всех масштабов из базы
+	\return QStringList listScales - список масштабов
+	*/
 	static QStringList getDescription();
 
 	/*!
@@ -68,5 +88,12 @@ public:
 	\return true - масштабы записаны в БД
 	\return false - возникли ошибки*/
 	static bool insert(QStringList descriptions);
+
+	/*!
+	Метод для получения строки в кодировке Unicode 
+	\param QByteArray encodedStr - строка с кодировкой Windows-1251
+	\return QString string - строка в кодировке Unicode
+	*/
+	static QString coded(QByteArray encodedStr);
 };
 

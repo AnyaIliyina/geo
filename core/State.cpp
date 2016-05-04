@@ -1,14 +1,10 @@
 ﻿#include "State.h"
+#include "Scale.h"
+#include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
 #include <QTextCodec>
-
-/*!
-\file
-\brief  
-*/
 
 QString State::state_name()
 {
@@ -51,7 +47,6 @@ int State::state_id(QString state_name)
 	QSqlQuery query(db);
 	if (!query.exec("SELECT state_id FROM states WHERE state_name=\'" + state_name + "\'"))
 	{
-		qDebug() << "Zapros ne proshel";
 		qDebug() << query.lastError().text();
 		return -1;
 	}
@@ -121,20 +116,13 @@ bool State::insert(QStringList stateNames)
 	return true;
 }
 
-QString State::coded(QByteArray encodedStr) // метод для получения строки в кодировке Unicode 
-{ // из QByteArray с кодировкой Windows-1251 
-	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
-	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
-	QString const string = codec->toUnicode(encodedStr);
-	return string;
-}
 
 bool State::completeTable()
 {
 	QStringList stateNames;
-	stateNames << coded("Не установлено")
-		<< coded("Актуально")
-		<< coded("Неактуально");
+	stateNames << Scale::coded("Не установлено")
+		<< Scale::coded("Актуально")
+		<< Scale::coded("Неактуально");
 	return insert(stateNames);
 }
 

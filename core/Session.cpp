@@ -1,8 +1,8 @@
 ﻿#include "Session.h"
+#include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
 #include <QTextCodec>
 
 Session::Session(int user_id, QDateTime date)

@@ -36,6 +36,9 @@ public:
 	*/
 	Usertype(int id);
 	
+	/*!
+	Деструктор
+	*/
 	~Usertype();
 	
 	/*!
@@ -68,7 +71,5 @@ public:
 	\return true - статусы записаны в БД
 	\return false - возникли ошибки*/
 	static bool insert(QStringList typeNames);
-	
-	QString static coded(QByteArray encodedStr);
 };
 

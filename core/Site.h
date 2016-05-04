@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Database.h"
 #include <QObject>
 #include <QString>
 #include <QDebug>
@@ -7,16 +8,14 @@
 #include <QSqlQuery>
 #include <QUrl>
 #include <QDateTime>
-#include "Database.h"
-/*!
-\file
-*/
+
 
 /*! 
- *  \brief     Представляет сущность Сайт
+   \file
+   \brief    Представляет сущность Сайт
 			(таблица sites)
- *  \author    Ильина А., Козырева О.
- *  \date      март 2016
+   \author    Ильина А., Козырева О.
+   \date      март 2016
  */
 
 class Site
@@ -28,12 +27,7 @@ private:
 	QString m_site_name;
 	QString m_comment;
 public:
-	/*!
-	Возращает список сайтов 
-	\return QStringList listSites - список названий сайтов
-	*/
-//	static QSqlQueryModel getSiteNames();
-	static QStringList getSiteNames();
+	
 	/*!
 	Возвращает адрес сайта
 	\return QString& url - адрес сайта
@@ -101,9 +95,7 @@ public:
 	\return int site_id - id сайта;
 	*/
 	static int site_id(QString &site_name);
-
-	//static bool checkUrl(QString &url);
-	
+		
 	/*!
 	Записывает информацию о сайте в базу данных.
 	\return site_id
@@ -128,8 +120,7 @@ public:
 	\return QList<Site> siteList - список сайтов со статусом statusId
 	*/
 	static QList<Site> sitesByStatus(int statusId);
-	
-	
+		
 	/*!
  	 Записывает информацию о сайтах из списка в базу
  	 \param (QList<Site> sites - список сайтов
@@ -142,4 +133,10 @@ public:
 	 Проверяет, есть ли в базе сайты со статусом 1
 	 \return true - найден хотя бы один сайт со статусом 1*/
 	 static bool uncheckedSitesFound();
+
+	 /*!
+	 Возращает список сайтов
+	 \return QStringList listSites - список названий сайтов
+	 */
+	 static QStringList getSiteNames();
 };
