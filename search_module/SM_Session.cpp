@@ -27,7 +27,7 @@ SM_Session::~SM_Session()
 void SM_Session::start()
 {
 	Session::createSMsession();
-	emit setStatus(State::coded("Модуль поиска начал работу..."));
+	setStatus(State::coded("Модуль поиска начал работу..."));
 	search();
 }
 
@@ -38,41 +38,29 @@ void SM_Session::start()
 */
 void SM_Session::search()
 {
-	// получить список сайтов со статусом 1 (нуждающихся в проверке):
-	QList<Site> sites = Site::sitesByStatus(1); 
+	// получить список сайтов (нуждающихся в проверке, со статусом 1):
+	m_sites = Site::sitesByStatus(1);
 
 	// создать все возможные парсеры:
-	ParserGisLub *parserGL = new ParserGisLub();	
+	ParserGisLub *parserGL = new ParserGisLub();
 	ParserGeofabrik *parserGeofabrik = new ParserGeofabrik();
+	m_parserPool << parserGL << parserGeofabrik;
 
-	// Если для сайта есть парсер, вызвать parse(int, int), удалить стрые записи.
-	int resultGeofabrik; int resultGL;
-	for (int s = 0; s < sites.count(); s++)
-	{	
-		Site site = sites.at(s);
-		if (site.url().contains(parserGL->url()))
-		{
-				resultGL = parserGL->parse(site.site_id());
-				if (resultGL == 0)
-					Geodata_record::deleteOldSmRecords(site.site_id());				
-		}
-		
-		if (site.url().contains(parserGeofabrik->url()))
-		{
-			resultGeofabrik = parserGeofabrik->parse(site.site_id());
-			if (resultGeofabrik == 0)
-				Geodata_record::deleteOldSmRecords(site.site_id());
-		}
-	}
+	// парсить:
+	int result = 0;
+	for (int i = 0; i < m_parserPool.count(); i++)
+		result += parseIfNeeded(m_parserPool.at(i));
 
-	delete parserGL;
-	delete parserGeofabrik;
-	
-	// вывести сообщение о результатах поиска в зависимости от search_result
-	if (resultGL==0 && resultGeofabrik==0)
-		emit setStatus(State::coded("Модуль поиска: все сайты проверены."));
+	// освободить память:
+	for (int i = 0; i < m_parserPool.count(); i++)
+		delete m_parserPool.at(i);
+
+	// вывести результат поиска:
+	if (result == 0)
+		setStatus(State::coded("Модуль поиска: все сайты проверены."));
+	else
+		setStatus(State::coded("Модуль поиска завершил работу. Не все сайты проверены."));
 }
-
 
 /*!
 Отправляет сигнал основному окну с целью поменять 
@@ -82,4 +70,22 @@ void SM_Session::search()
 void SM_Session::setStatus(const QString &text)
 {
 	emit signalStatusOffered(text);
+}
+
+
+int SM_Session::parseIfNeeded(Parser* p)
+{
+	int result = 0;
+	for (int i = 0; i < m_sites.count(); i++)
+	{
+		Site site = m_sites.at(i);
+		if (site.url().contains(p->url()))
+		{
+			result = p->parse(site.site_id());
+			
+			if (result == 0)
+				Geodata_record::deleteOldSmRecords(site.site_id());
+		}
+	}
+	return result;
 }

@@ -16,40 +16,41 @@
 
 int ParserGeofabrik::parse(int site_id)
 {
-	m_pages.push("http://download.geofabrik.de/south-america.html");
-	//m_pages.push(url());
-	//m_pages.push("http://download.geofabrik.de/europe.html");
-	Geodata_record *record = new Geodata_record();
-	record->setSessionId(m_session_id);
-	record->setSiteId(site_id);
-	record->setStateId(stateID_actual);
-	/*QByteArray *replyIndex = getReply(m_pages.pop());
-	separateTable(*replyIndex);
-	parseTable(*replyIndex, record, true);*/
+	m_site_id = site_id;
 
-	while (!m_pages.isEmpty())
+	// Начальная страница:
+	QByteArray *replyIndex = getReply();
+	if (*replyIndex == "")
+		return PAGE_NOT_AVAILABLE;
+	separateTable(*replyIndex);
+	parseTable(*replyIndex, true);
+
+	// Остальные страницы:
+	while (!m_pagesToParse.isEmpty())
 	{
-		QString currentPage = m_pages.pop();
-		/*m_currUrl = currentPage.left(currentPage.lastIndexOf('.'));
-		qDebug() << "m_currUrl = " << m_currUrl;*/
+		QString currentPage = m_pagesToParse.pop();		
+		setUrlPrefix(currentPage);
+		
+		qDebug() << "\n going to " << currentPage;
 		QByteArray *reply = getReply(currentPage);
-		qDebug() << "\ngoing to " << currentPage;
-		if (*reply == "")
-		{
-			qDebug() << "wrong adress(";
+
+		if (*reply == "")	{
+			qDebug() << "wrong adress.";
 			return PAGE_NOT_AVAILABLE;
 		}
-		if (!separateTable(*reply))
-		{
-			qDebug() << "table not separated, move on";
+		if (!separateTable(*reply)) {
+			qDebug() << "no subregions.";
+			qDebug() << m_pagesToParse.length();
 			continue;
 		}
-		if(parseTable(*reply, record)==-1)
+		if(parseTable(*reply)==-1)
 			return ERROR_INSERTING_INTO_DB;
 	}
+
 	Site::setStatusId(site_id, statusId_checked);
 	return SUCCEEDED;
 }
+
 
 
 ParserGeofabrik::ParserGeofabrik()
@@ -58,8 +59,30 @@ ParserGeofabrik::ParserGeofabrik()
 }
 
 
-int ParserGeofabrik::parseTable(QByteArray &content, Geodata_record* record, bool isIndex)
-{ // TODO: передать QStack<QString> pages по ссылке
+ParserGeofabrik::~ParserGeofabrik()
+{
+}
+
+
+void ParserGeofabrik::setUrlPrefix(const QString & currUrl)
+{
+	QUrl tempUrl(currUrl);
+	m_urlPrefix = tempUrl.adjusted(QUrl::RemoveFilename).toString();
+}
+
+
+Geodata_record * ParserGeofabrik::recordPrepared()
+{
+	Geodata_record *record = new Geodata_record();
+	record->setSessionId(m_session_id);
+	record->setSiteId(m_site_id);
+	record->setStateId(stateID_actual);
+	return record;
+}
+
+int ParserGeofabrik::parseTable(QByteArray &content, bool isIndex)
+{ 
+	Geodata_record* record = recordPrepared();
 	QXmlStreamReader xml(content);
 	int counter = 0;
 	QString temp;
@@ -73,19 +96,16 @@ int ParserGeofabrik::parseTable(QByteArray &content, Geodata_record* record, boo
 				{
 					if (fmod(counter, 4) == 0)
 					{
-						qDebug() << "temp before: " << temp;
 						temp = xml.attributes().at(0).value().toString();
-						qDebug() << "temp after: " << temp;
-						qDebug() << m_pages.length();
+						qDebug() << m_pagesToParse.length();
 						if (isIndex)
 							record->setUrl(QString("http://download.geofabrik.de").
 								append(temp.right(temp.length() - 1)));
 						else
-							record->setUrl("http://download.geofabrik.de/" +temp);
+							record->setUrl(m_urlPrefix +temp);
 						qDebug() << record->url();
-						m_pages.push(record->url());
-						qDebug() << m_pages.length();
-						
+						m_pagesToParse.push(record->url());
+											
 					}
 					int columnNumber = fmod(counter, 4);
 					switch (columnNumber)
@@ -136,21 +156,13 @@ QStringRef ParserGeofabrik::translate(const QString & text)
 }
 
 
-
-ParserGeofabrik::~ParserGeofabrik()
-{
-}
-
-
 bool ParserGeofabrik::separateTable(QByteArray& ba)
 {
-	if(ba.indexOf("No sub regions are defined for this region")>-1)
-	{
-		qDebug() << "no subregions";
-		return false;
-	}
-	//if(ba.indexOf("<p>No sub regions are defined for this region.</p>"))
+	// Проверить, есть ли таблица с подрегионами subregions
+	if ( ba.indexOf("No sub regions are defined for this region") > -1 )
+			return false;
 
+	// Вырезать таблицу:
 	const QString splitter1 = QString("<table id=\"subregions\">");
 	int pos1 = ba.lastIndexOf(splitter1);
 
@@ -159,11 +171,11 @@ bool ParserGeofabrik::separateTable(QByteArray& ba)
 
 	ba = ba.mid(pos1, pos2 - pos1);
 
-	// Удаление кусков, приводящих к ошибкам в чтении xml:
+	// Удалеть фрагменты таблицы, приводящие к ошибкам чтения xml:
 	const QString errorPronePart = QString("&nbsp");
 	ba.remove(ba.indexOf(errorPronePart), errorPronePart.length()+1);
-	ba.replace("<img src=\"/img/cross.png\">",
-		"<a href=\"no\">[missing]</a>");			
+	ba.replace("<img src=\"/img/cross.png\">",			
+		"<a href=\"no\">[missing]</a>");		// <img> - непарный тег, заменить
 	
 	return true;
 }
