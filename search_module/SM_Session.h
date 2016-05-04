@@ -3,8 +3,7 @@
 #include <QString>
 #include <QObject>
 #include <QDebug>
-#include <QUrl>
-#include <QDateTime>
+#include "Parser.h"
 
 /*!
 \file
@@ -28,7 +27,9 @@ public:
 	void start();
 
 private:
-	
+	QList<Parser*> m_parserPool;
+	QList<Site> m_sites;
+
 	/*!
 	Получает список непроверенных сайтов(со статусом 0); 
 	если возможно, производит поиск ГПИ на этих сайтах
@@ -41,6 +42,8 @@ private:
 	\param const QString &text - текст нового сообщения
 	*/
 	void setStatus(const QString &text);
+
+	int parseIfNeeded(Parser *p);
 
 signals:
 	void signalStatusOffered(const QString &text);

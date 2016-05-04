@@ -116,6 +116,9 @@
     <ClCompile Include="core\Status.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\TableModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="core\User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -197,6 +200,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="core\Status.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="core\TableModel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="core\Types.h">
@@ -313,6 +319,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_Status.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_TableModel.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_TableModel.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_Usertype.cpp">

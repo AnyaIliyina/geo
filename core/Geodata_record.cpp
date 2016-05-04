@@ -20,6 +20,7 @@ Geodata_record::Geodata_record(int site_id, int format_id, const QString& place_
 	m_comment = comment;
 }
 
+
 Geodata_record::Geodata_record()
 {
 }
