@@ -45,10 +45,14 @@ void NewSource::addNewRecord()
 
 void NewSource::slotCheck()
 {
+	ui->lineError->setText("");
 	textRead();
 	if (emptyLine())
 	{
-		addMessage();
+		if (Site::urlFromString(m_url))
+			addMessage();
+		else
+			ui->lineError->setText(Scale::coded("Url не валидный!"));
 	}
 	else
 	{

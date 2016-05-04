@@ -146,4 +146,9 @@ public:
 	 \return QStringList listSites - список названий сайтов
 	 */
 	 static QStringList getSiteNames();
+
+	 /*!
+	 Проверяет url на валидность
+	 */
+	 static bool urlFromString(QString &string);
 };
