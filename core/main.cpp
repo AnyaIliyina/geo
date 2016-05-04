@@ -15,7 +15,7 @@
 int main(int argc, char* argv[])
 {	
 	QApplication app(argc, argv);
-	Database::restore();	
+	Database::restore();
 	MainWindow *w = new MainWindow();
 	return app.exec();
 };

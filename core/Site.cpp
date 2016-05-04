@@ -164,6 +164,12 @@ bool Site::insert(QList<Site> sites)
 	return true;
 }
 
+bool Site::urlIsNew(const QString & url)
+{
+	// TODO
+	return false;
+}
+
 bool Site::uncheckedSitesFound()
 {
 	QSqlDatabase db = Database::database();
