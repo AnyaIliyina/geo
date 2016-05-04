@@ -1,25 +1,25 @@
 ﻿#include "Scale.h"
+#include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
 #include <QTextCodec>
-
-/*!
-\file
-\brief
-*/
-
-QString Scale::description()
-{
-	return m_description;
-}
 
 Scale::Scale(QString description)
 {
 	m_description = description;
 	m_scale_id = 0;
 }
+
+Scale::~Scale()
+{
+}
+
+QString Scale::description()
+{
+	return m_description;
+}
+
 
 Scale::Scale(int id)
 {
@@ -36,10 +36,6 @@ Scale::Scale(int id)
 	m_description = description;
 }
 
-Scale::~Scale()
-{
-}
-
 int Scale::scale_id()
 {
 	return m_scale_id;
@@ -51,7 +47,6 @@ int Scale::scale_id(QString description)
 	QSqlQuery query(db);
 	if (!query.exec("SELECT scale_id FROM scales WHERE description=\'" + description + "\'"))
 	{
-		qDebug() << "Zapros ne proshel";
 		qDebug() << query.lastError().text();
 		return -1;
 	}
@@ -101,14 +96,6 @@ bool Scale::createTable()
 	return true;
 }
 
-QString Scale::coded(QByteArray encodedStr) // метод для получения строки в кодировке Unicode 
-{ // из QByteArray с кодировкой Windows-1251 
-	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
-	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
-	QString const string = codec->toUnicode(encodedStr);
-	return string;
-}
-
 QStringList Scale::getDescription()
 {
 
@@ -130,12 +117,12 @@ QStringList Scale::getDescription()
 
 bool Scale::completeTable()
 {
-	//Scale *s = new Scale("500:1");
 	QStringList descriptions;
 	descriptions << "1:500 000"
 		<< "1:100 000";
 	return insert(descriptions);
 }
+
 bool Scale::insert(QStringList descriptions)
 {
 	QSqlDatabase db = Database::database();
@@ -153,4 +140,11 @@ bool Scale::insert(QStringList descriptions)
 		}
 	}
 	db.close();
+}
+
+QString Scale::coded(QByteArray encodedStr) 
+{ 
+	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+	QString const string = codec->toUnicode(encodedStr);
+	return string;
 }

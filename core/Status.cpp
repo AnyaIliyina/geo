@@ -1,19 +1,10 @@
 ﻿#include "Status.h"
+#include "Scale.h"
+#include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
 #include <QTextCodec>
-
-/*!
-\file
-\brief
-*/
-
-QString Status::status_name()
-{
-	return m_status_name;
-}
 
 Status::Status(QString status_name)
 {
@@ -38,6 +29,11 @@ Status::Status(int id)
 
 Status::~Status()
 {
+}
+
+QString Status::status_name()
+{
+	return m_status_name;
 }
 
 int Status::status_id()
@@ -84,9 +80,9 @@ bool Status::createTable()
 bool Status::completeTable()
 {
 	QStringList statusNames;
-	statusNames << coded("Не проверено")
-		<< coded("Проверено модулем поиска")
-		<< coded("Проверено экспертом");
+	statusNames << (Scale::coded("Не проверено"))
+		<< (Scale::coded("Проверено модулем поиска"))
+		<< (Scale::coded("Проверено экспертом"));
 	return insert(statusNames);
 }
 
@@ -110,11 +106,4 @@ bool Status::insert(QStringList statusNames)
 	return true;
 }
 
-QString Status::coded(QByteArray encodedStr)
-{
-	// из QByteArray с кодировкой Windows-1251 
-	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
-	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
-	QString const string = codec->toUnicode(encodedStr);
-	return string;
-}
+

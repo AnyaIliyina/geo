@@ -1,14 +1,10 @@
 ﻿#include "Usertype.h"
+#include "Database.h"
+#include "Scale.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
-#include "Database.h"
 #include <QTextCodec>
-
-/*!
-\file
-\brief
-*/
 
 QString Usertype::type_name()
 {
@@ -84,10 +80,10 @@ bool Usertype::createTable()
 bool Usertype::completeTable()
 {
 	QStringList typeNames;
-	typeNames << coded("Модуль поиска")
-		<< coded("Система")
-		<< coded("Эксперт")
-		<< coded("Пользователь");
+	typeNames << Scale::coded("Модуль поиска")
+		<< Scale::coded("Система")
+		<< Scale::coded("Эксперт")
+		<< Scale::coded("Пользователь");
 	return insert(typeNames);
 }
 
@@ -111,11 +107,3 @@ bool Usertype::insert(QStringList typeNames)
 	return true;
 }
 
-QString Usertype::coded(QByteArray encodedStr)
-{
-	// из QByteArray с кодировкой Windows-1251 
-	QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
-	// QTextCodec *codec2 = QTextCodec::codecForName("UTF-8"); 
-	QString const string = codec->toUnicode(encodedStr);
-	return string;
-}

@@ -233,14 +233,6 @@ bool Geodata_record::createTable()
 
 }
 
-//bool Geodata_record::completeTable()
-//{//переделать
-//	Geodata_record *gdr = new Geodata_record(1,1,"Ekaterinburg", 1, 1, 1,"ek.ru", "ohoho");
-//	int i=gdr->insertIntoDatabase();
-//	delete gdr;
-//	return true;
-//}
-
 void Geodata_record::deleteRecord(int& id, int session_id)
  {
 	QSqlDatabase db = Database::database();
@@ -249,15 +241,13 @@ void Geodata_record::deleteRecord(int& id, int session_id)
  	QString idstr = QString::number(id);
  	if (!query.exec("DELETE FROM geodata_records WHERE record_id=\'" + idstr + "\'"))
 	{
- 	qDebug() << "Oshibka udaleniya";
- 		QString errorString = query.lastError().text();
+  		QString errorString = query.lastError().text();
 		qDebug() << errorString;
 		Log::create(session_id, "Geodata_record: delete", id, errorString);
  	}
  	else
  	{
- 		qDebug() << "Udalilos";
-		Log::create(session_id, "Geodata_record: delete", id);
+ 		Log::create(session_id, "Geodata_record: delete", id);
  	}
  }
 

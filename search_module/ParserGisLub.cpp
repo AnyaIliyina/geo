@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
-
+#include "Scale.h"
 /*!
 \file
 \brief 
@@ -53,7 +53,7 @@ int ParserGisLub::parseTable(QByteArray & content, Geodata_record * record)
 						record->setPlacename(buffer.simplified());
 					if (fmod(counter - 1, 4) == 0)
 					{
-						record->setStateId(buffer.contains(State::coded("Не")) ?
+						record->setStateId(buffer.contains(Scale::coded("Не")) ?
 							stateID_notActual : stateID_actual);
 						qDebug() << record->url();
 						if (!record->insertIntoDatabase())

@@ -8,16 +8,15 @@
 #include <QSqlQuery>
 #include <QUrl>
 #include <QDateTime>
-/*!
-\file
-*/
+
 
 
 /*!
-*  \brief    Представляет сущность Георесурс
+	\file
+	\brief    Представляет сущность Георесурс
 			(таблица Geodata_records)
-*  \author   Козырева О., Ильина А.
-*  \date     15 март 2016
+	\author   Козырева О., Ильина А.
+	\date     15 март 2016
 */
 
 class Geodata_record {
@@ -135,7 +134,7 @@ public:
 	bool insertIntoDatabase();
 
 	/*!
-	
+	Обновляет запись в базе данных
 	*/
 	void updateRecord();
 	
@@ -144,15 +143,11 @@ public:
 	\return true - если таблица успешно создана
 	*/
 	static bool createTable();
-	
-	/*!
-	Заполняет таблицу "geodata_records" в БД начальными значениями.
-	\return true - если таблица успешно заполнена
-	*/
-	//static bool completeTable();
-	
+		
 	/*!
 	Удаляет запись по ее id;
+	\param id - record_id;
+	\param session_id - id настоящей сессии
 	*/
 	static void deleteRecord(int & id, int session_id = Database::currentSessionId());
 
@@ -164,6 +159,7 @@ public:
 
 	/*!Удаляет записи, относящиеся к сайту site_id
 	и созданные модулем поиска до текущей сессии
-	\param int site_id - id сайта */
+	\param int site_id - id сайта
+	\param session_id - id настоящей сессии*/
 	static void deleteOldSmRecords(int site_id, int session_id = Database::smSessionId());
 };

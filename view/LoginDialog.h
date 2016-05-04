@@ -1,14 +1,13 @@
 ﻿	#pragma once 
 #include <QDialog>
 #include "ui_LoginDialog.h"
-/*
-\file
-*/
+
 
 /*!
-\brief Описывает диалог аутентификации пользователя
-\author Ильина А.
-\date март 2016г.
+	\file
+	\brief Описывает диалог аутентификации пользователя
+	\author Ильина А.
+	\date март 2016г.
 */
 class LoginDialog : public QDialog {
 	Q_OBJECT
@@ -17,7 +16,7 @@ private:
 	
 public:
 	QString m_login;
-	 QString getLogin();
+	
 	/*!	Конструктор
 	\param QDialog * ptr - указатель на родительский диалог	*/
 	explicit LoginDialog(QDialog *ptr = 0);
@@ -25,20 +24,25 @@ public:
 	/*!	Деструктор	*/
 	~LoginDialog();
 	
+	/*!
+	Метод для получения логина
+	*/
+	QString getLogin();
 	
 signals:
 	/*!
-	
+	Сигнал об успешной авторизации
 	*/
-	void signalLogedIn(int);			// сигнал об учпешной авторизации
+	void signalLogedIn(int);			
 
 private slots:
-	/*!Проводит авторизоцию: 
+	/*!Проводит авторизацию: 
 	ищет введеную пользователем пару Логин-Пароль в базе, 
 	испускает сигнал logedIn(), если пара найдена.*/
 	void slotAuthenticate();
+
 	/*!
-	
+	Закрывает окно с диалогом авторизации
 	*/
 	void slotClose(int);
 

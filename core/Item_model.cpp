@@ -4,7 +4,6 @@
 #include <QDebug>
 
 #include "Base_item.h"
-//#include "../data/base_updown_item.h"
 #include "Item_factory.h"
 
 ItemModel::~ItemModel() {
@@ -44,15 +43,7 @@ int ItemModel::columnCount(const QModelIndex& parent) const {
 };
 
 bool ItemModel::hasChildren(const QModelIndex& parent) const {
-	/*BaseItem* parentItem;
-
-	if (!parent.isValid())
-		parentItem = m_rootItem;
-	else
-		parentItem = static_cast<BaseItem*>(parent.internalPointer());
-
-	return parentItem->hasChildren();*/
-	return false;
+		return false;
 };
 
 QModelIndex ItemModel::index(int row, int column, const QModelIndex& parent) const {
@@ -113,7 +104,7 @@ bool ItemModel::setData(const QModelIndex& index, const QVariant& value, int rol
 	bool res = item->setData(index.column(), value, role);
 
 	emit indexStatusChanged(index);
-
+	
 	return res;
 };
 

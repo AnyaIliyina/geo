@@ -36,6 +36,9 @@ public:
 	*/
 	State(int id);
 	
+	/*!
+	Деструктор
+	*/
 	~State();
 	
 	/*!
@@ -75,10 +78,9 @@ public:
 	\return false - возникли ошибки*/
 	static bool insert(QStringList stateNames);
 	
-	QString static coded(QByteArray encodedStr);
-
 	/*!
-	
+	Получает список всех статусов из базы
+	\return QStringList listStates - список статусов
 	*/
 	static QStringList getStates();
 };

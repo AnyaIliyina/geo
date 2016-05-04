@@ -3,18 +3,14 @@
 #include "SM_Session.h"
 #include "Session.h"
 #include "Site.h"
-#include <QTextEdit>
-#include <QDebug>
-#include <QStatusBar>
 #include "User.h"
 #include "NewSource.h"
 #include "ViewWindow.h"
 #include "State.h"
 #include "Database.h"
-
-/*!
-\file
-*/
+#include <QTextEdit>
+#include <QDebug>
+#include <QStatusBar>
 
 MainWindow::MainWindow(QMainWindow *parent)
 {
@@ -52,11 +48,11 @@ void MainWindow::slotConfigure()
 	viewDockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
 	setCentralWidget(viewDockWidget);
 	sf=new SearchForm();
-	QObject::connect(sf, SIGNAL(filterChanged(QString)), vw, SLOT(slotFilterChanged(QString)));
-	addDockWidget(Qt::LeftDockWidgetArea, sf);
+	addDockWidget(Qt::TopDockWidgetArea, sf);
 	QStatusBar *status = new QStatusBar();
 	setStatusBar(status);
 	showMW();
+	QObject::connect(sf, SIGNAL(filterChanged(QString)), vw, SLOT(slotFilterChanged(QString)));
 }
 
 
@@ -91,6 +87,7 @@ void MainWindow::showMW()
 */
 void MainWindow::slotCloseMW()
 {
+	delete sf;
 	this->close();
 	
 }
