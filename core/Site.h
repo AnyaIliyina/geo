@@ -130,6 +130,13 @@ public:
  	 static bool insert(QList<Site> sites);
 
 	 /*!
+	 Проверяет, встречается ли адрес в таблице sites, колонке url
+	 \param const QString& url - адрес
+	 \return true - адрес не встречается
+	 \return false - адрес занят*/
+	 static bool urlIsNew(const QString& url);
+
+	 /*!
 	 Проверяет, есть ли в базе сайты со статусом 1
 	 \return true - найден хотя бы один сайт со статусом 1*/
 	 static bool uncheckedSitesFound();
