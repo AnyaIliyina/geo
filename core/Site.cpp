@@ -259,3 +259,18 @@ QStringList Site::getSiteNames()
 	}
 	return listSites;
 }
+
+bool Site::urlFromString(QString & string)
+{
+	const QString urlStr = string.trimmed();
+	const QRegExp qualifiedUrl(QLatin1String("(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?"));
+
+	// Check if it looks like a qualified URL. Try parsing it and see.
+	const bool hasSchema = qualifiedUrl.exactMatch(urlStr);
+	if (hasSchema) {
+		const QUrl url(urlStr, QUrl::TolerantMode);
+		if (url.isValid())
+			return true;
+	}
+	return false;
+}

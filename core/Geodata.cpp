@@ -106,7 +106,12 @@ bool Geodata::setData(int column, const QVariant& value, int role) {
 		if (column == 7)
 			m_user_type= value.toString();*/
 		if (column == 8)
-			m_url = value.toString();
+		{
+			if (Site::urlFromString(value.toString()))
+			{
+				m_url = value.toString();
+			}
+		}
 		if (column == 9)
 			m_comment= value.toString();
 		
