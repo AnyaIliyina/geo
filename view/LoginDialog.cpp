@@ -1,4 +1,4 @@
-﻿#include "LoginDialog.h"
+#include "LoginDialog.h"
 #include "User.h"
 #include "Scale.h"
 #include "Database.h"
@@ -33,7 +33,7 @@ void LoginDialog::slotAuthenticate()
 		}
 	else
 		{ 
-		ui->lblResult->setText(Scale::coded("Пароль неверный"));
+		ui->lblResult->setText("Пароль неверный");
 		}
 }
 

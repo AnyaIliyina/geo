@@ -30,7 +30,7 @@ void NewSource::addNewRecord()
 	Site* ns = new Site(m_url, m_site_name, 0, m_comment);
 	if (ns->insertIntoDatabase() != -1)
 	{
-		int okMsgBox = QMessageBox::information(this, Scale::coded("Успех!"), Scale::coded("Новый источник успешно добавлен"), Scale::coded("Ok"));
+		int okMsgBox = QMessageBox::information(this, "РЈСЃРїРµС…!", "РќРѕРІС‹Р№ РёСЃС‚РѕС‡РЅРёРє СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅ", "Ok");
 		if (okMsgBox == 0)
 		{
 			ui->btnCancel->click();
@@ -38,7 +38,7 @@ void NewSource::addNewRecord()
 	}
 	else
 	{
-		int okMsgBox = QMessageBox::information(this, Scale::coded("Ошибка"), Scale::coded("Новый источник не добавлен"), Scale::coded("Ok"));
+		int okMsgBox = QMessageBox::information(this, "РћС€РёР±РєР°", "РќРѕРІС‹Р№ РёСЃС‚РѕС‡РЅРёРє РЅРµ РґРѕР±Р°РІР»РµРЅ","Ok");
 	}
 	
 }
@@ -52,11 +52,11 @@ void NewSource::slotCheck()
 		if (Site::urlFromString(m_url))
 			addMessage();
 		else
-			ui->lineError->setText(Scale::coded("Url не валидный!"));
+			ui->lineError->setText("Url РЅРµ РІР°Р»РёРґРЅС‹Р№!");
 	}
 	else
 	{
-		ui->lineError->setText(Scale::coded("Заполни все поля, товарищ!"));
+		ui->lineError->setText("Р—Р°РїРѕР»РЅРё РІСЃРµ РїРѕР»СЏ, С‚РѕРІР°СЂРёС‰!");
 	}
 }
 bool NewSource::emptyLine()
@@ -74,8 +74,8 @@ bool NewSource::emptyLine()
 void NewSource::addMessage()
 {
 	int saveMsgBox = QMessageBox::information(this,
-		Scale::coded("Создать новую запись?"), Scale::coded("Новая запись будет создана в базе"),
-		Scale::coded("Создать"), Scale::coded("Отмена"));
+		"РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°РїРёСЃСЊ?", "РќРѕРІР°СЏ Р·Р°РїРёСЃСЊ Р±СѓРґРµС‚ СЃРѕР·РґР°РЅР° РІ Р±Р°Р·Рµ",
+		"РЎРѕР·РґР°С‚СЊ", "РћС‚РјРµРЅР°");
 	if (saveMsgBox == 0)
 	{
 		addNewRecord();

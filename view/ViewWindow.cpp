@@ -1,4 +1,4 @@
-﻿#include "ViewWindow.h"
+#include "ViewWindow.h"
 #include "Database.h"
 #include "Scale.h"
 #include "State.h"
@@ -192,7 +192,7 @@ void ViewWindow::slotDelete()
 {
 	
 	int  deleteMsgBox = QMessageBox::question(this, "",
-		Scale::coded("Удалить выбранную запись?"),
+		"Удалить выбранную запись?",
 		QMessageBox::Yes, QMessageBox::No);
 	if (deleteMsgBox == QMessageBox::Yes)
 	{
@@ -222,11 +222,11 @@ void ViewWindow::slotSave()
 	{
 		m_editMode = false;
 		emit signalChangeEditMode();
-		QMessageBox::information(this, "", Scale::coded("Сохранено"), QMessageBox::Ok);
+		QMessageBox::information(this, "", "Сохранено", QMessageBox::Ok);
 		emit dataChanged();
 	}
 	else
-		QMessageBox::critical(this, "", Scale::coded("Не удалось применить изменения"), QMessageBox::Ok);
+		QMessageBox::critical(this, "", "Не удалось применить изменения", QMessageBox::Ok);
 	auto index = ui->tableView->selectionModel()->currentIndex();
 	auto m_index = filterModel->mapToSource(index);
 
@@ -240,7 +240,7 @@ void ViewWindow::slotCancel()
 		emit signalChangeEditMode();
 	}
 	else
-		QMessageBox::critical(this, "", Scale::coded("Не удалось отменить изменения"), QMessageBox::Ok);
+		QMessageBox::critical(this, "", "Не удалось отменить изменения", QMessageBox::Ok);
 	auto index = ui->tableView->selectionModel()->currentIndex();
 	auto m_index = filterModel->mapToSource(index);
 	ui->tableView->reset();
@@ -252,20 +252,11 @@ void ViewWindow::slotCancel()
 void ViewWindow::slotOpenUrl()
 {
 	auto index = ui->tableView->selectionModel()->currentIndex();
-	qDebug() << "index" << index;
 	auto m_index = filterModel->mapToSource(index);
-	qDebug() << "m_index" << m_index;
-	int column = m_index.column();
-	if (column == 8)
-	{
-		QString url= m_model->data(m_index).toString().toUtf8();
-		
-		qDebug() << url;
-		QUrl m_url(url);
-		qDebug() << m_url;
-		bool res=QDesktopServices::openUrl(m_url);
-		qDebug() << "res" << res;
-	}
-
+	int row = m_index.row();
+	auto child = m_model->index(row, 8);
+	QString url= m_model->data(child).toString();
+	QUrl m_url(url);
+	bool res=QDesktopServices::openUrl(m_url);
 }
 
