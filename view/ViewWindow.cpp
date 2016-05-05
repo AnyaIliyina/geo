@@ -258,7 +258,8 @@ void ViewWindow::slotOpenUrl()
 	int column = m_index.column();
 	if (column == 8)
 	{
-		QString url= m_model->data(m_index).toString();
+		QString url= m_model->data(m_index).toString().toUtf8();
+		
 		qDebug() << url;
 		QUrl m_url(url);
 		qDebug() << m_url;
