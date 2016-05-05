@@ -1,7 +1,6 @@
-﻿#include "SM_Session.h"
+#include "SM_Session.h"
 #include "Database.h"
 #include "QStatusBar"
-#include "Scale.h"
 #include "Session.h"
 #include "ParserGisLub.h"
 #include "ParserGeofabrik.h"
@@ -27,7 +26,7 @@ SM_Session::~SM_Session()
 void SM_Session::start()
 {
 	Session::createSMsession();
-	setStatus(Scale::coded("Модуль поиска начал работу..."));
+	setStatus("Модуль поиска начал работу...");
 	search();
 }
 
@@ -57,9 +56,9 @@ void SM_Session::search()
 
 	// вывести результат поиска:
 	if (result == 0)
-		setStatus(Scale::coded("Модуль поиска: все сайты проверены."));
+		setStatus("Модуль поиска: все сайты проверены.");
 	else
-		setStatus(Scale::coded("Модуль поиска завершил работу. Не все сайты проверены."));
+		setStatus("Модуль поиска завершил работу. Не все сайты проверены.");
 }
 
 /*!
