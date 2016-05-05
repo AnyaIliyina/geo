@@ -3,6 +3,7 @@
 #include "Scale.h"
 #include "State.h"
 #include "Geodata_record.h"
+#include "Geodata.h"
 #include "Item_model.h"
 #include "Combo_delegate.h"
 #include "Site.h"
@@ -10,13 +11,14 @@
 #include "Session.h"
 #include "SearchForm.h"
 #include "SortFilterProxyModel.h"
-#include "Url_delegate.h"
 #include <QSortFilterProxyModel>
 #include <QApplication>
 #include <QMainWindow>
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QMessageBox>
+#include <QDesktopServices>
+#include <QUrl>
 
 
 ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
@@ -32,6 +34,8 @@ ViewWindow::ViewWindow(QWidget * parent): ui(new Ui::ViewWindow) // ??
 	QObject::connect(ui->tableView->selectionModel(),SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)) ,this, SLOT(slotEnableButtons(const QItemSelection &, const QItemSelection &)) );
 	QObject::connect(this, SIGNAL(signalChangeEditMode()), this, SLOT(slotEnableButtons()));
 	QObject::connect(this, SIGNAL(dataChanged()), this, SLOT(slotRefresh()));
+	QObject::connect(ui->action_OpenUrl, SIGNAL(triggered()), this, SLOT(slotOpenUrl()));
+	//QObject::connect(ui->tableView->model, SIGNAL(signalId(int)), this, SLOT(slotIdRecord()));
 }
 
 ViewWindow::~ViewWindow()
@@ -55,6 +59,7 @@ void ViewWindow::setDisabled()
 	ui->action_New->setEnabled(false);
 	ui->action_Yes->setEnabled(false);
 	ui->action_No->setEnabled(false);
+	ui->action_OpenUrl->setEnabled(false);
 }
 
 void ViewWindow::slotRefresh()
@@ -69,6 +74,7 @@ void ViewWindow::slotEnableButtons()
 		ui->action_Edit->setEnabled(false);
 		ui->action_Delete->setEnabled(false);
 		ui->action_New->setEnabled(false);
+		ui->action_OpenUrl->setEnabled(false);
 		ui->action_Yes->setEnabled(true);
 		ui->action_No->setEnabled(true);
 	}
@@ -81,16 +87,19 @@ void ViewWindow::slotEnableButtons()
 		{
 			ui->action_Delete->setEnabled(true);
 			ui->action_Edit->setEnabled(false);
+			ui->action_OpenUrl->setEnabled(false);
 		}
 		if (ui->tableView->selectionModel()->selectedRows().count() == 1)
 		{
 			ui->action_Delete->setEnabled(true);
 			ui->action_Edit->setEnabled(true);
+			ui->action_OpenUrl->setEnabled(true);
 		}
 		if (ui->tableView->selectionModel()->selectedRows().count() == 0)
 		{
 			ui->action_Delete->setEnabled(false);
 			ui->action_Edit->setEnabled(false);
+			ui->action_OpenUrl->setEnabled(false);
 		}
 	}
 }
@@ -102,6 +111,7 @@ void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection 
 		ui->action_Edit->setEnabled(false);
 		ui->action_Delete->setEnabled(false);
 		ui->action_New->setEnabled(false);
+		ui->action_OpenUrl->setEnabled(false);
 		ui->action_Yes->setEnabled(true);
 		ui->action_No->setEnabled(true);
 	}
@@ -114,16 +124,19 @@ void ViewWindow::slotEnableButtons(const QItemSelection &, const QItemSelection 
 		{
 			ui->action_Delete->setEnabled(true);
 			ui->action_Edit->setEnabled(false);
+			ui->action_OpenUrl->setEnabled(false);
 		}
 		if (ui->tableView->selectionModel()->selectedRows().count() == 1)
 		{
 			ui->action_Delete->setEnabled(true);
 			ui->action_Edit->setEnabled(true);
+			ui->action_OpenUrl->setEnabled(true);
 		}
-		if (ui->tableView->selectionModel()->selectedRows().count() ==0)
+		if (ui->tableView->selectionModel()->selectedRows().count() == 0)
 		{
 			ui->action_Delete->setEnabled(false);
 			ui->action_Edit->setEnabled(false);
+			ui->action_OpenUrl->setEnabled(false);
 		}
 	}
 	
@@ -153,9 +166,6 @@ void ViewWindow::createTable()
 
 	auto comboDelegateState = new ComboDelegate(State::getStates(), this);
 	ui->tableView->setItemDelegateForColumn(5, comboDelegateState);
-
-	auto url_delegate = new Url_delegate(this);
-	ui->tableView->setItemDelegateForColumn(8, url_delegate);
 
 	ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 	ui->tableView->setColumnHidden(0, true);
@@ -198,7 +208,10 @@ void ViewWindow::slotEdit()
 	m_editMode = true;
 	emit signalChangeEditMode();
 	auto index = ui->tableView->selectionModel()->currentIndex();
+	qDebug() << "index" << index;
 	auto m_index= filterModel->mapToSource(index);
+	qDebug() << "m_index" << m_index;
+	
 	m_model->startEditMode(m_index);
 	ui->tableView->edit(m_index);
 }
@@ -234,5 +247,24 @@ void ViewWindow::slotCancel()
 	ui->tableView->selectionModel()->setCurrentIndex(m_index, QItemSelectionModel::Select |
 		QItemSelectionModel::Rows);
 	
+}
+
+void ViewWindow::slotOpenUrl()
+{
+	auto index = ui->tableView->selectionModel()->currentIndex();
+	qDebug() << "index" << index;
+	auto m_index = filterModel->mapToSource(index);
+	qDebug() << "m_index" << m_index;
+	int column = m_index.column();
+	if (column == 8)
+	{
+		QString url= m_model->data(m_index).toString();
+		qDebug() << url;
+		QUrl m_url(url);
+		qDebug() << m_url;
+		bool res=QDesktopServices::openUrl(m_url);
+		qDebug() << "res" << res;
+	}
+
 }
 

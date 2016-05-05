@@ -66,6 +66,8 @@ border-width:2px
    <addaction name="action_New"/>
    <addaction name="action_Delete"/>
    <addaction name="separator"/>
+   <addaction name="action_OpenUrl"/>
+   <addaction name="separator"/>
    <addaction name="action_Edit"/>
    <addaction name="separator"/>
    <addaction name="action_Yes"/>
@@ -114,6 +116,15 @@ border-width:2px
    </property>
    <property name="text">
     <string>&amp;No</string>
+   </property>
+  </action>
+  <action name="action_OpenUrl">
+   <property name="icon">
+    <iconset resource="icons/ViewWindowRes.qrc">
+     <normaloff>:/play.png</normaloff>:/play.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;OpenUrl</string>
    </property>
   </action>
  </widget>

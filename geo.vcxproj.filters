@@ -50,7 +50,7 @@
     <ClCompile Include="core\Base_item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\Combo_delegate.cpp">
+    <ClCompile Include="view\Combo_delegate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="database\Database.cpp">
@@ -133,7 +133,7 @@
     <ClInclude Include="core\Base_item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <CustomBuild Include="core\Combo_delegate.h">
+    <CustomBuild Include="view\Combo_delegate.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <ClInclude Include="database\Database.h">

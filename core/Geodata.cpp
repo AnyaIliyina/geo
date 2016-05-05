@@ -35,10 +35,12 @@ void Geodata::removeChild(BaseItem* child) {
 	m_children.removeOne(child);
 };
 
-QVariant Geodata::data(int column, int role) const {
+QVariant Geodata::data(int column, int role) const{
 	if (role == Qt::DisplayRole || role == Qt::EditRole || role == Qt::ToolTipRole) {
 		if (column == 0)
+		{
 			return m_id;
+		}
 		if (column == 1)
 			return m_place_name;
 		if (column == 2)
@@ -62,6 +64,7 @@ QVariant Geodata::data(int column, int role) const {
 	}
 
 	if (role == Qt::UserRole) {
+		
 		return m_id;
 	}
 
@@ -79,7 +82,6 @@ QVariant Geodata::data(int column, int role) const {
 			if (m_name.isNull() || m_name.isEmpty())
 				return pixmap;
 	}*/
-
 	return QVariant();
 };
 
@@ -314,4 +316,5 @@ void Geodata::getStateId()
 {
 	m_state_id = State::state_id(m_state_name);
 }
+
 

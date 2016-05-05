@@ -14,7 +14,7 @@
 class Geodata : public BaseItem
 {
 public:
-
+	int id=0;
 	virtual ~Geodata();
 	Geodata();
 
@@ -48,12 +48,11 @@ public:
 	void getSiteId();
 	void getScaleId();
 	void getStateId();
-
 	QList<BaseItem*> loadItemsFromDb() Q_DECL_OVERRIDE;
 
 private:
 
-	int m_id = 0;
+	int m_id=0;
 	int m_state_id = 0;
 	int m_scale_id = 0;
 	int m_session_id = 0;

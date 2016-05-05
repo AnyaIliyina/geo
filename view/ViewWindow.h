@@ -39,6 +39,7 @@ private:
 	ItemModel* m_model=nullptr;
 	SortFilterProxyModel *filterModel;
 	bool m_editMode = false;
+	
 
 	/*!
 	Метод для установки модели в таблицу и настройки таблицы
@@ -82,6 +83,11 @@ private slots:
 	 \param QString text - искомая строка
 	 */
 	 void slotFilterChanged(QString text);
+
+	 /*!
+	 Слот открытия ссылки
+	 */
+	 void slotOpenUrl();
  signals:
 	 /*!
 	 Сигнал для включения/выключения кнопок
