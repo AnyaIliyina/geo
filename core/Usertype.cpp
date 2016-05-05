@@ -1,6 +1,5 @@
-﻿#include "Usertype.h"
+#include "Usertype.h"
 #include "Database.h"
-#include "Scale.h"
 #include <QSqlError>
 #include <QSqlTableModel>
 #include <QSqlRecord>
@@ -80,10 +79,10 @@ bool Usertype::createTable()
 bool Usertype::completeTable()
 {
 	QStringList typeNames;
-	typeNames << Scale::coded("Модуль поиска")
-		<< Scale::coded("Система")
-		<< Scale::coded("Эксперт")
-		<< Scale::coded("Пользователь");
+	typeNames << "Модуль поиска"
+		<< "Система"
+		<< "Эксперт"
+		<< "Пользователь";
 	return insert(typeNames);
 }
 

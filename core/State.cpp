@@ -1,5 +1,4 @@
-﻿#include "State.h"
-#include "Scale.h"
+#include "State.h"
 #include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
@@ -120,9 +119,9 @@ bool State::insert(QStringList stateNames)
 bool State::completeTable()
 {
 	QStringList stateNames;
-	stateNames << Scale::coded("Не установлено")
-		<< Scale::coded("Актуально")
-		<< Scale::coded("Неактуально");
+	stateNames << "Не установлено"
+		<< "Актуально"
+		<< "Неактуально";
 	return insert(stateNames);
 }
 

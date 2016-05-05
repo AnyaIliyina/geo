@@ -1,5 +1,4 @@
-﻿#include "Status.h"
-#include "Scale.h"
+#include "Status.h"
 #include "Database.h"
 #include <QSqlError>
 #include <QSqlTableModel>
@@ -80,9 +79,9 @@ bool Status::createTable()
 bool Status::completeTable()
 {
 	QStringList statusNames;
-	statusNames << (Scale::coded("Не проверено"))
-		<< (Scale::coded("Проверено модулем поиска"))
-		<< (Scale::coded("Проверено экспертом"));
+	statusNames << "Не проверено"
+		<< "Проверено модулем поиска"
+		<< "Проверено экспертом";
 	return insert(statusNames);
 }
 
