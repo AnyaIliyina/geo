@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ViewWindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.1
+** Created by: Qt User Interface Compiler version 5.5.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -69,7 +69,7 @@ public:
         action_OpenUrl = new QAction(ViewWindow);
         action_OpenUrl->setObjectName(QStringLiteral("action_OpenUrl"));
         QIcon icon5;
-        icon5.addFile(QStringLiteral(":/play.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QStringLiteral(":/share2.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_OpenUrl->setIcon(icon5);
         centralwidget = new QWidget(ViewWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));

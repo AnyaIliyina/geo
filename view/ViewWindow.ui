@@ -121,7 +121,7 @@ border-width:2px
   <action name="action_OpenUrl">
    <property name="icon">
     <iconset resource="icons/ViewWindowRes.qrc">
-     <normaloff>:/play.png</normaloff>:/play.png</iconset>
+     <normaloff>:/share2.png</normaloff>:/share2.png</iconset>
    </property>
    <property name="text">
     <string>&amp;OpenUrl</string>
