@@ -46,7 +46,7 @@ int ParserGisLub::parseTable(QByteArray & content, Geodata_record * record)
 				while (xml.readNextStartElement())	// в <td>
 				{
 					if (fmod(counter, 4) == 0)
-						record->setUrl(QString("http://view-source:beryllium.gis-lab.info").
+						record->setUrl(QString("http://beryllium.gis-lab.info").
 							append(xml.attributes().at(0).value()));
 					QString buffer = xml.readElementText();
 					if (fmod(counter, 4) == 0)
