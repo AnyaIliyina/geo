@@ -38,7 +38,6 @@ QByteArray * Parser::getReply(const QString & url)
 	QNetworkAccessManager mgr;
 	QObject::connect(&mgr, SIGNAL(finished(QNetworkReply*)), &eventLoop, SLOT(quit()));
 		// eventLoop после exec() заблокирует все действия - до тех пор пока ответ QNetworkReply не получен
-
 	QUrl myUrl(url);
 	QNetworkRequest request(myUrl);
 	QNetworkReply *reply = mgr.get(request);

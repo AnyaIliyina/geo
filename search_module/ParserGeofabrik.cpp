@@ -1,4 +1,4 @@
-﻿#include "ParserGeofabrik.h"
+#include "ParserGeofabrik.h"
 #include "Geodata_record.h"
 #include <QTextEdit>
 #include <QXmlStreamReader>

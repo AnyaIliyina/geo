@@ -1,4 +1,4 @@
-﻿#include "ParserGisLub.h"
+#include "ParserGisLub.h"
 #include <QDebug>
 #include <QTextEdit>
 #include <QXmlStreamReader>
@@ -53,7 +53,7 @@ int ParserGisLub::parseTable(QByteArray & content, Geodata_record * record)
 						record->setPlacename(buffer.simplified());
 					if (fmod(counter - 1, 4) == 0)
 					{
-						record->setStateId(buffer.contains(Scale::coded("Не")) ?
+						record->setStateId(buffer.contains("Не") ?
 							stateID_notActual : stateID_actual);
 						qDebug() << record->url();
 						if (!record->insertIntoDatabase())
